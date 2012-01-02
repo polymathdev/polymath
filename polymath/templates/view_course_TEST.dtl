@@ -1,0 +1,163 @@
+{% extends "base.dtl" %}
+
+{% block title %}Polymath: {{ requested_course.name }}{% endblock %}
+
+{% block css_includes %}
+    <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
+   	<link href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" /> 
+{% endblock %}
+
+{% block js_includes %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
+
+	<script type="text/javascript">
+	$(function() {
+
+			$('#progressbar').progressbar({
+			value: ({{ completed_lessons.count }}/{{ lessons.count }}) *100
+			});
+		
+			
+			$('.checkb').click(function(){
+
+				$(this).attr('src', '../../static/css/images/checkboxDone.png');
+
+				lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
+
+
+
+		        $.post(
+		            from_server['complete_lesson_url'],
+		            { lesson_id: lesson_id },
+		            function(response) {
+		                alert(response['result_message']);
+		                if( response['complete_successful'] ) {
+
+		                }
+		            }
+		        );
+		
+				var val = $("#progressbar").progressbar("option", "value");
+			    $("#progressbar").progressbar("option", "value", val + (100/{{ lessons.count }}) );
+	
+	
+			});
+			
+
+	});
+
+	</script>
+	
+{% endblock %}
+
+{% block body %}
+
+
+
+	<div class="headingbox">
+	
+	<div class="container_6">
+	
+	
+		<div class="grid_4">
+	
+	
+			<div class="grid_1 alpha">
+				<img src="{{ STATIC_URL }}/css/images/Pythonlogo.png" id="courseLogo"></img>
+			</div>
+
+
+			<div class="grid_3 omega">
+				<h2 id="browsetitle">{{ requested_course.name }}
+				<p style="display:block inline; float:right; margin-top:18px;">	{% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}</p></h2>
+			
+				<hr id="titlehr">
+				<h4>by <a href="{% url view_profile uname=creator.username %}" id="name">{{ creator.first_name }} {{creator.last_name}}</a> 
+		
+				</h4></a></span>
+	
+				<p>{{ requested_course.description }}</p>
+	
+				{% for tag in course_tags %}
+					<a class="tag" href="{% url browse_courses_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a>
+				{% endfor %}
+	
+			</div>
+	
+	
+			<div class="clear"></div>
+			
+			
+			{% if lessons %}
+
+				<div class="lessonsBlock"> <!-- where each lesson block fits in-->
+				{% for lesson in lessons %}
+
+					<div class="lessonBlock">
+						<div class="grid_1 alpha" align="center">
+							<span id="number">{{ forloop.counter }}</span>
+						</div>
+
+						<div class="grid_2 alpha omega">
+							<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
+							<h3><a href="{{ lesson.link }}" target="_blank">{{ lesson.name }}</a> </h3> 
+							<p class="expanded">{{ lesson.description }}</p>
+							<a href="#" class="expand">(+)</a>
+						</div>
+
+
+						<div class="grid_1">
+
+						{% if not lesson in completed_lessons %}
+							<img src="{{ STATIC_URL }}css/images/checkbox.png" class="checkb">
+			            {% else %}
+			                <img src="{{ STATIC_URL }}css/images/checkboxDone.png" class="checkb done">
+			            {% endif %}
+						</center>
+						</div>
+					</div>
+					{% endfor %}
+
+			</div> <!-- end lessons block -->
+			
+	
+		</div>   <!-- end grid_4 -->
+
+
+		<div class="grid_2">
+		
+			<div class="grid_1">
+				<a href="#" class="like"><span>102</span></a>
+			</div>
+		
+			<div class="grid_1 alpha omega">
+				<a href="#" class="takecourse"><span>Take Course</span></a>
+			</div>
+		
+			<div class="clear"></div>
+		
+			<div class="grid_2 completed">
+				<span>Completed:</span><p id="numbercompleted">{{ completed_lessons.count }} of {{ lessons.count }}</p>
+				<div id="progressbar"></div>
+			</div>
+			
+			
+			<div class="clear"></div>
+		
+		</div> <!-- end container_6 -->
+
+	
+</div> <!-- end headingbox-->
+					
+
+	
+	{% else %}
+		<div class="lessonBlock" style="margin-top:20px;">
+			<h3 id="empty">Uh oh, this course is empty! {% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}"><b>Add some lessons and share your expertise.</b></a>{% endif %} </h3>
+		</div>
+	{% endif %}
+		
+
+{% endblock %}
+
+

@@ -4,10 +4,10 @@
 
 {% block body %}
  
-<form method="post" action="">
+<form method="post" action="" class="loginform">
 {% csrf_token %}
 {{ form.as_p }}
-<input type="submit" value="Login">
+<button type="submit" value="Login" id="login" class="btn large primary">Login</button>
 </form>
 
 {% endblock %}

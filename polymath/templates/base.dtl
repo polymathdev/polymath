@@ -7,9 +7,14 @@
 
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL}}js/csrf_ajax.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/base.js"></script>
         {% block js_includes %}{% endblock %}
 
         <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet" type="text/css" />
+    	<link href="{{ STATIC_URL }}css/newstylesheet.css" rel="stylesheet" type="text/css" /> 
+		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         {% block css_includes %}{% endblock %}
     </head>
     <body>
@@ -18,6 +23,29 @@
                 var from_server = {{ to_client|safe }};
             {% endif %}
         </script>
+
+
+		<div class="topbar">
+		   <div class="fill">
+		     <div class="container_6">
+		      <a class="brand" href="/"><img src='{{ STATIC_URL }}css/images/Polymath25px.png'></img></a>
+				<div class="learn">
+					<a href="/courses/browse" id="learnnav">Learn</a>
+					<a href="{% url add_course %}" id="teachnav">Teach</a>
+				</div>
+				<div class="nav">
+				{% if user.is_authenticated %}
+					Logged in as <a href="{% url view_profile uname=user.username %}">{{ user.first_name }} {{ user.last_name }}</a> | <a href="/logout">Logout</a>
+				{% else %}
+					<a href="/login">Login</a>
+				{% endif %}
+				</div>
+				<div class="clear"></div>
+		     </div>
+		   </div>
+		 </div>
+
+<!-- //hv - I commented this code out and added the above markup
 
         <div class="top_nav">
             <h3>Polymath</h3>
@@ -30,45 +58,53 @@
             </div>
         </div>
 
+-->
+
+
+
         {% if messages %}
             {% for message in messages %}
-                <h2 class="messages">{{ message }}</h2>
+                	<div class="messages"><h3>{{ message }}</h3><a href="#undefined" id="close">x</a></div>
             {% endfor %}
         {% endif %}
+        
+{% block body %}
 
-        {% block body %}
+		{% if debug %}
+		<hr>
+		<div id="debug">
+		  <h2>Queries</h2>
+		  <p>
+		    {{ sql_queries|length }} Quer{{ sql_queries|pluralize:"y,ies" }}
+		    {% ifnotequal sql_queries|length 0 %}
+		    (<span style="cursor: pointer;" onclick="var s=document.getElementById('debugQueryTable').style;s.display=s.display=='none'?'':'none';this.innerHTML=this.innerHTML=='Show'?'Hide':'Show';">Show</span>)
+		    {% endifnotequal %}
+		  </p>
+		  <table id="debugQueryTable" style="display: none;">
+		    <col width="1"></col>
+		    <col></col>
+		    <col width="1"></col>
+		    <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">SQL</th>
+		      <th scope="col">Time</th>
+		    </tr>
+		    </thead>
+		    <tbody>
+		    {% for query in sql_queries %}<tr class="{% cycle odd,even %}">
+		      <td>{{ forloop.counter }}</td>
+		      <td>{{ query.sql|escape }}</td>
+		      <td>{{ query.time }}</td>
+		    </tr>{% endfor %}
+		    </tbody>
+		  </table>
+		</div>
+		{% endif %}
+
+
         {% endblock %}
+
     </body>
 </html>
 
-{% if debug %}
-<hr>
-<div id="debug">
-  <h2>Queries</h2>
-  <p>
-    {{ sql_queries|length }} Quer{{ sql_queries|pluralize:"y,ies" }}
-    {% ifnotequal sql_queries|length 0 %}
-    (<span style="cursor: pointer;" onclick="var s=document.getElementById('debugQueryTable').style;s.display=s.display=='none'?'':'none';this.innerHTML=this.innerHTML=='Show'?'Hide':'Show';">Show</span>)
-    {% endifnotequal %}
-  </p>
-  <table id="debugQueryTable" style="display: none;">
-    <col width="1"></col>
-    <col></col>
-    <col width="1"></col>
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">SQL</th>
-      <th scope="col">Time</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for query in sql_queries %}<tr class="{% cycle odd,even %}">
-      <td>{{ forloop.counter }}</td>
-      <td>{{ query.sql|escape }}</td>
-      <td>{{ query.time }}</td>
-    </tr>{% endfor %}
-    </tbody>
-  </table>
-</div>
-{% endif %}

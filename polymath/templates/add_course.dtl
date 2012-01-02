@@ -32,10 +32,11 @@
 {% endfor %}
 </div>
 
-<input type="button" value="Add Lesson" id="add_lesson_btn">
+<button value="Add Lesson" id="add_lesson_btn" class="btn large primary">
 <br /><br />
 <input type="submit" value="Create Course">
 <input type="button" value="Test" id="test_btn">
+
 </form>
 
 <div style="display:none" id="empty_lesson_form_div">

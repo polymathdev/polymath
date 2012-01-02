@@ -3,15 +3,121 @@
 {% block title %}Polymath: Browse Courses{% endblock %}
 
 {% block css_includes %}
-   {# <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> #}
+   <!-- {# <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> #}   -->
 {% endblock %}
+
+{% block js_includes %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/browse_courses.js"></script>
+{% endblock %}
+
 
 
 {% block body %}
 
+<!-- ************************************************************************************************************************************************  -->
+<body id="learn">
+
+
+<div class="container_6" style="margin-top:30px;">
+
+	<div class="grid_4 omega">
+		<span id="browsetitle">Browse Courses</span><br>
+		<h5 class="edit_heading">What can you learn today?</h5>
+	</div>
+
+	
+	<div class="grid_2" style="margin-top:5px; margin-right:10px; float:right;">
+		<a href="{% url add_course %}" class="create"><span>Create Course</span></a>
+	</div>
+	
+	
+	<div class="clear"></div>
+
+<br>
+	<div class="grid_1 omega" style="height:500px;">
+		<ul class="sidebar">
+			<li id="first"><a href="">Featured</li>
+			<li><a href="">Popular</li>
+			<li><a href="">Newly Added</li>
+
+			<hr id="browsehr">	
+			
+			{% if tags_by_cat %}
+			    {% for cat, tags in tags_by_cat.items %}
+			    <li class="categoryli"><a href="{% url browse_courses_by_cat cat_slug=cat.slug %}">{{ cat }}</a></li>
+
+					<div class="selectedtags">
+			            <b>Tags:</b>
+			            {% for tag in tags %}
+			            <a href="{% url browse_courses_by_cat_and_tag cat_slug=cat.slug tag_slug=tag.slug %}">{{ tag }}</a >{% if not forloop.last %},{% endif %}
+			            {% endfor %}
+					</div>
+
+			    {% endfor %}
+
+			{% endif %}
+			
+			
+		</ul>
+	</div>
+	
+
+{% if course_list|length == 0 %}
+	<div class="courseBlock grid_5 alpha">
+	<h3 style="padding:15px 10px 15px; font-weight:normal; color:#656565;">
+		There are no courses in this category yet!
+	</h3>
+	</div>
+	
+{% endif %}
+
+{% for course in course_list %}
+
+<div class="coursesBlock">
+
+		<div class="courseBlock">
+			<div class="grid_1 alpha">
+				<img class="courseimage" src="{{ STATIC_URL }}css/images/pythonLogo.png"></img>
+			</div>
+			<div class="grid_4 courseDetails">
+				<h3><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a></h3>
+				<h4>By <a href="{% url view_profile uname=course.creator.user.username %}">{{ course.creator.user.first_name }} {{ course.creator.user.last_name }}</a> | 	{% if course.followers.count == 1 %}
+						{{ course.followers.count }} follower 
+					{% else %}
+						{{ course.followers.count }} followers
+					{% endif %}
+				<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon"></img>
+				{% if is_my_course %}| <a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}
+				
+				</h4>
+				<p>"{{ course.description }}"</p>
+				{% for tag in course.tags.all %}
+			    <div class="coursetags">
+			<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=course.category.slug tag_slug=tag.slug %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
+				</div> 
+			    {% endfor %}
+			</div>
+		<!-- 
+			<div class="grid_1 omega">
+					<a href="#" class="like browselike"><span>102</a></span>
+			</div> -->
+			
+		</div> <!-- end course block -->
+{% endfor %}
+
+</div> <!-- end coursesblock -->
+
+</div>
+
+
+
+
+<!-- ************************************************************************************************************************************************  -->
+
 <h1>Browse Courses</h1>
 
 {# stupid logic for inserting an "all categories" link...just for testing, kind of a hack #}
+
 {% if tags_by_cat.keys|length == 1 or not tags_by_cat %}
     <p>
     <a href="{% url browse_courses_all %}">View All Categories</a>
@@ -35,6 +141,7 @@
 
 <hr>
 <h3><u>Courses</u></h3>
+
 {% for course in course_list %}
     <p>
     <a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a> by <a href="{% url view_profile uname=course.creator.user.username %}">{{ course.creator.user.first_name }} {{ course.creator.user.last_name }}</a><br />

@@ -2,7 +2,6 @@
 from os import environ
 from platform import node
 
-
 # Helper lambda for gracefully degrading environmental variables:
 env = lambda e, d: environ[e] if environ.has_key(e) else d
 
@@ -12,8 +11,6 @@ if host in ['harish-venkatesans-macbook.local', 'DSMBP.local']:
     from settings_dev import *
 else:
     from settings_prod import *
-
-
 
 ADMINS = (
      ('Daniel Shapiro', 'registration@dshap.com'),

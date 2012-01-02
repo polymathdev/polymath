@@ -7,9 +7,22 @@ import ipdb
 class CourseForm(ModelForm):
     class Meta:
         model = Course
-        exclude = ['creator']        
+        exclude = ['creator']
+        widgets = { 
+			'name': forms.TextInput(attrs={'placeholder':'Course Name'}),
+			'category': forms.Select(attrs={'initial':'Category'}),
+			'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your course here'}),
+			'tags': forms.TextInput(attrs={'placeholder':'Add tags, separated by a comma'}),
+		}        
 
 class LessonForm(ModelForm):
+    class Meta:
+        widgets = {
+               'name': forms.TextInput(attrs={'placeholder':'Lesson Name'}), 
+               'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your course here'}),
+               'link': forms.TextInput(attrs={'placeholder':'Enter a URL here'}),
+        }
+
     # override the init method so that we can make the link fields for existing lessons read-only
     def __init__(self, *args, **kwargs):
         super(LessonForm, self).__init__(*args, **kwargs)

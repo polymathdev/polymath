@@ -18,6 +18,45 @@
 }
 
 .messages {
-    color:green;
+	background-color:#f2f0e2;
+	margin-top:5px;
+	margin-bottom:0px;
+	padding-top:15px;
+	padding-bottom:10px;
+	padding-left:10px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1004px;
+	border-bottom:1px solid #e4e4dc;
+	border-left:1px solid #e4e4dc;
+	border-right:1px solid #e4e4dc;
+	display:none;
+	box-shadow:0px 1px 0px #ccc;
+	border-radius:4px;
+
+}
+
+
+
+.messages h3{
+	color:#667B4E;
     font-weight:bold;
+	font-size:14px;
+	width:940px;
+	display:inline-block;
+}
+
+.messages a{
+		float:right;
+		margin-right:10px;
+		font-size:14px;
+		color:#c8bc91;
+		text-shadow:0px 2px 0px white;
+		font-weight:bold;
+		opacity:0.6;
+}
+
+.messages a:hover{
+	text-decoration:none;
+	opacity:1;
 }

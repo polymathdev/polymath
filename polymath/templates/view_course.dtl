@@ -4,51 +4,218 @@
 
 {% block css_includes %}
     <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
+   	<link href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" /> 
 {% endblock %}
-
 
 {% block js_includes %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.qtip-1.0.0-rc3.min.js"></script>
+	<script type="text/javascript">
+	$(function() {
+
+			$('#progressbar').progressbar({
+			value: ({{ completed_lessons.count }}/{{ lessons.count }}) *100
+			});
+		
+			
+			$('.checkb').click(function(){
+
+				$(this).attr('src', '../../static/css/images/checkboxDone.png');
+
+				lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
+
+
+
+		        $.post(
+		            from_server['complete_lesson_url'],
+		            { lesson_id: lesson_id },
+		            function(response) {
+		                alert(response['result_message']);
+		                if( response['complete_successful'] ) {
+
+		                }
+		            }
+		        );
+		
+				var val = $("#progressbar").progressbar("option", "value");
+			    $("#progressbar").progressbar("option", "value", val + (100/{{ lessons.count }}) );
+	
+	
+			});
+			
+
+			
+			$('.checkb').qtip({
+			   content: 'Mark as done',
+			   show:'mouseover',
+			   hide:'mouseout',
+			   style:{ 
+				padding:2,
+				name:'dark', 
+				tip:'leftMiddle', 
+				border: {
+			         width: 1,
+			      },
+				},
+				position: {
+			      corner: {
+					target:'rightMiddle',
+			         tooltip: 'leftMiddle'
+			      }
+			   }
+			})
+		
+
+
+	});
+
+
+
+	</script>
+	
 {% endblock %}
 
 {% block body %}
 
-<h1>
-{{ requested_course.name }} by <a href="{% url view_profile uname=creator.username %}">{{ creator.first_name }} {{creator.last_name}}</a>
-{% if is_my_course %}(<a href="{% url edit_course course_slug=requested_course.slug %}">edit course</a>){% endif %}
-</h1>
-<h3>
-Tags: 
-{% for tag in course_tags %}
-<span class="tag"><a href="{% url browse_courses_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a></span>{% if not forloop.last %}, {% endif %}
-{% endfor %}
-</h3>
-<h3><i>{{ requested_course.description }}</i></h3>
-<ul id="lesson_list_ul">
+
+	<div class="headingbox">
+	<div class="container_6">	
+
+	<div class="grid_6 categories">
+		<div class="grid_3 alpha">
+		Learn > {{requested_course.category}} > {{requested_course.name}}
+		</div>
+		<div class="grid_3 omega">
+			<div class="headingtags">
+			Tags:
+			{% for tag in course_tags %}
+				<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a>
+			{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+		
+		<div class="grid_4">
+	
+			<div class="grid_1 alpha">
+				<img src="{{ STATIC_URL }}/css/images/Pythonlogo.png" id="courseLogo"></img>
+			</div>
+
+
+			<div class="grid_3 omega">
+				<h2 id="browsetitle">{{ requested_course.name }}
+				<p style="display:block inline; float:right; margin-top:12px;">	{% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}</p></h2>
+			
+
+				<h4><a href="{% url view_profile uname=creator.username %}" id="name">{{ creator.first_name }} {{creator.last_name}}</a> 
+				</h4></a></span>
+				
+				<hr id="titlehr">	
+				
+				<p>{{ requested_course.description }}</p>
+									
+			<div class="socialmedia" style="position:absolute; top:115px;">
+						<a href="http://www.facebook.com/dialog/feed?
+						  app_id=349907371691622&
+						  link=http://www.whatispolymath.com&
+						  picture=https://si0.twimg.com/profile_images/1582513204/polymathtwitter.png&
+						  name={{ requested_course.name }}&
+						  caption=Polymath&
+						  description={{ requested_course.description }}&
+						  redirect_uri=http://whatispolymath.com" target="_blank" class="shareonfb"><span>Share on Facebook</span></a>
+						
+						
+						
+						
+						{% if is_my_course %}
+						<a href="https://twitter.com/share?url=http://whatispolymath&text=Check%20out%20this%20course%20I%20created%20on%20Polymath%20-%20'{{ requested_course.name}}'!" target="_blank" class="shareontw"><span>Share on Twitter</span></a>						
+						{% else %}
+						<a href="https://twitter.com/share?url=http://whatispolymath&text=Check%20out%20this%20course%20I%20found%20on%20Polymath%20-%20'{{ requested_course.name}}'!" target="_blank" class="shareontw"><span>Share on Twitter</span></a>
+						{% endif %}
+				
+			</div>
+				
+	
+			</div>
+	
+	
+		</div>   <!-- end grid_4 -->
+
+
+		<div class="grid_2" style="margin-top:3px;">
+		
+			<div class="grid_1" style="margin-bottom:0px">
+				<a href="#" class="like" style="float:right;"><span>102</span></a>
+			</div>
+		
+			<div class="grid_1 alpha omega" style="margin-bottom:0px">
+				<a href="#" class="takecourse"><span>Take Course</span></a>
+			</div>
+		
+			<div class="clear"></div>
+		
+			<div class="grid_2 completed" style="margin-top:10px">
+				<span>Completed:</span><span id="numbercompleted">{{ completed_lessons.count }} of {{ lessons.count }}</span>
+				<div id="progressbar"></div>
+			</div>
+		
+		</div>
+
+	</div> <!-- end container_6 -->
+	
+</div> <!-- end headingbox-->
+	
+<div class="clear"></div>
+
+
+<div class="container_6">
+
 {% if lessons %}
 
-    {% for lesson in lessons %}
-    <li class="lesson_li"><h4>
-        <input type="hidden" class="lesson_id" value="{{ lesson.id }}">
-        <a href="{{ lesson.link }}">{{ lesson.name }}</a>
-        {% if completed_lessons %}
-            <span style="margin-left:5px">
-                (<span class="complete_spn">
-                    {% if not lesson in completed_lessons %}
-                        <a href="#" class="complete_lesson_lnk">Mark Done</a>
-                    {% else %}
-                        <span style="color:green">You've done this</a>
-                    {% endif %}
-                </span>)
-            </span>
-        {% endif %}
-    </h4></li>
-        <div>{{ lesson.description }}</div>
-    {% endfor %}
+	<div class="lessonsBlock"> <!-- where each lesson block fits in-->
+	
+	{% for lesson in lessons %}
+		
+      {% if not lesson in completed_lessons %}
+		<div class="lessonBlock">      
+	  {% else %}
+		  <div class="lessonBlock completedBlock">
+	  {% endif %}
+			<div class="grid_1 alpha" align="center">
+				<span id="number">{{ forloop.counter }}</span>
+			</div>
+			
+			<div class="grid_3 alpha omega">
+				<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
+				<h3><a href="{{ lesson.link }}" target="_blank">{{ lesson.name }}</a> </h3> 
+				<p class="expanded">{{ lesson.description }}</p>
+				<a href="#" class="expand">(+)</a>
+			</div>
+			
+				
+			<div class="grid_1 prefix_1">
+		
+			{% if not lesson in completed_lessons %}
+				<div class="checkb"></div>
+            {% else %}
+                <div class="checkb done"></div>
+            {% endif %}
+			</center>
+			</div>
+		</div>
+		{% endfor %}
+		
+</div> <!-- end lessons block -->					
 
-{% else %}
-    There are no lessons for this course yet
-{% endif %}
-</ul>
+	
+	{% else %}
+		<div class="lessonBlock" style="margin-top:20px;">
+			<h3 id="empty">Uh oh, this course is empty! {% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}"><b>Add some lessons and share your expertise.</b></a>{% endif %} </h3>
+		</div>
+	{% endif %}
+		
 
 {% endblock %}
+
+

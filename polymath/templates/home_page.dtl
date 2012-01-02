@@ -1,9 +1,77 @@
 {% extends "base.dtl" %}
 
+{% block css_includes %}
+     	<link href="{{ STATIC_URL }}css/home.css" rel="stylesheet" type="text/css" />    
+{% endblock %}
+
+{% block js_includes %}
+		<script type="text/javascript" src="http://www.gmarwaha.com/jquery/jcarousellite/js/jcarousellite_1.0.1.min.js"></script> 
+        <script type="text/javascript" src="{{ STATIC_URL }}js/home_animation.js"></script>
+{% endblock %}
+
 {% block title %}Welcome to Polymath{% endblock %}
 
+
+
+
 {% block body %}
+	<div class="homeheader" style="padding-top:60px;">
+		<div class="container_6">
+			
+			<div class="grid_6" id="ticker">
+					<h1>Learn</h1>
+						<ul>
+							<li>web design.</li>
+							<li>programming.</li>
+							<li>entrepreneurship.</li>
+						</ul>
+			</div>
+			
+			<div class="clear"></div>
+		
+			<div class="grid_6 homecopy">
+					<h3><center>Polymath makes education <b>simple</b>, <b>fun</b>, and <b>social</b>. Learn something new or share your expertise!</h3>
+			</div>
+		
+		</div>
+		
+		<div class="clear"></div>
+		
+		</div> <!-- end container_6 -->
+		
+	</div> <!-- end homeheader -->
+
 <div>
-This is the home page.
+
+<div class="featured">
+	<hr>
+	<div class="container_6">
+		<h3 id="title">Featured courses</h3>
+		
+		
+	</div>
 </div>
+
+
+<div class="fbsignin">
+	<div class="container_6">
+		<div class="grid_2">
+				<h3 class="fblogincopy">Join Polymath now</h3>
+		</div>
+		<div class="grid_2">
+			<a href="#" class="fbloginbutton"><span>Sign up with Facebook</span></a>
+		</div>
+		<div class="grid_2">
+			<h3 class="emailcopy">or <a href="#">sign up with email</a></h3>
+		</div>
+	</div> 
+</div>
+
+
+
+
+
+
+</div> <!-- end container -->
 {% endblock %}
+
