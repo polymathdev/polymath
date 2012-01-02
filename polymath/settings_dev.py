@@ -19,8 +19,33 @@ host = node()
 
 if host == 'DSMBP.local':
     TEMPLATE_DIRS = ('/Users/Daniel/Django/polymath/polymath/templates')
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+            'NAME': 'pm_db_psql',                      
+            'USER': 'postgres',                      
+            'PASSWORD': 'learnpsql',                 
+            'HOST': 'localhost',                     
+            'PORT': '5432',                      
+        }
+    }
+
 elif host == 'harish-venkatesans-macbook.local':
     TEMPLATE_DIRS = ('/Users/harish/polymath/polymath/templates')
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+            'NAME': 'pm_db_psql',                      
+            'USER': 'postgres',                      
+            'PASSWORD': 'stitch1',                 
+            'HOST': 'localhost',                     
+            'PORT': '5432',                      
+        }
+    }
+
+
 
 STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/' 
