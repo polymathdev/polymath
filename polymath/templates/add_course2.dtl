@@ -1,0 +1,68 @@
+{% extends "base.dtl" %}
+
+
+{% block js_includes %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/course_form.js"></script>
+{% endblock %}
+
+
+{% block title %}
+{% if is_add_page %}Create a Course{% else %}Edit Course{% endif %}
+{% endblock %}
+
+
+{% block body %}
+<h1>{% if is_add_page %}Create a Course{% else %}Edit Course{% endif %}</h1>
+<form id="new_course_form" method="post">
+    {% csrf_token %}
+    {{ course_form.as_p }}
+
+    <br />
+
+    {{ lesson_fs.management_form }}
+
+    <div id="lesson_list_div">
+    {% for lesson_form in lesson_fs %}
+        <div class="lesson_div {% if not lesson_form.initial %}extra{% endif %}">
+            <b>Lesson #<span class="lesson_num_spn">{{ forloop.counter }}</span></b> (<a href="#" class="remove_lesson_lnk">remove</a>) (<a href="#" class="move_up_lnk">up</a>) (<a href="#" class="move_down_lnk">down</a>)
+            {{ lesson_form.id }}
+
+            {{ lesson_form.name.errors }}
+            <p>{{ lesson_form.name.label_tag }}: {{ lesson_form.name }}</p>
+       
+            {{ lesson_form.description.errors }}
+            <p>{{ lesson_form.description.label_tag }}: {{ lesson_form.description }}</p>
+
+            {{ lesson_form.link.errors }}
+            <p>{{ lesson_form.link.label_tag }}: {% if lesson_form.instance.id %}{{ lesson_form.instance.link }}{% else %}{{ lesson_form.link }}{% endif %}</p>
+
+            {{ lesson_form.order.as_hidden }}
+        </div>
+    {% endfor %}
+    </div>
+                                                         
+    <input type="button" value="Add Lesson" id="add_lesson_btn">
+    <br /><br />
+    <input type="submit" value="Save Course">
+
+    <input type="button" value="Test" id="test_btn">
+
+</form>
+
+
+<div style="display:none">
+    <form id="delete_lesson_form" method="post" action="{% url core.views.delete_lesson %}">
+        <input type="hidden" id="delete_lesson_id" name="delete_lesson_id">
+    </form>
+</div>
+
+{# invisible empty form that client-side code will use to add new lessons #}
+<div style="display:none" id="empty_lesson_form_div">
+    <b>Lesson #<span class="lesson_num_spn">X</span></b> (<a href="#" class="remove_lesson_lnk">remove</a>) (<a href="#" class="move_up_lnk">up</a>) (<a href="#" class="move_down_lnk">down</a>) 
+    {{ lesson_form.id }}
+    <p>{{ lesson_fs.empty_form.name.label_tag }}: {{ lesson_fs.empty_form.name }}</p>
+    <p>{{ lesson_fs.empty_form.description.label_tag }}: {{ lesson_fs.empty_form.description }}</p>
+    <p>{{ lesson_fs.empty_form.link.label_tag }}: {{ lesson_fs.empty_form.link }}</p>
+    {{ lesson_fs.empty_form.order.as_hidden }}
+</div>
+{% endblock %}

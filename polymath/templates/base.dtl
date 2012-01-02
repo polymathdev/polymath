@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Polymath{% endblock %}</title>
+
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL}}js/csrf_ajax.js"></script>
+        {% block js_includes %}{% endblock %}
+
+        <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet" type="text/css" />
+        {% block css_includes %}{% endblock %}
+    </head>
+    <body>
+        <script type="text/javascript">
+            {% if to_client %}
+                var from_server = {{ to_client|safe }};
+            {% endif %}
+        </script>
+
+        <div class="top_nav">
+            <h3>Polymath</h3>
+            <div class="top_nav_links">
+            {% if user.is_authenticated %}
+                You are logged in as <a href="{% url view_profile uname=user.username %}">{{ user.first_name }} {{ user.last_name }}</a> (<a href="/logout">Logout</a>)
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
+            </div>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <h2 class="messages">{{ message }}</h2>
+            {% endfor %}
+        {% endif %}
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
+
+{% if debug %}
+<hr>
+<div id="debug">
+  <h2>Queries</h2>
+  <p>
+    {{ sql_queries|length }} Quer{{ sql_queries|pluralize:"y,ies" }}
+    {% ifnotequal sql_queries|length 0 %}
+    (<span style="cursor: pointer;" onclick="var s=document.getElementById('debugQueryTable').style;s.display=s.display=='none'?'':'none';this.innerHTML=this.innerHTML=='Show'?'Hide':'Show';">Show</span>)
+    {% endifnotequal %}
+  </p>
+  <table id="debugQueryTable" style="display: none;">
+    <col width="1"></col>
+    <col></col>
+    <col width="1"></col>
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">SQL</th>
+      <th scope="col">Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for query in sql_queries %}<tr class="{% cycle odd,even %}">
+      <td>{{ forloop.counter }}</td>
+      <td>{{ query.sql|escape }}</td>
+      <td>{{ query.time }}</td>
+    </tr>{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}

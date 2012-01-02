@@ -1,0 +1,50 @@
+{% extends "base.dtl" %}
+
+{% block title %}Polymath: Browse Courses{% endblock %}
+
+{% block css_includes %}
+   {# <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> #}
+{% endblock %}
+
+
+{% block body %}
+
+<h1>Browse Courses</h1>
+
+{# stupid logic for inserting an "all categories" link...just for testing, kind of a hack #}
+{% if tags_by_cat.keys|length == 1 or not tags_by_cat %}
+    <p>
+    <a href="{% url browse_courses_all %}">View All Categories</a>
+    </p>
+{% endif %}
+
+{# browsing all courses or single category #}
+{% if tags_by_cat %}
+    {% for cat, tags in tags_by_cat.items %}
+    <h3><a href="{% url browse_courses_by_cat cat_slug=cat.slug %}">{{ cat }}</a></h3>
+            <b>Tags:</b>
+            {% for tag in tags %}
+            <a href="{% url browse_courses_by_cat_and_tag cat_slug=cat.slug tag_slug=tag.slug %}">{{ tag }}</a >{% if not forloop.last %},{% endif %}
+            {% endfor %}
+    {% endfor %}
+
+{# filter by category + tag #}
+{% else %}
+<h3><a href="{% url browse_courses_by_cat cat_slug=filters.category.slug %}">{{ filters.category.name }}</a> :: {{ filters.tag.name }}</h3>
+{% endif %}
+
+<hr>
+<h3><u>Courses</u></h3>
+{% for course in course_list %}
+    <p>
+    <a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a> by <a href="{% url view_profile uname=course.creator.user.username %}">{{ course.creator.user.first_name }} {{ course.creator.user.last_name }}</a><br />
+    <i>{{ course.description }}</i><br />
+    <b>Tags:</b>
+    {% for tag in course.tags.all %}
+    <a href="{% url browse_courses_by_cat_and_tag cat_slug=course.category.slug tag_slug=tag.slug %}">{{ tag }}</a>{% if not forloop.last %},{% endif %}
+    {% endfor %}
+    </p>
+    {% if not forloop.last %}<hr>{% endif %}
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.dtl" %}
+
+{% block title %}Polymath: {{ requested_course.name }}{% endblock %}
+
+{% block css_includes %}
+    <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
+{% endblock %}
+
+
+{% block js_includes %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<h1>
+{{ requested_course.name }} by <a href="{% url view_profile uname=creator.username %}">{{ creator.first_name }} {{creator.last_name}}</a>
+{% if is_my_course %}(<a href="{% url edit_course course_slug=requested_course.slug %}">edit course</a>){% endif %}
+</h1>
+<h3>
+Tags: 
+{% for tag in course_tags %}
+<span class="tag"><a href="{% url browse_courses_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a></span>{% if not forloop.last %}, {% endif %}
+{% endfor %}
+</h3>
+<h3><i>{{ requested_course.description }}</i></h3>
+<ul id="lesson_list_ul">
+{% if lessons %}
+
+    {% for lesson in lessons %}
+    <li class="lesson_li"><h4>
+        <input type="hidden" class="lesson_id" value="{{ lesson.id }}">
+        <a href="{{ lesson.link }}">{{ lesson.name }}</a>
+        {% if completed_lessons %}
+            <span style="margin-left:5px">
+                (<span class="complete_spn">
+                    {% if not lesson in completed_lessons %}
+                        <a href="#" class="complete_lesson_lnk">Mark Done</a>
+                    {% else %}
+                        <span style="color:green">You've done this</a>
+                    {% endif %}
+                </span>)
+            </span>
+        {% endif %}
+    </h4></li>
+        <div>{{ lesson.description }}</div>
+    {% endfor %}
+
+{% else %}
+    There are no lessons for this course yet
+{% endif %}
+</ul>
+
+{% endblock %}

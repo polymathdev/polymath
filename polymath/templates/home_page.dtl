@@ -1,0 +1,9 @@
+{% extends "base.dtl" %}
+
+{% block title %}Welcome to Polymath{% endblock %}
+
+{% block body %}
+<div>
+This is the home page.
+</div>
+{% endblock %}

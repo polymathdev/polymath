@@ -1,0 +1,24 @@
+
+{% extends "base.dtl" %}
+
+{% block title %}Polymath: Browse Courses{% endblock %}
+
+{% block css_includes %}
+   {# <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> #}
+{% endblock %}
+
+{% block body %}
+
+{% for les in all_lessons %}
+    - {{ les.name }}
+
+    {% if les in course_lessons %}
+        yes
+    {% else %}
+        no
+    {% endif %}
+    <br />
+    
+{% endfor %}
+
+{% endblock %}

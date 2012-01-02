@@ -1,0 +1,35 @@
+{% extends "base.dtl" %}
+
+{% block title %}Polymath: {{ profile_owner.first_name }} {{ profile_owner.last_name }}{% endblock %}
+
+{% block body %}
+
+<h1>{{ profile_owner.first_name }} {{ profile_owner.last_name }}</h1>
+<h3><i>{{ blurb }}</i></h3>
+
+{% if is_my_profile %}
+    <div><a href="{% url add_course %}">Create Course</a></div>
+    <br />
+{% endif %}                     
+
+
+{% if courses_following %}
+    <u>Courses that {% if is_my_profile %}you're{% else %}{{ profile_owner.first_name }} is{% endif %} following:</u> 
+    {% for course in courses_following %}
+        <ul>
+            <li><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a><span style="margin-left:5px">( <span style="font-weight:bold;color:blue">{{ course.completed }} out of {{ course.total }} complete</span> )</span></li> 
+        </ul>
+    {% endfor %}
+    <br />
+{% endif %}
+
+{% if courses_created_by_user %}
+    <u>Courses that {% if is_my_profile %}you've{% else %}{{ profile_owner.first_name }} has {% endif %} created:</u>
+    {% for course in courses_created_by_user %}
+        <ul>
+            <li><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a> {% if is_my_profile %}(<a href="{% url edit_course course_slug=course.slug %}">edit</a>){% endif %}</li>
+        </ul>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.dtl" %}
+
+{% block title %}Create a Course{% endblock %}
+
+{% block body %}
+<h1>Create a Course</h1>
+<form method="post">
+{% csrf_token %}
+
+{{ course_form.as_p }}
+
+
+<br />
+
+{{ lesson_fs.management_form }}
+
+<div id="lesson_list_div">
+{% for lesson_form in lesson_fs %}
+
+    <div class="lesson_div">
+        <b>Lesson #<span class="lesson_num_spn">{{ forloop.counter }}</span></b> (<a href="#" class="remove_lesson_lnk">remove</a>) (<a href="#" class="move_up_lnk">up</a>) (<a href="#" class="move_down_lnk">down</a>)
+
+        {{ lesson_form.name.errors }}
+        <p>{{ lesson_form.name.label_tag }}: {{ lesson_form.name }}</p>
+   
+        {{ lesson_form.link.errors }}
+        <p>{{ lesson_form.link.label_tag }}: {{ lesson_form.link }}</p>
+
+        <span style="display:none">{{ lesson_form.ORDER }}</span>
+    </div>
+
+{% endfor %}
+</div>
+
+<input type="button" value="Add Lesson" id="add_lesson_btn">
+<br /><br />
+<input type="submit" value="Create Course">
+<input type="button" value="Test" id="test_btn">
+</form>
+
+<div style="display:none" id="empty_lesson_form_div">
+    <b>Lesson #<span class="lesson_num_spn">X</span></b> (<a href="#" class="remove_lesson_lnk">remove</a>) (<a href="#" class="move_up_lnk">up</a>) (<a href="#" class="move_down_lnk">down</a>) 
+    <p>{{ lesson_fs.empty_form.name.label_tag }}: {{ lesson_fs.empty_form.name }}</p>
+    <p>{{ lesson_fs.empty_form.link.label_tag }}: {{ lesson_fs.empty_form.link }}</p>
+    <span style="display:none">{{ lesson_fs.empty_form.ORDER }}</span>
+</div>
+{% endblock %}
