@@ -20,7 +20,7 @@ host = node()
 if host == 'DSMBP.local':
     TEMPLATE_DIRS = ('/Users/Daniel/Django/polymath/polymath/templates')
 elif host == 'harish-venkatesans-macbook.local':
-    TEMPLATE_DIRS = ('/Users/harish/<<harish, update this and commit to github>>')
+    TEMPLATE_DIRS = ('/Users/harish/harish/polymath/polymath/templates')
 
 STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/' 
