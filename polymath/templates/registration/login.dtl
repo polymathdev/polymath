@@ -3,11 +3,25 @@
 {% block title %}Polymath Login{% endblock %}
 
 {% block body %}
- 
-<form method="post" action="" class="loginform">
-{% csrf_token %}
-{{ form.as_p }}
-<button type="submit" value="Login" id="login" class="btn large primary">Login</button>
-</form>
+
+ <div class="container_6" style="margin-top:30px;">
+	<div class="grid_6">
+		<h3 id="browsetitle">Login</h3>
+		<div class="logindiv">
+			<div style="width:45%">
+			<a href="#" class="fblogin"><span>Log in with Facebook</span></a>
+			<h4>or go old-school:</h4>
+	
+			<form method="post" action="" class="loginform">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit" value="Login" id="login">Login</button>
+			</form>
+			<div class="clearfix"></div>
+			</div>
+			<a href="#" class="forgot">Uh oh! Forgot your password? :(</a>
+		</div>
+	</div>
+</div>
 
 {% endblock %}
