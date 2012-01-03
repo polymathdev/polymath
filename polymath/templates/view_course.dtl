@@ -109,7 +109,17 @@
 			
 
 				<h4><a href="{% url view_profile uname=creator.username %}" id="name">{{ creator.first_name }} {{creator.last_name}}</a> 
-				</h4></a></span>
+
+				<div style="display:inline; margin-left:15px; font-size:14px;">
+				<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:12px; width:auto;"></img>
+				{% if requested_course.followers.count == 1 %}
+					{{ requested_course.followers.count }} follower 
+				{% else %}
+					{{ requested_course.followers.count }} followers
+				{% endif %}
+				</div>
+								</h4> 
+				</span>
 				
 				<hr id="titlehr">	
 				
