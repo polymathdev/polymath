@@ -1,0 +1,45 @@
+{% extends "base.dtl" %}
+
+{% block title %}About Polymath{% endblock %}
+
+{% block css_includes %}
+    <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
+   	<link href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" /> 
+{% endblock %}
+
+{% block js_includes %}
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/about_page.js"></script>
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container_6" style="margin-top:50px">
+	
+		<div class="grid_1 aboutsidebar">
+			<ul>
+				<li><a href="#">About</a></li>
+				<li><a href="#">FAQ</a></li>
+				<li><a href="#">Etiquette</a></li>
+				<li><a href="#">Contact</a></li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms</a></li>
+			</ul>
+		
+		</div>
+	
+		<div class="grid_5 about">
+			<h1 id="browsetitle">What is Polymath?</h1>
+			<h2>Polymath is a way to easily learn anything online.</h2>
+			<p>There's tons of great open content on the web - Khan Academy videos, blog posts and tutorials, interactive lessons, Open Courseware lectures uploaded by hundreds of universities. . . you name it. Despite that, a Google search is still the best way to learn something new online. . . that sucks. We're here to change that.<br><br>
+
+			Find the best educational material online, curated by subject experts; stay motivated; get advice and guidance on your learning; and share your knowledge. That's Polymath for you.</p>
+			
+		
+		</div>
+	
+	
+	</div>
+
+
+{% endblock %}

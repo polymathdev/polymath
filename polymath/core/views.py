@@ -26,6 +26,9 @@ def test(request):
 def home_page(request):
     return render(request, 'home_page.dtl')
 
+def about(request):
+	return render(request, 'about.dtl')
+
 def view_profile(request, uname):
     profile_owner = get_object_or_404(User, username=uname)    
     user_profile = profile_owner.get_profile()

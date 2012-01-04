@@ -35,31 +35,15 @@
 				</div>
 				<div class="nav">
 				{% if user.is_authenticated %}
-					Logged in as <a href="{% url view_profile uname=user.username %}">{{ user.first_name }} {{ user.last_name }}</a> | <a href="/logout">Logout</a>
+					<a href="/about">About</a> | <a href="{% url view_profile uname=user.username %}">{{ user.first_name }} {{ user.last_name }}</a> | <a href="/logout">Logout</a>
 				{% else %}
-					<a href="/login">Login</a>
+					<a href="/about">About</a> | <a href="/login">Login</a>
 				{% endif %}
 				</div>
 				<div class="clear"></div>
 		     </div>
 		   </div>
 		 </div>
-
-<!-- //hv - I commented this code out and added the above markup
-
-        <div class="top_nav">
-            <h3>Polymath</h3>
-            <div class="top_nav_links">
-            {% if user.is_authenticated %}
-                You are logged in as <a href="{% url view_profile uname=user.username %}">{{ user.first_name }} {{ user.last_name }}</a> (<a href="/logout">Logout</a>)
-            {% else %}
-                <a href="/login">Login</a>
-            {% endif %}
-            </div>
-        </div>
-
--->
-
 
 
         {% if messages %}

@@ -10,6 +10,9 @@ urlpatterns = patterns('',
     # home page
     (r'^$', 'core.views.home_page'),
 
+	#about
+	(r'^about/', 'core.views.about'),
+	
     # auth
     url(r'^login/','django.contrib.auth.views.login', {'template_name':'registration/login.dtl'}, name='login'),
     url(r'^logout/','django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
