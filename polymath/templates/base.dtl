@@ -39,6 +39,7 @@
 				{% if user.is_authenticated %}
 					<a href="/logout">Logout</a>
 					<a href="{% url view_profile uname=user.username %}">{{ user.first_name }} {{ user.last_name }}</a>
+					<a href="/about">About</a>
 				{% else %}
 					<a href="/login">Login</a>
 					<a href="/about">About</a>
