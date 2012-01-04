@@ -147,6 +147,11 @@ padding:0px;
 	background:url("images/facebook_bg_35.png") no-repeat left  #6C7AAD;
 }
 
+.fbloginbutton:visited{
+	color:white;
+	 	border: solid 1px #c0bfb9; 
+}
+
 .fbsignin span{
 	padding-left:70px;
 	font-size:16px;
