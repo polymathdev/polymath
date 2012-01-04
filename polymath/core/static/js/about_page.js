@@ -8,8 +8,8 @@ $(document).ready(function(){
 	// apply selected states depending on current page
 	if (current_page.match(/about/)) {
 	$(".aboutsidebar ul li:eq(0)").addClass('selected');
-	} else if (current_page.match(/faq/)) {
-	$("ul#navigation li:eq(1)").addClass('selected');
+	} else if (current_page.match(/beliefs/)) {
+	$(".aboutsidebar ul li:eq(1)").addClass('selected');
 	} else if (current_page.match(/etiquette/)) {
 	$("ul#navigation li:eq(2)").addClass('selected');
 	} else if (current_page.match(/contact/)) {

@@ -18,9 +18,8 @@
 	
 		<div class="grid_1 aboutsidebar">
 			<ul>
-				<li><a href="#">About</a></li>
-				<li><a href="#">FAQ</a></li>
-				<li><a href="#">Etiquette</a></li>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/beliefs/">Our Beliefs</a></li>
 				<li><a href="#">Contact</a></li>
 				<li><a href="#">Privacy</a></li>
 				<li><a href="#">Terms</a></li>
@@ -30,12 +29,17 @@
 	
 		<div class="grid_5 about">
 			<h1 id="browsetitle">What is Polymath?</h1>
-			<h2>Polymath is a way to easily learn anything online.</h2>
-			<p>There's tons of great open content on the web - Khan Academy videos, blog posts and tutorials, interactive lessons, Open Courseware lectures uploaded by hundreds of universities. . . you name it. Despite that, a Google search is still the best way to learn something new online. . . that sucks. We're here to change that.<br><br>
-
-			Find the best educational material online, curated by subject experts; stay motivated; get advice and guidance on your learning; and share your knowledge. That's Polymath for you.</p>
+			<h2>Polymath is an easy, fun way to learn anything.</h2>
+			<p>The internet is a pretty amazing place these days. There's a ton of information about any topic out there and it's all accessible. The problem is, there's almost too much! If you've ever tried teaching yourself something, you know how frustrating it is to find the right material and to stay motivated. <br><br>
+Polymath lets you find and learn from the best educational content from across the web. Easily keep track of your progress, stay motivated with reminders and rewards, and learn with the help of a great community. That's Polymath for you.</p>
 			
+			<h2>Create a course on Polymath.</h2>
+			<p>Remember back to college, when every class had a course syllabus? Your professor would describe exactly what you needed to read and discuss in order to learn about a subject. That was awesome! This is kind of like that.<br><br>On Polymath, <b>anyone</b> can create a course and share their expertise by compiling the best resources on any topic. Prove how much you know and help others out by creating a popular course!
+			</p>
 		
+			<h2>Our Mission</h2>
+			<p>Our mission is to build the best learning experience on the web.
+			</p>
 		</div>
 	
 	

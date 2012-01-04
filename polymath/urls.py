@@ -13,6 +13,9 @@ urlpatterns = patterns('',
 
 	#about
     (r'^about/', direct_to_template, {'template':'about.dtl'}),
+
+	#beliefs
+    (r'^beliefs/', direct_to_template, {'template':'beliefs.dtl'}),
 	
     # auth
     url(r'^login/','django.contrib.auth.views.login', {'template_name':'registration/login.dtl'}, name='login'),

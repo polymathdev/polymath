@@ -3025,16 +3025,24 @@ a.remove_lesson_lnk:hover{
 	border:1px solid #d1d4c5;
 	border-bottom:0px;
 	text-shadow:0px 1px 1px white;
-	background-color:#fefef6;
+	background: #fefdf6; /* Old browsers */
+	background: -moz-linear-gradient(top, #fefdf6 0%, #eeede6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefdf6), color-stop(100%,#eeede6)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* IE10+ */
+	background: linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdf6', endColorstr='#eeede6',GradientType=0 ); /* IE6-9 */
+	
 }
 
 .aboutsidebar li:hover{
-	background-color:#EEEFE5;
+	background:#f2f0e2;
 	box-shadow:inset 0px 0px 6px #ccc;
 }
 
 .aboutsidebar li.selected{
-	background-color:#EEEFE5;
+	background:#f2f0e2;
 	box-shadow:inset 0px 0px 6px #ccc;
 }
 
