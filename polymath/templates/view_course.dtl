@@ -14,7 +14,7 @@
 	$(function() {
 
 			$('#progressbar').progressbar({
-			value: ({{ completed_lessons.count }}/{{ lessons.count }}) *100
+				value: ({{ completed_lessons.count }}/{{ lessons.count }}) *100			
 			});
 		
 			
@@ -156,17 +156,20 @@
 		<div class="grid_2" style="margin-top:3px;">
 		
 			<div class="grid_1" style="margin-bottom:0px">
-				<a href="#" class="like" style="float:right;"><span>102</span></a>
+<!--				<a href="#" class="like" style="float:right;"><span>102</span></a> -->
 			</div>
 		
-			<div class="grid_1 alpha omega" style="margin-bottom:0px">
+			<div class="grid_1 alpha omega" style="margin-bottom:0px; float:right;">
 				<a href="#" class="takecourse"><span>Take Course</span></a>
 			</div>
 		
 			<div class="clear"></div>
 		
 			<div class="grid_2 completed" style="margin-top:10px">
-				<span>Completed:</span><span id="numbercompleted">{{ completed_lessons.count }} of {{ lessons.count }}</span>
+				<span>Completed:</span><span id="numbercompleted">
+				{% if completed_lessons %} 	{{ completed_lessons.count }}
+				{% else %}0
+				{% endif %} of {{ lessons.count }}</span>
 				<div id="progressbar"></div>
 			</div>
 		
