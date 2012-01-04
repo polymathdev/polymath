@@ -53,7 +53,7 @@
 
         {% if messages %}
             {% for message in messages %}
-                	<div class="messages"><h3>{{ message }}</h3><a href="#undefined" id="close">x</a></div>
+                	<div class="messages"><h3>{{ message }}</h3><a href="#" id="close">x</a></div>
             {% endfor %}
         {% endif %}
         
