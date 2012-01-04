@@ -10,7 +10,8 @@ body {
   height:100%;
   background-color:white;
   font-family:'PT Sans Caption', sans-serif;
-	background-image:url(images/background_texture.jpg);
+/*	background-image:url(images/background_texture.jpg); */
+	background-image:url(images/subtle_freckles.png);
   background-repeat: repeat; 
 }
 
@@ -3023,6 +3024,7 @@ a.remove_lesson_lnk:hover{
 }
 
 .aboutsidebar li{
+	display:block;
 	color:#656565;
 	font-weight:bold;
 	padding:12px 12px 12px;
