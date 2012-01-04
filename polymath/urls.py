@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
-from django.views.generic.simple import redirect_to
+from django.views.generic.simple import redirect_to, direct_to_template
+
 
 admin.autodiscover()
 
@@ -11,7 +12,7 @@ urlpatterns = patterns('',
     (r'^$', 'core.views.home_page'),
 
 	#about
-	(r'^about/', 'core.views.about'),
+    (r'^about/', direct_to_template, {'template':'about.dtl'}),
 	
     # auth
     url(r'^login/','django.contrib.auth.views.login', {'template_name':'registration/login.dtl'}, name='login'),
