@@ -62,6 +62,7 @@ def view_profile(request, uname):
 
     return render_to_response('view_profile.dtl', {
     'profile_owner': profile_owner,
+	'user_blurb': user_blurb,
     'courses_created_by_user': courses_created_by_user,
     'courses_following': courses_following,
     'is_my_profile': (profile_owner == request.user)

@@ -40,7 +40,7 @@
 				
 				<ul class="nav">
 				{% if user.is_authenticated %}
-					<li><a href="#">{{ user.first_name }} {{ user.last_name }} <span class="arrow-down"></span></a>
+					<li><a href="#" style="color:white">{{ user.first_name }} {{ user.last_name }} <span class="arrow-down"></span></a>
 						<ul><li><a href="{% url view_profile uname=user.username %}">Your Profile</a></li>
 							<li><a href="/logout/">Logout</a></li>
 						</ul>

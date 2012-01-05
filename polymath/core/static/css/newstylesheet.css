@@ -2,17 +2,16 @@ html{
 	height:100%;
 }
 body {
-/*  min-width: 1024px; */
-  padding-top:45px;
-  margin:auto;
-/*  width:1024px; */
-  width:100%;
-  height:100%;
-  background-color:white;
-  font-family:'PT Sans Caption', sans-serif;
+  	padding-top:45px;
+	padding-bottom:45px;
+  	margin:auto;
+  	width:100%;
+  	height:100%;
+  	background-color:white;
+  	font-family:'PT Sans Caption', sans-serif;
 /*	background-image:url(images/background_texture.jpg); */
 	background-image:url(images/subtle_freckles.png);
-  background-repeat: repeat; 
+  	background-repeat: repeat; 
 }
 
 h1,
@@ -459,10 +458,10 @@ input, textarea {
 }
 input:focus, textarea:focus {
   outline: 0;
-  border-color: rgba(82, 168, 236, 0.8);
-  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
-  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  border-color: #4c8f47;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 10px #4c8f47;
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 10px #4c8f47;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 10px #4c8f47;
 }
 input[type=file]:focus, input[type=checkbox]:focus, select:focus {
   -webkit-box-shadow: none;
@@ -1167,7 +1166,7 @@ body#teach a#teachnav {
   	border-left:1px solid rgba(0,0,0,0.08);
 }
 
-.topbar .nav a:visited{
+.nav a:visited{
 	color:white;
 }
 
@@ -2153,7 +2152,9 @@ p{
 .profilecourseBlock:last-child{
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius:6px;
+	margin-bottom:20px;
 }
+
 
 
 .profilecourseBlock.highlight{
@@ -2219,6 +2220,14 @@ p{
 	float:left;
 	margin-right:14px;
 
+}
+
+#edit_profile{
+	display:block inline; 
+	float:right; 
+	margin-top:10px; 
+	padding-bottom:0px; 
+	margin-bottom:0px;
 }
 
 

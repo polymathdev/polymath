@@ -33,15 +33,15 @@
 	
 			<div class="grid_3 profileinfo alpha">
 				<h2 id="profilename">{{ profile_owner.first_name }} {{ profile_owner.last_name }}
-					<p style="display:block inline; float:right; margin-top:10px; padding-bottom:0px; margin-bottom:0px;">	
+					<p id="edit_profile">
 					{% if is_my_profile %}<a href="#">Edit</a>{% endif %}</p>
 				</h2>
 				
 				<hr id="titlehr">
 			
-				<p style="margin-top:10px;"><span id="occupation"></span> <span></span></p>
-				<p></p>
-				<p>{{ profile_owner.blurb }}</p>
+				<p style="margin-top:10px;"><span id="occupation">Engineer</span> <span></span></p>
+				<p>{{ user_blurb }}</p>
+				
 					<ul class="socialmedia" style="position:absolute; top:100px;">
 						<li id="facebook"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_facebook.png"></img></a></li>
 						<li id="twitter"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_twitter.png"></img></a></li>
@@ -54,7 +54,7 @@
 					<div class="points"><h4>Courses Created</h4><span>{{ courses_created_by_user.count }}</span></div>
 				</div>
 				<div class="grid_1 omega">
-					<div class="points"><h4>Courses Completed</h4><span>3</span></div>
+					<div class="points"><h4>Courses Taken</h4><span>{{ courses_following.count }}</span></div>
 				</div>
 				
 				<div class="clear"></div>
@@ -105,7 +105,7 @@
 		</div>
 
  		{% for course in courses_created_by_user %}
-			<div class="profilecourseBlock grid_6">
+			<div class="profilecourseBlock grid_6 created">
 				<div class="grid_1 alpha subject">Programming</div>
 				<div class="grid_2 alpha omega coursetitle"><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a> {% if is_my_profile %}(<a href="{% url edit_course course_slug=course.slug %}">edit</a>){% endif %}</div>
 				
@@ -119,7 +119,7 @@
 				</div>
 				
 				<div class="grid_1 omega lessons">
-					{{ course.total }} lessons
+					{{ course.lesson_set.count }} lessons
 				</div>
 				
 			</div>
