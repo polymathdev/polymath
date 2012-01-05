@@ -1106,6 +1106,22 @@ body#teach a#teachnav {
 	list-style: none;
 }
 
+.arrow-down {
+	display:inline;
+	float:right;
+	margin-left:12px;
+	margin-top:-9px;
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid white;
+	box-shadow:0px -1px 1px grey;
+}
+
+.nav a:visited li{
+	color:white;
+}
 
 .nav li ul{
 	display:none;
