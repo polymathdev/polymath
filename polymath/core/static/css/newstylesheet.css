@@ -2851,7 +2851,7 @@ a.remove_lesson_lnk:hover{
 	
 	width:270px;
 	height:30px;
-	margin-top:20px;
+	margin-top:60px;
 	padding-top:10px;
 	padding-bottom:5px;
 	
@@ -2885,11 +2885,11 @@ a.remove_lesson_lnk:hover{
 
 
 .loginform {
-	margin-top:40px;
+	margin-top:65px;
 }
 
 #id_username{
-	margin-bottom:15px;
+	margin-bottom:25px;
 	width:70%;
 	height:25px;
 	margin-left:36px;
@@ -2899,6 +2899,7 @@ a.remove_lesson_lnk:hover{
 	margin-left:39px;
 	width:70%;
 	height:25px;
+	margin-bottom:5px;
 }
 
 .logindiv label{
@@ -2938,6 +2939,8 @@ a.remove_lesson_lnk:hover{
 	margin-top:15px;
 	margin-bottom:15px;
 	float:right;
+	margin-right:12px;
+	display:inline;
 }
 
 
@@ -2970,9 +2973,11 @@ a.remove_lesson_lnk:hover{
 
 
 .forgot{
-	font-size:14px;
-	margin-left:5px;
-	margin-top:40px;
+	font-weight:bold;
+	font-size:12px;
+	margin-left:125px;
+	margin-top:30px;
+	float:left;
 }
 
 
