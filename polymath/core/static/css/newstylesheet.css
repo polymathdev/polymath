@@ -1096,13 +1096,49 @@ body#teach a#teachnav {
   	-moz-box-shadow: 0 0px 5px #93998c, inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
-.topbar .nav {
+.nav {
 	font-family:'PT Sans Caption', sans-serif;
 	font-size:14px;
   	color: #bfbfbf;
   	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	float:right;
 	width:400px;
+	list-style: none;
+}
+
+
+.nav li ul{
+	display:none;
+	list-style:none;
+	width:130px;
+}
+
+.nav li:hover ul{
+	display:block;
+	position:absolute;
+	margin-top:51px;
+	right:0;
+	padding:0;
+}
+
+.nav li:hover li{
+	float:none;
+	border:0px;
+
+}
+
+.nav li:hover li a{
+	border:1px solid rgba(0,0,0,0.25);
+	border-top:0px;
+	width:100px;
+	padding:15px 15px 15px;
+	background-image:url('images/topbar_tex.jpg');
+	background-repeat:repeat-x;
+}
+
+.nav li:hover li a:hover{
+	background-image:url('images/topbar_tex_highlight.jpg'); 
+	background-repeat:repeat-x;
 }
 
 .topbar .nav a{
@@ -1165,6 +1201,7 @@ body#teach a#teachnav {
 	width:171px;
 	float:left;
 }
+
 
 
 /****** base ***********/
