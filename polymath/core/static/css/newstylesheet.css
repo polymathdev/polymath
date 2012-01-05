@@ -6,6 +6,7 @@ body {
 	padding-bottom:45px;
   	margin:auto;
   	width:100%;
+	min-width:1024px;
   	height:100%;
   	background-color:white;
   	font-family:'PT Sans Caption', sans-serif;
@@ -1054,6 +1055,10 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   	overflow: visible;
   	font-family:'PT Sans Caption', sans-serif;
 	margin:0px auto 0;
+	background-image:url('images/topbar_tex.jpg'); 
+	background-repeat:repeat-x;
+	width:100%;
+	min-width:1024px;
 }
 
 .topbar .brand:hover, .topbar ul .active > a {
@@ -1088,7 +1093,7 @@ body#teach a#teachnav {
   	display:block;
 	background-image:url('images/topbar_tex.jpg'); 
 	background-repeat:repeat-x;
-	width:100%;
+	min-width:1024px;
 	height:100%;
 	box-shadow: 0 0px 5px #93998c, inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   	-webkit-box-shadow: 0 0px 5px #93998c, inset 0 -1px 0 rgba(0, 0, 0, 0.1);
@@ -1105,11 +1110,14 @@ body#teach a#teachnav {
 	list-style: none;
 }
 
+
 .arrow-down {
 	display:inline;
+	position:absolute;
 	float:right;
 	margin-left:12px;
-	margin-top:-9px;
+	top:22px;
+	right:5px;
 	width: 0;
 	height: 0;
 	border-left: 6px solid transparent;
@@ -1213,7 +1221,7 @@ body#teach a#teachnav {
 
 .learn{
 	height:51px;
-	width:171px;
+	width:180px;
 	float:left;
 }
 
@@ -1781,7 +1789,8 @@ p{
 .create{
 	display: inline-block;
 	text-decoration: none;
-	font: 18px 'PT Sans', sans-serif;
+	font-family: 'PT Sans Caption', sans-serif;
+	font-size:16px;
 	text-shadow:0px 1px 0px rgba(255,255,255,0.6);
 	float:right;
 	font-weight:normal;
@@ -1797,8 +1806,8 @@ p{
 	
 	
 	width:154px;
-	padding-top:6px;
-	padding-bottom:6px;
+	padding-top:10px;
+	padding-bottom:10px;
 	right:0px;
 	
 	border: solid 1px #c0bfb9;
@@ -1859,7 +1868,8 @@ p{
 .takecourse{
 	display: inline-block;
 	text-decoration: none;
-	font: 18px 'PT Sans', sans-serif;
+	font-family: 'PT Sans Caption', sans-serif;
+	font-size:16px;
 	text-shadow:0px 1px 0px rgba(255,255,255,0.6);
 	float:right;
 	font-weight:normal;
@@ -1875,8 +1885,8 @@ p{
 	
 	
 	width:154px;
-	padding-top:6px;
-	padding-bottom:6px;
+	padding-top:10px;
+	padding-bottom:10px;
 	right:0px;
 	
 	border: solid 1px #c0bfb9;
@@ -2633,8 +2643,8 @@ a:hover{
 
 
 #id_name{
-	font-family:'PT Sans', sans-serif;
-	font-size:30px;
+	font-family:'PT Sans Caption', sans-serif;
+	font-size:28px;
 	height:30px;
 	width:300px;
 	background:#fefef6;
@@ -2648,12 +2658,12 @@ a:hover{
 }
 
 #id_name:-moz-placeholder {
-	padding-top:10px;
+	padding-top:0px;
 }
 
 #id_description{
-	font-family:'PT Sans', sans-serif;
-	font-size:16px;
+	font-family:'PT Sans Caption', sans-serif;
+	font-size:14px;
 	width:485px;
 	font-weight:normal;
 	background:#fefef6;

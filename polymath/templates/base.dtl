@@ -30,21 +30,26 @@
 
 
 		<div class="topbar">
-		   <div class="fill">
-		     <div class="container_6">
-		      <a class="brand" href="/"><img src='{{ STATIC_URL }}css/images/Polymath25px.png'></img></a>
-				<div class="learn">
-					<a href="/courses/browse" id="learnnav">Learn</a>
-					<a href="{% url add_course %}" id="teachnav">Teach</a>
+
+		     <div class="container_6">	
+			
+					
+				<div class="grid_3">
+		      		<a class="brand" href="/"><img src='{{ STATIC_URL }}css/images/Polymath25px.png'></img></a>
+					<div class="learn">
+						<a href="/courses/browse" id="learnnav">Learn</a>
+						<a href="{% url add_course %}" id="teachnav">Teach</a>
+					</div>
 				</div>
 				
-				<ul class="nav">
-				{% if user.is_authenticated %}
+				<div class="grid_3">
+					<ul class="nav">
+						{% if user.is_authenticated %}
 					<li><a href="#" style="color:white">{{ user.first_name }} {{ user.last_name }} <span class="arrow-down"></span></a>
 						<ul><li><a href="{% url view_profile uname=user.username %}">Your Profile</a></li>
 							<li><a href="/logout/">Logout</a></li>
 						</ul>
-						</li>
+					</li>
 					<li><a href="/about">About</a></li>
 				{% else %}
 					<li><a href="/login">Login</a></li>
@@ -52,8 +57,9 @@
 				{% endif %}
 				</ul>
 				
+				</div>
+				
 				<div class="clear"></div>
-		     </div>
 		   </div>
 		 </div>
 

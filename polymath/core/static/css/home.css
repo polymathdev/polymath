@@ -15,14 +15,11 @@ padding:0px;
 	margin-left:0px;
 	padding-top:0px; padding-left:0px;
 	height:200px;
-	width:100%;
 	background:#3d753a;
 	background: -moz-linear-gradient(linear, left top, left bottom, from(#4d9248), to(#304826));
 	background: -webkit-gradient(linear, left top, left bottom, from(#4d9248), to(#304826));		
-		/*
-	background-image:url(images/title1.png);
-	background:repeat-x;*/
 	box-shadow:inset 0px -1px 5px #2b4221;
+	min-width:1024px;
 }
 
 
@@ -93,7 +90,7 @@ padding:0px;
 }
 
 .homecopy h3{
-	margin-left:25px;
+	text-align:center;
 	font-size:16px;
 	color:white;
   	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25), 0px 1px 0 black;
@@ -104,7 +101,7 @@ padding:0px;
 /* FB login div */ 
 
 .fbsignin{
-	width:100%;
+	min-width:1024px;
 	padding-top:15px;
 	height:60px;
 	background:#f2f0e2;
@@ -112,6 +109,8 @@ padding:0px;
 	box-shadow:0px -3px 7px #ccc;
 	z-index: 10000;
 	margin-bottom:-110px;
+	margin-left:0;
+	margin-right:0;
 }
 
 .fbloginbutton:link{
@@ -120,7 +119,7 @@ padding:0px;
 	outline: none;
 	cursor: pointer;
 	text-decoration: none;
-	font: 16px 'PT Sans', sans-serif;
+	font-family: 'PT Sans Caption', sans-serif;
 	font-weight:normal;
 	text-shadow: 0 -1px 0px black;
 		color:white;
@@ -153,8 +152,10 @@ padding:0px;
 }
 
 .fbsignin span{
+	position:absolute;
 	padding-left:70px;
-	font-size:16px;
+	font-size:14px;
+	top:15px;
 }
 
 .fblogincopy{
