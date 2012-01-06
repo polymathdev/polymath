@@ -1592,7 +1592,8 @@ p{
 
 
 .lessonBlock.completedBlock{
-	background: #fefdf6;
+/*	background: #fefdf6; */
+	background: rgba(215,222,171,1);
 	-moz-box-shadow: inset 0 0px 5px rgba(255,255,255,0.6)
 	-webkit-box-shadow: inset 0 0px 5px rgba(255,255,255,0.6)
 	box-shadow: inset 0 0px 5px rgba(255,255,255,0.6);
@@ -1608,6 +1609,7 @@ p{
 }
 
 .completedBlock:hover{
+	background:#fefef6;
 	opacity:1;
 }
 
