@@ -5,67 +5,67 @@
 {% block css_includes %}
     <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
    	<link href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" /> 
+   	<link href="{{ STATIC_URL }}css/tipsy.css" rel="stylesheet" type="text/css" /> 
 {% endblock %}
 
 {% block js_includes %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.qtip-1.0.0-rc3.min.js"></script>
-	<script type="text/javascript">
-	$(function() {
 
-			$('#progressbar').progressbar({
-				value: ({{ completed_lessons.count }}/{{ lessons.count }}) *100			
-			});
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tipsy.js"></script>
+	<script type="text/javascript">
+	
+	$(function() {
+	
+		// set the current value of the progress bar
+		$('#progressbar').progressbar({
+			value: ({{ completed_lessons.count }}/{{ lessons.count }}) *100			
+		});
 		
 			
-			$('.checkb').click(function(){
-
-				$(this).attr('src', '../../static/css/images/checkboxDone.png');
-
+		$('.checkb').click(function(){ // when the done button is clicked...
+			
+			if ( $(this).hasClass('done')){ // don't do anything if it's already done
+			
+			} else {
+				
+				$(this).toggleClass("done"); // mark the checkbox as done
+		
+				var val = $("#progressbar").progressbar("option", "value"); // set current value of progress bar
+				//$("#progressbar").progressbar("option", "value", val + (100/{{ lessons.count }}) );
+			
+				var pGress = setInterval(function() { // loop to animate progress bar action
+			        var pVal = $('#progressbar').progressbar('option', 'value');
+			        var pCnt = !isNaN(pVal) ? (pVal + 1) : ({{ completed_lessons.count }}/{{ lessons.count }}) *100;
+			        if (pCnt >= val + (100/{{ lessons.count }}) ) { //animate progress bar to number of currently completed lesson
+			            clearInterval(pGress);
+			        } else {
+			            $('#progressbar').progressbar({value: pCnt});
+			        }
+			    },10);
+	
+	
 				lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
-
-
-
-		        $.post(
-		            from_server['complete_lesson_url'],
-		            { lesson_id: lesson_id },
-		            function(response) {
-		                alert(response['result_message']);
+		        	$.post(
+		            	from_server['complete_lesson_url'],
+		            	{ lesson_id: lesson_id },
+		            	function(response) {
+		    		//            alert(response['result_message']);
 		                if( response['complete_successful'] ) {
-
-		                }
+							$("#numbercompleted").text(+($("#numbercompleted").text()) + 1); // increment the number of completed lessons
+		               }
 		            }
 		        );
-		
-				var val = $("#progressbar").progressbar("option", "value");
-			    $("#progressbar").progressbar("option", "value", val + (100/{{ lessons.count }}) );
-	
-	
-			});
+
+				} // endif
+				
+			}); // end done animation
 			
 
-			
-			$('.checkb').qtip({
-			   content: 'Mark as done',
-			   show:'mouseover',
-			   hide:'mouseout',
-			   style:{ 
-				padding:2,
-				name:'dark', 
-				tip:'leftMiddle', 
-				border: {
-			         width: 1,
-			      },
-				},
-				position: {
-			      corner: {
-					target:'rightMiddle',
-			         tooltip: 'leftMiddle'
-			      }
-			   }
-			})
+		$('.checkb').tipsy({fade: false, gravity: 's', opacity:0.8});
 		
-
+		$('.checkb.done').tipsy({fade: false, gravity: 's', opacity:0.8});
+		
+		$('.takecourse').tipsy({fade: false, gravity: 'e', opacity:0.8});
 
 	});
 
@@ -79,6 +79,7 @@
 
 
 	<div class="headingbox">
+	
 	<div class="container_6">	
 
 	<div class="grid_6 categories">
@@ -110,7 +111,7 @@
 
 				<h4><a href="{% url view_profile uname=creator.username %}" id="name">{{ creator.first_name }} {{creator.last_name}}</a> 
 
-				<div style="display:inline; margin-left:15px; font-size:14px;">
+				<div style="display:inline; margin-left:15px; font-size:14px; margin-right:15px;">
 				<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:12px; width:auto;"></img>
 				{% if requested_course.followers.count == 1 %}
 					{{ requested_course.followers.count }} follower 
@@ -118,6 +119,7 @@
 					{{ requested_course.followers.count }} followers
 				{% endif %}
 				</div>
+				<span class="lessoncount"> {{ requested_course.lesson_set.count }} lessons</span>
 								</h4> 
 				</span>
 				
@@ -160,16 +162,17 @@
 			</div>
 		
 			<div class="grid_1 alpha omega" style="margin-bottom:0px; float:right;">
-				<a href="#" class="takecourse"><span>Take Course</span></a>
+				<a href="#" class="takecourse" original-title="Track your progress"><span>Take Course</span></a>
 			</div>
 		
 			<div class="clear"></div>
 		
 			<div class="grid_2 completed" style="margin-top:10px">
-				<span>Completed:</span><span id="numbercompleted">
-				{% if completed_lessons %} 	{{ completed_lessons.count }}
-				{% else %}0
-				{% endif %} of {{ lessons.count }}</span>
+				<span>Completed:</span>
+				<span id="numbercompleted">
+				{% if completed_lessons %} {{ completed_lessons.count }}
+				{% else %}0{% endif %}</span>
+				<span id="total">of {{ lessons.count }}</span>
 				<div id="progressbar"></div>
 			</div>
 		
@@ -191,7 +194,7 @@
 	{% for lesson in lessons %}
 		
       {% if not lesson in completed_lessons %}
-		<div class="lessonBlock">      
+		<div class="lessonBlock" original-title="{{ lesson.link }}">      
 	  {% else %}
 		  <div class="lessonBlock completedBlock">
 	  {% endif %}
@@ -210,9 +213,9 @@
 			<div class="grid_1 prefix_1">
 		
 			{% if not lesson in completed_lessons %}
-				<div class="checkb"></div>
+				<div class="checkb" original-title="Mark as done"></div>
             {% else %}
-                <div class="checkb done"></div>
+                <div class="checkb done" original-title="You've done this!"></div>
             {% endif %}
 			</center>
 			</div>

@@ -114,7 +114,18 @@ padding:0px;
 }
 
 .fbloginbutton:link{
-	background:url("images/facebook_bg_35.png") no-repeat left #5B6AA1;
+	background: url("images/facebook_bg_35.png") no-repeat left, #4e6ba5; /* Old browsers */
+	background: url("images/facebook_bg_35.png") no-repeat left, -moz-linear-gradient(top, #4e6ba5 0%, #3b5997 100%); /* FF3.6+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4e6ba5), color-stop(100%,#3b5997)); /* Chrome,Safari4+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, -webkit-linear-gradient(top, #4e6ba5 0%,#3b5997 100%); /* Chrome10+,Safari5.1+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, -o-linear-gradient(top, #4e6ba5 0%,#3b5997 100%); /* Opera 11.10+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, -ms-linear-gradient(top, #4e6ba5 0%,#3b5997 100%); /* IE10+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, linear-gradient(top, #4e6ba5 0%,#3b5997 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e6ba5', endColorstr='#3b5997',GradientType=0 ); /* IE6-9 */
+
+	
+	
+	
 	display: inline-block;
 	outline: none;
 	cursor: pointer;
@@ -127,6 +138,7 @@ padding:0px;
 	-webkit-border-radius: 6px; 
 	-moz-border-radius: 6px;
 	border-radius:6px;
+
 	
 	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
@@ -143,7 +155,14 @@ padding:0px;
 .fbloginbutton:hover{
 	text-decoration:none;
 	color:white;
-	background:url("images/facebook_bg_35.png") no-repeat left  #6C7AAD;
+	background: url("images/facebook_bg_35.png") no-repeat left, #5b78ae; /* Old browsers */
+	background: url("images/facebook_bg_35.png") no-repeat left, -moz-linear-gradient(top, #5b78ae 0%, #3b5997 100%); /* FF3.6+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5b78ae), color-stop(100%,#3b5997)); /* Chrome,Safari4+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, -webkit-linear-gradient(top, #5b78ae 0%,#3b5997 100%); /* Chrome10+,Safari5.1+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, -o-linear-gradient(top, #5b78ae 0%,#3b5997 100%); /* Opera 11.10+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, -ms-linear-gradient(top, #5b78ae 0%,#3b5997 100%); /* IE10+ */
+	background: url("images/facebook_bg_35.png") no-repeat left, linear-gradient(top, #5b78ae 0%,#3b5997 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b78ae', endColorstr='#3b5997',GradientType=0 ); /* IE6-9 */
 }
 
 .fbloginbutton:visited{

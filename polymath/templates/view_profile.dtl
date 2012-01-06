@@ -85,7 +85,7 @@
 		<div>
  		{% for course in courses_following %}
 			<div class="profilecourseBlock grid_6">
-					<div class="grid_1 alpha subject">Programming</div>
+					<div class="grid_1 alpha subject">{{ course.category }}Programming</div>
 					<div class="grid_2 alpha omega coursetitle"><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a></div>
 					<div class="grid_2 alpha omega prefix_1 progress"><div class="progressbar1">({{ course.completed }}*100)/{{ course.total }}</div>
 					{{ course.completed }} of {{ course.total }}</div>
@@ -98,6 +98,7 @@
 			
 			
 	{% if courses_created_by_user %}
+	
 		<div class="heading grid_6" style="margin-top:20px;">
 				<div class="grid_2 alpha suffix_3">
 					<h2 class="profile_heading">Courses {% if is_my_profile %}you've{% else %}{{ profile_owner.first_name }} has {% endif %} created</h2>
@@ -106,7 +107,9 @@
 
  		{% for course in courses_created_by_user %}
 			<div class="profilecourseBlock grid_6 created">
-				<div class="grid_1 alpha subject">Programming</div>
+			
+				<div class="grid_1 alpha subject">{{ course.category }}</div>
+				
 				<div class="grid_2 alpha omega coursetitle"><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a> {% if is_my_profile %}(<a href="{% url edit_course course_slug=course.slug %}">edit</a>){% endif %}</div>
 				
 				<div class="grid_1 prefix_1 alpha followers"> 
@@ -123,8 +126,6 @@
 				</div>
 				
 			</div>
-			
-			<!-- NOTE: HOW TO GET THE NUMBER OF LESSONS IN A COURSE YOU'VE CREATED? -->
 			
 		{% endfor %}
 

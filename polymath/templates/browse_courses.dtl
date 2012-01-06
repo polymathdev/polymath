@@ -80,14 +80,19 @@
 				<img class="courseimage" src="{{ STATIC_URL }}css/images/pythonLogo.png"></img>
 			</div>
 			<div class="grid_4 courseDetails">
-				<h3><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a></h3>
+				<h3><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a> 	{% if is_my_course %}| <a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}</h3>
 				<h4>By <a href="{% url view_profile uname=course.creator.user.username %}">{{ course.creator.user.first_name }} {{ course.creator.user.last_name }}</a> | 	{% if course.followers.count == 1 %}
 						{{ course.followers.count }} follower 
 					{% else %}
 						{{ course.followers.count }} followers
 					{% endif %}
 				<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon"></img>
-				{% if is_my_course %}| <a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}
+				| {% if course.lesson_set.count == 1%}
+				{{ course.lesson_set.count }} lesson
+				{% else %}
+				{{ course.lesson_set.count }} lessons
+				{% endif %}
+			
 				
 				</h4>
 				<p>"{{ course.description }}"</p>
