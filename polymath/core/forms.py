@@ -9,7 +9,7 @@ class CourseForm(ModelForm):
         model = Course
         exclude = ['creator']
         widgets = { 
-			'name': forms.TextInput(attrs={'placeholder':'Course Name'}),
+			'name': forms.TextInput(attrs={'placeholder':'Course Name, e.g. "Intro to Python"'}),
 			'category': forms.Select(attrs={'initial':'Category'}),
 			'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your course here'}),
 			'tags': forms.TextInput(attrs={'placeholder':'Add tags, separated by a comma'}),
@@ -18,9 +18,9 @@ class CourseForm(ModelForm):
 class LessonForm(ModelForm):
     class Meta:
         widgets = {
-               'name': forms.TextInput(attrs={'placeholder':'Lesson Name'}), 
-               'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your course here'}),
-               'link': forms.TextInput(attrs={'placeholder':'Enter a URL here'}),
+               'name': forms.TextInput(attrs={'placeholder':'Lesson Name, e.g. "Dive Into Python"'}), 
+               'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your course here, e.g. "This is a great resource for Python beginners!"'}),
+               'link': forms.TextInput(attrs={'placeholder':'Enter a URL here, e.g. http://www.diveintopython.org'}),
         }
 
     # override the init method so that we can make the link fields for existing lessons read-only

@@ -64,7 +64,13 @@
 				</div>
 				
 				
-				<span class="lessoncount"> {{ requested_course.lesson_set.count }} lessons</span>
+				<span class="lessoncount">
+				{% if requested_course.lesson_set.count == 1 %}
+				1 lesson
+				{% else %}
+				 {{ requested_course.lesson_set.count }} lessons
+				{% endif %}
+				</span>
 				
 				</h4> 
 				

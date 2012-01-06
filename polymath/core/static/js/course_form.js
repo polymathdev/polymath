@@ -22,6 +22,11 @@ $(document).ready(function(){
         new_lesson_div.appendTo('#lesson_list_div');
     });
     
+	$('#lesson_list_div').sortable({
+//		reorder_lessons();
+		tolerance : 'intersect'
+	});
+	
 
     // move lesson up
     $('#lesson_list_div').on('click', '.move_up_lnk', function() {

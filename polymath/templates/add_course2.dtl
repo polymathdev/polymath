@@ -99,7 +99,7 @@
         	</div>
 
 				<a href="#" class="remove_lesson_lnk">X</a>
-				<a href="#" class="move_up_lnk"></a><br><a href="#" class="move_down_lnk"></a>
+			<!--	<a href="#" class="move_up_lnk"></a><br><a href="#" class="move_down_lnk"></a> -->
 
 			</div>
     	{% endfor %}
@@ -118,7 +118,7 @@
 <div style="display:none" id="empty_lesson_form_div">
     
 	<div class="grid_1 alpha" align="center">
-		<span id="number" class="lesson_num_spn">X</span>
+		<span id="number" class="lesson_num_spn">X</span> 
 	</div>
 
 
@@ -141,7 +141,7 @@
 	
 
 			<a href="#" class="remove_lesson_lnk">X</a>
-			<a href="#" class="move_up_lnk"></a><br><a href="#" class="move_down_lnk"></a>
+<!--			<a href="#" class="move_up_lnk"></a><br><a href="#" class="move_down_lnk"></a>  -->
 
 
 
