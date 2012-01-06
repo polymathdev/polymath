@@ -2928,7 +2928,7 @@ a.remove_lesson_lnk:hover{
 /*-------- login ---------- */
 
 .logindiv{
-	width:100%;
+	width:1024px;
 	padding-top:15px;
 	height:280px;
 /*	background:#f2f0e2;  */
@@ -2989,9 +2989,10 @@ a.remove_lesson_lnk:hover{
 	
 	width:270px;
 	height:30px;
-	margin-top:60px;
+	margin-top:65px;
 	padding-top:10px;
 	padding-bottom:5px;
+	margin-left:90px;
 	
 }
 
@@ -3019,7 +3020,7 @@ a.remove_lesson_lnk:hover{
 }
 
 .logindiv h4{
-	margin-left:35px;
+	margin-left:20px;
 	margin-top:10px;
 	font-weight:normal;
 	color:#656565;
@@ -3028,21 +3029,26 @@ a.remove_lesson_lnk:hover{
 	
 }
 
+.oldschool{
+	margin-top:20px;
+	margin-left:10px;
+	text-decoration:underline;
+}
 
 .loginform {
-	margin-top:65px;
+	margin-top:35px;
 }
 
 #id_username{
 	margin-bottom:25px;
-	width:70%;
+	width:65%;
 	height:25px;
 	margin-left:36px;
 }
 
 #id_password{
 	margin-left:39px;
-	width:70%;
+	width:65%;
 	height:25px;
 	margin-bottom:5px;
 }
@@ -3084,7 +3090,7 @@ a.remove_lesson_lnk:hover{
 	margin-top:15px;
 	margin-bottom:15px;
 	float:right;
-	margin-right:12px;
+	margin-right:40px;
 	display:inline;
 }
 

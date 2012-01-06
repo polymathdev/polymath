@@ -11,12 +11,13 @@
 	<div class="clearfix"></div>
 		<div class="logindiv">
 			
-			<div class="grid_3">
+			<div class="grid_3"  style="border-right:1px dotted #ccc; height:250px; margin-top:25px;">
 				<a href="#" class="fblogin"><span>Connect with Facebook</span></a>
-				<h4>or go old-school:</h4>
+				<h4></h4>
 			</div>
 			
 			<div class="grid_3">
+				<h3 class="oldschool">Or go old-school</h3>
 				<form method="post" action="" class="loginform">
 				{% csrf_token %}
 				{{ form.as_p }}
