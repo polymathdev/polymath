@@ -2936,9 +2936,8 @@ a.remove_lesson_lnk:hover{
 	font-weight:normal;
 	text-shadow: 0 -1px 0px black;
 	color:white;
- 	/*border: solid 1px #c0bfb9;  */
-	border-top:1px solid red;
-	
+
+	border-top:solid 2px #7192cf;
 	
 	background: url("images/facebook_bg_35.png") no-repeat left, #4e6ba5; /* Old browsers */
 	background: url("images/facebook_bg_35.png") no-repeat left, -moz-linear-gradient(top, #4e6ba5 0%, #3b5997 100%); /* FF3.6+ */
@@ -2954,7 +2953,9 @@ a.remove_lesson_lnk:hover{
 	-moz-border-radius: 6px;
 	border-radius:6px;
 	
-	box-shadow: 0 1px 2px black;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.8);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.8);
 	
 	width:270px;
 	height:30px;
@@ -2979,7 +2980,7 @@ a.remove_lesson_lnk:hover{
 
 .fblogin:visited{
 	color:white;
-	 	border: solid 1px #c0bfb9; 
+	border-top:solid 2px #7192cf;
 }
 
 .logindiv span{
