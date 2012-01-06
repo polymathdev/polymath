@@ -1480,6 +1480,25 @@ p{
 	color:#656565;
 }
 
+#editcourse{
+	display:block inline; 
+	float:right;
+	margin-top:12px;
+}
+
+#followers{
+	display:inline;
+	margin-left:15px;
+	font-size:14px;
+	margin-right:15px;
+}
+
+.followersicon{
+	margin-right:5px; 
+	height:12px; 
+	width:auto;
+}
+
 #titlehr{
 	border:0;
 	height:1px;
@@ -1533,6 +1552,10 @@ p{
 }
 
 
+.emptyBlock{
+	margin-top:20px;
+}
+
 .lessonBlock h3{
 	display:block;
 	font-weight:bold;
@@ -1581,6 +1604,9 @@ p{
 	opacity:0.5;
 }
 
+.grid_2.completed{
+	margin-top:10px;
+}
 
 .completed p{
 	opacity:0;
@@ -2238,6 +2264,8 @@ p{
 	margin-left:0px;
 	margin-top:14px;
 	list-style:none;
+	position:absolute;
+	top:115px;
 }
 
 .socialmedia li{
@@ -2348,6 +2376,12 @@ p{
 .achievement.highlight{
 	background:white;
 	
+}
+
+.takecoursediv{
+	margin-bottom:5px;
+	float:right;
+	margin-top:3px;
 }
 
 

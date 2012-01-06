@@ -9,72 +9,12 @@
 {% endblock %}
 
 {% block js_includes %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
-
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tipsy.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
 	<script type="text/javascript">
-	
-	$(function() {
-	
-		// set the current value of the progress bar
-		$('#progressbar').progressbar({
-			value: ({{ completed_lessons.count }}/{{ lessons.count }}) *100			
-		});
-		
-			
-		$('.checkb').click(function(){ // when the done button is clicked...
-			
-			if ( $(this).hasClass('done')){ // don't do anything if it's already done
-			
-			} else {
-				
-				$(this).toggleClass("done"); // mark the checkbox as done
-		
-				var val = $("#progressbar").progressbar("option", "value"); // set current value of progress bar
-				//$("#progressbar").progressbar("option", "value", val + (100/{{ lessons.count }}) );
-			
-				var pGress = setInterval(function() { // loop to animate progress bar action
-			        var pVal = $('#progressbar').progressbar('option', 'value');
-			        var pCnt = !isNaN(pVal) ? (pVal + 1) : ({{ completed_lessons.count }}/{{ lessons.count }}) *100;
-			        if (pCnt >= val + (100/{{ lessons.count }}) ) { //animate progress bar to number of currently completed lesson
-			            clearInterval(pGress);
-			        } else {
-			            $('#progressbar').progressbar({value: pCnt});
-			        }
-			    },10);
-	
-	
-				lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
-		        	$.post(
-		            	from_server['complete_lesson_url'],
-		            	{ lesson_id: lesson_id },
-		            	function(response) {
-		    		//            alert(response['result_message']);
-		                if( response['complete_successful'] ) {
-							$("#numbercompleted").text(+($("#numbercompleted").text()) + 1); // increment the number of completed lessons
-		               }
-		            }
-		        );
-
-				} // endif
-				
-			}); // end done animation
-			
-
-		$('.checkb').tipsy({fade: false, gravity: 's', opacity:0.8});
-		
-		$('.checkb.done').tipsy({fade: false, gravity: 's', opacity:0.8});
-		
-		$('.takecourse').tipsy({fade: false, gravity: 'e', opacity:0.8});
-		
-		$('.lessonname').tipsy({fade: false, gravity: 'w', opacity:0.8, offset:10});
-
-	});
-
-
-
+		var completed_lessons = {{ completed_lessons.count }};
+		var lessons = {{ lessons.count }};
 	</script>
-	
 {% endblock %}
 
 {% block body %}
@@ -108,28 +48,31 @@
 
 			<div class="grid_3 omega">
 				<h2 id="browsetitle">{{ requested_course.name }}
-				<p style="display:block inline; float:right; margin-top:12px;">	{% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}</p></h2>
+				<p id="editcourse">	{% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}</p></h2>
 			
+				<h4>
+				
+				<a href="{% url view_profile uname=creator.username %}" id="name">{{ creator.first_name }} {{creator.last_name}}</a> 
 
-				<h4><a href="{% url view_profile uname=creator.username %}" id="name">{{ creator.first_name }} {{creator.last_name}}</a> 
-
-				<div style="display:inline; margin-left:15px; font-size:14px; margin-right:15px;">
-				<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:12px; width:auto;"></img>
-				{% if requested_course.followers.count == 1 %}
-					{{ requested_course.followers.count }} follower 
-				{% else %}
-					{{ requested_course.followers.count }} followers
-				{% endif %}
+				<div id="followers">
+					<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon"></img>
+					{% if requested_course.followers.count == 1 %}
+						{{ requested_course.followers.count }} follower 
+					{% else %}
+						{{ requested_course.followers.count }} followers
+					{% endif %}
 				</div>
+				
+				
 				<span class="lessoncount"> {{ requested_course.lesson_set.count }} lessons</span>
-								</h4> 
-				</span>
+				
+				</h4> 
 				
 				<hr id="titlehr">	
 				
 				<p>{{ requested_course.description }}</p>
 									
-			<div class="socialmedia" style="position:absolute; top:115px;">
+			<div class="socialmedia">
 						<a href="http://www.facebook.com/dialog/feed?
 						  app_id=349907371691622&
 						  link=http://www.whatispolymath.com&
@@ -151,31 +94,36 @@
 			</div>
 				
 	
-			</div>
+			</div> <!-- end title content block -->
 	
 	
-		</div>   <!-- end grid_4 -->
+		</div>   <!-- end title picture + content block-->
 
 
-		<div class="grid_2" style="margin-top:3px;">
+		<div class="grid_2">
 		
-			<div class="grid_1" style="margin-bottom:0px">
+			<div class="grid_1">
 <!--				<a href="#" class="like" style="float:right;"><span>102</span></a> -->
 			</div>
 		
-			<div class="grid_1 alpha omega" style="margin-bottom:0px; float:right;">
+			<div class="grid_1 alpha omega takecoursediv">
 				<a href="#" class="takecourse" original-title="Track your progress"><span>Take Course</span></a>
 			</div>
 		
 			<div class="clear"></div>
 		
-			<div class="grid_2 completed" style="margin-top:10px">
+			<div class="grid_2 completed">
 				<span>Completed:</span>
+				
 				<span id="numbercompleted">
 				{% if completed_lessons %} {{ completed_lessons.count }}
-				{% else %}0{% endif %}</span>
+				{% else %}0{% endif %}
+				</span>
+				
 				<span id="total">of {{ lessons.count }}</span>
+				
 				<div id="progressbar"></div>
+				
 			</div>
 		
 		</div>
@@ -184,6 +132,7 @@
 	
 </div> <!-- end headingbox-->
 	
+		
 <div class="clear"></div>
 
 
@@ -228,7 +177,7 @@
 
 	
 	{% else %}
-		<div class="lessonBlock" style="margin-top:20px;">
+		<div class="lessonBlock emptyblock">
 			<h3 id="empty">Uh oh, this course is empty! {% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}"><b>Add some lessons and share your expertise.</b></a>{% endif %} </h3>
 		</div>
 	{% endif %}
