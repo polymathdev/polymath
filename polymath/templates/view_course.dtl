@@ -66,6 +66,8 @@
 		$('.checkb.done').tipsy({fade: false, gravity: 's', opacity:0.8});
 		
 		$('.takecourse').tipsy({fade: false, gravity: 'e', opacity:0.8});
+		
+		$('.lessonname').tipsy({fade: false, gravity: 'w', opacity:0.8, offset:10});
 
 	});
 
@@ -194,7 +196,7 @@
 	{% for lesson in lessons %}
 		
       {% if not lesson in completed_lessons %}
-		<div class="lessonBlock" original-title="{{ lesson.link }}">      
+		<div class="lessonBlock">      
 	  {% else %}
 		  <div class="lessonBlock completedBlock">
 	  {% endif %}
@@ -204,7 +206,7 @@
 			
 			<div class="grid_3 alpha omega">
 				<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
-				<h3><a href="{{ lesson.link }}" target="_blank">{{ lesson.name }}</a> </h3> 
+				<h3><a class="lessonname" href="{{ lesson.link }}" target="_blank" original-title="{{ lesson.link }}">{{ lesson.name }}</a> </h3> 
 				<p class="expanded">{{ lesson.description }}</p>
 				<a href="#" class="expand">(+)</a>
 			</div>
