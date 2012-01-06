@@ -36,15 +36,17 @@
 	{{ course_form.name }}
 	{{ course_form.name.errors }}
 				<br>
+				{{ course_form.description }}	
+				{{ course_form.description.errors }}
+				
 		{{ course_form.category }}
 		{{ course_form.category.errors }}
 		
-		{{ course_form.description }}	
-		{{ course_form.description.errors }}	
+		{{ course_form.tags }}
 		
 		</div>
 	
-	<div class="grid_2" style="margin-top:4px">
+	<div class="grid_2 addcoursebuttons">
 		<div class="grid_1 alpha">
 			<button type="button" id="add_lesson_btn" class="create"><span>Add Lesson</span></button>
 			</div>
@@ -54,9 +56,9 @@
 		
 		<div class="clear"></div>
 		
-			<div class="grid_2 completed" style="margin-top:12px">
+<!--			<div class="grid_2 completed" style="margin-top:12px">
 			{{ course_form.tags }}
-			</div>
+			</div> -->
 		
 	</div>
 	<br>
@@ -85,16 +87,17 @@
 				{{ lesson_form.name }}
 				</div>
 
-				<div class="lessondescription">				
-				{{ lesson_form.description.errors }}
-	        	{{ lesson_form.description }}
-				</div>
-				
-				<div class="lessonlink">
+				<div class="lessonlink" original-title="You can't change the link once you create it!">
 				{{ lesson_form.link.errors }}
 				{% if lesson_form.instance.id %}{{ lesson_form.instance.link }}{% else %}{{ lesson_form.link }}{% endif %}
 				{{ lesson_form.order.as_hidden }}
 				</div>
+
+
+				<div class="lessondescription">				
+				{{ lesson_form.description.errors }}
+	        	{{ lesson_form.description }}
+				</div>				
 
         	</div>
 

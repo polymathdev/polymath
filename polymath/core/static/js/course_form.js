@@ -23,9 +23,14 @@ $(document).ready(function(){
     });
     
 	$('#lesson_list_div').sortable({
-//		reorder_lessons();
-		tolerance : 'intersect'
+		tolerance : 'intersect',
+		opacity: 0.6,
+		forcePlaceholderSize: true,
+		placeholder: "ui-state-highlight",
 	});
+	
+	
+	$('.lessonlink').tipsy({fade: false, gravity: 'e', opacity:0.6});
 	
 
     // move lesson up

@@ -5,11 +5,10 @@
 {% block css_includes %}
     <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
    	<link href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" /> 
-   	<link href="{{ STATIC_URL }}css/tipsy.css" rel="stylesheet" type="text/css" /> 
+
 {% endblock %}
 
 {% block js_includes %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tipsy.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
 	<script type="text/javascript">
 		var completed_lessons = {{ completed_lessons.count }};
@@ -161,7 +160,7 @@
 			
 			<div class="grid_3 alpha omega">
 				<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
-				<h3><a class="lessonname" href="{{ lesson.link }}" target="_blank" original-title="{{ lesson.link }}">{{ lesson.name }}</a> </h3> 
+				<h3><a class="lessonname" href="{{ lesson.link }}" target="_blank">{{ lesson.name }} <span class="courselessonlink">{{ lesson.link }}</span></a> </h3> 
 				<p class="expanded">{{ lesson.description }}</p>
 				<a href="#" class="expand">(+)</a>
 			</div>
