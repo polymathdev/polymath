@@ -85,7 +85,7 @@
 		<div>
  		{% for course in courses_following %}
 			<div class="profilecourseBlock grid_6">
-					<div class="grid_1 alpha subject">{{ course.category }}Programming</div>
+					<div class="grid_1 alpha subject">{{ course.category }}</div>
 					<div class="grid_2 alpha omega coursetitle"><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a></div>
 					<div class="grid_2 alpha omega prefix_1 progress"><div class="progressbar1">({{ course.completed }}*100)/{{ course.total }}</div>
 					{{ course.completed }} of {{ course.total }}</div>
