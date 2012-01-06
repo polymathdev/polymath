@@ -35,7 +35,8 @@ def view_profile(request, uname):
 
     # EVALUATE AND OPTIMIZE THE BELOW IF POSSIBLE, THE CODE IS RATHER MESSY IN MY OPINION
 
-    courses_following = user_profile.courses_following.all()
+    courses_following = user_profile.courses_following.select_related('category').all()
+
     lessons_following = Lesson.objects.filter(course__in=courses_following)
     lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=request.user.get_profile())  
 
@@ -43,6 +44,10 @@ def view_profile(request, uname):
     completed_lessons = { les['id'] : les for les in lessons_following_completed.values() }
 
     courses_following_with_progress = { c['id'] : c for c in courses_following.values() }
+
+    for c in courses_following:
+        courses_following_with_progress[c.id]['category_id'] = c.category.id
+        courses_following_with_progress[c.id]['category'] = c.category.name
 
     course_progress = { c.id : { 'total' : 0, 'completed' : 0 } for c in courses_following } 
 
@@ -58,7 +63,6 @@ def view_profile(request, uname):
     
 
     courses_following = courses_following_with_progress.values()
-
 
     return render_to_response('view_profile.dtl', {
     'profile_owner': profile_owner,
