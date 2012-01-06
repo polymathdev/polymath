@@ -104,7 +104,18 @@ padding:0px;
 	min-width:1024px;
 	padding-top:15px;
 	height:60px;
-	background:#f2f0e2;
+/*	background:#f2f0e2; */
+	
+	
+	background: #f2f0e2; /* Old browsers */
+	background: -moz-linear-gradient(top, #f2f0e2 0%, #e4e7dc 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f0e2), color-stop(100%,#e4e7dc)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #f2f0e2 0%,#e4e7dc 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #f2f0e2 0%,#e4e7dc 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #f2f0e2 0%,#e4e7dc 100%); /* IE10+ */
+	background: linear-gradient(top, #f2f0e2 0%,#e4e7dc 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f0e2', endColorstr='#e4e7dc',GradientType=0 ); /* IE6-9 */
+	
 	border-bottom:1px solid #eeefe5;
 	box-shadow:0px -3px 7px #ccc;
 	z-index: 10000;
