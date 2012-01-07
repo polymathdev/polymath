@@ -172,7 +172,8 @@
 				<div class="checkb" original-title="Mark as done"></div>
             {% else %}
                 <div class="checkb done" original-title="You've done this!"></div>
-            {% endif %}
+            {% endif %}     
+                <div class="checkb">test</div>
 			</center>
 			</div>
 		</div>

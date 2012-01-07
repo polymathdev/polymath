@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response, get_object_or_404, render
-from core.models import Course, Lesson, CourseCategory, LessonCompletion
+from core.models import Course, Lesson, CourseCategory, LessonCompletion, LessonVote
 from taggit.models import Tag
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -12,6 +12,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib import messages
 from django.utils import simplejson as json
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.decorators.http import require_POST
 import ipdb 
 
 def test(request):
@@ -170,9 +171,8 @@ def edit_course(request, course_slug):
 
 
 @login_required
+@require_POST
 def delete_lesson(request):
-    if not request.method == 'POST':
-        raise Http404
 
     lesson_id = request.POST['lesson_id']
     delete_successful = False
@@ -194,9 +194,8 @@ def delete_lesson(request):
 
 
 @login_required
+@require_POST
 def complete_lesson(request):
-    if not request.method == 'POST':
-        raise Http404
 
     lesson_id = request.POST['lesson_id']
     complete_successful = False
@@ -216,6 +215,32 @@ def complete_lesson(request):
 
     return HttpResponse(json.dumps({'complete_successful' : complete_successful, 'result_message' : result_message}), mimetype="application/json")
 
+
+# I should really test for the existence of any required POST variables for any of these ajax views
+@login_required
+@require_POST
+def vote_lesson(request):
+    lesson_id = request.POST['lesson_id']
+    is_up = request.POST['is_up']
+    vote_successful = False
+
+    try:
+        lesson_to_vote = Lesson.objects.get(id=lesson_id)
+        existing_vote = LessonVote.objects.filter(lesson=lesson_to_vote, user_profile=request.user.get_profile())
+
+        if existing_vote:
+            # if this vote is the opposite of an existing vote, delete the existing vote (e.g. down-voting an existing up-vote should just delete the vote all together i.e. neutral)
+            if not existing_vote.is_up == is_up:
+                existing_vote.delete()
+        else:
+            LessonVote.objects.create(lesson=lesson_id, user_profile=request.user.get_profile(), up=is_up) 
+
+        vote_successful = True
+
+    except ObjectDoesNotExist:
+        result_message = 'That lesson does not exist (this is most likely a bug)'  # don't want 404 here because then the front-end will just silently fail since this is responding to an ajax request
+
+    return HttpResponse(json.dumps({'vote_successful' : vote_successful}), mimetype="application/json")
 
 
 def browse_courses(request, cat_slug=None, tag_slug=None):
@@ -249,13 +274,3 @@ def browse_courses(request, cat_slug=None, tag_slug=None):
         })
 
 
-# security vulnerability?
-# used for 
-@login_required
-def quick_ajax_post(request, view_to_call):
-    if not request.method == 'POST':
-        raise Http404
-
-    func = getattr(self, view_to_call)
-
-    return func(request)

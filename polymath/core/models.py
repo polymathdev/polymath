@@ -87,5 +87,5 @@ class LessonVote(models.Model):
     up = models.BooleanField()
     date_voted = models.DateTimeField(auto_now_add=True) 
 
-    def __unicode__(self): 
-        return self.user_profile.user.first_name + " " + self.user_profile.user.last_name + " voted " + self.up + " for lesson " + self.lesson.name 
+    def __unicode__(self):
+        return self.user_profile.user.first_name + " " + self.user_profile.user.last_name + " --> " + self.lesson.name 
