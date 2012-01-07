@@ -455,9 +455,9 @@ textarea {
 }
 ::-webkit-input-placeholder {
 /*  color: #bfbfbf;  */
-	color:#989898; 
-		text-shadow:1px 1px 1px white;
-		font-weight:bold;
+	color:#ccc; 
+	text-shadow:1px 1px 1px white;
+	font-weight:bold;
 }
 input, textarea {
   -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;

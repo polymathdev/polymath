@@ -69,7 +69,8 @@
 	
 	
 <div class="clear"></div>
-
+<hr style="border:1px dotted #e4e4dc; margin-bottom:0px; margin-top:20px;">
+<hr style="border:1px dotted #e4e4dc; margin-top:1px">
 
 	{{ lesson_fs.management_form }}  
 
