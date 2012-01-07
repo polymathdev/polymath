@@ -450,10 +450,12 @@ textarea {
 :-moz-placeholder {
 /*  color: #bfbfbf;  */
 	color:#989898;
+	text-shadow:1px 1px 1px white;
 }
 ::-webkit-input-placeholder {
 /*  color: #bfbfbf; */
 	color:#989898;
+		text-shadow:1px 1px 1px white;
 }
 input, textarea {
   -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
@@ -2718,7 +2720,7 @@ a:hover{
 	height:30px;
 	width:485px;
 	background:#fefef6;
-	font-weight:bold;
+	font-weight:normal;
 	text-shadow: white 1px 1px 1px;
 	margin-top:3px;
 }
@@ -2854,7 +2856,7 @@ h5.edit_heading{
 /*	background-color:#e4e4DC;
 	text-shadow:1px 1px 2px white;*/
 	margin-top:3px;
-	margin-bottom:25px;
+	margin-bottom:45px;
 	margin-left:5px;
 	margin-right:5px;
 
@@ -3149,6 +3151,10 @@ a.remove_lesson_lnk:hover{
 
 /*************************/
 
+
+#lesson_list_div{
+	margin-top:45px;
+}
 
 .lesson_div{
 		width:1004px;

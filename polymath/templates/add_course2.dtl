@@ -61,7 +61,8 @@
 			</div> -->
 		
 	</div>
-	<br>
+	
+
 	
 	
 
@@ -132,12 +133,13 @@
     	<p>{{ lesson_fs.empty_form.name }}</p>
 		</div>
 	
+    	<div class="lessonlink"> <p>{{ lesson_fs.empty_form.link }}</p>
+		</div>
+		
 		<div class="lessondescription">
     	<p>{{ lesson_fs.empty_form.description }}</p>
 		</div>
-
-    	<div class="lessonlink"> <p>{{ lesson_fs.empty_form.link }}</p>
-		</div>
+		
     	{{ lesson_fs.empty_form.order.as_hidden }}
 
 	</div>
