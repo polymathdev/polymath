@@ -349,7 +349,11 @@ textarea {
   font-weight: normal;
   line-height: normal;
 	border-radius:6px;
-	background:white!important;
+
+}
+
+input, textarea{
+		background:white!important;
 }
 label {
 	margin-left:10px;
@@ -444,10 +448,12 @@ textarea {
   cursor: not-allowed;
 }
 :-moz-placeholder {
-  color: #bfbfbf; 
+/*  color: #bfbfbf;  */
+	color:#989898;
 }
 ::-webkit-input-placeholder {
-  color: #bfbfbf;
+/*  color: #bfbfbf; */
+	color:#989898;
 }
 input, textarea {
   -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
