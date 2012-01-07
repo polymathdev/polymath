@@ -13,6 +13,7 @@ from django.contrib import messages
 from django.utils import simplejson as json
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.http import require_POST
+from annoying.functions import get_object_or_None
 import ipdb 
 
 def test(request):
@@ -87,8 +88,28 @@ def view_course(request, course_slug):
 
     completed_lesson_list = None
     
+    lesson_list_info = [ {'lesson' : l } for l in lesson_list ]
+
     if request.user.is_authenticated():
         completed_lesson_list = Lesson.objects.filter(course=requested_course, completers=request.user.get_profile()) 
+        lesson_votes = LessonVote.objects.filter(lesson__in=lesson_list, user_profile=request.user.get_profile())
+        
+    for l in lesson_list_info:
+        if l['lesson'] in completed_lesson_list:
+            l['completed'] = True
+
+        try:
+            vote = lesson_votes.get(lesson=l['lesson'])
+            if vote:
+                if vote.up:
+                    l['vote'] = 'up'
+                else:
+                    l['vote'] = 'down'
+
+        except ObjectDoesNotExist:
+            pass
+
+    ipdb.set_trace()
 
     return render_to_response('view_course.dtl',  {
         'requested_course': requested_course,
