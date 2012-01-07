@@ -94,31 +94,29 @@ def view_course(request, course_slug):
         completed_lesson_list = Lesson.objects.filter(course=requested_course, completers=request.user.get_profile()) 
         lesson_votes = LessonVote.objects.filter(lesson__in=lesson_list, user_profile=request.user.get_profile())
         
-    for l in lesson_list_info:
-        if l['lesson'] in completed_lesson_list:
-            l['completed'] = True
+        for l in lesson_list_info:
+            if l['lesson'] in completed_lesson_list:
+                l['completed'] = True
 
-        try:
-            vote = lesson_votes.get(lesson=l['lesson'])
-            if vote:
-                if vote.up:
-                    l['vote'] = 'up'
-                else:
-                    l['vote'] = 'down'
+            try:
+                vote = lesson_votes.get(lesson=l['lesson'])
+                if vote:
+                    if vote.up:
+                        l['vote'] = 'up'
+                    else:
+                        l['vote'] = 'down'
 
-        except ObjectDoesNotExist:
-            pass
-
-    ipdb.set_trace()
+            except ObjectDoesNotExist:
+                pass
 
     return render_to_response('view_course.dtl',  {
         'requested_course': requested_course,
         'course_tags': requested_course.tags.all(),
-	    'lessons': lesson_list,
+	    'lessons': lesson_list_info,
         'completed_lessons': completed_lesson_list,
         'creator': creator,
         'is_my_course': (creator == request.user),
-        'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson')})
+        'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson')})
     },
     context_instance=RequestContext(request))
 
@@ -242,26 +240,36 @@ def complete_lesson(request):
 @require_POST
 def vote_lesson(request):
     lesson_id = request.POST['lesson_id']
-    is_up = request.POST['is_up']
+    is_up = bool(int(request.POST['is_up']))
     vote_successful = False
+    vote_result = None
 
     try:
         lesson_to_vote = Lesson.objects.get(id=lesson_id)
         existing_vote = LessonVote.objects.filter(lesson=lesson_to_vote, user_profile=request.user.get_profile())
 
         if existing_vote:
+            existing_vote = existing_vote.get()
             # if this vote is the opposite of an existing vote, delete the existing vote (e.g. down-voting an existing up-vote should just delete the vote all together i.e. neutral)
-            if not existing_vote.is_up == is_up:
+            if not existing_vote.up == is_up:
                 existing_vote.delete()
+                vote_result = 'neutral'
+
         else:
-            LessonVote.objects.create(lesson=lesson_id, user_profile=request.user.get_profile(), up=is_up) 
+            LessonVote.objects.create(lesson=lesson_to_vote, user_profile=request.user.get_profile(), up=is_up) 
+
+        if not vote_result == 'neutral':
+            if is_up:
+                vote_result = 'up'
+            else:
+                vote_result = 'down'
 
         vote_successful = True
 
     except ObjectDoesNotExist:
         result_message = 'That lesson does not exist (this is most likely a bug)'  # don't want 404 here because then the front-end will just silently fail since this is responding to an ajax request
 
-    return HttpResponse(json.dumps({'vote_successful' : vote_successful}), mimetype="application/json")
+    return HttpResponse(json.dumps({'vote_successful' : vote_successful, 'vote_result' : vote_result }), mimetype="application/json")
 
 
 def browse_courses(request, cat_slug=None, tag_slug=None):

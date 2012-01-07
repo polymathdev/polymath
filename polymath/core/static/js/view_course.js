@@ -2,6 +2,26 @@
 
 $(document).ready(function(){
 	
+    $('.vote_link').click(function() {
+        lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
+        is_up = $(this).attr('rel');
+        vote_status_span = $(this).parent().find('.vote_status');
+            $.post(
+                from_server['vote_lesson_url'],
+                {
+                lesson_id: lesson_id,
+                is_up: is_up
+                },
+                function(response) {
+                if( response['vote_successful'] ) {
+                    vote_status_span.html('Vote = ' + response['vote_result']);
+               }
+            }
+        );
+    });
+
+
+        
 	// set the current value of the progress bar
 	$('#progressbar').progressbar({
 		value: (completed_lessons/lessons) *100			
@@ -35,7 +55,6 @@ $(document).ready(function(){
 	            	from_server['complete_lesson_url'],
 	            	{ lesson_id: lesson_id },
 	            	function(response) {
-	    		//            alert(response['result_message']);
 	                if( response['complete_successful'] ) {
 						$("#numbercompleted").text(+($("#numbercompleted").text()) + 1); // increment the number of completed lessons
 						$(this).closest('.lessonBlock').toggleClass("completedBlock");
