@@ -448,14 +448,16 @@ textarea {
   cursor: not-allowed;
 }
 :-moz-placeholder {
-/*  color: #bfbfbf;  */
-	color:#989898;
+/*  color: #bfbfbf;   */
+	color:#989898; 
 	text-shadow:1px 1px 1px white;
+	font-weight:bold;
 }
 ::-webkit-input-placeholder {
-/*  color: #bfbfbf; */
-	color:#989898;
+/*  color: #bfbfbf;  */
+	color:#989898; 
 		text-shadow:1px 1px 1px white;
+		font-weight:bold;
 }
 input, textarea {
   -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
@@ -1497,6 +1499,10 @@ p{
 	margin-top:12px;
 }
 
+#editcourse a{
+		font-weight:bold;
+}
+
 #followers{
 	display:inline;
 	margin-left:15px;
@@ -1530,6 +1536,10 @@ p{
 .lessonBlock:first-child{
 	border-top-left-radius:6px;
 	border-top-right-radius:6px;
+}
+
+.lessonBlock:nth-child(even){
+	background:#edecdf;
 }
 
 .lessonBlock:last-child{
@@ -1851,7 +1861,7 @@ p{
 	font-size:16px;
 	
 	float:right;
-	font-weight:normal;
+	font-weight:bold;
 	color:#667B4E;
 	text-shadow:0px 1px 0px rgba(255,255,255,0.6); 
 	
@@ -1932,7 +1942,7 @@ p{
 	font-size:16px;
 	text-shadow:0px 1px 0px rgba(255,255,255,0.6);
 	float:right;
-	font-weight:normal;
+	font-weight:bold;
 	color:#667B4E;
 	
 
@@ -2138,7 +2148,7 @@ p{
 
 #browsetitle{
 	font-size:30px;
-	font-weight:normal;
+	font-weight:bold;
 	color:#656565; 
 	text-shadow: white 1px 1px 1px;
 	padding-bottom:0px;
@@ -2272,7 +2282,7 @@ p{
 
 #profilename{
 		font-size:30px;
-		font-weight:normal;
+		font-weight:bold;
 		color:#656565;
 		text-shadow: white 2px 2px 2px;	
 		padding-top:0px; padding-bottom:0px;
@@ -2300,6 +2310,10 @@ p{
 	margin-top:10px; 
 	padding-bottom:0px; 
 	margin-bottom:0px;
+}
+
+#edit_profile a{
+	font-weight:bold;
 }
 
 
@@ -2513,7 +2527,7 @@ p{
 		padding-left:10px;
 	text-decoration:none;
 	color:#667B4E;
-	font-weight:normal;
+	font-weight:bold;
 	font-size:16px;
 	padding-bottom:5px;
 	list-style:none;
@@ -2716,7 +2730,7 @@ a:hover{
 
 #id_name{
 	font-family:'PT Sans Caption', sans-serif;
-	font-size:28px;
+	font-size:26px;
 	height:30px;
 	width:485px;
 	background:#fefef6;
@@ -2810,7 +2824,7 @@ h1.edit_heading{
 	font-size:30px; 
 	margin-bottom:10px;
 	color:#656565;
-	font-weight:normal;
+	font-weight:bold;
 	text-shadow:1px 1px 2px white;
 }
 
@@ -2830,7 +2844,7 @@ h2.edit_heading {
 
 h3.edit_heading{
 	display:inline;
-	font-weight:normal;
+	font-weight:bold;
 	color:#5f7647;
 	float:right;
 	position:absolute;
@@ -2843,7 +2857,7 @@ h3.edit_heading{
 
 h5.edit_heading{
 	display:inline;
-	font-weight:normal;
+	font-weight:bold;
 	color:#5f7647;
 	font-size:16px;
 	text-shadow:1px 1px 1px white;
@@ -2894,8 +2908,8 @@ h5.edit_heading{
 
 a.remove_lesson_lnk{
 	position:absolute;
-	right:20px;
-	font-size:26px;
+	right:30px;
+	font-size:50px;
 	color:#ccc;
 	font-weight:normal;
 }
@@ -3078,6 +3092,7 @@ a.remove_lesson_lnk:hover{
 
 #login{
 	font-family:'PT Sans Caption', sans-serif;
+	font-weight:bold;
 	text-shadow:0px 1px 0px rgba(255,255,255,0.6);
 	color:#667B4E;
 	background-color: #fefdf6; /* Old browsers */
@@ -3113,6 +3128,7 @@ a.remove_lesson_lnk:hover{
 
 
 #login:hover{
+	cursor:pointer;
 	text-shadow:0px 1px 0px white;	
 	background: #d9dbc7; /* Old browsers */
 	background: -moz-linear-gradient(top,  #d8deae 0%, #c0c69c 100%); /* FF3.6+ */
@@ -3237,6 +3253,7 @@ a.remove_lesson_lnk:hover{
 	background: -ms-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* IE10+ */
 	background: linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdf6', endColorstr='#eeede6',GradientType=0 ); /* IE6-9 */
+	box-shadow:0px 2px 1px #ccc;
 	
 }
 
@@ -3250,7 +3267,7 @@ a.remove_lesson_lnk:hover{
 .aboutsidebar li:hover{
 /*	background:#d7dead; */
 	background:#468140;
-/*	box-shadow:inset 0px 0px 6px #ccc; */
+	box-shadow:inset 0px 0px 6px rgba(0,0,0,0.5); 
 }
 
 .aboutsidebar li:hover a{
@@ -3260,11 +3277,8 @@ a.remove_lesson_lnk:hover{
 }
 
 .aboutsidebar li.selected{
-/*	background:#d7dead;
-	box-shadow:inset 0px 0px 6px #ccc; */
+	box-shadow:inset 0px 0px 6px rgba(0,0,0,0.5);
 	background:#3d753a;
-/*	background: -moz-linear-gradient(linear, left top, left bottom, from(#4d9248), to(#304826));
-	background: -webkit-gradient(linear, left top, left bottom, from(#4d9248), to(#304826)); */
 	color:white;
 }
 

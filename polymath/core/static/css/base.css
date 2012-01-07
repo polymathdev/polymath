@@ -23,7 +23,7 @@
 		background: #ede9d0; /* Old browsers */
 			background: -moz-linear-gradient(top, #f2f0e2 0%, #000 100%); /* FF3.6+ */
 			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2f0e2), color-stop(100%,#000)); /* Chrome,Safari4+ */
-			background: -webkit-linear-gradient(top, #f2f0e2 0%,#efeee6 100%); /* Chrome10+,Safari5.1+ */
+			background: -webkit-linear-gradient(top, #fff9b1 0%,#fffbcf 100%); /* Chrome10+,Safari5.1+ */
 			background: -o-linear-gradient(top, #f2f0e2 0%,#000 100%); /* Opera 11.10+ */
 			background: -ms-linear-gradient(top, #f2f0e2 0%,#000 100%); /* IE10+ */
 			background: linear-gradient(top, #f2f0e2 0%,#000 100%); /* W3C */
@@ -38,9 +38,14 @@
 	margin-right: auto;
   	width:1004px; 
 /*	width: 760px; */
-	border-bottom:1px solid #e4e4dc;
+/*	border-bottom:1px solid #e4e4dc;
 	border-left:1px solid #e4e4dc;
-	border-right:1px solid #e4e4dc;
+	border-right:1px solid #e4e4dc; */
+	
+	border-bottom: solid 1px #c0bfb9;
+	border-left: solid 1px #c0bfb9;
+	border-right: solid 1px #c0bfb9;
+	
 	display:none;
 	box-shadow:0px 1px 4px #ccc;
 	border-radius:4px;
@@ -51,7 +56,7 @@
 
 .messages h3{
 	color:#667B4E;
-    font-weight:normal;
+    font-weight:bold;
 	font-size:16px;
 	width:960px; 
 	text-shadow:1px 1px 1px white;
