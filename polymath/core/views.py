@@ -34,13 +34,14 @@ def view_profile(request, uname):
 
     user_blurb = user_profile.blurb
     courses_created_by_user = user_profile.courses_created.all()
+    upvoted_lessons = LessonVote.objects.filter(user_profile=request.user.get_profile()).select_related('course')
 
     # EVALUATE AND OPTIMIZE THE BELOW IF POSSIBLE, THE CODE IS RATHER MESSY IN MY OPINION
 
     courses_following = user_profile.courses_following.select_related('category').all()
 
     lessons_following = Lesson.objects.filter(course__in=courses_following)
-    lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=request.user.get_profile())  
+    lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=request.user.get_profile())  # does it do extra queries if i keep repeating request.user.get_profile()?  maybe should store and pass in
 
     lessons = { les['id'] : les for les in lessons_following.values() }
     completed_lessons = { les['id'] : les for les in lessons_following_completed.values() }
@@ -71,6 +72,7 @@ def view_profile(request, uname):
 	'user_blurb': user_blurb,
     'courses_created_by_user': courses_created_by_user,
     'courses_following': courses_following,
+    'upvoted_lessons': upvoted_lessons,
     'is_my_profile': (profile_owner == request.user)
     },
     context_instance=RequestContext(request))
@@ -273,14 +275,14 @@ def vote_lesson(request):
 
 
 def browse_courses(request, cat_slug=None, tag_slug=None):
-    tags_by_cat = None
     course_list = None
     filters = None                            
+    
+    cats = CourseCategory.objects.all()
+    tags_by_cat = { cat : Course.tags.filter(course__category=cat) for cat in cats } 
 
     # default browse page with no filtering
     if not cat_slug and not tag_slug:
-        cats = CourseCategory.objects.all()
-        tags_by_cat = { cat : Course.tags.filter(course__category=cat) for cat in cats }
         course_list = Course.objects.all().select_related()
 
     if cat_slug:
@@ -288,7 +290,6 @@ def browse_courses(request, cat_slug=None, tag_slug=None):
 
         # browse a single category
         if not tag_slug:
-            tags_by_cat = { cat : Course.tags.filter(course__category=cat) }
             course_list = Course.objects.filter(category=cat)
 
         # filter by both category and tag
@@ -301,5 +302,3 @@ def browse_courses(request, cat_slug=None, tag_slug=None):
         'course_list' : course_list,
         'filters' : filters
         })
-
-
