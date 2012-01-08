@@ -11,7 +11,18 @@
 {% block js_includes %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
 	<script type="text/javascript">
-		var completed_lessons = {{ completed_lessons.count }};
+		
+		var completed_lessons;
+		var isLoggedIn;
+		
+		{% if user.is_authenticated %}
+			completed_lessons = {{ completed_lessons.count }};
+			isLoggedIn = true;
+		{% else %}
+			completed_lessons = 0;
+			isLoggedIn = false;
+		{% endif %}
+		
 		var lessons = {{ requested_course.lesson_set.count }};
 	</script>
 	
