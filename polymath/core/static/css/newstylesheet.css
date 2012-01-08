@@ -1149,7 +1149,7 @@ body#teach a#teachnav {
 	width:130px;
 }
 
-.nav li:hover ul{
+.nav li.selected ul{
 	display:block;
 	position:absolute;
 	margin-top:51px;
@@ -1157,13 +1157,13 @@ body#teach a#teachnav {
 	padding:0;
 }
 
-.nav li:hover li{
+.nav li.selected li{
 	float:none;
 	border:0px;
 
 }
 
-.nav li:hover li a{
+.nav li.selected li a{
 	border:1px solid rgba(0,0,0,0.25);
 	border-top:0px;
 	width:100px;
@@ -1172,7 +1172,7 @@ body#teach a#teachnav {
 	background-repeat:repeat-x;
 }
 
-.nav li:hover li a:hover{
+.nav li.selected li a:hover{
 	background-image:url('images/topbar_tex_highlight.jpg'); 
 	background-repeat:repeat-x;
 }
