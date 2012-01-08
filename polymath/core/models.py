@@ -81,3 +81,13 @@ class LessonCompletion(models.Model):
 
     def __unicode__(self):
         return self.user_profile.user.first_name + " " + self.user_profile.user.last_name + " --> " + self.lesson.name
+
+
+class LessonVote(models.Model):
+    lesson = models.ForeignKey(Lesson, editable=False)
+    user_profile = models.ForeignKey(UserProfile, editable=False)
+    up = models.BooleanField()
+    date_voted = models.DateTimeField(auto_now_add=True) 
+
+    def __unicode__(self):
+        return self.user_profile.user.first_name + " " + self.user_profile.user.last_name + " --> " + self.lesson.name 
