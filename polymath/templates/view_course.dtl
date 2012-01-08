@@ -41,7 +41,7 @@
 		<div class="grid_4">
 	
 			<div class="grid_1 alpha">
-				<img src="{{ STATIC_URL }}/css/images/Pythonlogo.png" id="courseLogo"></img>
+                <img src="{% if requested_course.photo %}{{ requested_course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/Pythonlogo.png{% endif %}" id="courseLogo"></img>
 			</div>
 
 

@@ -29,13 +29,13 @@ AUTH_PROFILE_MODULE = 'core.UserProfile'
 TAGGIT_FORCE_LOWERCASE = True
 INTERNAL_IPS = '127.0.0.1'
 
-
+# this is just for the staticfiles app, so all it does is say where files should be collected to when you run collectstatic (i.e. sync everything to S3)
+# it has nothing to do with where uploaded files are saved, that is the default file system which is overridden in settings_prod.py to point to S3
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', '')
-
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -60,19 +60,16 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
-
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
+# STATIC_ROOT = '/Users/Daniel/Django/polymath/polymath/static_collect'
 STATIC_ROOT = ''
 
 # Additional locations of static files

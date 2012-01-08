@@ -1,24 +1,7 @@
 
-{% extends "base.dtl" %}
 
-{% block title %}Polymath: Browse Courses{% endblock %}
-
-{% block css_includes %}
-   {# <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> #}
-{% endblock %}
-
-{% block body %}
-
-{% for les in all_lessons %}
-    - {{ les.name }}
-
-    {% if les in course_lessons %}
-        yes
-    {% else %}
-        no
-    {% endif %}
-    <br />
-    
-{% endfor %}
-
-{% endblock %}
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ course_form.as_p }}
+<input type="submit" value="Save">
+</form>

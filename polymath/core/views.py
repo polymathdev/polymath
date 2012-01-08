@@ -16,11 +16,11 @@ import ipdb
 
 def test(request):
     
-    c = Course.objects.get(pk=3)
-    
+    c = Course.objects.get(pk=1)
+    cf = CourseForm(instance=c)
+
     return render(request, 'test.dtl', {
-        'all_lessons' : Lesson.objects.all(),
-        'course_lessons' : c.lesson_set.all()
+        'course_form' : cf
         })
 
 def home_page(request):
@@ -106,8 +106,8 @@ def add_course(request):
     EditLessonFormSet = inlineformset_factory(Course, Lesson, can_delete=False, form=LessonForm, formset=OrderedLessonFormSet, extra=1) 
  
     if request.method == 'POST':
-        course_form = CourseForm(request.POST)
-        lesson_fs = EditLessonFormSet(request.POST) 
+        course_form = CourseForm(request.POST, request.FILES)
+        lesson_fs = EditLessonFormSet(request.POST)     
         
         if course_form.is_valid() and lesson_fs.is_valid():
             new_course = course_form.save(commit=False)
@@ -147,7 +147,7 @@ def edit_course(request, course_slug):
     
     if request.method == 'POST':
         
-        edit_course_form = CourseForm(request.POST, instance=course_to_edit)
+        edit_course_form = CourseForm(request.POST, request.FILES, instance=course_to_edit)
         edit_lesson_fs = EditLessonFormSet(request.POST, instance=course_to_edit)
         
         if edit_course_form.is_valid() and edit_lesson_fs.is_valid():
@@ -160,7 +160,7 @@ def edit_course(request, course_slug):
     else:
         edit_course_form = CourseForm(instance=course_to_edit)
         edit_lesson_fs = EditLessonFormSet(instance=course_to_edit)
-        
+    
     return render_to_response('add_course2.dtl', {
         'course_form': edit_course_form,
         'lesson_fs': edit_lesson_fs,

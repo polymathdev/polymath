@@ -19,6 +19,7 @@ host = node()
 
 if host == 'DSMBP.local':
     TEMPLATE_DIRS = ('/Users/Daniel/Django/polymath/polymath/templates')
+    MEDIA_ROOT = '/Users/Daniel/Django/polymath/polymath/uploads/' 
 
     DATABASES = {
         'default': {
@@ -33,6 +34,7 @@ if host == 'DSMBP.local':
 
 elif host == 'harish-venkatesans-macbook.local':
     TEMPLATE_DIRS = ('/Users/harish/polymath/polymath/templates')
+    MEDIA_ROOT = '/Users/harish/polymath/polymath/uploads/' 
 
     DATABASES = {
         'default': {

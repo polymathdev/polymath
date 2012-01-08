@@ -23,11 +23,11 @@
 	
 	<hr id="headinghr">
 
-	<form id="new_course_form" method="post">
+	<form id="new_course_form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
 		<div class="grid_1">
-			<img src="{{ STATIC_URL }}/css/images/Pythonlogo.png" id="courseLogo"></img>
+			<img src="{% if course_form.instance.photo %}{{ course_form.instance.photo.url }}{% else %}{{ STATIC_URL }}/css/images/Pythonlogo.png{% endif %}" id="courseLogo"></img>
 		</div>
 
 		<div class="grid_3" style="margin-bottom:25px;">
@@ -43,7 +43,8 @@
 		{{ course_form.category.errors }}
 		
 		{{ course_form.tags }}
-		
+
+        {{ course_form.photo }}
 		</div>
 	
 	<div class="grid_2 addcoursebuttons">
