@@ -15,9 +15,18 @@ padding:0px;
 	margin-left:0px;
 	padding-top:0px; padding-left:0px;
 	height:200px;
-	background:#3d753a;
-	background: -moz-linear-gradient(linear, left top, left bottom, from(#4d9248), to(#304826));
-	background: -webkit-gradient(linear, left top, left bottom, from(#4d9248), to(#304826));		
+	
+	
+	background: #4d9248; /* Old browsers */
+	background: -moz-linear-gradient(top, #4d9248 0%, #304826 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4d9248), color-stop(100%,#304826)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #4d9248 0%,#304826 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #4d9248 0%,#304826 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #4d9248 0%,#304826 100%); /* IE10+ */
+	background: linear-gradient(top, #4d9248 0%,#304826 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d9248', endColorstr='#304826',GradientType=0 ); /* IE6-9 */
+	
+	
 	box-shadow:inset 0px -1px 5px #2b4221;
 	min-width:1024px;
 }

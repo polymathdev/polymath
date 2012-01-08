@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response, get_object_or_404, render
-from core.models import Course, Lesson, CourseCategory, LessonCompletion
+from core.models import Course, Lesson, CourseCategory, LessonCompletion, LessonVote
 from taggit.models import Tag
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -12,6 +12,8 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib import messages
 from django.utils import simplejson as json
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.decorators.http import require_POST
+from annoying.functions import get_object_or_None
 import ipdb 
 
 def test(request):
@@ -32,13 +34,14 @@ def view_profile(request, uname):
 
     user_blurb = user_profile.blurb
     courses_created_by_user = user_profile.courses_created.all()
+    upvoted_lessons = LessonVote.objects.filter(user_profile=request.user.get_profile()).select_related('course')
 
     # EVALUATE AND OPTIMIZE THE BELOW IF POSSIBLE, THE CODE IS RATHER MESSY IN MY OPINION
 
     courses_following = user_profile.courses_following.select_related('category').all()
 
     lessons_following = Lesson.objects.filter(course__in=courses_following)
-    lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=request.user.get_profile())  
+    lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=request.user.get_profile())  # does it do extra queries if i keep repeating request.user.get_profile()?  maybe should store and pass in
 
     lessons = { les['id'] : les for les in lessons_following.values() }
     completed_lessons = { les['id'] : les for les in lessons_following_completed.values() }
@@ -69,6 +72,7 @@ def view_profile(request, uname):
 	'user_blurb': user_blurb,
     'courses_created_by_user': courses_created_by_user,
     'courses_following': courses_following,
+    'upvoted_lessons': upvoted_lessons,
     'is_my_profile': (profile_owner == request.user)
     },
     context_instance=RequestContext(request))
@@ -86,17 +90,35 @@ def view_course(request, course_slug):
 
     completed_lesson_list = None
     
+    lesson_list_info = [ {'lesson' : l } for l in lesson_list ]
+
     if request.user.is_authenticated():
         completed_lesson_list = Lesson.objects.filter(course=requested_course, completers=request.user.get_profile()) 
+        lesson_votes = LessonVote.objects.filter(lesson__in=lesson_list, user_profile=request.user.get_profile())
+        
+        for l in lesson_list_info:
+            if l['lesson'] in completed_lesson_list:
+                l['completed'] = True
+
+            try:
+                vote = lesson_votes.get(lesson=l['lesson'])
+                if vote:
+                    if vote.up:
+                        l['vote'] = 'up'
+                    else:
+                        l['vote'] = 'down'
+
+            except ObjectDoesNotExist:
+                pass
 
     return render_to_response('view_course.dtl',  {
         'requested_course': requested_course,
         'course_tags': requested_course.tags.all(),
-	    'lessons': lesson_list,
+	    'lessons': lesson_list_info,
         'completed_lessons': completed_lesson_list,
         'creator': creator,
         'is_my_course': (creator == request.user),
-        'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson')})
+        'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson')})
     },
     context_instance=RequestContext(request))
 
@@ -170,9 +192,8 @@ def edit_course(request, course_slug):
 
 
 @login_required
+@require_POST
 def delete_lesson(request):
-    if not request.method == 'POST':
-        raise Http404
 
     lesson_id = request.POST['lesson_id']
     delete_successful = False
@@ -194,9 +215,8 @@ def delete_lesson(request):
 
 
 @login_required
+@require_POST
 def complete_lesson(request):
-    if not request.method == 'POST':
-        raise Http404
 
     lesson_id = request.POST['lesson_id']
     complete_successful = False
@@ -217,16 +237,52 @@ def complete_lesson(request):
     return HttpResponse(json.dumps({'complete_successful' : complete_successful, 'result_message' : result_message}), mimetype="application/json")
 
 
+# I should really test for the existence of any required POST variables for any of these ajax views
+@login_required
+@require_POST
+def vote_lesson(request):
+    lesson_id = request.POST['lesson_id']
+    is_up = bool(int(request.POST['is_up']))
+    vote_successful = False
+    vote_result = None
+
+    try:
+        lesson_to_vote = Lesson.objects.get(id=lesson_id)
+        existing_vote = LessonVote.objects.filter(lesson=lesson_to_vote, user_profile=request.user.get_profile())
+
+        if existing_vote:
+            existing_vote = existing_vote.get()
+            # if this vote is the opposite of an existing vote, delete the existing vote (e.g. down-voting an existing up-vote should just delete the vote all together i.e. neutral)
+            if not existing_vote.up == is_up:
+                existing_vote.delete()
+                vote_result = 'neutral'
+
+        else:
+            LessonVote.objects.create(lesson=lesson_to_vote, user_profile=request.user.get_profile(), up=is_up) 
+
+        if not vote_result == 'neutral':
+            if is_up:
+                vote_result = 'up'
+            else:
+                vote_result = 'down'
+
+        vote_successful = True
+
+    except ObjectDoesNotExist:
+        result_message = 'That lesson does not exist (this is most likely a bug)'  # don't want 404 here because then the front-end will just silently fail since this is responding to an ajax request
+
+    return HttpResponse(json.dumps({'vote_successful' : vote_successful, 'vote_result' : vote_result }), mimetype="application/json")
+
 
 def browse_courses(request, cat_slug=None, tag_slug=None):
-    tags_by_cat = None
     course_list = None
     filters = None                            
+    
+    cats = CourseCategory.objects.all()
+    tags_by_cat = { cat : Course.tags.filter(course__category=cat) for cat in cats } 
 
     # default browse page with no filtering
     if not cat_slug and not tag_slug:
-        cats = CourseCategory.objects.all()
-        tags_by_cat = { cat : Course.tags.filter(course__category=cat) for cat in cats }
         course_list = Course.objects.all().select_related()
 
     if cat_slug:
@@ -234,7 +290,6 @@ def browse_courses(request, cat_slug=None, tag_slug=None):
 
         # browse a single category
         if not tag_slug:
-            tags_by_cat = { cat : Course.tags.filter(course__category=cat) }
             course_list = Course.objects.filter(category=cat)
 
         # filter by both category and tag
@@ -247,15 +302,3 @@ def browse_courses(request, cat_slug=None, tag_slug=None):
         'course_list' : course_list,
         'filters' : filters
         })
-
-
-# security vulnerability?
-# used for 
-@login_required
-def quick_ajax_post(request, view_to_call):
-    if not request.method == 'POST':
-        raise Http404
-
-    func = getattr(self, view_to_call)
-
-    return func(request)

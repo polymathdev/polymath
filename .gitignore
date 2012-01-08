@@ -1,3 +1,4 @@
 *.pyc
+*.swp
 pmvenv
 .DS_Store
