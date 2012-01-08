@@ -12,8 +12,9 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
 	<script type="text/javascript">
 		var completed_lessons = {{ completed_lessons.count }};
-		var lessons = {{ lessons.count }};
+		var lessons = {{ requested_course.lesson_set.count }};
 	</script>
+	
 {% endblock %}
 
 {% block body %}
@@ -125,7 +126,7 @@
 				{% else %}0{% endif %}
 				</span>
 				
-				<span id="total">of {{ lessons.count }}</span>
+				<span id="total">of {{ requested_course.lesson_set.count }}</span>
 				
 				<div id="progressbar"></div>
 				
@@ -158,15 +159,42 @@
 				<span id="number">{{ forloop.counter }}</span>
 			</div>
 			
-			<div class="grid_3 alpha omega">
+			<div class="grid_3 alpha">
 				<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
 				<h3><a class="lessonname" href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }} <span class="courselessonlink">{{ lesson.lesson.link }}</span></a> </h3> 
 				<p class="expanded">{{ lesson.lesson.description }}</p>
 				<a href="#" class="expand">(+)</a>
 			</div>
 			
+			
+			<div class="grid_1">
+			<div>
+          <!--      <span class="vote_status">
+                    {% if lesson.vote %}
+                    (Vote = {{ lesson.vote }})
+                    {% else %}
+                    (Vote = neutral)
+                    {% endif %}
+                </span>
+                <a href="#" class="vote_link" rel="1">Vote Up</a> / <a href="#" class="vote_link" rel="0">Vote Down</a> -->
+				<ul class="thumbsbuttons">
+					{% if lesson.vote == "up" %}
+						<li id="thumbsup" class="vote_link done" rel="1" original-title="Like this?"></li>
+					{% else %}
+						<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
+					{% endif %}
+					
+					{% if lesson.vote == "down" %}
+						<li id="thumbsdown" class="vote_link done" rel="0" original-title="Didn't like this?"></li>
+					{% else %}
+						<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
+					{% endif %}
+				</ul>
+            </div>
+			
+			</div>
 				
-			<div class="grid_1 prefix_1">
+			<div class="grid_1">
 		
 			{% if not lesson.completed %}
 				<div class="checkb" original-title="Mark as done"></div>
@@ -176,16 +204,7 @@
 
 			</center>
             {# up/down vote front-end stuff #}
-            <div>
-                <span class="vote_status">
-                    {% if lesson.vote %}
-                    (Vote = {{ lesson.vote }})
-                    {% else %}
-                    (Vote = neutral)
-                    {% endif %}
-                </span>
-                <a href="#" class="vote_link" rel="1">Vote Up</a> / <a href="#" class="vote_link" rel="0">Vote Down</a>
-            </div>
+
 			</div>
 		</div>
 		{% endfor %}

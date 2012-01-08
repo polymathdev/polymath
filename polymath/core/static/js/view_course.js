@@ -1,11 +1,14 @@
-
-
 $(document).ready(function(){
 	
-    $('.vote_link').click(function() {
+	
+	$('.vote_link').click(function() {
         lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
         is_up = $(this).attr('rel');
-        vote_status_span = $(this).parent().find('.vote_status');
+        vote_status_span = $(this).closest('.lessonBlock').find('.vote_status');
+
+		var donebutton = $(this);
+		var otherbutton = $(this).siblings(".done");
+		
             $.post(
                 from_server['vote_lesson_url'],
                 {
@@ -14,13 +17,16 @@ $(document).ready(function(){
                 },
                 function(response) {
                 if( response['vote_successful'] ) {
+					donebutton.addClass("done");
+					otherbutton.removeClass("done");
+					alert('got it!');
                     vote_status_span.html('Vote = ' + response['vote_result']);
                }
             }
-        );
+       	);
+
+
     });
-
-
         
 	// set the current value of the progress bar
 	$('#progressbar').progressbar({
@@ -136,6 +142,30 @@ $(document).ready(function(){
 	$('.takecourse').tipsy({fade: false, gravity: 'e', opacity:0.6});
 
 	$('.lessonname').tipsy({fade: false, gravity: 'w', opacity:0.6, offset:10});
+	
+	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.6, offset:0});
 
+
+
+
+  $('.vote_link').click(function() {
+        lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
+        is_up = $(this).attr('rel');
+        vote_status_span = $(this).parent().find('.vote_status');
+            $.post(
+                from_server['vote_lesson_url'],
+                {
+                lesson_id: lesson_id,
+                is_up: is_up
+                },
+                function(response) {
+                if( response['vote_successful'] ) {
+                    vote_status_span.html('Vote = ' + response['vote_result']);
+               }
+            }
+       	);
+
+
+    });
     
 }); 
