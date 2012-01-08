@@ -130,8 +130,36 @@
 		{% endfor %}
 
 	{% endif %}
+	
+	
+	
+	{% if upvoted_lessons %}
+		<div class="heading grid_6" style="margin-top:20px;">
+				<div class="grid_2 alpha suffix_3">
+					<h2 class="profile_heading">Lessons {% if is_my_profile %}you've{% else %}{{ profile_owner.first_name }} has {% endif %} liked</h2>
+				</div>
+		</div>
+		
+		{% for lesson in upvoted_lessons %}	
+			{% if lesson.up %}
+			<div class="profilecourseBlock grid_6 created">
+				
+				<div class="grid_1 alpha subject">{{ lesson.lesson.course }} </div>
+				
+				<div class="grid_2 alpha omega coursetitle"> {{ lesson.lesson.name }} | {{ lesson.lesson.link }}</div>
+				
+				<div class="grid_1 alpha omega prefix_1" style="float:right; margin-right:50px"> {{ lesson.date_voted }}</div>
+		
+			</div>
+			{% endif %}
+		{% endfor %}
+		
+	{% endif %}
+	
 
 </div>
+
+
 
 
 
