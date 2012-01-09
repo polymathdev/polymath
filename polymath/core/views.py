@@ -34,14 +34,14 @@ def view_profile(request, uname):
 
     user_blurb = user_profile.blurb
     courses_created_by_user = user_profile.courses_created.all()
-    upvoted_lessons = LessonVote.objects.filter(user_profile=request.user.get_profile()).select_related('course')
+     
+    # EVALUATE AND OPTIMIZE THE BELOW IF POSSIBLE, THE CODE IS RATHER MESSY IN MY OPINION AND THERE ARE PROBABLY MUCH BETTER WAYS TO DO THIS
 
-    # EVALUATE AND OPTIMIZE THE BELOW IF POSSIBLE, THE CODE IS RATHER MESSY IN MY OPINION
-
+    upvoted_lessons = LessonVote.objects.filter(user_profile=user_profile).select_related('course')
     courses_following = user_profile.courses_following.select_related('category').all()
 
     lessons_following = Lesson.objects.filter(course__in=courses_following)
-    lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=request.user.get_profile())  # does it do extra queries if i keep repeating request.user.get_profile()?  maybe should store and pass in
+    lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=user_profile)  
 
     lessons = { les['id'] : les for les in lessons_following.values() }
     completed_lessons = { les['id'] : les for les in lessons_following_completed.values() }
@@ -63,7 +63,6 @@ def view_profile(request, uname):
     for c_id, c in courses_following_with_progress.iteritems():
        c['total'] = course_progress.get(c_id, 0)['total']
        c['completed'] = course_progress.get(c_id, 0)['completed']
-    
 
     courses_following = courses_following_with_progress.values()
 
