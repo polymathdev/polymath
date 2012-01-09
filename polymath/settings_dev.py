@@ -39,7 +39,7 @@ elif host == 'harish-venkatesans-macbook.local':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-            'NAME': 'newdb',                      
+            'NAME': 'pm_db_psql',                      
             'USER': 'postgres',                      
             'PASSWORD': 'stitch1',                 
             'HOST': 'localhost',                     
