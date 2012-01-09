@@ -123,6 +123,13 @@ $(document).ready(function(){
         $('#new_course_form :submit').attr('disabled','true');
         reorder_lessons()
     });
+
+
+
+	$('#editimage').click(function(){
+		$('#photouploaddiv').toggle();
+	});
+
 }); 
 
 

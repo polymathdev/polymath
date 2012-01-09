@@ -12,7 +12,6 @@ class CourseForm(ModelForm):
 			'name': forms.TextInput(attrs={'placeholder':'Course Name, e.g. "Intro to Python"'}),
 			'category': forms.Select(attrs={'initial':'Category'}),
 			'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your course here'}),
-			'tags': forms.TextInput(attrs={'placeholder':'Add tags, separated by a comma'}),
 		}        
 
 class LessonForm(ModelForm):

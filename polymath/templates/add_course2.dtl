@@ -27,7 +27,9 @@
     {% csrf_token %}
 
 		<div class="grid_1">
-			<img src="{% if course_form.instance.photo %}{{ course_form.instance.photo.url }}{% else %}{{ STATIC_URL }}/css/images/Pythonlogo.png{% endif %}" id="courseLogo"></img>
+			<img src="{% if course_form.instance.photo %}{{ course_form.instance.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="courseLogo"></img>
+<div id="editimage"><center>Edit Image</center></div>
+			 
 		</div>
 
 		<div class="grid_3" style="margin-bottom:25px;">
@@ -43,8 +45,14 @@
 		{{ course_form.category.errors }}
 		
 		{{ course_form.tags }}
+		{{ course_form.tags.errors }}
 
-        {{ course_form.photo }}
+		<div id="photouploaddiv">
+		{{ course_form.photo }}
+		{{ course_form.photo.errors }}
+		</div>
+		
+
 		</div>
 	
 	<div class="grid_2 addcoursebuttons">
@@ -72,6 +80,10 @@
 <div class="clear"></div>
 <hr style="border:1px dotted #e4e4dc; margin-bottom:0px; margin-top:20px;">
 <hr style="border:1px dotted #e4e4dc; margin-top:1px">
+
+<h3 style="margin-top:20px; margin-left:10px; margin-bottom:10px; font-size:20px;">Lessons</h3>
+<p style="margin-left:10px;">Add as many lessons as you'd like to this course. You can drag and drop to reorder them.</p>
+
 
 	{{ lesson_fs.management_form }}  
 

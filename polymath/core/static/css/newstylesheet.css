@@ -402,7 +402,7 @@ input[type=checkbox], input[type=radio] {
   border: none;
 }
 input[type=file] {
-  background-color: #ffffff;
+	background-color:#fefef6;
   padding: initial;
   border: initial;
   line-height: initial;
@@ -2782,6 +2782,11 @@ a:hover{
 }
 
 
+#id_photo{
+	background:none!important;
+	margin-top:5px;
+}
+
 .lessonname input{
 	height:20px;
 	width:485px;
@@ -3389,4 +3394,42 @@ a.remove_lesson_lnk:hover{
 
 #thumbsdown.done{
 	background-position:0 -180px;
+}
+
+
+/*------ */
+
+#editimage{
+	margin-top:-25px;
+	color:white;
+	font-weight:normal;
+	font-size:14px;
+	background:rgba(0,0,0,0.6);
+	width:152px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+#editimage:hover{
+	cursor:pointer;
+}
+
+#photouploaddiv label{
+	color:#8B0000;
+	font-weight:bold;
+	position:absolute;
+	float:right;
+	margin-top:-6px;
+	margin-left:5px;
+}
+
+#photouploaddiv{
+	display:none;
+	font-size:12px;
+	padding:0px;
+	margin-top:10px;
+}
+
+#photo-clear_id{
+	margin-left:10px;
 }
