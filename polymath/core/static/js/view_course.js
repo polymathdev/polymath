@@ -51,6 +51,8 @@ $(document).ready(function(){
 	
 	$('.checkb').click(function(){ // when the done button is clicked...
 		
+		var checkbox = $(this);
+		
 		if ( $(this).hasClass('done')){ // don't do anything if it's already done
 		
 		} else {
@@ -79,7 +81,10 @@ $(document).ready(function(){
 	            		function(response) {
 	                		if( response['complete_successful'] ) {
 								$("#numbercompleted").text(+($("#numbercompleted").text()) + 1); // increment the number of completed lessons
-								$(this).closest('.lessonBlock').toggleClass("completedBlock");
+//								$(this).closest('.lessonBlock').toggleClass("completedBlock");
+								checkbox.closest('.lessonBlock').toggleClass("completedBlock");
+								var a = $(this);
+								console.log("%s", checkbox);
 	               			}
 	            		}
 	        		);

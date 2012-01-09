@@ -457,7 +457,7 @@ textarea {
 /*  color: #bfbfbf;  */
 	color:#ccc; 
 	text-shadow:1px 1px 1px white;
-	font-weight:bold;
+	font-weight:normal;
 }
 input, textarea {
   -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
@@ -1119,6 +1119,7 @@ body#teach a#teachnav {
   	color: #bfbfbf;
   	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 	float:right;
+	margin-right:-10px;
 	width:400px;
 	list-style: none;
 }
@@ -1153,7 +1154,7 @@ body#teach a#teachnav {
 	display:block;
 	position:absolute;
 	margin-top:51px;
-	right:0;
+	right:-10px;
 	padding:0;
 }
 
@@ -1551,16 +1552,12 @@ p{
 	width:1004px;
 	float:left;
 	padding-top:10px;
-/*	color:#667B4E; */
 	background: #fefdf6; /* Old browsers */
-
 	font-weight:bold;
 	font-size:14px;
 	padding-bottom:20px;
 	margin-left:10px;
-/*	height:70px; */
 	z-index:3;
-/*	margin-bottom:15px;  */
 	box-shadow:0px 2px 0px #ccc, inset 0 0px 5px rgba(255,255,255,0.6);
 	border:1px solid #d1d4c5;
 	border-bottom:0px;
@@ -1620,7 +1617,7 @@ p{
 	-moz-box-shadow: inset 0 0px 5px rgba(255,255,255,0.6)
 	-webkit-box-shadow: inset 0 0px 5px rgba(255,255,255,0.6)
 	box-shadow: inset 0 0px 5px rgba(255,255,255,0.6);
-	opacity:0.6; 
+	opacity:0.8; 
 }
 
 .grid_2.completed{
@@ -1631,10 +1628,10 @@ p{
 	opacity:0;
 }
 
-.completedBlock:hover{
+/*.completedBlock:hover{
 	background:#fefef6;
 	opacity:1;
-}
+} */
 
 
 
@@ -2236,7 +2233,7 @@ p{
 }
 
 
-.profilecourseBlock:last-child{
+.created:last-child{
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius:6px;
 	margin-bottom:20px;
@@ -2301,6 +2298,10 @@ p{
 	margin-top:14px;
 	list-style:none;
 	position:absolute;
+	top:100px;
+}
+
+.socialmedia.course{
 	top:115px;
 }
 
@@ -3272,7 +3273,7 @@ a.remove_lesson_lnk:hover{
 
 .aboutsidebar li.selected a{
 	color:white;
-	text-shadow:0px -1px 0px black;
+	text-shadow:0px -1px 1px black;
 	font-weight:normal;
 }
 
@@ -3284,7 +3285,7 @@ a.remove_lesson_lnk:hover{
 
 .aboutsidebar li:hover a{
 	color:white;
-	text-shadow:0px -1px 0px black;
+	text-shadow:0px -1px 1px black;
 	font-weight:normal;
 }
 
@@ -3336,6 +3337,17 @@ a.remove_lesson_lnk:hover{
 	height:1px;
 	background-color:#ccc;
 	width:100%;
+}
+
+.favicon{
+	width:125px;
+	height:125px;
+	border-radius:6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-top:2px solid #5A7A5A;
+	margin-bottom:50px;
+	box-shadow:0px 1px 5px rgba(0,0,0,0.6);
 }
 
 
@@ -3400,16 +3412,17 @@ a.remove_lesson_lnk:hover{
 /*------ */
 
 #editimage{
-	margin-top:130px;
+	margin-top:132px;
 	margin-left:1px;
 	color:white;
 	font-weight:normal;
-	font-size:14px;
-	background:rgba(0,0,0,0.6);
+	font-size:12px;
+	background:rgba(0,0,0,1);
 	width:150px;
 	padding-top:5px;
 	padding-bottom:5px;
 	position:absolute;
+	opacity:0.6;
 }
 
 #editimage:hover{

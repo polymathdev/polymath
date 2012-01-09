@@ -89,7 +89,7 @@
 				
 				<p>{{ requested_course.description }}</p>
 									
-			<div class="socialmedia">
+			<div class="socialmedia course">
 						<a href="http://www.facebook.com/dialog/feed?
 						  app_id=349907371691622&
 						  link=http://www.whatispolymath.com&
