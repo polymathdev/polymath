@@ -3400,7 +3400,7 @@ a.remove_lesson_lnk:hover{
 /*------ */
 
 #editimage{
-	margin-top:-25px;
+	margin-top:130px;
 	color:white;
 	font-weight:normal;
 	font-size:14px;
@@ -3408,6 +3408,7 @@ a.remove_lesson_lnk:hover{
 	width:152px;
 	padding-top:5px;
 	padding-bottom:5px;
+	position:absolute;
 }
 
 #editimage:hover{

@@ -27,9 +27,9 @@
     {% csrf_token %}
 
 		<div class="grid_1">
-			<img src="{% if course_form.instance.photo %}{{ course_form.instance.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="courseLogo"></img>
-<div id="editimage"><center>Edit Image</center></div>
-			 
+			
+			<div id="editimage"><center>Edit Image</center></div>
+			<img src="{% if course_form.instance.photo %}{{ course_form.instance.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="courseLogo"></img> 
 		</div>
 
 		<div class="grid_3" style="margin-bottom:25px;">
