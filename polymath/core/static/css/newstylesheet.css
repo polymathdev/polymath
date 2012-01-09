@@ -3401,11 +3401,12 @@ a.remove_lesson_lnk:hover{
 
 #editimage{
 	margin-top:130px;
+	margin-left:1px;
 	color:white;
 	font-weight:normal;
 	font-size:14px;
 	background:rgba(0,0,0,0.6);
-	width:152px;
+	width:150px;
 	padding-top:5px;
 	padding-bottom:5px;
 	position:absolute;
