@@ -88,10 +88,12 @@ def view_course(request, course_slug):
     lesson_list = requested_course.lesson_set.all()
 
     completed_lesson_list = None
+    is_following = None
     
     lesson_list_info = [ {'lesson' : l } for l in lesson_list ]
 
     if request.user.is_authenticated():
+        is_following = requested_course.followers.filter(user=request.user)
         completed_lesson_list = Lesson.objects.filter(course=requested_course, completers=request.user.get_profile()) 
         lesson_votes = LessonVote.objects.filter(lesson__in=lesson_list, user_profile=request.user.get_profile())
         
@@ -117,6 +119,7 @@ def view_course(request, course_slug):
         'completed_lessons': completed_lesson_list,
         'creator': creator,
         'is_my_course': (creator == request.user),
+        'is_following': is_following,
         'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson')})
     },
     context_instance=RequestContext(request))
