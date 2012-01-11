@@ -30,6 +30,8 @@
 
 {% block body %}
 
+{% load truncate_filters %}
+
 
 	<div class="headingbox">
 	
@@ -87,7 +89,7 @@
 				
 				<hr id="titlehr">	
 				
-				<p>{{ requested_course.description }}</p>
+				<p>{{ requested_course.description|truncate_chars:190 }}</p>
 									
 			<div class="socialmedia course">
 						<a href="http://www.facebook.com/dialog/feed?

@@ -2354,7 +2354,8 @@ p{
 }
 
 .heading{
-	background-color:#efeddf;  
+/*	background-color:#efeddf;   */
+	background: -webkit-linear-gradient(top, #6A9753 0%,#405734 100%);
 	border:1px solid #e4e4DC;
 	border-top-left-radius:6px;
 	border-top-right-radius:6px;
@@ -2364,11 +2365,10 @@ p{
 	padding-left:15px;
 	margin-top:15px;
 	margin-bottom:15px;
-	
-	color:#656565; 
+	color:white; 
 	font-size:18px;
 	font-weight:bold;
-	text-shadow: 0px 1px 0px white; 
+	text-shadow: 0px 1px 1px rgba(0,0,0,0.5); 
 	
 }
 
@@ -2700,52 +2700,81 @@ p{
 
 
 .sidebar{
-/*	background-color:#EEEFE5; */
-	background:#f2f0e2;
+/*	background:#f2f0e2; */
+/*	background:rgba(127,176,36,0.3); */
+/*	background:rgba(151,220,2,0.25); */
+	background:#fefef6;
 	width:154px;
-	margin-left:0px;
-	border:1px solid #c0bfb9;
+	border:1px solid #e4e4dc;
 	border-right:0;
 	-moz-box-shadow: inset 0 0 6px #ccc;
 	-webkit-box-shadow: inset 0 0 6px #ccc;
 	box-shadow: inset 0 0 6px  #ccc;
-	padding-bottom:10px;
 	
-	border-top-left-radius:6px;
-	border-bottom-left-radius:6px;
+	border-top-left-radius:4px;
+	border-bottom-left-radius:4px;
 }
 
 .sidebar ul{
-	margin-left:3px;
-	padding-left:4px;
 }
 
 .sidebar li{
-	margin-top:3px;
-	margin-left:3px;
-		padding-left:10px;
 	text-decoration:none;
 	color:#667B4E;
 	font-weight:bold;
-	font-size:16px;
-	padding-bottom:5px;
+	font-size:14px;
 	list-style:none;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+
+.sidebar li:hover{
+	background:rgba(151,220,2,0.2);
+}
+
+.sidebar li a{
+	padding-left:20px;
+
+}
+
+.sidebar li a:hover{
+	text-decoration:none;
 }
 
 #divider{
 	height:1px;
-	background-color:#c0bfb9;
+	background-color:#e4e4dc;
 	width:130px;
 	margin-left:10px;
 }
 
 #first{
-	padding-top:10px;
+/*	background:rgba(151,220,2,0.45);  */
+/*	background:rgba(127,176,36,0.4); */
+	background: -webkit-linear-gradient(top, #6A9753 0%,#405734 100%);
+	padding-top:15px;
+	border-bottom:1px solid #ccc;
+	font-size:18px;
+	color:white;
+	text-shadow:0px 1px 1px rgba(0,0,0,0.5);
+	padding-left:15px;
+	padding-top:15px;
+	border-top-left-radius:4px;
 }
 
-#last{
+.sidebar li:last-child{
 	padding-bottom:15px;
 }
+
+
+#browsehr{
+	background-color:#e4e4dc;
+	height:1px;
+	width:100%;
+	border:0px;
+}
+
 
 
 .search{
@@ -2827,13 +2856,12 @@ margin-left:10px;;
 }
 
 .courseBlock:first-child{
-	border-top-right-radius:6px;
+	border-top-right-radius:4px;
 }
 
 .courseBlock:last-child{
-	border-bottom-right-radius:6px;
-	border-bottom-left-radius:6px;
-	margin-bottom:100px;
+	border-bottom-right-radius:4px;
+	border-bottom-left-radius:4px;
 }
 
 
@@ -2899,22 +2927,12 @@ a:hover{
 
 
 
-#browsehr{
-	background-color:#bdbeb5;
-	height:1px;
-	width:90%;
-	border:0px;
-	margin-top:10px;
-	margin-bottom:14px;
-}
-
-
 /*-------- CREATE/EDIT COURSE PAGE --------- */
 
 
 
 .addcoursebuttons{
-	margin-top:54px;
+	margin-top:64px;
 }
 
 .finishEditing{
@@ -2933,19 +2951,19 @@ a:hover{
 
 #id_name{
 	font-family:'PT Sans Caption', sans-serif;
-	font-size:24px;
-	height:30px;
-	width:485px;
+	font-size:22px;
+	width:480px;
 	background:#fefef6;
 	font-weight:normal;
 	text-shadow: white 1px 1px 1px;
 	margin-top:3px;
-	padding-top:2px;
-	padding-left:5px;
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:10px;
 }
 
 #id_name::-webkit-input-placeholder {
-	padding-top:10px;
+	padding-top:8px;
 	color:#grey;
 }
 
@@ -2956,27 +2974,33 @@ a:hover{
 #id_description{
 	font-family:'PT Sans Caption', sans-serif;
 	font-size:16px;
-	width:485px;
+	width:480px;
 	font-weight:normal;
 	background:#fefef6;
 	text-shadow: white 1px 1px 1px;
 	height:55px;
 	margin-top:10px;
+	padding-top:10px;
+	padding-left:10px;
 }
 
 #id_category{
-	margin-top:9px;
+	margin-top:10px;
 	width:200px;
+	height:40px;
 }
 
 #id_tags{
-	margin-top:8px;
+	margin-top:10px;
 	margin-left:10px;
-	width:260px;
+	width:250px;
 	background:#fefef6;
 	display:inline;
 	float:right;
-	font-size:16px;
+	font-size:14px;
+	padding-top:10px;
+	padding-left:10px;
+	padding-bottom:10px;
 }
 
 
@@ -2991,6 +3015,9 @@ a:hover{
 	background:#fefef6;
 	font-size:16px;
 	margin-bottom:10px;
+	padding-top:10px;
+	padding-left:10px;
+	padding-bottom:10px;
 }
 
 .lessondescription textarea{
@@ -2999,7 +3026,10 @@ a:hover{
 	width:485px;
 	height:50px;
 	background:#fefef6;
-		font-size:16px;
+	font-size:16px;
+	padding-top:10px;
+	padding-left:10px;
+	padding-bottom:10px;
 }
 
 .lessonlink{
@@ -3012,6 +3042,9 @@ a:hover{
 	width:485px;
 	background:#fefef6;
 	font-size:16px;
+	padding-top:10px;
+	padding-left:10px;
+	padding-bottom:10px;
 }
 
 .helptext{
@@ -3428,11 +3461,11 @@ a.remove_lesson_lnk:hover{
 }
 
 .teachnumber{
-	margin-top:40px!important;
+	margin-top:60px!important;
 }
 
 .lesson_num_spn{
-	margin-top:40px!important;
+	margin-top:60px!important;
 }
 
 .errorlist{
@@ -3621,17 +3654,18 @@ a.remove_lesson_lnk:hover{
 /*------ */
 
 #editimage{
-	margin-top:132px;
-	margin-left:1px;
+	margin-top:154px;
+	margin-left:-1px;
 	color:white;
 	font-weight:normal;
 	font-size:12px;
-	background:rgba(0,0,0,1);
-	width:150px;
-	padding-top:5px;
-	padding-bottom:5px;
+	background:black;
+	width:152px;
+	padding-top:8px;
+	padding-bottom:8px;
 	position:absolute;
-	opacity:0.6;
+	opacity:0.7;
+	border:1px solid #e4e4dc;
 }
 
 #editimage:hover{
