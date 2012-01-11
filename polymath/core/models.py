@@ -40,7 +40,7 @@ class Course(models.Model):
     
     photo = models.ImageField(upload_to='course_profile_pics', blank=True)
 
-    followers = models.ManyToManyField(UserProfile, related_name='courses_following')
+    followers = models.ManyToManyField(UserProfile, related_name='courses_following', blank=True)
 
     tags = TaggableManager()
     
