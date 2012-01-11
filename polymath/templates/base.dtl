@@ -37,39 +37,48 @@
         </script>
 
 
-		<div class="topbar">
+		<div id="wrap">
 
-		     <div class="container_6">	
+			<div id="header">
+			
+				<div class="topbar">
+
+		     		<div class="container_6">	
 			
 					
-				<div class="grid_3">
-		      		<a class="brand" href="/"><img src='{{ STATIC_URL }}css/images/Polymath25px.png'></img></a>
-					<div class="learn">
-						<a href="/courses/browse" id="learnnav">Learn</a>
-						<a href="{% url add_course %}" id="teachnav">Share</a>
-					</div>
-				</div>
+						<div class="grid_3">
+		      				<a class="brand" href="/"><img src='{{ STATIC_URL }}css/images/Polymath25px.png'></img></a>
+							<div class="learn">
+								<a href="/courses/browse" id="learnnav">Learn</a>
+								<a href="{% url add_course %}" id="teachnav">Share</a>
+							</div>
+						</div>
 				
-				<div class="grid_3">
-					<ul class="nav">
-						{% if user.is_authenticated %}
-					<li><a href="#" style="color:white" id="namenav">{{ user.first_name }} {{ user.last_name }} <span class="arrow-down"></span></a>
-						<ul><li><a href="{% url view_profile uname=user.username %}">Your Profile</a></li>
-							<li><a href="/logout/">Logout</a></li>
-						</ul>
-					</li>
-					<li><a href="/about">About</a></li>
-				{% else %}
-					<li><a href="/login">Login</a></li>
-					<li><a href="/about">About</a></li>
-				{% endif %}
-				</ul>
+						<div class="grid_3">
+							<ul class="nav">
+								{% if user.is_authenticated %}
+								<li><a href="#" style="color:white" id="namenav">{{ user.first_name }} {{ user.last_name }} 
+									<span class="arrow-down"></span></a>
+									<ul><li><a href="{% url view_profile uname=user.username %}">Your Profile</a></li>
+										<li><a href="/logout/">Logout</a></li>
+									</ul>
+								</li>
+								<li><a href="/about">About</a></li>
+								{% else %}
+								<li><a href="/login">Login</a></li>
+								<li><a href="/about">About</a></li>
+								{% endif %}
+							</ul>
 				
-				</div>
+						</div>
 				
-				<div class="clear"></div>
-		   </div>
-		 </div>
+						<div class="clear"></div>
+				
+		   			</div> <!-- end container_6 -->
+		
+		 		</div> <!-- end topbar -->
+
+
 
 
         {% if messages %}
@@ -77,8 +86,15 @@
                 	<div class="messages"><h3>{{ message }}</h3><a href="#" id="close">x</a></div>
             {% endfor %}
         {% endif %}
-        
-{% block body %}
+
+
+        </div><!-- end header-->
+
+
+
+		<div id="content">
+			
+		{% block body %}
 
 		{% if debug %}
 		<hr>
@@ -112,9 +128,18 @@
 		</div>
 		{% endif %}
 
+		
+		{% endblock %}
+		</div><!-- end content -->
 
-        {% endblock %}
+	
+	</div> <!-- end wrap -->
+	
+	
+	{% block footer %}
 
+	{% endblock %}
+	
     </body>
 </html>
 

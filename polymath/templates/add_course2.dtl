@@ -168,3 +168,8 @@
 </div>
 
 {% endblock %}
+
+
+{% block footer %}
+		<div id="footer" style="margin-top:100px;"><div class="container_6"></div></div>
+{% endblock %}

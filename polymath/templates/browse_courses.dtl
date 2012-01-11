@@ -34,7 +34,7 @@
 
 
 
-	<div class="grid_1 omega" style="height:500px;">
+	<div class="grid_1 omega" style="height:900px">
 		<ul class="sidebar">
 			<li id="first">Categories</li>
 			<li><a href="">Featured</a></li>
@@ -137,6 +137,10 @@
 {% endblock %}
 
 
+{% block footer %}
+		<div id="footer"><div class="container_6"></div></div>
+		
+{% endblock %}
 
 
 

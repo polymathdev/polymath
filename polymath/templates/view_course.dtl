@@ -258,3 +258,6 @@
 {% endblock %}
 
 
+{% block footer %}
+		<div id="footer" style="margin-top:205px"><div class="container_6"></div></div>
+{% endblock %}

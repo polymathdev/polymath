@@ -48,3 +48,8 @@ Polymath lets you find and learn from the best educational content from across t
 
 
 {% endblock %}
+
+
+{% block footer %}
+		<div id="footer"><div class="container_6"></div></div>
+{% endblock %}
