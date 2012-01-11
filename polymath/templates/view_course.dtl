@@ -59,7 +59,7 @@
 
 			<div class="grid_3 omega">
 				<h2 id="browsetitle">{{ requested_course.name }}
-				<p id="editcourse">	{% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}</p></h2>
+				</h2>
 			
 				<h4>
 				
@@ -124,11 +124,17 @@
 			</div>
 		
 			<div class="grid_1 alpha omega takecoursediv">
-				<a href="#" class="takecourse" original-title="Track your progress"><span>Take Course</span></a>
+				{% if is_my_course %}
+					<a href="{% url edit_course course_slug=requested_course.slug %}" class="editcourse"><span>Edit Course</span></a>
+				{% else %}
+					<button type="button" class="takecourse"><span>Take Course</span></button>
+				{% endif %}
 			</div>
 		
 			<div class="clear"></div>
+		{% if is_my_course %}
 		
+		{% else %}
 			<div class="grid_2 completed">
 				<span>Completed:</span>
 				
@@ -142,6 +148,7 @@
 				<div id="progressbar"></div>
 				
 			</div>
+		{% endif %}
 		
 		</div>
 
@@ -178,6 +185,12 @@
 			</div>
 			
 			
+			{% if is_my_course %}
+			
+			
+			{% else %}
+			
+			
 			<div class="grid_1">
 			<div>
           <!--      <span class="vote_status">
@@ -204,6 +217,13 @@
             </div>
 			
 			</div>
+			
+			{% endif %}
+			
+			
+			{% if is_my_course %}
+			
+			{% else %}
 				
 			<div class="grid_1">
 		
@@ -217,8 +237,11 @@
             {# up/down vote front-end stuff #}
 
 			</div>
+			
+			{% endif %}
 		</div>
 		{% endfor %}
+		
 		
 </div> <!-- end lessons block -->					
 

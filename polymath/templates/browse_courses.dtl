@@ -20,14 +20,14 @@
 
 <div class="container_6" style="margin-top:30px;">
 
-	<div class="grid_4 omega">
+	<div class="grid_4 omega" style="margin-bottom:15px">
 		<span id="browsetitle">Browse Courses</span><br>
 		<h5 class="edit_heading">What can you learn today?</h5>
 	</div>
 
 	
-	<div class="grid_2" style="margin-top:5px; margin-right:10px; float:right;">
-		<a href="{% url add_course %}" class="create"><span>Create Course</span></a>
+	<div class="grid_2" style="margin-top:10px; margin-right:10px; float:right;">
+		<a href="{% url add_course %}" class="createcourse"><span>Create Course</span></a>
 	</div>
 	
 	

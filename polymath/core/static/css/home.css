@@ -28,6 +28,8 @@ padding:0px;
 	
 	
 	box-shadow:inset 0px -1px 5px #2b4221;
+	-webkit-box-shadow:inset 0px -1px 5px #2b4221;
+	-moz-box-shadow:inset 0px -1px 5px #2b4221;
 	min-width:1024px;
 }
 
@@ -89,6 +91,8 @@ padding:0px;
 	background-color:white;
 	height:1px;
 	box-shadow:0px 1px 4px white;
+	-webkit-box-shadow:0px 1px 4px white;
+	-moz-box-shadow:0px 1px 4px white;
 }
 
 .homecopy h1{
@@ -127,6 +131,8 @@ padding:0px;
 	
 	border-bottom:1px solid #eeefe5;
 	box-shadow:0px -3px 7px #ccc;
+	-webkit-box-shadow:0px -3px 7px #ccc;
+	-moz-box-shadow:0px -3px 7px #ccc;
 	z-index: 10000;
 	margin-bottom:-110px;
 	margin-left:0;
@@ -221,6 +227,8 @@ padding:0px;
 	height:300px;
 	padding-bottom:5px;
 	box-shadow:0px -1px 1px #ccc;
+	-webkit-box-shadow:0px -1px 1px #ccc;
+	-moz-box-shadow:0px -1px 1px #ccc;
 }
 
 .featured #title{
@@ -252,6 +260,8 @@ padding:0px;
 	webkit-border-radius:4px;
 	
 	box-shadow:0px 4px 5px #ccc;
+	-moz-box-shadow:0px 4px 5px #ccc;
+	-webkit-box-shadow:0px 4px 5px #ccc;
 	
 	border:1px solid #D1D4C5;
 }
@@ -326,6 +336,8 @@ padding:0px;
 
 .featuredblock.highlight{
 	box-shadow:0px 0px 10px #4c8f47;
+	-webkit-box-shadow:0px 0px 10px #4c8f47;
+	-moz-box-shadow:0px 0px 10px #4c8f47;
 }
 
 .video{

@@ -1,4 +1,9 @@
 $(document).ready(function(){
+	
+	
+	$('#id_tags').placeHolder({
+		"text":"Enter tags, separated by a comma"
+	});
     
     $('#test_btn').click(function() {
         $('.lesson_div').each(function(i) {

@@ -3,6 +3,7 @@
 
 {% block js_includes %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/course_form.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-placeholder.js"></script>
 {% endblock %}
 
 
@@ -57,7 +58,7 @@
 	
 	<div class="grid_2 addcoursebuttons">
 		<div class="grid_1 alpha">
-			<button type="button" id="add_lesson_btn" class="create"><span>Add Lesson</span></button>
+			<button type="button" id="add_lesson_btn" class="addlesson"><span>Add Lesson</span></button>
 			</div>
 		<div class="grid_1 omega">
 			<button type="submit" class="takecourse"><span>Save Course</span></button>

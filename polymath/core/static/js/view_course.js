@@ -164,7 +164,7 @@ $(document).ready(function(){
 
 	$('.checkb.done').tipsy({fade: false, gravity: 's', opacity:0.6});
 
-	$('.takecourse').tipsy({fade: false, gravity: 'e', opacity:0.6});
+	$('.takecourse').tipsy({fade: false, gravity: 's', opacity:0.6});
 
 	$('.lessonname').tipsy({fade: false, gravity: 'w', opacity:0.6, offset:10});
 	
