@@ -95,7 +95,7 @@
 		<div id="content">
 			
 		{% block body %}
-
+<!--
 		{% if debug %}
 		<hr>
 		<div id="debug">
@@ -128,7 +128,7 @@
 		</div>
 		{% endif %}
 
-		
+		-->
 		{% endblock %}
 		</div><!-- end content -->
 
