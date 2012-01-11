@@ -57,13 +57,13 @@
 		<div class="grid_4">
 	
 			<div class="grid_1 alpha">
-				<img src="{{ STATIC_URL }}/css/images/Pythonlogo.png" id="courseLogo"></img>
+                <img src="{% if requested_course.photo %}{{ requested_course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="courseLogo"></img>
 			</div>
 
 
 			<div class="grid_3 omega">
 				<h2 id="browsetitle">{{ requested_course.name }}
-				<p id="editcourse">	{% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}</p></h2>
+				</h2>
 			
 				<h4>
 				
@@ -93,7 +93,7 @@
 				
 				<p>{{ requested_course.description }}</p>
 									
-			<div class="socialmedia">
+			<div class="socialmedia course">
 						<a href="http://www.facebook.com/dialog/feed?
 						  app_id=349907371691622&
 						  link=http://www.whatispolymath.com&
@@ -128,11 +128,17 @@
 			</div>
 		
 			<div class="grid_1 alpha omega takecoursediv">
-				<a href="#" class="takecourse" original-title="Track your progress"><span>Take Course</span></a>
+				{% if is_my_course %}
+					<a href="{% url edit_course course_slug=requested_course.slug %}" class="editcourse"><span>Edit Course</span></a>
+				{% else %}
+					<button type="button" class="takecourse"><span>Take Course</span></button>
+				{% endif %}
 			</div>
 		
 			<div class="clear"></div>
+		{% if is_my_course %}
 		
+		{% else %}
 			<div class="grid_2 completed">
 				<span>Completed:</span>
 				
@@ -146,6 +152,7 @@
 				<div id="progressbar"></div>
 				
 			</div>
+		{% endif %}
 		
 		</div>
 
@@ -182,6 +189,12 @@
 			</div>
 			
 			
+			{% if is_my_course %}
+			
+			
+			{% else %}
+			
+			
 			<div class="grid_1">
 			<div>
           <!--      <span class="vote_status">
@@ -208,6 +221,13 @@
             </div>
 			
 			</div>
+			
+			{% endif %}
+			
+			
+			{% if is_my_course %}
+			
+			{% else %}
 				
 			<div class="grid_1">
 		
@@ -221,8 +241,11 @@
             {# up/down vote front-end stuff #}
 
 			</div>
+			
+			{% endif %}
 		</div>
 		{% endfor %}
+		
 		
 </div> <!-- end lessons block -->					
 

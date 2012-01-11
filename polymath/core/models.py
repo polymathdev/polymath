@@ -37,6 +37,8 @@ class Course(models.Model):
     description = models.TextField()
     creation_date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(editable=False, unique=True)
+    
+    photo = models.ImageField(upload_to='course_profile_pics', blank=True)
 
     followers = models.ManyToManyField(UserProfile, related_name='courses_following', editable=False)
 

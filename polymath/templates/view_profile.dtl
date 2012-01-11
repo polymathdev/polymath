@@ -23,6 +23,8 @@
 </script>
 
 
+{% load humanize %}
+
 <div class="headingbox">
 
 	<div class="container_6" style="margin-top:15px;">
@@ -42,7 +44,7 @@
 				<p style="margin-top:10px;"><span id="occupation">Engineer</span> <span></span></p>
 				<p>{{ user_blurb }}</p>
 				
-					<ul class="socialmedia" style="position:absolute; top:100px;">
+					<ul class="socialmedia">
 						<li id="facebook"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_facebook.png"></img></a></li>
 						<li id="twitter"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_twitter.png"></img></a></li>
 						<li id="gplus"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_gplus.png"></img></a></li>
@@ -54,25 +56,31 @@
 					<div class="points"><h4>Courses Created</h4><span>{{ courses_created_by_user.count }}</span></div>
 				</div>
 				<div class="grid_1 omega">
-					<div class="points"><h4>Courses Taken</h4><span>{{ courses_following.count }}</span></div>
+					<div class="points"><h4>Courses Taken</h4><span>{% if courses_following %}{{ courses_following.count }}{% else %}0{% endif %}</span></div>
 				</div>
 				
 				<div class="clear"></div>
 				
 								{% if is_my_profile %}
-								<div class="grid_1 omega" style="float:right; margin-top:14px;"><a class="create" href="{% url add_course %}"><span>Create Course</span></a></div>
+								<div class="grid_1 omega" style="float:right; margin-top:14px;"><a class="createcourse" href="{% url add_course %}"><span>Create Course</span></a></div>
 								{% endif %}           
 					</div> <!-- end socialmedia -->
 			</div> <!-- end grid 2 omega -->
 	</div>
 </div>
 
+
+
 <div class="clear"></div>
+
+
 		
 		
 <div class="container_6">
 
-	{% if courses_following %}
+
+	<!-- courses taking -->
+
 		<div class="heading grid_6" style="margin-top:20px;">
 				<div class="grid_2 alpha suffix_2">
 					<h2 class="profile_heading">Courses {% if is_my_profile %}you're{% else %}{{ profile_owner.first_name }} is{% endif %} taking</h2>
@@ -80,11 +88,14 @@
 				<div class="grid_2 omega">
 					<center><h2 class="profile_heading"></h2>
 				</div>
-		</div>
+		</div> <!-- end heading block -->
 
-		<div>
+
+	{% if courses_following %}
+	
  		{% for course in courses_following %}
-			<div class="profilecourseBlock grid_6">
+
+			<div class="profilecourseBlock grid_6 taking">
 					<div class="grid_1 alpha subject">{{ course.category }}</div>
 					<div class="grid_2 alpha omega coursetitle"><a href="{% url view_course course_slug=course.slug %}">{{ course.name }}</a></div>
 					<div class="grid_2 alpha omega prefix_1 progress"><div class="progressbar1">({{ course.completed }}*100)/{{ course.total }}</div>
@@ -92,19 +103,65 @@
 			</div> <!-- end grid_6 -->
 
 		{% endfor %}
-		</div>
 
+	{% else %}
+	
+			<div class="profilecourseBlock grid_6 taking">
+				<div class="grid_5 alpha subject">{% if is_my_profile %}You're{% else %}{{ profile_owner.first_name }} is{% endif %} not taking any courses yet!</div>
+			</div>
+	
 	{% endif %}
+	
+	
+	
+	<!-- end courses taking -->
+	
+	
+	<!-- lessons liked -->
+	
+		<div class="heading grid_6" style="margin-top:20px;">
+				<div class="grid_2 alpha suffix_3">
+					<h2 class="profile_heading">Lessons {% if is_my_profile %}you've{% else %}{{ profile_owner.first_name }} has {% endif %} liked</h2>
+				</div>
+		</div>
+		
+	{% if upvoted_lessons %}
+		{% for lesson in upvoted_lessons %}	
+			{% if lesson.up %}
+			<div class="profilecourseBlock grid_6 liked">
+				
+			<!--	<div class="grid_1 alpha subject">{{ lesson.lesson.course }} </div>  -->
+				
+				<div class="grid_1 alpha subject" original-title="{{ lesson.lesson.course }}"><b><a href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a></b></div>
+				
+				<div class="grid_4 alpha omega"><div class="lessondescription">{{ lesson.lesson.description }}</div></div>
+				
+				<div class="grid_1 alpha omega lessondate" style="float:right;"> {{ lesson.date_voted|naturalday|capfirst }}</div>
+		
+			</div>
+			{% endif %}
+		{% endfor %}
+		
+	{% else %}
+		<div class="profilecourseBlock grid_6 liked">
+			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} liked any lessons yet!</div>
+		</div>
+	{% endif %}
+	
+	
+	
+	
+	
+	<!-- courses created -->
 			
-			
-	{% if courses_created_by_user %}
 	
 		<div class="heading grid_6" style="margin-top:20px;">
 				<div class="grid_2 alpha suffix_3">
 					<h2 class="profile_heading">Courses {% if is_my_profile %}you've{% else %}{{ profile_owner.first_name }} has {% endif %} created</h2>
 				</div>
 		</div>
-
+		
+	{% if courses_created_by_user %}
  		{% for course in courses_created_by_user %}
 			<div class="profilecourseBlock grid_6 created">
 			
@@ -128,38 +185,26 @@
 			</div>
 			
 		{% endfor %}
+		
+	{% else %}
+		<div class="profilecourseBlock grid_6 created">
+			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} created any courses yet!</div>
+		</div>
 
 	{% endif %}
 	
 	
 	
-	{% if upvoted_lessons %}
-		<div class="heading grid_6" style="margin-top:20px;">
-				<div class="grid_2 alpha suffix_3">
-					<h2 class="profile_heading">Lessons {% if is_my_profile %}you've{% else %}{{ profile_owner.first_name }} has {% endif %} liked</h2>
-				</div>
-		</div>
-		
-		{% for lesson in upvoted_lessons %}	
-			{% if lesson.up %}
-			<div class="profilecourseBlock grid_6 created">
-				
-				<div class="grid_1 alpha subject">{{ lesson.lesson.course }} </div>
-				
-				<div class="grid_2 alpha omega coursetitle"> {{ lesson.lesson.name }} | {{ lesson.lesson.link }}</div>
-				
-				<div class="grid_1 alpha omega prefix_1" style="float:right; margin-right:50px"> {{ lesson.date_voted }}</div>
-		
-			</div>
-			{% endif %}
-		{% endfor %}
-		
-	{% endif %}
+	<!-- end courses created -->
 	
+	
+	
+
+	
+
+
 
 </div>
-
-
 
 
 
