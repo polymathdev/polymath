@@ -36,7 +36,11 @@
 	<div class="headingbox">
 	
 	<div class="container_6">	
-
+        {% if is_following %}
+            You are following
+        {% else %}
+            You are either not logged in or logged in and not following
+        {% endif %}
 	<div class="grid_6 categories">
 		<div class="grid_3 alpha">
 		Learn > {{requested_course.category}} > {{requested_course.name}}

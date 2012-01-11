@@ -31,7 +31,7 @@ class CourseCategory(models.Model):
 
 
 class Course(models.Model):
-    creator = models.ForeignKey(UserProfile, editable=False, related_name='courses_created')
+    creator = models.ForeignKey(UserProfile, related_name='courses_created')
     category = models.ForeignKey(CourseCategory)
     name = models.CharField(max_length=200)
     description = models.TextField()
@@ -40,7 +40,7 @@ class Course(models.Model):
     
     photo = models.ImageField(upload_to='course_profile_pics', blank=True)
 
-    followers = models.ManyToManyField(UserProfile, related_name='courses_following', editable=False)
+    followers = models.ManyToManyField(UserProfile, related_name='courses_following', blank=True)
 
     tags = TaggableManager()
     

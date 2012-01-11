@@ -7,7 +7,7 @@ import ipdb
 class CourseForm(ModelForm):
     class Meta:
         model = Course
-        exclude = ['creator']
+        exclude = ['creator', 'followers']
         widgets = { 
 			'name': forms.TextInput(attrs={'placeholder':'Course Name, e.g. "Intro to Python"'}),
 			'category': forms.Select(attrs={'initial':'Category'}),
