@@ -25,6 +25,11 @@ def test(request):
         'course_lessons' : c.lesson_set.all()
         })
 
+def new_user(request):
+    ipdb.set_trace()
+
+    return render(request, 'test.dtl')
+
 def home_page(request):
     return render(request, 'home_page.dtl')
 

@@ -16,7 +16,17 @@ def create_user_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
 
 post_save.connect(create_user_profile, sender=User)
-        
+
+
+from social_auth.signals import socialauth_registered
+
+def new_users_handler(sender, user, response, details, **kwargs):
+    user.is_new = True
+    return False
+
+socialauth_registered.connect(new_users_handler, sender=None)
+
+
 
 class CourseCategory(models.Model):
     name = models.CharField(max_length=100)

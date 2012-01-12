@@ -23,6 +23,7 @@
 				{{ form.as_p }}
 				<a href="#" class="forgot">Uh oh! Forgot your password? :(</a>
 				<button type="submit" value="Login" id="login">Login</button>
+                <a href="{% url socialauth_begin 'facebook' %}">Enter using Facebook</a>
 				</form>
 			</div>
 			
