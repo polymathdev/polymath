@@ -29,7 +29,7 @@ $(document).ready(function(){
     
 	$('#lesson_list_div').sortable({
 		tolerance : 'intersect',
-		opacity: 0.6,
+		opacity: 0.8,
 		forcePlaceholderSize: true,
 		placeholder: "ui-state-highlight",
 	});

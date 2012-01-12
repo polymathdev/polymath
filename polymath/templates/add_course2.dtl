@@ -42,11 +42,7 @@
 				{{ course_form.description }}	
 				{{ course_form.description.errors }}
 				
-		{{ course_form.category }}
-		{{ course_form.category.errors }}
-		
-		{{ course_form.tags }}
-		{{ course_form.tags.errors }}
+	
 
 		<div id="photouploaddiv">
 		{{ course_form.photo }}
@@ -63,6 +59,13 @@
 		<div class="grid_1 omega">
 			<button type="submit" class="takecourse"><span>Save Course</span></button>
 		</div>
+		
+		<br>
+			{{ course_form.category }}
+			{{ course_form.category.errors }}
+
+			{{ course_form.tags }}
+			{{ course_form.tags.errors }}
 		
 		<div class="clear"></div>
 		

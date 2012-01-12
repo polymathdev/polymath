@@ -150,7 +150,7 @@ def add_course(request):
         course_form = CourseForm()            
         lesson_fs = EditLessonFormSet()
 
-	messages.success(request, 'Share your expertise by creating a course on a topic - a collection of resources for someone to progress through to learn about the subject. Get creative! You\'re the expert.')
+	messages.success(request, 'A course is a set of resources for someone to progress through to learn about the subject. Get creative! You\'re the expert.')
     return render_to_response('add_course2.dtl', {
         'course_form': course_form,
         'lesson_fs': lesson_fs,
