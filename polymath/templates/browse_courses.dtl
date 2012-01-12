@@ -19,7 +19,7 @@
 
 <div class="container_6" style="margin-top:30px;">
 
-	<div class="grid_4 omega" style="margin-bottom:40px">
+	<div class="grid_4 omega" style="margin-bottom:18px">
 		<span id="browsetitle">Browse Courses</span><br>
 		<h5 class="edit_heading">What can you learn today?</h5>
 	</div>
@@ -31,7 +31,7 @@
 	
 	
 	<div class="clear"></div>
-
+	<hr style="border-top:1px dotted #e4e4dc; margin-bottom:20px; margin-top:0px; height:1px; border-bottom:1px dotted #e4e4dc; margin-left:7px; margin-right:7px; border-left:none; border-right:none;">
 
 
 	<div class="grid_1 omega" style="height:900px">

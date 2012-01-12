@@ -12,7 +12,6 @@
         <script type="text/javascript" src="{{ STATIC_URL}}js/csrf_ajax.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL}}js/jquery-ui-1.8.16.custom.min.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/base.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-dropdown.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tipsy.js"></script>
 		{% block js_includes %}{% endblock %}
 
@@ -60,7 +59,7 @@
 								<li><a href="#" style="color:white" id="namenav">{{ user.first_name }} {{ user.last_name }} 
 									<span class="arrow-down"></span></a>
 									<ul><li><a href="{% url view_profile uname=user.username %}">Your Profile</a></li>
-										<li><a href="/logout/">Logout</a></li>
+										<li><a href="/logout/" id="logouttopbar">Logout</a></li>
 									</ul>
 								</li>
 								<li><a href="/about">About</a></li>
@@ -95,7 +94,9 @@
 		<div id="content">
 			
 		{% block body %}
-<!--
+		
+		<!-- 
+
 		{% if debug %}
 		<hr>
 		<div id="debug">
@@ -127,8 +128,8 @@
 		  </table>
 		</div>
 		{% endif %}
-
-		-->
+-->
+		
 		{% endblock %}
 		</div><!-- end content -->
 

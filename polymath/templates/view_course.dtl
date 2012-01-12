@@ -10,6 +10,7 @@
 
 {% block js_includes %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.backgroundposition.js"></script>
 	<script type="text/javascript">
 		
 		var completed_lessons;
@@ -186,7 +187,7 @@
 			<div class="grid_3 alpha">
 				<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
 				<h3><a class="lessonname" href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }} <span class="courselessonlink">{{ lesson.lesson.link }}</span></a> </h3> 
-				<p class="expanded">{{ lesson.lesson.description }}</p>
+				<p class="expanded">{{ lesson.lesson.description|linebreaks }}</p>
 				<a href="#" class="expand">(+)</a>
 			</div>
 			
@@ -207,6 +208,7 @@
                     {% endif %}
                 </span>
                 <a href="#" class="vote_link" rel="1">Vote Up</a> / <a href="#" class="vote_link" rel="0">Vote Down</a> -->
+
 				<ul class="thumbsbuttons">
 					{% if lesson.vote == "up" %}
 						<li id="thumbsup" class="vote_link done" rel="1" original-title="Like this?"></li>
@@ -220,11 +222,13 @@
 						<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
 					{% endif %}
 				</ul>
+				
             </div>
 			
 			</div>
 			
 			{% endif %}
+			
 			
 			
 			{% if is_my_course %}
@@ -234,7 +238,7 @@
 			<div class="grid_1">
 		
 			{% if not lesson.completed %}
-				<div class="checkb" original-title="Mark as done"></div>
+				<div class="checkb" original-title="Mark as done!"></div>
             {% else %}
                 <div class="checkb done" original-title="You've done this!"></div>
             {% endif %}     
@@ -245,6 +249,7 @@
 			</div>
 			
 			{% endif %}
+			
 		</div>
 		{% endfor %}
 		

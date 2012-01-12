@@ -1,12 +1,12 @@
 $(document).ready(function(){
 	
-	
-	
 	console.log('completed lessons: %s and the user is %s', completed_lessons, isLoggedIn);
 	
 	$('.vote_link').click(function() {
 		
 		if (isLoggedIn){
+			
+			if( $(this).closest('.lessonBlock').find('.checkb').hasClass('.done') ){
 			
 			 lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
 		        is_up = $(this).attr('rel');
@@ -30,7 +30,9 @@ $(document).ready(function(){
 		               }
 		            }
 		       	);
-		
+			} else {
+				alert("Complete the lesson first!");
+			}
 		
 		} else {
 			alert("You have to log in first, fool!");
@@ -66,7 +68,7 @@ $(document).ready(function(){
 				var pGress = setInterval(function() { // loop to animate progress bar action
 		        	var pVal = $('#progressbar').progressbar('option', 'value');
 		        	var pCnt = !isNaN(pVal) ? (pVal + 1) : (completed_lessons/lessons) *100;
-		        	if (pCnt >= val + (100/lessons) ) { //animate progress bar to number of currently completed lesson
+		        	if (pCnt > val + (100/lessons) + 1) { //animate progress bar to number of currently completed lesson
 		            	clearInterval(pGress);
 		        	} else {
 		            	$('#progressbar').progressbar({value: pCnt});
@@ -81,9 +83,8 @@ $(document).ready(function(){
 	            		function(response) {
 	                		if( response['complete_successful'] ) {
 								$("#numbercompleted").text(+($("#numbercompleted").text()) + 1); // increment the number of completed lessons
-//								$(this).closest('.lessonBlock').toggleClass("completedBlock");
+//								checkbox.closest('.lessonBlock').animate({backgroundPosition: '0px 0px'}, {duration: 1300});
 								checkbox.closest('.lessonBlock').toggleClass("completedBlock");
-								var a = $(this);
 								console.log("%s", checkbox);
 	               			}
 	            		}
@@ -169,7 +170,6 @@ $(document).ready(function(){
 	$('.lessonname').tipsy({fade: false, gravity: 'w', opacity:0.6, offset:10});
 	
 	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.6, offset:0});
-
 
 
 
