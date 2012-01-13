@@ -202,6 +202,14 @@ $(document).ready(function(){
 			alert("Log in first!");
 		}
 	});
+	
+	
+	$('.embedclass').embedly({
+        maxWidth: 450,
+        wmode: 'transparent',
+        method: 'after',
+        key: '93c670123dda11e1927d4040d3dc5c07'
+      });
 
     
 }); 

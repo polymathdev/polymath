@@ -134,6 +134,16 @@ $(document).ready(function(){
 	$('#editimage').click(function(){
 		$('#photouploaddiv').toggle();
 	});
+	
+	$('#sim_save_course').click(function(){
+		$('#save_course').trigger('click');
+	});
+	
+	$('#sim_add_lesson_btn').click(function(){
+		$('#add_lesson_btn').trigger('click');
+	});
+	
+	
 
 }); 
 

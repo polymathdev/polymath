@@ -9,6 +9,7 @@ $(document).ready(function(){
 	});
 
 	$('.subject').tipsy({fade: false, gravity: 's', opacity:0.6});
-
+	
+	$('.lessonCreatedBlock').tipsy({fade: false, gravity: 's', opacity:0.6});
 	
 }); 

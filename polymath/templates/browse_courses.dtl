@@ -35,24 +35,25 @@
 
 
 	<div class="grid_1 omega" style="height:900px">
-		<ul class="sidebar">
-			<li id="first">Categories</li>
+		<ul class="aboutsidebar browse">
+		<!--	<li id="first">Categories</li> -->
 			<li><a href="">Featured</a></li>
 			<li><a href="">Popular</a></li>
 			<li><a href="">Newly Added</a></li>
 
-			<hr id="browsehr">	
+		<!--	<hr id="browsehr">	-->
 			
 			{% if tags_by_cat %}
 			    {% for cat, tags in tags_by_cat.items %}
-			    <li class="categoryli"><a href="{% url browse_courses_by_cat cat_slug=cat.slug %}">{{ cat }}</a></li>
+			    <li><a href="{% url browse_courses_by_cat cat_slug=cat.slug %}">{{ cat }}</a></li>
 
+				<!-- class="categoryli"
 					<div class="selectedtags">
 			            <b>Tags:</b>
 			            {% for tag in tags %}
 			            <a href="{% url browse_courses_by_cat_and_tag cat_slug=cat.slug tag_slug=tag.slug %}">{{ tag }}</a >{% if not forloop.last %},{% endif %}
 			            {% endfor %}
-					</div>
+					</div> -->
 
 			    {% endfor %}
 
@@ -64,7 +65,7 @@
 	
 
 {% if course_list|length == 0 %}
-	<div class="courseBlock grid_5 alpha">
+	<div class="courseBlock grid_5">
 	<h3 style="padding:15px 10px 15px; font-weight:normal; color:#656565;">
 		There are no courses in this category yet!
 	</h3>

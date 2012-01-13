@@ -11,6 +11,7 @@
 {% block js_includes %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.backgroundposition.js"></script>
+		<script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
 	<script type="text/javascript">
 		
 		var completed_lessons;
@@ -37,11 +38,13 @@
 	<div class="headingbox">
 	
 	<div class="container_6">	
+	<!--
         {% if is_following %}
             You are following
         {% else %}
             You are either not logged in or logged in and not following
         {% endif %}
+-->
 	<div class="grid_6 categories">
 		<div class="grid_3 alpha">
 		Learn > {{requested_course.category}} > {{requested_course.name}}
@@ -126,35 +129,36 @@
 
 		<div class="grid_2">
 		
-			<div class="grid_1">
-<!--				<a href="#" class="like" style="float:right;"><span>102</span></a> -->
-			</div>
 		
 			<div class="grid_1 alpha omega takecoursediv">
 				{% if is_my_course %}
 					<a href="{% url edit_course course_slug=requested_course.slug %}" class="editcourse"><span>Edit Course</span></a>
 				{% else %}
+					{% if is_following %}
+					
+					{% else %}
 					<button type="button" class="takecourse"><span>Take Course</span></button>
+					{% endif %}
 				{% endif %}
 			</div>
 		
 			<div class="clear"></div>
-		{% if is_my_course %}
-		
+		{% if is_following %}
+				<div class="grid_2 completed">
+					<span>Completed:</span>
+
+					<span id="numbercompleted">
+					{% if completed_lessons %} {{ completed_lessons.count }}
+					{% else %}0{% endif %}
+					</span>
+
+					<span id="total">of {{ requested_course.lesson_set.count }}</span>
+
+					<div id="progressbar"></div>
+
+				</div>
 		{% else %}
-			<div class="grid_2 completed">
-				<span>Completed:</span>
-				
-				<span id="numbercompleted">
-				{% if completed_lessons %} {{ completed_lessons.count }}
-				{% else %}0{% endif %}
-				</span>
-				
-				<span id="total">of {{ requested_course.lesson_set.count }}</span>
-				
-				<div id="progressbar"></div>
-				
-			</div>
+		
 		{% endif %}
 		
 		</div>
@@ -180,77 +184,88 @@
 	  {% else %}
 		  <div class="lessonBlock completedBlock">
 	  {% endif %}
-			<div class="grid_1 alpha" align="center">
-				<span id="number">{{ forloop.counter }}</span>
-			</div>
-			
-			<div class="grid_3 alpha">
-				<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
-				<h3><a class="lessonname" href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> <span class="courselessonlink">{{ lesson.lesson.link }}</span> </h3> 
-				<p class="expanded">{{ lesson.lesson.description|linebreaks }}</p>
-				<a href="#" class="expand">(+)</a>
-			</div>
-			
-			
-			{% if is_my_course %}
-			
-			
-			{% else %}
-			
-			
-			<div class="grid_1">
-			<div>
-          <!--      <span class="vote_status">
-                    {% if lesson.vote %}
-                    (Vote = {{ lesson.vote }})
-                    {% else %}
-                    (Vote = neutral)
-                    {% endif %}
-                </span>
-                <a href="#" class="vote_link" rel="1">Vote Up</a> / <a href="#" class="vote_link" rel="0">Vote Down</a> -->
-
-				<ul class="thumbsbuttons">
-					{% if lesson.vote == "up" %}
-						<li id="thumbsup" class="vote_link done" rel="1" original-title="Like this?"></li>
-					{% else %}
-						<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
-					{% endif %}
-					
-					{% if lesson.vote == "down" %}
-						<li id="thumbsdown" class="vote_link done" rel="0" original-title="Didn't like this?"></li>
-					{% else %}
-						<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
-					{% endif %}
-				</ul>
-				
-            </div>
-			
-			</div>
-			
-			{% endif %}
-			
-			
-			
-			{% if is_my_course %}
-			
-			{% else %}
-				
-			<div class="grid_1">
+		  <div style="background:#f2f0e2; height:60px; width:100%">
 		
-			{% if not lesson.completed %}
-				<div class="checkb" original-title="Mark as done!"></div>
-            {% else %}
-                <div class="checkb done" original-title="You've done this!"></div>
-            {% endif %}     
+		<div class="grid_1">
+			<span id="numcircle"><span id="number">{{ forloop.counter }}</span></span>
+		</div>
+			<div class="grid_3">
+				<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
+				<h3><a class="lessonname" href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> <span class="courselessonlink">{{ lesson.lesson.link }}</span> </h3>
+			</div> 
+		
+			
+			{% if is_following %}
+			
+				<div class="grid_1 alpha omega">
+				<div>
+	          <!--      <span class="vote_status">
+	                    {% if lesson.vote %}
+	                    (Vote = {{ lesson.vote }})
+	                    {% else %}
+	                    (Vote = neutral)
+	                    {% endif %}
+	                </span>
+	                <a href="#" class="vote_link" rel="1">Vote Up</a> / <a href="#" class="vote_link" rel="0">Vote Down</a> -->
 
-			</center>
-            {# up/down vote front-end stuff #}
+					<ul class="thumbsbuttons">
+						{% if lesson.vote == "up" %}
+							<li id="thumbsup" class="vote_link done" rel="1" original-title="Like this?"></li>
+						{% else %}
+							<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
+						{% endif %}
 
-			</div>
+						{% if lesson.vote == "down" %}
+							<li id="thumbsdown" class="vote_link done" rel="0" original-title="Didn't like this?"></li>
+						{% else %}
+							<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
+						{% endif %}
+					</ul>
+
+	            </div>
+
+				</div>
+			
+			{% else %}
+			
 			
 			{% endif %}
+			
+			
+			
+			{% if is_following %}
+				<div class="grid_1 alpha">
+		
+				{% if not lesson.completed %}
+					<div class="checkb" original-title="Mark as done!"></div>
+            	{% else %}
+                	<div class="checkb done" original-title="You've done this!"></div>
+            	{% endif %}     
+
+				</center>
+            	{# up/down vote front-end stuff #}
+
+				</div>
+			
+			{% else %}
+				
+			
+			{% endif %}
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="grid_3 prefix_1 alpha omega" style="margin-top:16px;">
+			<p class="expanded">{{ lesson.lesson.description|linebreaks }}</p>
+			</div>
+			
+			<div class="embedclass grid_2 alpha omega">
+				<a href="{{ lesson.lesson.link }}"></a>
+			</div>
 			
 		</div>
+
+		
 		{% endfor %}
 		
 		
