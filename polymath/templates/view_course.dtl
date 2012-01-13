@@ -94,7 +94,7 @@
 				
 				<hr id="titlehr">	
 				
-				<p>{{ requested_course.description|truncate_chars:190 }}</p>
+				<p>{{ requested_course.description|truncate_chars:250 }}</p>
 									
 			<div class="socialmedia course">
 						<a href="http://www.facebook.com/dialog/feed?
@@ -186,7 +186,7 @@
 			
 			<div class="grid_3 alpha">
 				<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
-				<h3><a class="lessonname" href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }} <span class="courselessonlink">{{ lesson.lesson.link }}</span></a> </h3> 
+				<h3><a class="lessonname" href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> <span class="courselessonlink">{{ lesson.lesson.link }}</span> </h3> 
 				<p class="expanded">{{ lesson.lesson.description|linebreaks }}</p>
 				<a href="#" class="expand">(+)</a>
 			</div>

@@ -6,7 +6,7 @@ $(document).ready(function(){
 		
 		if (isLoggedIn){
 			
-			if( $(this).closest('.lessonBlock').find('.checkb').hasClass('.done') ){
+			if( $(this).closest('.lessonBlock').hasClass('.done') ){
 			
 			 lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
 		        is_up = $(this).attr('rel');
