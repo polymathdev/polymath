@@ -1,8 +1,21 @@
 $(document).ready(function(){
 	
 	
-	$('#id_tags').placeHolder({
-		"text":"Enter tags, separated by a comma"
+//	$('#id_tags').placeHolder({
+//		"text":"Enter tags, separated by a comma"
+//	});
+	
+ 	$("#id_category option:eq(0)").text("Course Category");
+
+ 	$("#id_category").change(function() {
+		$("#id_category option:first").remove()
+	});
+
+
+	$('#id_tags').tagsInput({
+		'width':'290px',
+		'height':'75px',
+		'defaultText':'Add a tag',
 	});
     
     $('#test_btn').click(function() {

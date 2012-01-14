@@ -18,8 +18,8 @@ class LessonForm(ModelForm):
     class Meta:
         widgets = {
                'name': forms.TextInput(attrs={'placeholder':'Lesson Name, e.g. "Dive Into Python"'}), 
-               'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your course here, e.g. "This is a great resource for Python beginners!"'}),
-               'link': forms.TextInput(attrs={'placeholder':'Enter a URL here, e.g. http://www.diveintopython.org'}),
+               'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your lesson here, e.g. "This is a great resource for Python beginners!"'}),
+               'link': forms.TextInput(attrs={'placeholder':'Lesson URL, e.g. http://www.diveintopython.org'}),
         }
 
     # override the init method so that we can make the link fields for existing lessons read-only

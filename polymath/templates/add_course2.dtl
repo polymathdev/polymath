@@ -4,6 +4,8 @@
 {% block js_includes %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/course_form.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-placeholder.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tagsinput.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery.tagsinput.css" />
 {% endblock %}
 
 
@@ -52,20 +54,28 @@
 
 		</div>
 	
-	<div class="grid_2 addcoursebuttons">
+	<div class="grid_2 addcoursebuttons omega">
+	
+		<span class="categorylabel"><span>
+		{{ course_form.category }}
+		{{ course_form.category.errors }}
+		<br><br>
+		
+		<span class="taglabel">Course Tags:</span>
+		{{ course_form.tags }}
+		{{ course_form.tags.errors }}
+	
+	
 		<div class="grid_1 alpha">
-			<button type="button" id="add_lesson_btn" class="addlesson"><span>Add Lesson</span></button>
+			<button type="button" id="add_lesson_btn" class="addlesson" style="opacity:0;"><span>Add Lesson</span></button> 
 			</div>
-		<div class="grid_1 omega">
-			<button type="submit" class="takecourse" id="save_course"><span>Save Course</span></button>
+		<div class="grid_2 omega" style="float:right;">
+			<button type="submit" class="takecourse" id="save_course" style="display:none"><span>Save Course</span></button> 
 		</div>
 		
 		<br>
-			{{ course_form.category }}
-			{{ course_form.category.errors }}
-
-			{{ course_form.tags }}
-			{{ course_form.tags.errors }}
+		<br>
+			
 		
 		<div class="clear"></div>
 		
@@ -81,8 +91,8 @@
 <div class="clear"></div>
 	<hr style="border-top:1px dotted #e4e4dc; margin-bottom:20px; margin-top:0px; height:1px; border-bottom:1px dotted #e4e4dc; margin-left:7px; margin-right:7px; border-left:none; border-right:none;">
 
-<h3 style="margin-top:20px; margin-left:10px; margin-bottom:10px; font-size:20px;">Lessons</h3>
-<p style="margin-left:10px;">Add as many lessons as you'd like to this course. You can drag and drop to reorder them.</p>
+<h3 style="margin-top:20px; margin-left:10px; margin-bottom:0px; font-size:20px;">Lessons</h3>
+<!--<p style="margin-left:10px;">Add as many lessons as you'd like to this course. You can drag and drop to reorder them.</p> -->
 
 
 	{{ lesson_fs.management_form }}  
@@ -90,12 +100,14 @@
     	<div id="lesson_list_div">
     	{% for lesson_form in lesson_fs %}
         	<div class="lesson_div {% if not lesson_form.initial %}extra{% endif %}">
-			<div class="grid_1 alpha">
+
+			<div style="background:#eee; height:60px; margin-top:0px; padding-top:20px; border-bottom:1px solid #e4e4dc;">
+			<div class="grid_1 alpha" style="width:80px;">
 			<span id="numcircle" class="teachnumber"><p id="number"> {{ forloop.counter }}</p></span>
 			</div>
 
             
-			<div class="grid_3">
+			<div class="grid_4">
 				{{ lesson_form.id }}
 				<div class="lessonname">
 				{{ lesson_form.name.errors }}
@@ -107,16 +119,20 @@
 				{% if lesson_form.instance.id %}{{ lesson_form.instance.link }}{% else %}{{ lesson_form.link }}{% endif %}
 				{{ lesson_form.order.as_hidden }}
 				</div>
-
-
+			</div>
+			</div>
+			<div class="clear"></div>
+			
+			<div class="grid_4">
 				<div class="lessondescription">				
 				{{ lesson_form.description.errors }}
 	        	{{ lesson_form.description }}
 				</div>				
+			</div>
 
-        	</div>
 
-				<a href="#" class="remove_lesson_lnk">X</a>
+
+				<a href="#" class="remove_lesson_lnk"></a>
 			<!--	<a href="#" class="move_up_lnk"></a><br><a href="#" class="move_down_lnk"></a> -->
 
 			</div>
@@ -124,7 +140,8 @@
 
 </div>
 
-	<div class="grid_1 alpha">
+	
+	<div class="grid_1 alpha prefix_2">
 		<button type="button" id="sim_add_lesson_btn" class="addlesson"><span>Add Lesson</span></button>
 		</div>
 	<div class="grid_1 omega">
@@ -147,8 +164,40 @@
 
 {# invisible empty form that client-side code will use to add new lessons #}
 <div style="display:none" id="empty_lesson_form_div">
+
+
+	<div style="background:#eee; height:60px; margin-top:0px; padding-top:20px; border-bottom:1px solid #e4e4dc;">
+	<div class="grid_1 alpha" style="width:80px;">
+	<span id="numcircle" class="teachnumber"><p id="number" class="lesson_num_spn">X</p></span>
+	</div>
+
     
-	<div class="grid_1 alpha" align="center">
+	<div class="grid_4">
+		{{ lesson_form.id }}
+		<div class="lessonname">
+		{{ lesson_fs.empty_form.name.errors }}
+		{{ lesson_fs.empty_form.name }}
+		</div>
+
+		<div class="lessonlink">
+		{{ lesson_form.link.errors }}
+		{{ lesson_fs.empty_form.link }}
+		</div>
+	</div>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="grid_4">
+		<div class="lessondescription">				
+		{{ lesson_fs.empty_form.description }}
+		</div>				
+	</div>
+	
+	   {{ lesson_fs.empty_form.order.as_hidden }}
+
+
+    
+	<!-- <div class="grid_1 alpha" align="center">
 		<span id="number" class="lesson_num_spn">X</span> 
 	</div>
 
@@ -169,10 +218,10 @@
 		
     	{{ lesson_fs.empty_form.order.as_hidden }}
 
-	</div>
+	</div> -->
 	
 
-			<a href="#" class="remove_lesson_lnk">X</a>
+			<a href="#" class="remove_lesson_lnk"></a>
 <!--			<a href="#" class="move_up_lnk"></a><br><a href="#" class="move_down_lnk"></a>  -->
 
 
