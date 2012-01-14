@@ -12,7 +12,7 @@
 		<div class="logindiv">
 			
 			<div class="grid_3"  style="border-right:1px dotted #ccc; height:250px; margin-top:25px;">
-				<a href="#" class="fblogin"><span>Connect with Facebook</span></a>
+				<a href="{% url socialauth_begin 'facebook' %}" class="fblogin"><span>Login with Facebook</span></a>
 				<h4></h4>
 			</div>
 			
@@ -23,7 +23,6 @@
 				{{ form.as_p }}
 				<a href="#" class="forgot">Uh oh! Forgot your password? :(</a>
 				<button type="submit" value="Login" id="login">Login</button>
-                <a href="{% url socialauth_begin 'facebook' %}">Enter using Facebook</a>
 				</form>
 			</div>
 			

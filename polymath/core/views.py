@@ -14,12 +14,19 @@ from django.utils import simplejson as json
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.http import require_POST
 from annoying.functions import get_object_or_None
+from facepy import GraphAPI
+
 import ipdb 
 
 def test(request):
-    
-    c = Course.objects.get(pk=3)
-    
+    fb_data = request.user.social_auth.get(provider='facebook').extra_data
+    access_token = fb_data['access_token']
+    fb_uid = fb_data['id']
+    fb = GraphAPI(access_token)
+    pic = fb.get('fql',q='select pic_big from user where uid='+fb_uid)
+     
+    ipdb.set_trace()
+
     return render(request, 'test.dtl', {
         'all_lessons' : Lesson.objects.all(),
         'course_lessons' : c.lesson_set.all()

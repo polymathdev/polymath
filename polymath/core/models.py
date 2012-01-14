@@ -3,10 +3,14 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from taggit.managers import TaggableManager
 from django.template.defaultfilters import slugify
+from facepy import GraphAPI
+import ipdb
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    blurb = models.TextField()
+    blurb = models.TextField(blank=True)
+    profile_pic = models.ImageField(upload_to='user_profile_pics', blank=True)
+    fb_profile_pic = models.URLField(blank=True)
 
     def __unicode__(self):
         return self.user.username
@@ -18,10 +22,22 @@ def create_user_profile(sender, instance, created, **kwargs):
 post_save.connect(create_user_profile, sender=User)
 
 
+# I should probably use the pipeline flow of django-social-auth instead of this signal - will redo that later maybe
 from social_auth.signals import socialauth_registered
 
 def new_users_handler(sender, user, response, details, **kwargs):
     user.is_new = True
+
+    # this should be refactored into some other module once we start using facebook more
+    fb_data = user.social_auth.get(provider='facebook').extra_data
+    access_token = fb_data['access_token']
+    fb_uid = fb_data['id']
+    fb = GraphAPI(access_token)
+
+    profile = user.get_profile()
+    profile.fb_profile_pic = fb.get('fql',q='select pic_big from user where uid='+fb_uid)['data'][0]['pic_big']
+    profile.save()
+
     return False
 
 socialauth_registered.connect(new_users_handler, sender=None)

@@ -28,7 +28,7 @@
 	<div class="container_6" style="margin-top:15px;">
 		
 			<div class="grid_1"">
-				<img id="profile" src="{{ STATIC_URL }}css/images/Profile.png"></img>
+                <img id="profile" src="{{ profile_owner.get_profile.fb_profile_pic }}"></img>
 			</div>
 	
 			<div class="grid_3 profileinfo alpha">
