@@ -79,7 +79,7 @@
 	
 	
 <div class="clear"></div>
-<hr style="border-top:1px dotted #e4e4dc; margin-bottom:20px; margin-top:0px; height:1px; border-bottom:1px dotted #e4e4dc;">
+	<hr style="border-top:1px dotted #e4e4dc; margin-bottom:20px; margin-top:0px; height:1px; border-bottom:1px dotted #e4e4dc; margin-left:7px; margin-right:7px; border-left:none; border-right:none;">
 
 <h3 style="margin-top:20px; margin-left:10px; margin-bottom:10px; font-size:20px;">Lessons</h3>
 <p style="margin-left:10px;">Add as many lessons as you'd like to this course. You can drag and drop to reorder them.</p>

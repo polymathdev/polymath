@@ -184,14 +184,16 @@
 	  {% else %}
 		  <div class="lessonBlock completedBlock">
 	  {% endif %}
-		  <div style="background:#f2f0e2; height:60px; width:100%">
+		  <div style="background:#eee; height:65px; width:100%; border-bottom:1px solid #e4e4dc;">
 		
-		<div class="grid_1">
-			<span id="numcircle"><span id="number">{{ forloop.counter }}</span></span>
-		</div>
-			<div class="grid_3">
+			<div class="grid_4 alpha omega">
+				<div class="grid_1" style="width:80px;">
+					<span id="numcircle"><span id="number">{{ forloop.counter }}</span></span>
+				</div>
+				<div class="grid_3">
 				<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
 				<h3><a class="lessonname" href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> <span class="courselessonlink">{{ lesson.lesson.link }}</span> </h3>
+				</div>
 			</div> 
 		
 			
@@ -251,15 +253,15 @@
 				
 			
 			{% endif %}
-			</div>
+		</div>
 			
 			<div class="clear"></div>
 			
-			<div class="grid_3 prefix_1 alpha omega" style="margin-top:16px;">
+			<div class="grid_3 alpha" style="margin-top:16px; margin-left:105px;">
 			<p class="expanded">{{ lesson.lesson.description|linebreaks }}</p>
 			</div>
 			
-			<div class="embedclass grid_2 alpha omega">
+			<div class="embedclass grid_2 omega">
 				<a href="{{ lesson.lesson.link }}"></a>
 			</div>
 			

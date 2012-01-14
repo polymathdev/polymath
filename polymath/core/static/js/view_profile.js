@@ -8,8 +8,8 @@ $(document).ready(function(){
 		$(this).toggleClass("highlight");
 	});
 
-	$('.subject').tipsy({fade: false, gravity: 's', opacity:0.6});
+//	$('.subject').tipsy({fade: false, gravity: 's', opacity:0.6});
 	
-	$('.lessonCreatedBlock').tipsy({fade: false, gravity: 's', opacity:0.6});
+//	$('.lessonCreatedBlock').tipsy({fade: false, gravity: 's', opacity:0.6});
 	
 }); 

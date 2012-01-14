@@ -67,7 +67,7 @@
 				<div class="clear"></div>
 				
 								{% if is_my_profile %}
-								<div class="grid_1 omega" style="float:right; margin-top:14px;"><a class="createcourse" href="{% url add_course %}"><span>Create Course</span></a></div>
+							<!--	<div class="grid_1 omega" style="float:right; margin-top:14px;"><a class="createcourse" href="{% url add_course %}"><span>Create Course</span></a></div> -->
 								{% endif %}           
 					</div> <!-- end socialmedia -->
 			</div> <!-- end grid 2 omega -->
@@ -103,23 +103,24 @@
  		{% for course in courses_following %}
 
 		<div class="lessonCreatedBlock" original-title="{{ course.name }} by Harish Venkatesan">
-			<div style="height:30px; width:100%; background:#f2f0e2; padding-top:16px;">
-				<a href="{% url view_course course_slug=course.slug %}" class="coursename">{{ course.name|truncate_chars:25 }}</a>	
-			</div>
-		
+			<div style="height:130px; width:206px; background:#eee; padding-top:16px; margin-top:10px; margin-left:10px">
 			
-			<div class="grid_1" style="margin-left:0px; margin-right:0px; width:100px;"> <img src="{% if course.photo %}{{ MEDIA_URL }}{{ course.photo }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="takingphoto">
+				<a href="{% url view_course course_slug=course.slug %}" class="coursename">{{ course.name|truncate_chars:20 }}</a>			
+			
+				<div class="grid_2" style="margin-left:16px; width:180px;">
+					<p class="coursedescription">{{ course.description|truncate_chars:100 }}</p>
+					<div class="progressbar1">({{ course.completed }}*100)/{{ course.total }}</div><br>
+					<span class="progressbar1status">{{ course.completed }} of {{ course.total }}</span>
+				</div>
+			
+				<div class="clear"></div>
+			
 			</div>
 			
-			<div class="grid_1" style="margin-left:16px; width:100px;">
-				<p class="coursedescription">{{ course.description|truncate_chars:60 }}</p>
-				<div class="progressbar1">({{ course.completed }}*100)/{{ course.total }}</div><br>
-				<span class="progressbar1status">{{ course.completed }} of {{ course.total }}</span>
-			</div>
-			
-			<div class="clear"></div>
+			<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.followers.count }}2
+				<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon" style="margin-right:5px; height:20px; width:auto;"></img>  {{ course.total }} </p>
 
-		</div>
+		</div> <!-- end lesson created block -->
 		
 
 
@@ -154,38 +155,22 @@
 	<div class="parentlessoncreatedblock">
  		{% for course in courses_created_by_user %}
 
-	<!--	<div class="lessonCreatedBlock">
-		
-			<div class="grid_1" style="margin-left:0px; margin-right:0px; width:150px; height:150px"> <img src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="takingphoto">
-			</div>
-			
-			<div class="grid_1" style="margin-left:16px; width:150px; padding-top:15px;">
-				<a href="{% url view_course course_slug=course.slug %}" class="coursename">{{ course.name }}</a>
-				<p class="coursefollowers"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:12px; width:auto;"></img>{{ course.followers.count }} follower{{ course.followers.count|pluralize }}
-				 | {{ course.lesson_set.count }} lesson{{ course.lesson_set.count|pluralize }}</p>
-				<a href="#" class="editcourse profilepage"><span>Edit Course</span></a>
-			</div>
-			
-			<div class="clear"></div>
-
-		</div> -->
-		
 		<div class="lessonCreatedBlock">
-			<div style="height:32px; width:100%; background:#f2f0e2; padding-top:16px;">
+			<div style="height:130px; width:206px; background:#eee; padding-top:16px; margin-top:10px; margin-left:10px">
 				<a href="{% url view_course course_slug=course.slug %}" class="coursename">{{ course.name|truncate_chars:20 }}</a>	
-			</div>
 		
 			
-			<div class="grid_1" style="margin-left:0px; margin-right:0px; width:100px;"> <img src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="takingphoto">
-			</div>
-			
-			<div class="grid_1" style="margin-left:16px; width:100px;">
-				<p class="coursefollowers">{{ course.followers.count }} follower{{ course.followers.count|pluralize }}<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:12px; width:auto;"></img>
-				 <br><br> {{ course.lesson_set.count }} lesson{{ course.lesson_set.count|pluralize }}</p>
-				<a href="#" class="editcourse profilepage" style="width:94px;"><span>Edit Course</span></a>
+			<div class="grid_1" style="margin-left:16px; width:180px;">
+				<p class="coursedescription">{{ course.description|truncate_chars:80 }}</p>
+				{% if is_my_profile %}<a href="#" class="editcourse profilepage" style="width:94px;"><span>Edit Course</span></a>{% endif %}
 			</div>
 			
 			<div class="clear"></div>
+			
+			</div>
+			
+				<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.followers.count }} 
+				<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon" style="margin-right:5px; height:20px; width:auto;"></img> {{ course.lesson_set.count }}</p>
 
 		</div>
 		

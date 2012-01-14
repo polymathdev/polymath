@@ -35,7 +35,7 @@ $(document).ready(function(){
 	});
 	
 	
-	$('.lessonlink').tipsy({fade: false, gravity: 'e', opacity:0.6});
+//	$('.lessonlink').tipsy({fade: false, gravity: 'e', opacity:0.6});
 	
 
     // move lesson up

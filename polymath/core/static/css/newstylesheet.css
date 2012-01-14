@@ -362,6 +362,7 @@ textarea {
   font-weight: normal;
   line-height: normal;
 	border-radius:6px;
+	resize:none;
 
 }
 
@@ -1678,7 +1679,7 @@ p{
 .lessonBlock p{
 	display:inline;
 	color:black;
-	font-size:12px;
+	font-size:14px;
 	font-weight:normal;
 	color:#656565;
 	line-height:1.5em;
@@ -1688,6 +1689,8 @@ p{
 
 .lessonBlock:hover{
 }
+
+
 
 
 .lessonBlock.completedBlock{
@@ -1798,7 +1801,6 @@ p{
 
 #numcircle{
 	display:block;
-	
 	width:40px; height:40px;
 
 	border-radius:20px;
@@ -1825,7 +1827,7 @@ p{
 
 	
 	margin-top:10px;
-	margin-left:10px;
+	margin-left:5px;
 }
 
 #number{
@@ -1837,7 +1839,6 @@ p{
 	padding:0;
 	margin-left:14px;
 	margin-top:8px;
-	
 	display:block;
 }
 
@@ -1849,6 +1850,7 @@ p{
 	color:#656565;
 	font-weight:normal;
 	margin-top:3px;
+	float:right;
 }
 
 
@@ -2460,7 +2462,7 @@ p{
 	background-position: bottom left;
 	background-repeat:repeat-x; */
 /*	background:#efefe2; */
-	
+	background:#eee;
 	border-top:1px solid #e4e4dc;
 	border-bottom:1px solid #e4e4dc;
 	
@@ -2486,7 +2488,7 @@ p{
 
 .lessonCreatedBlock{
 	width:226px;
-	
+	height:200px;
 	background:white;
 	
 	
@@ -2514,10 +2516,10 @@ p{
 	
 	box-shadow:0px 1px rgba(0,0,0,0.15);
 	
-	border-radius:4px;
-	-moz-border-radius:4px;
-	-webkit-border-radius:4px;
-	
+	transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+
 }
 
 .lessonCreatedBlock:first-child{
@@ -2542,6 +2544,8 @@ p{
 	box-shadow:0px 0px 5px #4c8f47;
 	-webkit-box-shadow:0px 0px 5px #4c8f47;
 	-moz-box-shadow:0px 0px 5px #4c8f47;
+	
+	cursor:pointer;
 }
 
 
@@ -2560,7 +2564,8 @@ p{
 	top:85px;
 	font-size:1px;
 	height:14px!important;
-	width:95px;
+/*	width:95px; */
+	width:170px;
 	margin:0;
 /*	margin-left:50px;
 	margin-right:20px; */
@@ -2569,7 +2574,7 @@ p{
 .progressbar1status{
 	color:white;
 	position:absolute;
-	right:35px;
+	right:45px;
 	top:86px;
 	font-size:12px;
 	font-weight:bold;
@@ -2579,7 +2584,7 @@ p{
 .coursedescription{
 	font-size:12px;
 	color:#656565;
-	margin-top:16px;
+	margin-top:10px;
 	line-height:1.3;
 	text-shadow:0px -1px 1px white;
 }
@@ -2589,6 +2594,7 @@ p{
 	font-size:16px;
 	margin-left:16px;
 	margin-bottom:8px;
+	text-shadow:0px -1px 1px white;
 }
 
 .coursecreatorname{
@@ -2598,8 +2604,15 @@ p{
 
 
 .coursefollowers{
-	margin-top:16px;
+			margin-top:16px;
 	text-shadow:0px -1px 1px white;
+}
+
+.coursefollowers.lesson{
+		float:right;
+margin-top:10px;
+			margin-right:16px;
+			font-size:14px;
 }
 
 .courselessoncount{
@@ -2610,6 +2623,7 @@ p{
 .editcourse.profilepage{
 	position:absolute;
 	top:65px;
+	left:38px;
 }
 
 .editcourse.profilepage span{
@@ -3778,6 +3792,7 @@ a.remove_lesson_lnk:hover{
 
 .teachnumber{
 	margin-top:0px!important;
+	margin-left:20px!important;
 }
 
 .lesson_num_spn{
@@ -4044,7 +4059,8 @@ a.remove_lesson_lnk:hover{
 .embedclass{
 	margin-top:16px;
 	font-weight:normal;
-	border:1px solid #e4e4dc;
+	padding-left:5px;
+	border-left:2px solid #e4e4dc;
 }
 
 .embedclass a{
