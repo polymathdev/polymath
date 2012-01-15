@@ -1,7 +1,21 @@
 
 
+<<<<<<< HEAD
 <form method="post" enctype="multipart/form-data">
 {% csrf_token %}
 {{ course_form.as_p }}
 <input type="submit" value="Save">
 </form>
+=======
+{% block title %}Polymath: Browse Courses{% endblock %}
+
+{% block css_includes %}
+   {# <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> #}
+{% endblock %}
+
+{% block body %}
+
+hello this is the new user page
+
+{% endblock %}
+>>>>>>> registration

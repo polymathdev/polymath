@@ -19,8 +19,11 @@ urlpatterns = patterns('',
     (r'^beliefs/', direct_to_template, {'template':'beliefs.dtl'}),
 	
     # auth
-    url(r'^login/','django.contrib.auth.views.login', {'template_name':'registration/login.dtl'}, name='login'),
-    url(r'^logout/','django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
+    url(r'^login/$','django.contrib.auth.views.login', {'template_name':'registration/login.dtl'}, name='login'),
+    url(r'^logout/$','django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
+    url(r'^new_user/', 'core.views.new_user', 'new_user'),
+    url(r'', include('social_auth.urls')),
+
 
     # view profile
     url(r'^myprofile/$','core.views.view_myprofile', name='view_my_profile'),

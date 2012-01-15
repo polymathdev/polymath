@@ -3,6 +3,7 @@
 # Settings that apply to both dev + production
 from os import environ
 from platform import node
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
 # Helper lambda for gracefully degrading environmental variables:
 env = lambda e, d: environ[e] if environ.has_key(e) else d
@@ -13,6 +14,7 @@ if host in ['harish-venkatesans-macbook.local', 'DSMBP.local']:
     from settings_dev import *
 else:
     from settings_prod import *
+
 
 ADMINS = (
      ('Daniel Shapiro', 'registration@dshap.com'),
@@ -36,6 +38,25 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', '')
+
+FACEBOOK_APP_ID = env('FACEBOOK_APP_ID', '') 
+FACEBOOK_API_SECRET =  env('FACEBOOK_API_SECRET', '')  
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+
+
+SOCIAL_AUTH_NEW_USER_REDIRECT_URL = '/new_user/'
+
+SOCIAL_AUTH_COMPLETE_URL_NAME = 'socialauth_complete'
+
+
+# SOCIAL_AUTH_ERROR_KEY = 'social_errors'
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
+# TEMPLATE_CONTEXT_PROCESSORS = TEMPLATE_CONTEXT_PROCESSORS + ('social_auth.context_processors.social_auth_by_type_backends',)
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -118,6 +139,7 @@ INSTALLED_APPS = (
     'south',
     'taggit',
     'storages',
+    'social_auth',
     # Uncomment the next line to enable the admin:
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
