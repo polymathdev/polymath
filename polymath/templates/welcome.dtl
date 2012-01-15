@@ -1,0 +1,16 @@
+
+{% extends "base.dtl" %}
+
+{% block title %}Welcome to Polymath{% endblock %}
+
+{% block body %}
+
+Welcome to Polymath!
+
+{% endblock %}
+
+
+{% block footer %}
+<!--		<div id="footer" style="margin-top:300px;"><div class="container_6"></div></div>-->
+{% endblock %}
+
