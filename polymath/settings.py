@@ -58,6 +58,9 @@ AUTHENTICATION_BACKENDS = (
 
 # TEMPLATE_CONTEXT_PROCESSORS = TEMPLATE_CONTEXT_PROCESSORS + ('social_auth.context_processors.social_auth_by_type_backends',)
 
+# To make the {{ request }} template variable available for setting the login redirect URL to the current page (i.e. /login/?next={{ request.get_full_path }} )
+TEMPLATE_CONTEXT_PROCESSORS = TEMPLATE_CONTEXT_PROCESSORS + ('django.core.context_processors.request', ) 
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
