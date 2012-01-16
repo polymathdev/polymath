@@ -62,7 +62,7 @@ class Course(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     creation_date = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(editable=False, unique=True)
+    slug = models.SlugField(editable=False)
     
     photo = models.ImageField(upload_to='course_profile_pics', blank=True)
 
