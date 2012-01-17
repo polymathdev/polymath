@@ -175,7 +175,7 @@
 			
 			<div class="grid_1" style="margin-left:16px; width:180px;">
 				<p class="coursedescription">{{ course.description|truncate_chars:80 }}</p>
-				{% if is_my_profile %}<a href="{% url edit_course course_slug=course.slug %}" class="editcourse profilepage" style="width:94px;"><span>Edit Course</span></a>{% endif %}
+				{% if is_my_profile %}<a href="{% url edit_course course_id=course.id %}" class="editcourse profilepage" style="width:94px;"><span>Edit Course</span></a>{% endif %}
 			</div>
 			
 			<div class="clear"></div>
@@ -254,10 +254,6 @@
 
 	
 	
-	
-
-	
-
 
 
 </div>

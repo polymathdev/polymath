@@ -20,4 +20,13 @@ $(document).ready(function(){
 		$(this).toggleClass("selected");
 	});
 	
+	$('#loginnav').colorbox({
+		width:"500px",
+		inline: true,
+		href:"#logindivnew",
+		opacity:'0.6',
+		top:"10%",
+		returnFocus:false,
+	});
+	
 });
