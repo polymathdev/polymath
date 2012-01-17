@@ -43,12 +43,12 @@
 				<hr id="titlehr">
 			
 				<p>{{ user_blurb }}</p>
+						<ul class="socialmedia">
+							<li id="facebook"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_facebook.png"></img></a></li>
+							<li id="twitter"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_twitter.png"></img></a></li>
+							<li id="gplus"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_gplus.png"></img></a></li>
+						</ul>
 				
-					<ul class="socialmedia">
-						<li id="facebook"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_facebook.png"></img></a></li>
-						<li id="twitter"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_twitter.png"></img></a></li>
-						<li id="gplus"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_gplus.png"></img></a></li>
-					</ul>
 			</div>
 		
 			<div class="grid_2 omega" style="margin-bottom:5px;">
@@ -66,6 +66,7 @@
 				
 				<div class="clear"></div>
 				
+		
 								{% if is_my_profile %}
 							<!--	<div class="grid_1 omega" style="float:right; margin-top:14px;"><a class="createcourse" href="{% url add_course %}"><span>Create Course</span></a></div> -->
 								{% endif %}           
@@ -128,9 +129,20 @@
 	</div>
 	{% else %}
 	
-			<div class="profilecourseBlock grid_6" id="taking">
-				<div class="grid_5 alpha subject">{% if is_my_profile %}You're{% else %}{{ profile_owner.first_name }} is{% endif %} not taking any courses yet!</div>
+			
+			<div class="lessonCreatedBlock empty">
+				<div class="blockbg empty">
+					<div class="grid_1" style="width:180px; margin-left:16px">
+					<p class="coursedescription">
+					{% if is_my_profile %}You aren't{% else %}{{ profile_owner.first_name }} isn't{% endif %} taking any courses yet!
+					{% if is_my_profile %}Browse some courses and start learning.
+					</p>
+					<a href="/courses/browse" class="editcourse profilepage browse"><span>Browse Courses</span></a>{% endif %}
+					</div>
+				</div>
 			</div>
+			
+			
 	
 	{% endif %}
 	
@@ -156,13 +168,13 @@
  		{% for course in courses_created_by_user %}
 
 		<div class="lessonCreatedBlock">
-			<div style="height:130px; width:206px; background:#eee; padding-top:16px; margin-top:10px; margin-left:10px">
+			<div class="blockbg">
 				<a href="{% url view_course course_slug=course.slug %}" class="coursename">{{ course.name|truncate_chars:20 }}</a>	
 		
 			
 			<div class="grid_1" style="margin-left:16px; width:180px;">
 				<p class="coursedescription">{{ course.description|truncate_chars:80 }}</p>
-				{% if is_my_profile %}<a href="#" class="editcourse profilepage" style="width:94px;"><span>Edit Course</span></a>{% endif %}
+				{% if is_my_profile %}<a href="{% url edit_course course_slug=course.slug %}" class="editcourse profilepage" style="width:94px;"><span>Edit Course</span></a>{% endif %}
 			</div>
 			
 			<div class="clear"></div>
@@ -181,9 +193,19 @@
 
 		
 	{% else %}
-		<div class="profilecourseBlock grid_6" id="created">
-			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} created any courses yet!</div>
+	
+	
+	<div class="lessonCreatedBlock">
+		<div class="blockbg empty">
+			<div class="grid_1" style="width:180px; margin-left:16px">
+			<p class="coursedescription">
+			{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} created any courses yet!
+			{% if is_my_profile %}Get started and share your knowledge.
+			</p>
+			<a href="{% url add_course %}" class="createcourse profilepage"><span>Create Course</span></a>{% endif %}
+			</div>
 		</div>
+	</div>
 
 	{% endif %}
 	

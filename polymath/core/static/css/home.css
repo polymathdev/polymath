@@ -83,6 +83,8 @@ padding:0px;
 /*	box-shadow:inset 0px 1px 3px #2b4221; */
 	color:#404040;
 	margin-bottom:40px;
+	margin-top:130px;
+	border:0px;
 }
 
 
@@ -130,9 +132,9 @@ padding:0px;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f0e2', endColorstr='#e4e7dc',GradientType=0 ); /* IE6-9 */
 	
 	border-bottom:1px solid #eeefe5;
-	box-shadow:0px -3px 7px #ccc;
-	-webkit-box-shadow:0px -3px 7px #ccc;
-	-moz-box-shadow:0px -3px 7px #ccc;
+	box-shadow:0px -3px 3px #ccc;
+	-webkit-box-shadow:0px -3px 3px #ccc;
+	-moz-box-shadow:0px -3px 3px #ccc;
 	z-index: 10000;
 	margin-bottom:-110px;
 	margin-left:0;
@@ -212,6 +214,7 @@ padding:0px;
 	color:#656565;
 	font-size:16px;
 	font-weight:normal;
+	text-shadow:0px -1px 1px white;
 }
 
 .emailcopy{
@@ -226,9 +229,9 @@ padding:0px;
 .featured{
 	height:300px;
 	padding-bottom:5px;
-	box-shadow:0px -1px 1px #ccc;
+/*	box-shadow:0px -1px 1px #ccc;
 	-webkit-box-shadow:0px -1px 1px #ccc;
-	-moz-box-shadow:0px -1px 1px #ccc;
+	-moz-box-shadow:0px -1px 1px #ccc; */
 }
 
 .featured #title{

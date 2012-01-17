@@ -1,0 +1,78 @@
+{% extends "base.dtl" %}
+
+{% block title %}How It Works{% endblock %}
+
+{% block css_includes %}
+    <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
+   	<link href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" /> 
+{% endblock %}
+
+{% block js_includes %}
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/about_page.js"></script>
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container_6" style="margin-top:50px">
+	
+		<div class="grid_1 aboutsidebar">
+					<img src="{{ STATIC_URL }}css/images/favicon.png" class="favicon"></img>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/beliefs/">Our Beliefs</a></li>
+				<li><a href="/howitworks/">How It Works</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+		
+		</div>
+	
+		<div class="grid_5 about">
+			<h1 id="browsetitle">How It Works</h1>
+			<hr>
+			<p> Polymath is a fun and simple way to learn anything and share your knowledge online. Here's how it works!</p>
+			<div class="grid_1" style="width:60px; margin-top:25px;">
+				<span id="numcircle"><span id="number">1</span></span>
+			</div>
+			
+			<div class="grid_4">
+			<h2><b>Find a Course</h2></b>
+			<p>Each course features the best content online about a subject, organized by an expert. Discover great material and get help from people who've done it before. Here's an example of a course.
+			</p>
+			</div>
+			
+			<div class="clear"></div>
+			
+			
+			<div class="grid_1" style="width:60px; margin-top:25px;">
+				<span id="numcircle"><span id="number">2</span></span>
+			</div>
+			
+			<div class="grid_4">
+			<h2><b>Track your Progress</h2></b>
+			<p>One of the toughest parts of learning something outside of school is staying motivated and continuing to regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system that rewards you on your work.
+			</p>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="grid_1" style="width:60px; margin-top:25px;">
+				<span id="numcircle"><span id="number">3</span></span>
+			</div>
+			
+			<div class="grid_4">
+			<h2><b>Create a Course</h2></b>
+			<p>A course is just a set of links to great material online -- it's like a syllabus that a new student can use to guide their learning. Anyone who knows about a subject can create a course on Polymath, whether you're an expert or someone who's just recently taught yourself the topic. <b>Share your knowledge, make the world a better place.</b>
+			</p>
+			</div>
+			
+			<div class="clear"></div>
+			
+		
+		</div>
+	
+	
+	</div>
+
+
+{% endblock %}

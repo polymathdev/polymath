@@ -20,6 +20,9 @@ urlpatterns = patterns('',
 
 	#beliefs
     (r'^beliefs/', direct_to_template, {'template':'beliefs.dtl'}),
+
+	#howitworks
+    (r'^howitworks/', direct_to_template, {'template':'howitworks.dtl'}),
 	
     # auth
     url(r'^login/$','django.contrib.auth.views.login', {'template_name':'registration/login.dtl'}, name='login'),

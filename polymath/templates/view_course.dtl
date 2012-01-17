@@ -11,6 +11,8 @@
 {% block js_includes %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.backgroundposition.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.qtip-1.0.0-rc3.js"></script>
+		<script type="text/javascript" src="http://www.websnapr.com/js/websnapr.js"></script>
 		<script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
 	<script type="text/javascript">
 		
@@ -35,16 +37,29 @@
 {% load truncate_filters %}
 
 
+
+
 	<div class="headingbox">
 	
 	<div class="container_6">	
+	
+<!--	{% for follower in requested_course.followers.all %}
+
+			name is {{ follower.name }}
+
+			{% endfor %}
+	-->
+	
+	
 	<!--
-        {% if is_following %}
+        {% if is_authenticated %}
             You are following
         {% else %}
             You are either not logged in or logged in and not following
         {% endif %}
--->
+	-->
+
+
 	<div class="grid_6 categories">
 		<div class="grid_3 alpha">
 		Learn > {{requested_course.category}} > {{requested_course.name}}
@@ -235,8 +250,7 @@
 			
 			
 			
-			{% if is_following %}
-				<div class="grid_1 alpha">
+				<div class="grid_1 omega" style="margin-left:185px;">
 		
 				{% if not lesson.completed %}
 					<div class="checkb" original-title="Mark as done!"></div>
@@ -249,21 +263,18 @@
 
 				</div>
 			
-			{% else %}
-				
-			
-			{% endif %}
+
 		</div>
 			
 			<div class="clear"></div>
 			
 			<div class="grid_3 alpha" style="margin-top:16px; margin-left:105px;">
-			<p class="expanded">{{ lesson.lesson.description|linebreaks }}</p>
+				<p class="expanded">{{ lesson.lesson.description|linebreaks }}<a href="{{ lesson.lesson.link }}"></a></p>
 			</div>
 			
-			<div class="embedclass grid_2 omega">
-				<a href="{{ lesson.lesson.link }}"></a>
-			</div>
+				<div class="embedclass grid_2 omega">
+					<a href="{{ lesson.lesson.link }}"></a>
+				</div>
 			
 		</div>
 
@@ -279,6 +290,8 @@
 			<h3 id="empty">Uh oh, this course is empty! {% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}"><b>Add some lessons and share your expertise.</b></a>{% endif %} </h3>
 		</div>
 	{% endif %}
+	
+	
 		
 
 {% endblock %}
