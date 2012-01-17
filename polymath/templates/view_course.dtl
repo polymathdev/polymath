@@ -132,7 +132,7 @@
 		
 			<div class="grid_1 alpha omega takecoursediv">
 				{% if is_my_course %}
-					<a href="{% url edit_course course_slug=requested_course.slug %}" class="editcourse"><span>Edit Course</span></a>
+					<a href="{% url edit_course course_id=requested_course.id %}" class="editcourse"><span>Edit Course</span></a>
 				{% else %}
 					{% if is_following %}
 					
@@ -276,7 +276,7 @@
 	
 	{% else %}
 		<div class="lessonBlock emptyblock">
-			<h3 id="empty">Uh oh, this course is empty! {% if is_my_course %}<a href="{% url edit_course course_slug=requested_course.slug %}"><b>Add some lessons and share your expertise.</b></a>{% endif %} </h3>
+			<h3 id="empty">Uh oh, this course is empty! {% if is_my_course %}<a href="{% url edit_course course_id=requested_course.id %}"><b>Add some lessons and share your expertise.</b></a>{% endif %} </h3>
 		</div>
 	{% endif %}
 		

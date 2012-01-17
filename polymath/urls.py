@@ -26,14 +26,13 @@ urlpatterns = patterns('',
     url(r'^logout/$','django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
     url(r'', include('social_auth.urls')),
 
-
     # view profile
     url(r'^myprofile/$','core.views.view_myprofile', name='view_my_profile'),
     url(r'^profile/(?P<uname>[a-z0-9]+)/$','core.views.view_profile', name='view_profile'), 
 
     # add / edit courses
     url(r'^courses/add/$','core.views.add_course', name='add_course'),   
-    url(r'^courses/(?P<course_slug>[a-zA-Z0-9-]+)/edit/$','core.views.edit_course', name='edit_course'),
+    url(r'^courses/(?P<course_id>\d+)/edit/$','core.views.edit_course', name='edit_course'),
 
     # browse courses
     url(r'^courses/$', redirect_to, {'url' : '/courses/browse' } ),
@@ -41,8 +40,9 @@ urlpatterns = patterns('',
     url(r'^courses/browse/(?P<cat_slug>[a-zA-Z0-9-]+)/$', 'core.views.browse_courses', name='browse_courses_by_cat'),
     url(r'^courses/browse/(?P<cat_slug>[a-zA-Z0-9-]+)/(?P<tag_slug>[a-zA-Z0-9-]+)/$', 'core.views.browse_courses', name='browse_courses_by_cat_and_tag'),
 
-    # view course
-    url(r'^courses/(?P<course_slug>[a-zA-Z0-9-]+)/$','core.views.view_course', name='view_course'),
+    # view course (can the below 2 URL regexes be combined? probably, but just tried something real quick and it didn't work so will revisit when i have less things that are higher priority)
+    url(r'^courses/(?P<course_id>\d+)/(?P<course_slug>[a-zA-Z0-9-]*)/$','core.views.view_course', name='view_course'),
+    url(r'^courses/(?P<course_id>\d+)/$','core.views.view_course', name='view_course_noslug'), 
 
     # misc ajax actions
     url(r'^deletelesson/$','core.views.delete_lesson', name='delete_lesson'),

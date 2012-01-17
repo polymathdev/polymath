@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, get_object_or_404, render
+from django.shortcuts import render_to_response, get_object_or_404, render, redirect
 from core.models import Course, Lesson, CourseCategory, LessonCompletion, LessonVote
 from taggit.models import Tag
 from django.contrib.auth.models import User
@@ -93,8 +93,13 @@ def view_myprofile(request):
     return view_profile(request, request.user.username)
 
 
-def view_course(request, course_slug):
-    requested_course = get_object_or_404(Course, slug=course_slug)
+def view_course(request, course_id, course_slug=None):
+    requested_course = get_object_or_404(Course, pk=course_id)
+
+    # redirect to appropriate URL with complete slug if necessary (this is a cosmetic thing)
+    if course_slug != requested_course.slug:
+        return redirect('view_course', permanent=True, course_id=course_id, course_slug=requested_course.slug)
+
     creator = requested_course.creator.user
     lesson_list = requested_course.lesson_set.all()
 
@@ -155,7 +160,7 @@ def add_course(request):
             lesson_fs.save()
 
             messages.success(request, 'Your course has been created! Share it with your friends on Twitter and Facebook.')
-            return HttpResponseRedirect('/myprofile/')
+            return redirect('view_my_profile')
 
     else:
         course_form = CourseForm()            
@@ -170,13 +175,13 @@ def add_course(request):
     context_instance=RequestContext(request))
 
 @login_required
-def edit_course(request, course_slug):
-    course_to_edit = get_object_or_404(Course, slug=course_slug)
+def edit_course(request, course_id):
+    course_to_edit = get_object_or_404(Course, pk=course_id)
 
     # don't let people edit courses that other people created
     if request.user != course_to_edit.creator.user:
         messages.error(request, 'You can only edit courses that you have created')
-        return HttpResponseRedirect('/courses/'+course_slug)
+        return redirect('view_course', course_id=course_id, course_slug=course_to_edit.slug)
 
     EditLessonFormSet = inlineformset_factory(Course, Lesson, can_delete=False, form=LessonForm, formset=OrderedLessonFormSet, extra=1)
     
@@ -190,7 +195,7 @@ def edit_course(request, course_slug):
             edited_lessons = edit_lesson_fs.save()
             
             messages.success(request, 'Your changes have been saved!')
-            return HttpResponseRedirect('/courses/'+course_slug)
+            return redirect('view_course', course_id=course_id, course_slug=course_to_edit.slug) 
         
     else:
         edit_course_form = CourseForm(instance=course_to_edit)
