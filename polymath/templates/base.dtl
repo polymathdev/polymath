@@ -35,9 +35,12 @@
                 var from_server = {{ to_client|safe }};
             {% endif %}
         </script>
-
+		
+		{% block topbar %}
 
 		<div id="wrap">
+			
+
 
 			<div id="header">
 			
@@ -77,6 +80,8 @@
 		   			</div> <!-- end container_6 -->
 		
 		 		</div> <!-- end topbar -->
+		
+		{% endblock %}
 
 				<div style="display:none;">
 					<div id="logindivnew">

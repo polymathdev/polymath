@@ -199,7 +199,15 @@ $(document).ready(function(){
 		if(isLoggedIn){
 			
 		} else {
-			alert("Log in first!");
+			$.colorbox({
+				width:"500px",
+				inline: true,
+				href:"#logindivnewcourse",
+				opacity:'0.6',
+				top:"10%",
+				returnFocus:false,
+			});
+			
 		}
 	});
 	
@@ -214,7 +222,7 @@ $(document).ready(function(){
 
 	var apiKey = 'QM09p1Gqmv1n';
 	
-	$('.embedclass a').each(function(){
+/*	$('.embedclass a').each(function(){
 	        // Grab the URL from our link
 	        var url = encodeURIComponent( $(this).attr('href') ),
 	
@@ -245,6 +253,6 @@ $(document).ready(function(){
 				show: { ready: true },
 	        });
 	});
-	
+	*/
     
 }); 

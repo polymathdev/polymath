@@ -11,14 +11,19 @@
 
 {% block title %}Welcome to Polymath{% endblock %}
 
-
+{% block topbar %}
+{% endblock %}
 
 
 {% block body %}
-	<div class="homeheader" style="padding-top:60px;">
+	<div class="homeheader" style="padding-top:40px;">
 		<div class="container_6">
 			
-			<div class="grid_6" id="ticker">
+			<div class="grid_3 alpha" id="homelogo">
+				<img src="{{ STATIC_URL }}css/images/logo.png"></img>
+			</div>
+			
+			<div class="grid_3 omega" id="ticker">
 					<h1>Learn</h1>
 						<ul>
 							<li>web design.</li>
@@ -30,7 +35,7 @@
 			<div class="clear"></div>
 		
 			<div class="grid_6 homecopy">
-					<h3><center>Polymath makes education <b>simple</b>, <b>fun</b>, and <b>social</b>. Learn something new or share your expertise!</h3>
+					<h3><center>An <b>easy</b>, <b>fun</b>, and <b>social</b> way to learn new skills and knowledge.<br> Learn from the web's best content, organized by experts, or share your own expertise.</h3>
 			</div>
 		
 		</div>
@@ -51,10 +56,10 @@
 				<h3 class="fblogincopy"><b>Join Polymath now & start learning!</h3></b>
 		</div>
 		<div class="grid_2">
-			<a href="{% url socialauth_begin 'facebook' %}" class="fbloginbutton"><span>Sign up with Facebook</span></a>
+			<a href="{% url socialauth_begin 'facebook' %}" class="fbloginbutton"><span>Connect with Facebook</span></a>
 		</div>
 		<div class="grid_2">
-			<h3 class="emailcopy"><!-- We'll never post anything without your permission. Promise! --></h3>
+			<h3 class="emailcopy"><a href="/about/" id="learnmorelink">Learn More &nbsp;&nbsp;></a></h3>
 		</div>
 	</div> 
 </div>
@@ -111,6 +116,12 @@
 					<span>Whenever anyone asks me about the best design resources out there, here's what I tell them!</span>
 				</div>
 			</div>
+			
+			<div class="clear"></div>
+			<div style="float:right; margin-top:25px;">
+				<a href="/courses/browse/" id="learnmorelink">Browse more courses&nbsp;&nbsp;></a>
+			</div>
+			
 		</div>
 		
 				

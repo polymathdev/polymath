@@ -150,7 +150,6 @@
 					<a href="{% url edit_course course_id=requested_course.id %}" class="editcourse"><span>Edit Course</span></a>
 				{% else %}
 					{% if is_following %}
-					
 					{% else %}
 					<button type="button" class="takecourse"><span>Take Course</span></button>
 					{% endif %}
@@ -291,7 +290,15 @@
 		</div>
 	{% endif %}
 	
-	
+		<div style="display:none;">
+			<div id="logindivnewcourse">
+			<h2>Login</h2>
+			<p class="red">You need to be logged in to do that!</p>
+			<p>Sign up or log in by connecting with Facebook. It's easy and takes just one click!</p>
+			<a href="{% url socialauth_begin 'facebook' %}?next={{ request.get_full_path }}" class="fblogin" style:"margin-top:45px"><span>Connect with Facebook</span></a>
+			<h4>Don't worry, we'll never post on your wall unless you tell us to.</h4>
+			</div>
+		</div>
 		
 
 {% endblock %}
