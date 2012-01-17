@@ -33,7 +33,7 @@
         #cboxPrevious:hover{background-position:0px -25px;}
         #cboxNext{background-position:-25px 0px; right:22px;}
         #cboxNext:hover{background-position:-25px -25px;}
-        #cboxClose{background-position:-50px 0px; right:0;}
+        #cboxClose{background-position:-50px 0px; right:0; border:1px solid #e4e4dc;}
         #cboxClose:hover{background-position:-50px -25px;}
         .cboxSlideshow_on #cboxPrevious, .cboxSlideshow_off #cboxPrevious{right:66px;}
         .cboxSlideshow_on #cboxSlideshow{background-position:-75px -25px; right:44px;}
