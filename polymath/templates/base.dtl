@@ -60,7 +60,7 @@
 						<div class="grid_3">
 							<ul class="nav">
 								{% if user.is_authenticated %}
-								<li><a href="#" style="color:white" id="namenav">{{ user.first_name }} {{ user.last_name }} 
+								<li><a href="#" style="color:white" id="namenav"><img id="navbarimage" src="{{ user.get_profile.fb_profile_pic }}"></img>{{ user.first_name }} {{ user.last_name }} 
 									<span class="arrow-down"></span></a>
 									<ul><li><a href="{% url view_profile uname=user.username %}">Your Profile</a></li>
 										<li><a href="/logout/" id="logouttopbar">Logout</a></li>

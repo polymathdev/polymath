@@ -1134,6 +1134,16 @@ body#teach a#teachnav {
 }
 
 
+#navbarimage{
+	position:absolute;
+	display:inline;
+	height:32px;
+	width:32px;
+	border:2px solid white;
+	left:10px;
+	top:7px;
+}
+
 .topbar-inner, .topbar .fill {
   	display:block;
 	background-image:url('images/topbar_tex.jpg'); 
@@ -1160,6 +1170,7 @@ body#teach a#teachnav {
 
 #namenav{
 	padding-right:40px;
+	padding-left:55px;
 }
 
 .arrow-down {
