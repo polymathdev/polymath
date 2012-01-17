@@ -204,12 +204,47 @@ $(document).ready(function(){
 	});
 	
 	
-	$('.embedclass').embedly({
+/*	$('.embedclass').embedly({
         maxWidth: 450,
         wmode: 'transparent',
         method: 'after',
         key: '93c670123dda11e1927d4040d3dc5c07'
       });
+*/
 
+	var apiKey = 'QM09p1Gqmv1n';
+	
+	$('.embedclass a').each(function(){
+	        // Grab the URL from our link
+	        var url = encodeURIComponent( $(this).attr('href') ),
+	
+
+	        // Create image thumbnail using Websnapr thumbnail service
+	        thumbnail = $('<img />').attr({
+	            src: 'http://images.websnapr.com/?url=' + url + '&key=' + apiKey + '&hash=' + encodeURIComponent(websnapr_hash),
+//				src: 'http://images.websnapr.com/?size=S' + '&key=' + apiKey + '&url=' + url,
+	            alt: 'Loading thumbnail...',
+	            width: 202,
+	            height: 152
+	        });
+
+	        // Setup the tooltip with the content
+	        $(this).qtip({
+	          	content: thumbnail,
+	
+	            position: {
+	                corner: {
+	                    tooltip: 'leftMiddle',
+	                    target: 'leftMiddle'
+	                }
+	            },
+	            style: {
+	                tip: false, // Give it a speech bubble tip with automatic corner detection
+	                name: 'light'
+	            }, 
+				show: { ready: true },
+	        });
+	});
+	
     
 }); 

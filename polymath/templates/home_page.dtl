@@ -43,8 +43,29 @@
 
 <div>
 
+
+
+<div class="fbsignin">
+	<div class="container_6">
+		<div class="grid_2">
+				<h3 class="fblogincopy"><b>Join Polymath now & start learning!</h3></b>
+		</div>
+		<div class="grid_2">
+			<a href="{% url socialauth_begin 'facebook' %}" class="fbloginbutton"><span>Sign up with Facebook</span></a>
+		</div>
+		<div class="grid_2">
+			<h3 class="emailcopy"><!-- We'll never post anything without your permission. Promise! --></h3>
+		</div>
+	</div> 
+</div>
+
+
+
+
+
+
+
 <div class="featured">
-	<hr>
 	<div class="container_6">
 	
 		<div class="grid_6">
@@ -97,19 +118,7 @@
 </div> <!-- end featured block -->
 
 
-<div class="fbsignin">
-	<div class="container_6">
-		<div class="grid_2">
-				<h3 class="fblogincopy"><b>Join Polymath now & start learning!</h3></b>
-		</div>
-		<div class="grid_2">
-			<a href="#" class="fbloginbutton"><span>Sign up with Facebook</span></a>
-		</div>
-		<div class="grid_2">
-			<h3 class="emailcopy">We'll never post anything without your permission. Promise!</h3>
-		</div>
-	</div> 
-</div>
+
 
 
 
