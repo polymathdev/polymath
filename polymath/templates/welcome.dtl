@@ -7,6 +7,11 @@
 
 Welcome to Polymath!
 
+{% if return_to_course %}
+    Go back to <a href="{% url view_course course_id=return_to_course.id course_slug=return_to_course.slug %}">{{ return_to_course.name }}</a>
+{% endif %}
+
+
 {% endblock %}
 
 

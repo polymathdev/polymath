@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     (r'^$', 'core.views.home_page'),
 
     # welcome
-    (r'^welcome/', direct_to_template, {'template':'welcome.dtl'}),
+    (r'^welcome/', 'core.views.welcome'), 
 
 	#about
     (r'^about/', direct_to_template, {'template':'about.dtl'}),

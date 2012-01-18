@@ -15,10 +15,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.http import require_POST
 from annoying.functions import get_object_or_None
 from facepy import GraphAPI
-
-import ipdb 
+import ipdb, re
 
 def test(request):
+    ipdb.set_trace()
     fb_data = request.user.social_auth.get(provider='facebook').extra_data
     access_token = fb_data['access_token']
     fb_uid = fb_data['id']
@@ -29,6 +29,25 @@ def test(request):
 
     return render(request, 'test.dtl', {
         'course_form' : cf
+        })
+
+
+def welcome(request):
+    return_to_course = None
+    referer = request.META.get('HTTP_REFERER', None)
+
+    # grab the url of the refering page and check to see if it was a course page
+    if referer:
+        view_course_url_pattern = re.compile(r'^.*/courses/(?P<course_id>\d+)/.*')
+        match = view_course_url_pattern.match(referer)
+
+        # if it was a course page, on the welcome page let's give the user a link back to the course they were looking at
+        if match:
+            course_id = int(match.group('course_id')) 
+            return_to_course = get_object_or_None(Course, pk=course_id)
+
+    return render(request, 'welcome.dtl', {
+        'return_to_course' : return_to_course
         })
 
 def new_user(request):
