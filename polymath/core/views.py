@@ -79,15 +79,15 @@ def view_profile(request, uname):
                 return redirect('view_profile', uname=uname)
 
     user_blurb = user_profile.blurb
-    courses_created_by_user = user_profile.courses_created.all()
+    courses_created_by_user = profile_owner.courses_created.all()
      
     # EVALUATE AND OPTIMIZE THE BELOW IF POSSIBLE, THE CODE IS RATHER MESSY IN MY OPINION AND THERE ARE PROBABLY MUCH BETTER WAYS TO DO THIS
 
-    upvoted_lessons = LessonVote.objects.filter(user_profile=user_profile).select_related('course')
-    courses_following = user_profile.courses_following.select_related('category').all()
+    upvoted_lessons = LessonVote.objects.filter(user_profile=profile_owner).select_related('course')
+    courses_following = profile_owner.courses_following.select_related('category').all()
 
     lessons_following = Lesson.objects.filter(course__in=courses_following)
-    lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=user_profile)  
+    lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=profile_owner)  
 
     lessons = { les['id'] : les for les in lessons_following.values() }
     completed_lessons = { les['id'] : les for les in lessons_following_completed.values() }
@@ -136,7 +136,7 @@ def view_course(request, course_id, course_slug=None):
     if course_slug != requested_course.slug:
         return redirect('view_course', permanent=True, course_id=course_id, course_slug=requested_course.slug)
 
-    creator = requested_course.creator.user
+    creator = requested_course.creator
     lesson_list = requested_course.lesson_set.all()
 
     completed_lesson_list = None
@@ -146,10 +146,10 @@ def view_course(request, course_id, course_slug=None):
 
     if request.user.is_authenticated():
         # lessons that the current user has completed for this course
-        completed_lesson_list = Lesson.objects.filter(course=requested_course, completers=request.user.get_profile()) 
+        completed_lesson_list = Lesson.objects.filter(course=requested_course, completers=request.user) 
 
         # all votes that the current user has made on lessons in this course
-        lesson_votes = LessonVote.objects.filter(lesson__in=lesson_list, user_profile=request.user.get_profile())
+        lesson_votes = LessonVote.objects.filter(lesson__in=lesson_list, user_profile=request.user)
         
         for l in lesson_list_info:
 
@@ -191,7 +191,7 @@ def add_course(request):
         
         if course_form.is_valid() and lesson_fs.is_valid():
             new_course = course_form.save(commit=False)
-            new_course.creator = request.user.get_profile()
+            new_course.creator = request.user
             new_course.save()
             # save tags
             course_form.save_m2m()
@@ -219,7 +219,7 @@ def edit_course(request, course_id):
     course_to_edit = get_object_or_404(Course, pk=course_id)
 
     # don't let people edit courses that other people created
-    if request.user != course_to_edit.creator.user:
+    if request.user != course_to_edit.creator:
         messages.error(request, 'You can only edit courses that you have created')
         return redirect('view_course', course_id=course_id, course_slug=course_to_edit.slug)
 
@@ -259,7 +259,7 @@ def delete_lesson(request):
     try:
         lesson_to_delete = Lesson.objects.get(id=lesson_id)
 
-        if request.user != lesson_to_delete.course.creator.user:
+        if request.user != lesson_to_delete.course.creator:
             result_message = 'You cannot delete lessons you did not create! (this is most likely a bug)'
         else:
             lesson_to_delete.delete()
@@ -281,10 +281,10 @@ def complete_lesson(request):
 
     try:
         lesson_to_complete = Lesson.objects.get(id=lesson_id)
-        LessonCompletion.objects.create(lesson=lesson_to_complete, user_profile=request.user.get_profile()) 
+        LessonCompletion.objects.create(lesson=lesson_to_complete, user_profile=request.user) 
 
         # update the course followers table so that any user who has marked a lesson as 'done' is now following that course
-        lesson_to_complete.course.followers.add(request.user.get_profile())
+        # lesson_to_complete.course.followers.add(request.user)
 
         complete_successful = True
         result_message = "Got it, you\'ve done that!"
@@ -306,7 +306,7 @@ def vote_lesson(request):
 
     try:
         lesson_to_vote = Lesson.objects.get(id=lesson_id)
-        existing_vote = LessonVote.objects.filter(lesson=lesson_to_vote, user_profile=request.user.get_profile())
+        existing_vote = LessonVote.objects.filter(lesson=lesson_to_vote, user_profile=request.user)
 
         if existing_vote:
             existing_vote = existing_vote.get()
@@ -316,7 +316,7 @@ def vote_lesson(request):
                 vote_result = 'neutral'
 
         else:
-            LessonVote.objects.create(lesson=lesson_to_vote, user_profile=request.user.get_profile(), up=is_up) 
+            LessonVote.objects.create(lesson=lesson_to_vote, user_profile=request.user, up=is_up) 
 
         if not vote_result == 'neutral':
             if is_up:

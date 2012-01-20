@@ -68,7 +68,7 @@ class CourseCategory(models.Model):
 
 
 class Course(models.Model):
-    creator = models.ForeignKey(UserProfile, related_name='courses_created')
+    creator = models.ForeignKey(User, related_name='courses_created')
     category = models.ForeignKey(CourseCategory)
     name = models.CharField(max_length=200)
     description = models.TextField()
@@ -77,7 +77,7 @@ class Course(models.Model):
     
     photo = models.ImageField(upload_to='course_profile_pics', blank=True)
 
-    followers = models.ManyToManyField(UserProfile, related_name='courses_following', blank=True)
+    followers = models.ManyToManyField(User, related_name='courses_following', blank=True)
 
     tags = TaggableManager()
     
@@ -102,7 +102,7 @@ class Lesson(models.Model):
     order = models.IntegerField()
     creation_date = models.DateTimeField(auto_now_add=True)
 
-    completers = models.ManyToManyField(UserProfile, through='LessonCompletion', editable=False) 
+    completers = models.ManyToManyField(User, through='LessonCompletion', editable=False) 
 
     # count up votes as +1 and down votes as -1 to calculate an aggregate score for this lesson
     def vote_score(self):
@@ -127,7 +127,7 @@ class Lesson(models.Model):
 
 class LessonCompletion(models.Model):
     lesson = models.ForeignKey(Lesson, editable=False)
-    user_profile = models.ForeignKey(UserProfile, editable=False)
+    user_profile = models.ForeignKey(User, editable=False)
     date_completed = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
@@ -136,7 +136,7 @@ class LessonCompletion(models.Model):
 
 class LessonVote(models.Model):
     lesson = models.ForeignKey(Lesson)
-    user_profile = models.ForeignKey(UserProfile)
+    user_profile = models.ForeignKey(User)
     up = models.BooleanField()
     date_voted = models.DateTimeField(auto_now_add=True) 
 

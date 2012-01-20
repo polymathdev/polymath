@@ -88,7 +88,7 @@
 			
 			
 				<h4>
-				By <a href="{% url view_profile uname=course.creator.user.username %}">{{ course.creator.user.first_name }} {{ course.creator.user.last_name }}</a>
+				By <a href="{% url view_profile uname=course.creator.username %}">{{ course.creator.first_name }} {{ course.creator.last_name }}</a>
 				 | 	{% if course.followers.count == 1 %}
 						{{ course.followers.count }} follower 
 					{% else %}
@@ -179,7 +179,7 @@
 
 {% for course in course_list %}
     <p>
-    <a href="{% url view_course course_id=course.id course_slug=course.slug %}">{{ course.name }}</a> by <a href="{% url view_profile uname=course.creator.user.username %}">{{ course.creator.user.first_name }} {{ course.creator.user.last_name }}</a><br />
+    <a href="{% url view_course course_id=course.id course_slug=course.slug %}">{{ course.name }}</a> by <a href="{% url view_profile uname=course.creator.username %}">{{ course.creator.first_name }} {{ course.creator.last_name }}</a><br />
     <i>{{ course.description }}</i><br />
     <b>Tags:</b>
     {% for tag in course.tags.all %}
