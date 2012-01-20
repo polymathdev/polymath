@@ -104,6 +104,20 @@ class Lesson(models.Model):
 
     completers = models.ManyToManyField(UserProfile, through='LessonCompletion', editable=False) 
 
+    # count up votes as +1 and down votes as -1 to calculate an aggregate score for this lesson
+    def vote_score(self):
+        score = 0
+        votes = self.lessonvote_set.all()
+
+        for v in votes:
+            if v.up:
+                score += 1
+            else:
+                score -= 1
+
+        return score
+
+
     class Meta:
         ordering = ['order']
 
@@ -121,8 +135,8 @@ class LessonCompletion(models.Model):
 
 
 class LessonVote(models.Model):
-    lesson = models.ForeignKey(Lesson, editable=False)
-    user_profile = models.ForeignKey(UserProfile, editable=False)
+    lesson = models.ForeignKey(Lesson)
+    user_profile = models.ForeignKey(UserProfile)
     up = models.BooleanField()
     date_voted = models.DateTimeField(auto_now_add=True) 
 

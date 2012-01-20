@@ -140,26 +140,31 @@ def view_course(request, course_id, course_slug=None):
     lesson_list = requested_course.lesson_set.all()
 
     completed_lesson_list = None
-    is_following = None
     
+    # list of dictionaries where each contains relevant info about a lesson.  initialize with 'lesson' key to contain Lesson object
     lesson_list_info = [ {'lesson' : l } for l in lesson_list ]
 
     if request.user.is_authenticated():
-        is_following = requested_course.followers.filter(user=request.user)
+        # lessons that the current user has completed for this course
         completed_lesson_list = Lesson.objects.filter(course=requested_course, completers=request.user.get_profile()) 
+
+        # all votes that the current user has made on lessons in this course
         lesson_votes = LessonVote.objects.filter(lesson__in=lesson_list, user_profile=request.user.get_profile())
         
         for l in lesson_list_info:
+
+             # add a 'completed' key to this lesson info item if it has been completed
             if l['lesson'] in completed_lesson_list:
                 l['completed'] = True
 
+            # set 'my_vote' key to the appropriate value if necessary based on lesson_votes queryset
             try:
                 vote = lesson_votes.get(lesson=l['lesson'])
                 if vote:
                     if vote.up:
-                        l['vote'] = 'up'
+                        l['my_vote'] = 'up'
                     else:
-                        l['vote'] = 'down'
+                        l['my_vote'] = 'down'
 
             except ObjectDoesNotExist:
                 pass
@@ -171,7 +176,6 @@ def view_course(request, course_id, course_slug=None):
         'completed_lessons': completed_lesson_list,
         'creator': creator,
         'is_my_course': (creator == request.user),
-        'is_following': is_following,
         'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson')})
     },
     context_instance=RequestContext(request))

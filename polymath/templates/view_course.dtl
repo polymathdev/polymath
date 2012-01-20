@@ -216,8 +216,8 @@
 				<div class="grid_1 alpha omega">
 				<div>
 	          <!--      <span class="vote_status">
-	                    {% if lesson.vote %}
-	                    (Vote = {{ lesson.vote }})
+	                    {% if lesson.my_vote %}
+	                    (Vote = {{ lesson.my_vote }})
 	                    {% else %}
 	                    (Vote = neutral)
 	                    {% endif %}
@@ -225,13 +225,13 @@
 	                <a href="#" class="vote_link" rel="1">Vote Up</a> / <a href="#" class="vote_link" rel="0">Vote Down</a> -->
 
 					<ul class="thumbsbuttons">
-						{% if lesson.vote == "up" %}
+						{% if lesson.my_vote == "up" %}
 							<li id="thumbsup" class="vote_link done" rel="1" original-title="Like this?"></li>
 						{% else %}
 							<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
 						{% endif %}
 
-						{% if lesson.vote == "down" %}
+						{% if lesson.my_vote == "down" %}
 							<li id="thumbsdown" class="vote_link done" rel="0" original-title="Didn't like this?"></li>
 						{% else %}
 							<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>

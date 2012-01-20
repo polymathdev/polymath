@@ -1,4 +1,4 @@
-from core.models import Course, Lesson, UserProfile, CourseCategory, LessonCompletion
+from core.models import Course, Lesson, UserProfile, CourseCategory, LessonCompletion, LessonVote
 from django.contrib import admin
 
 from django.contrib.auth.models import User
@@ -10,16 +10,12 @@ admin.site.unregister(User)
 class UserProfileInline(admin.StackedInline):
     model = UserProfile
                    
+class LessonVoteUnderUser(admin.StackedInline):
+    model = LessonVote
+
 class UserProfileAdmin(UserAdmin):
     inlines = [UserProfileInline]
                             
-admin.site.register(User, UserProfileAdmin)
-                 
-
-
-
-
-# my stuff
 class LessonUnderCourse(admin.StackedInline):
 	model = Lesson
 	extra = 1
@@ -27,7 +23,8 @@ class LessonUnderCourse(admin.StackedInline):
 class CourseAdmin(admin.ModelAdmin):
 	inlines = [LessonUnderCourse]
 
+admin.site.register(User, UserProfileAdmin) 
 admin.site.register(Course, CourseAdmin)
 admin.site.register(CourseCategory)
 admin.site.register(LessonCompletion)
-
+admin.site.register(LessonVote)
