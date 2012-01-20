@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     blurb = models.TextField(blank=True)
     profile_pic = models.ImageField(upload_to='user_profile_pics', blank=True)
     fb_profile_pic = models.URLField(blank=True)
+    fb_profile_thumb = models.URLField(blank=True)
 
     def __unicode__(self):
         return self.user.username
@@ -27,21 +28,25 @@ from social_auth.signals import socialauth_registered
 
 def new_users_handler(sender, user, response, details, **kwargs):
     user.is_new = True
-
+    ipdb.set_trace()
     # this should be refactored into some other module once we start using facebook more
     fb_data = user.social_auth.get(provider='facebook').extra_data
     access_token = fb_data['access_token']
+
     fb_uid = fb_data['id']
     fb = GraphAPI(access_token)
+    fb_pics = fb.get('fql',q='select pic_big, pic_square from user where uid='+fb_uid) 
 
-    profile = user.get_profile()
-    profile.fb_profile_pic = fb.get('fql',q='select pic_big from user where uid='+fb_uid)['data'][0]['pic_big']
+    profile = user.get_profile() 
+    profile.fb_profile_pic = fb_pics['data'][0]['pic_big']
+    profile.fb_profile_thumb = fb_pics['data'][0]['pic_square']
+
     profile.save()
 
     return False
 
-socialauth_registered.connect(new_users_handler, sender=None)
 
+socialauth_registered.connect(new_users_handler, sender=None)
 
 
 class CourseCategory(models.Model):
