@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from core.models import Course
+from core.models import Course, UserProfile
 from django.forms.models import BaseFormSet, BaseInlineFormSet
 import ipdb
 
@@ -13,6 +13,11 @@ class CourseForm(ModelForm):
 			'category': forms.Select(attrs={'initial':'Category'}),
 			'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your course here'}),
 		}        
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['blurb', 'profile_pic']
 
 class LessonForm(ModelForm):
     class Meta:

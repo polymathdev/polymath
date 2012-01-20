@@ -13,6 +13,12 @@ class UserProfile(models.Model):
     fb_profile_pic = models.URLField(blank=True)
     fb_profile_thumb = models.URLField(blank=True)
 
+    def get_pic_url(self):
+        if self.profile_pic:
+            return self.profile_pic.url
+        else:
+            return self.fb_profile_pic
+
     def __unicode__(self):
         return self.user.username
 

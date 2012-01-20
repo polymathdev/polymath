@@ -3,7 +3,7 @@ from core.models import Course, Lesson, CourseCategory, LessonCompletion, Lesson
 from taggit.models import Tag
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from core.forms import CourseForm, LessonForm, OrderedLessonFormSet
+from core.forms import CourseForm, LessonForm, OrderedLessonFormSet, ProfileForm
 from django.core.urlresolvers import reverse
 from django.forms.models import modelformset_factory, inlineformset_factory
 from django.forms import ModelForm
@@ -62,6 +62,22 @@ def view_profile(request, uname):
     profile_owner = get_object_or_404(User, username=uname)    
     user_profile = profile_owner.get_profile()
 
+    profile_edit_form = None
+
+    # if the current user is the profile owner, give them the profile edit form
+    if request.user == profile_owner:
+        profile_edit_form = ProfileForm(instance=user_profile)
+        
+        # if this is a POST from the profile's owner, assume (for now) that the profile edit form was submitted and update accordingly 
+        if request.method == 'POST':
+            profile_edit_form = ProfileForm(request.POST, request.FILES, instance=user_profile)
+
+            if profile_edit_form.is_valid():
+                profile_edit_form.save()
+                messages.success(request, 'Your profile changes have been saved') 
+
+                return redirect('view_profile', uname=uname)
+
     user_blurb = user_profile.blurb
     courses_created_by_user = user_profile.courses_created.all()
      
@@ -102,7 +118,8 @@ def view_profile(request, uname):
     'courses_created_by_user': courses_created_by_user,
     'courses_following': courses_following,
     'upvoted_lessons': upvoted_lessons,
-    'is_my_profile': (profile_owner == request.user)
+    'is_my_profile': (profile_owner == request.user),
+    'profile_edit_form': profile_edit_form
     },
     context_instance=RequestContext(request))
 

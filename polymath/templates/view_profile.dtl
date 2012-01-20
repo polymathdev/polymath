@@ -31,7 +31,14 @@
 	<div class="container_6" style="margin-top:15px;">
 		
 			<div class="grid_1"">
-                <img id="profile" src="{{ profile_owner.get_profile.fb_profile_pic }}"></img>
+                <img id="profile" src="{{ profile_owner.get_profile.get_pic_url }}"></img>
+                {% if profile_edit_form %}
+                    <form id="profile_edit_form" method="post" enctype="multipart/form-data"> 
+                        {% csrf_token %} 
+                        {{ profile_edit_form.as_p }}
+                        <input type="submit" value="Save">
+                    </form>
+                {% endif %}
 			</div>
 	
 			<div class="grid_3 profileinfo alpha">
