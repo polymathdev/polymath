@@ -34,7 +34,7 @@ from social_auth.signals import socialauth_registered
 
 def new_users_handler(sender, user, response, details, **kwargs):
     user.is_new = True
-    ipdb.set_trace()
+
     # this should be refactored into some other module once we start using facebook more
     fb_data = user.social_auth.get(provider='facebook').extra_data
     access_token = fb_data['access_token']
