@@ -1,5 +1,17 @@
 $(document).ready(function(){
 	
+	/*
+	var stickyHeaderTop = $('#coursepagemeta').offset().top;
+
+	 $(window).scroll(function(){
+		if( $(window).scrollTop() > stickyHeaderTop - 50) {
+			$('#coursepagemeta').css({position: 'fixed', top: '50px'});
+		} else {
+			$('#coursepagemeta').css({position: 'static', top: '50px'});
+		}
+	});*/
+	
+	
 	console.log('completed lessons: %s and the user is %s', completed_lessons, isLoggedIn);
 	
 	$('.vote_link').click(function() {
@@ -161,9 +173,9 @@ $(document).ready(function(){
 	});
 
 	//tooltips
-	$('.checkb').tipsy({fade: false, gravity: 's', opacity:0.6});
+	$('.checkb').tipsy({fade: false, gravity: 'se', opacity:0.8});
 
-	$('.checkb.done').tipsy({fade: false, gravity: 's', opacity:0.6});
+	$('.checkb.done').tipsy({fade: false, gravity: 'sw', opacity:0.8});
 
 	$('.takecourse').tipsy({fade: false, gravity: 's', opacity:0.6});
 
@@ -222,7 +234,7 @@ $(document).ready(function(){
 
 	var apiKey = 'QM09p1Gqmv1n';
 	
-/*	$('.embedclass a').each(function(){
+	$('.embedclass a').each(function(){
 	        // Grab the URL from our link
 	        var url = encodeURIComponent( $(this).attr('href') ),
 	
@@ -253,6 +265,6 @@ $(document).ready(function(){
 				show: { ready: true },
 	        });
 	});
-	*/
+	
     
 }); 

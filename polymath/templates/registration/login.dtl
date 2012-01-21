@@ -11,7 +11,7 @@
 
 {% block body %}
 
- <div class="container_6" style="margin-top:30px;">
+ <div class="container_12" style="margin-top:30px;">
 
 
 	<div class="grid_6">
@@ -23,11 +23,11 @@
 	
 		<div class="logindiv">
 			
-			<div class="grid_3"  <!--style="border-right:1px dotted #ccc; height:250px; margin-top:25px;"-->
+			<div class="grid_6"  <!--style="border-right:1px dotted #ccc; height:250px; margin-top:25px;"-->
 				<a href="{% url socialauth_begin 'facebook' %}?next={{ request.get_full_path }}" class="fblogin"><span>Log in with Facebook</span></a>
 			</div>
 			
-	<!--		<div class="grid_3">
+	<!--		<div class="grid_6">
 				<h3 class="oldschool">Or go old-school</h3>
 				<form method="post" action="" class="loginform">
 				{% csrf_token %}

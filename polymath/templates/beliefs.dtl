@@ -14,9 +14,9 @@
 {% block body %}
 
 
-	<div class="container_6" style="margin-top:50px">
+	<div class="container_12" style="margin-top:50px">
 	
-		<div class="grid_1 aboutsidebar">
+		<div class="grid_2 aboutsidebar">
 					<img src="{{ STATIC_URL }}css/images/favicon.png" class="favicon"></img>
 			<ul>
 				<li><a href="/about/">About</a></li>
@@ -27,7 +27,7 @@
 		
 		</div>
 	
-		<div class="grid_5 about">
+		<div class="grid_10 about">
 			<h1 id="browsetitle">Our Beliefs</h1>
 			<p style="margin-top:5px">We have a few simple, deeply-held principles at Polymath that we hope to share.</p>
 			<hr>
