@@ -33,31 +33,71 @@
 	
 		<div class="grid_4 alpha">
 			<div class="grid_4 omega" id="coursepagemeta">
+			
+				  {% if profile_edit_form %}
+	                    <form id="profile_edit_form" method="post" enctype="multipart/form-data"> 
+	                        {% csrf_token %}
+			
 				<div class="grid_1">
-	                <img id="profile" src="{{ profile_owner.get_profile.fb_profile_pic }}"></img>
-					  {% if profile_edit_form %}
-		                    <form id="profile_edit_form" method="post" enctype="multipart/form-data"> 
-		                        {% csrf_token %} 
-		                        {{ profile_edit_form.as_p }}
-		                        <input type="submit" value="Save">
-		                    </form>
-		                {% endif %}
+					<img id="profile" src="{{ profile_owner.get_profile.fb_profile_thumb }}"></img>
+					<a id="editimageprofile"><center>{% if profile_owner.get_profile.fb_profile_thumb  %}Edit Image{% else %}Add Image{% endif %}</center></a>
 				</div>
+						
 		
 				<div class="grid_3 alpha omega">
 					<h2 id="coursetitle">{{ profile_owner.first_name }} {{ profile_owner.last_name }}
-						<p id="edit_profile">
-						{% if is_my_profile %}<a href="#">Edit</a>{% endif %}</p>
 					</h2>
+					
 				</div>
-				
 				
 				<div class="clear"></div>
 				
 				<div style="margin-left:10px; margin-right:10px;">	
 				
-					<hr id="titlehr">
-					<p>{{ user_blurb }}</p>
+				
+				<div id="pictureeditdiv">
+				
+					<div id="profilepic">
+						{{ profile_edit_form.profile_pic }}
+					</div>
+				
+					<div id="saveorcancel1">
+						<a href="#">Cancel</a>
+                    	<input type="submit" value="Save" id="editpicturesubmit">
+					</div>
+					
+				</div>
+				
+<!--				<input type="submit" value="Save" id="editpicturesubmit">  -->
+				
+				<hr id="titlehr">
+			
+	
+	
+							<p id="userblurb">
+							{% if user_blurb %}
+								{{ user_blurb }}
+							{% else %}
+								Blurb goes here.
+							{% endif %}
+								<a href="#" id="editprofile">Edit</a>
+							</p>
+						
+	
+							<div id="editblurb">
+								{{ profile_edit_form.blurb }}
+							</div>	
+								
+					
+<!--	                        {{ profile_edit_form.as_p }} -->
+						<div id="saveorcancel">
+							<a href="#">Cancel</a>
+	                        <input type="submit" value="Save" id="editprofilesubmit">
+						</div>
+	                    </form>
+	                {% endif %}
+				
+				
 					
 		
 				<ul class="socialmedia">
@@ -136,9 +176,9 @@
 			
 			<div class="lessonCreatedBlock empty">
 				<div class="blockbg empty">
-					<div class="grid_1" style="width:180px; margin-left:16px">
+					<div class="grid_1" style="width:160px;">
 					<p class="coursedescription">
-					{% if is_my_profile %}You aren't{% else %}{{ profile_owner.first_name }} isn't{% endif %} taking any courses yet!
+					{% if is_my_profile %}You aren't{% else %}{{ profile_owner.first_name }} isn't{% endif %} taking any courses yet!<br>
 					{% if is_my_profile %}Browse some courses and start learning.
 					</p>
 					<a href="/courses/browse" class="editcourse profilepage browse"><span>Browse Courses</span></a>{% endif %}
@@ -202,7 +242,7 @@
 	
 	<div class="lessonCreatedBlock">
 		<div class="blockbg empty">
-			<div class="grid_1" style="width:180px; margin-left:16px">
+			<div class="grid_1" style="width:160px;">
 			<p class="coursedescription">
 			{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} created any courses yet!
 			{% if is_my_profile %}Get started and share your knowledge.
