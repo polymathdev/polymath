@@ -131,7 +131,7 @@ class LessonCompletion(models.Model):
     date_completed = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return self.user_profile.user.first_name + " " + self.user_profile.user.last_name + " --> " + self.lesson.name
+        return self.user_profile.first_name + " " + self.user_profile.last_name + " --> " + self.lesson.name
 
 
 class LessonVote(models.Model):
@@ -141,4 +141,4 @@ class LessonVote(models.Model):
     date_voted = models.DateTimeField(auto_now_add=True) 
 
     def __unicode__(self):
-        return self.user_profile.user.first_name + " " + self.user_profile.user.last_name + " --> " + self.lesson.name 
+        return self.user_profile.first_name + " " + self.user_profile.last_name + " --> " + self.lesson.name 
