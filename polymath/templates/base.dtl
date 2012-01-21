@@ -46,10 +46,10 @@
 			
 				<div class="topbar">
 
-		     		<div class="container_6">	
+		     		<div class="container_12">	
 			
 					
-						<div class="grid_3">
+						<div class="grid_6">
 		      				<a class="brand" href="/"><img src='{{ STATIC_URL }}css/images/Polymath25px.png'></img></a>
 							<div class="learn">
 								<a href="/courses/browse" id="learnnav">Learn</a>
@@ -57,7 +57,7 @@
 							</div>
 						</div>
 				
-						<div class="grid_3">
+						<div class="grid_6">
 							<ul class="nav">
 								{% if user.is_authenticated %}
 								<li><a href="#" style="color:white" id="namenav"><img id="navbarimage" src="{{ user.get_profile.fb_profile_pic }}"></img>{{ user.first_name }} {{ user.last_name }} 
@@ -77,7 +77,7 @@
 				
 						<div class="clear"></div>
 				
-		   			</div> <!-- end container_6 -->
+		   			</div> <!-- end container_12 -->
 		
 		 		</div> <!-- end topbar -->
 		

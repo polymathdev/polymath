@@ -41,7 +41,7 @@
 
 	<div class="headingbox">
 	
-	<div class="container_6">	
+	<div class="container_12">	
 	
 <!--	{% for follower in requested_course.followers.all %}
 
@@ -60,61 +60,96 @@
 	-->
 
 
-	<div class="grid_6 categories">
-		<div class="grid_3 alpha">
+	<div class="grid_12 categories">
+		<div class="grid_6 alpha">
 		Learn > {{requested_course.category}} > {{requested_course.name}}
 		</div>
-		<div class="grid_3 omega">
+		<div class="grid_6 omega">
 			<div class="headingtags">
-			Tags:
+		<!--	Tags:
 			{% for tag in course_tags %}
 				<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a>
-			{% endfor %}
+			{% endfor %} -->
 			</div>
 		</div>
 	</div>
-	<div class="clear"></div>
-		
-		<div class="grid_4">
 	
-			<div class="grid_1 alpha">
+	<div class="clear"></div>
+	
+	
+	<div class="grid_4 alpha">
+	
+		
+		<div class="grid_4 omega" id="coursepagemeta">
+	
+			<div class="grid_1">
                 <img src="{% if requested_course.photo %}{{ requested_course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="courseLogo"></img>
 			</div>
 
-
-			<div class="grid_3 omega">
-				<h2 id="browsetitle">{{ requested_course.name }}
-				</h2>
-			
+			<div class="grid_3 alpha omega">
+				<h2 id="coursetitle">{{ requested_course.name }} </h2>
+	
 				<h4>
-				
+	
 				<a href="{% url view_profile uname=creator.username %}" id="name">{{ creator.first_name }} {{creator.last_name}}</a> 
-
-				<div id="followers">
-					<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon"></img>
-					{% if requested_course.followers.count == 1 %}
-						{{ requested_course.followers.count }} follower 
-					{% else %}
-						{{ requested_course.followers.count }} followers
-					{% endif %}
-				</div>
+				<br>
 				
-				
-				<span class="lessoncount">
-				{% if requested_course.lesson_set.count == 1 %}
-				1 lesson
-				{% else %}
-				 {{ requested_course.lesson_set.count }} lessons
-				{% endif %}
-				</span>
 				
 				</h4> 
+			</div>
 				
+			<div class="clear"></div>
+			
+			<div style="margin-left:10px; margin-right:10px;">	
 				<hr id="titlehr">	
 				
-				<p>{{ requested_course.description|truncate_chars:250 }}</p>
-									
-			<div class="socialmedia course">
+				
+					<div id="followers">
+						<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon"></img>
+						{% if requested_course.followers.count == 1 %}
+							{{ requested_course.followers.count }} follower 
+						{% else %}
+							{{ requested_course.followers.count }} followers
+						{% endif %}
+					</div>
+
+
+					<span class="lessoncount">
+						{% if requested_course.lesson_set.count == 1 %}
+						1 lesson
+						{% else %}
+					 	{{ requested_course.lesson_set.count }} lessons
+						{% endif %}
+					</span>
+				
+				<hr id="titlehr">
+				
+				<p id="coursepagedescription">{{ requested_course.description|truncate_chars:250 }}</p>
+			
+				<hr id="titlehr">
+					{% for tag in course_tags %}
+						<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a>
+					{% endfor %}
+				
+				{% if is_my_course %}
+	
+				{% else %}
+			
+			
+				
+				{% endif %}
+		
+			</div> <!-- end div with course description and content -->
+			
+			
+			
+	
+			</div> <!-- end coursepagemeta -->
+	
+	
+	
+			<div class="grid_4 omega" id="coursepagemeta" style="margin-top:20px;">
+				<div class="socialmedia course">
 						<a href="http://www.facebook.com/dialog/feed?
 						  app_id=349907371691622&
 						  link=http://www.whatispolymath.com&
@@ -133,59 +168,44 @@
 						<a href="https://twitter.com/share?url=http://whatispolymath&text=Check%20out%20this%20course%20I%20found%20on%20Polymath%20-%20'{{ requested_course.name}}'!" target="_blank" class="shareontw"><span>Share on Twitter</span></a>
 						{% endif %}
 				
-			</div>
+				</div> <!-- end socialmedia div -->
 				
-	
-			</div> <!-- end title content block -->
-	
-	
-		</div>   <!-- end title picture + content block-->
-
-
-		<div class="grid_2">
-		
-		
-			<div class="grid_1 alpha omega takecoursediv">
 				{% if is_my_course %}
 					<a href="{% url edit_course course_id=requested_course.id %}" class="editcourse"><span>Edit Course</span></a>
-				{% else %}
-					{% if is_following %}
-					{% else %}
-					<button type="button" class="takecourse"><span>Take Course</span></button>
-					{% endif %}
 				{% endif %}
+				
+				
 			</div>
+			
+			
+			
+			<div class="completed" style="margin-top:20px; margin-left:10px;">
+				<span>Completed:</span>
+
+				<span id="numbercompleted">
+				{% if completed_lessons %} {{ completed_lessons.count }}
+				{% else %}0{% endif %}
+				</span>
+
+				<span id="total">of {{ requested_course.lesson_set.count }}</span>
+
+				<div id="progressbar"></div>
+
+			</div> <!-- end completed block -->
+			
+			
+			
 		
-			<div class="clear"></div>
-		{% if is_following %}
-				<div class="grid_2 completed">
-					<span>Completed:</span>
-
-					<span id="numbercompleted">
-					{% if completed_lessons %} {{ completed_lessons.count }}
-					{% else %}0{% endif %}
-					</span>
-
-					<span id="total">of {{ requested_course.lesson_set.count }}</span>
-
-					<div id="progressbar"></div>
-
-				</div>
-		{% else %}
 		
-		{% endif %}
-		
-		</div>
+	</div>  <!-- end left side nav -->
 
-	</div> <!-- end container_6 -->
 	
-</div> <!-- end headingbox-->
+
 	
 		
-<div class="clear"></div>
 
 
-<div class="container_6">
+<div class="grid_8">
 
 {% if lessons %}
 
@@ -198,67 +218,59 @@
 	  {% else %}
 		  <div class="lessonBlock completedBlock">
 	  {% endif %}
-		  <div style="background:#eee; height:65px; width:100%; border-bottom:1px solid #e4e4dc;">
+	
+		  <div style="background:#d9d6ce; height:65px; width:100%; border-bottom:1px solid #e4e4dc;">
 		
-			<div class="grid_4 alpha omega">
-				<div class="grid_1" style="width:80px;">
+			<div class="grid_6 alpha omega">
+				<div class="grid_1">
 					<span id="numcircle"><span id="number">{{ forloop.counter }}</span></span>
 				</div>
-				<div class="grid_3">
-				<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
-				<h3><a class="lessonname" href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> <span class="courselessonlink">{{ lesson.lesson.link }}</span> </h3>
+				<div class="grid_4">
+					<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
+					<h3 id="courselessonname"><a href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> 			</h3>
+					<span class="courselessonlink">{{ lesson.lesson.link }}</span> 
+
 				</div>
 			</div> 
 		
 			
-			{% if is_following %}
 			
-				<div class="grid_1 alpha omega">
-				<div>
-	          <!--      <span class="vote_status">
-	                    {% if lesson.my_vote %}
-	                    (Vote = {{ lesson.my_vote }})
-	                    {% else %}
-	                    (Vote = neutral)
-	                    {% endif %}
-	                </span>
-	                <a href="#" class="vote_link" rel="1">Vote Up</a> / <a href="#" class="vote_link" rel="0">Vote Down</a> -->
+			<div class="grid_2 alpha omega">
+				
+				{% if lesson.completed %}
+				<div style="float:left">
+		          <!--      <span class="vote_status">
+		                    {% if lesson.vote %}
+		                    (Vote = {{ lesson.vote }})
+		                    {% else %}
+		                    (Vote = neutral)
+		                    {% endif %}
+		                </span>
+		                <a href="#" class="vote_link" rel="1">Vote Up</a> / <a href="#" class="vote_link" rel="0">Vote Down</a> -->
 
-					<ul class="thumbsbuttons">
-						{% if lesson.my_vote == "up" %}
-							<li id="thumbsup" class="vote_link done" rel="1" original-title="Like this?"></li>
-						{% else %}
-							<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
-						{% endif %}
+						<ul class="thumbsbuttons">
+							{% if lesson.vote == "up" %}
+								<li id="thumbsup" class="vote_link done" rel="1" original-title="Like this?"></li>
+							{% else %}
+								<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
+							{% endif %}
 
-						{% if lesson.my_vote == "down" %}
-							<li id="thumbsdown" class="vote_link done" rel="0" original-title="Didn't like this?"></li>
-						{% else %}
-							<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
-						{% endif %}
-					</ul>
-
-	            </div>
-
-				</div>
-			
-			{% else %}
-			
-			
-			{% endif %}
-			
-			
-			
-				<div class="grid_1 omega" style="margin-left:185px;">
+							{% if lesson.vote == "down" %}
+								<li id="thumbsdown" class="vote_link done" rel="0" original-title="Didn't like this?"></li>
+							{% else %}
+								<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
+							{% endif %}
+						</ul>
+					</div>
+				{% endif %}
+				
 		
 				{% if not lesson.completed %}
-					<div class="checkb" original-title="Mark as done!"></div>
+					<div class="checkb" original-title="Mark this as done"></div>
             	{% else %}
                 	<div class="checkb done" original-title="You've done this!"></div>
             	{% endif %}     
 
-				</center>
-            	{# up/down vote front-end stuff #}
 
 				</div>
 			
@@ -267,11 +279,11 @@
 			
 			<div class="clear"></div>
 			
-			<div class="grid_3 alpha" style="margin-top:16px; margin-left:105px;">
+			<div class="grid_3 prefix_1" style="margin-top:16px; margin-left:10px;">
 				<p class="expanded">{{ lesson.lesson.description|linebreaks }}<a href="{{ lesson.lesson.link }}"></a></p>
 			</div>
 			
-				<div class="embedclass grid_2 omega">
+				<div class="embedclass grid_2 omega" style="width:200px;">
 					<a href="{{ lesson.lesson.link }}"></a>
 				</div>
 			
@@ -290,20 +302,22 @@
 		</div>
 	{% endif %}
 	
-		<div style="display:none;">
-			<div id="logindivnewcourse">
-			<h2>Login</h2>
-			<p class="red">You need to be logged in to do that!</p>
-			<p>Sign up or log in by connecting with Facebook. It's easy and takes just one click!</p>
-			<a href="{% url socialauth_begin 'facebook' %}?next={{ request.get_full_path }}" class="fblogin" style:"margin-top:45px"><span>Connect with Facebook</span></a>
-			<h4>Don't worry, we'll never post on your wall unless you tell us to.</h4>
-			</div>
-		</div>
+	
+	
+<div style="display:none;">
+	<div id="logindivnewcourse">
+		<h2>Login</h2>
+		<p class="red">You need to be logged in to do that!</p>
+		<p>Sign up or log in by connecting with Facebook. It's easy and takes just one click!</p>
+		<a href="{% url socialauth_begin 'facebook' %}?next={{ request.get_full_path }}" class="fblogin" style:"margin-top:45px"><span>Connect with Facebook</span></a>
+		<h4>Don't worry, we'll never post on your wall unless you tell us to.</h4>
+	</div>
+</div>
 		
 
 {% endblock %}
 
 
 {% block footer %}
-		<div id="footer" style="margin-top:205px"><div class="container_6"></div></div>
+<!--		<div id="footer" style="margin-top:205px"><div class="container_12"></div></div> -->
 {% endblock %}

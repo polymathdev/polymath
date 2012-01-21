@@ -14,10 +14,15 @@
 
 {% block body %}
 
+{% load truncate_filters %}
+
 <body id="learn">
 
 
-<div class="container_6" style="margin-top:30px;">
+<div class="container_12" style="margin-top:30px;">
+
+
+
 
 	<div class="grid_4 omega" style="margin-bottom:18px">
 		<span id="browsetitle">Browse Courses</span><br>
@@ -32,16 +37,17 @@
 	
 	<div class="clear"></div>
 	<hr style="border-top:1px dotted #e4e4dc; margin-bottom:20px; margin-top:0px; height:1px; border-bottom:1px dotted #e4e4dc; margin-left:7px; margin-right:7px; border-left:none; border-right:none;">
+	
 
 
-	<div class="grid_1 omega" style="height:900px">
+<div class="grid_2">
+
+	<div class="grid_2 alpha" style="height:900px">
 		<ul class="aboutsidebar browse">
 		<!--	<li id="first">Categories</li> -->
 			<li><a href="">Featured</a></li>
 			<li><a href="">Popular</a></li>
 			<li><a href="">Newly Added</a></li>
-
-		<!--	<hr id="browsehr">	-->
 			
 			{% if tags_by_cat %}
 			    {% for cat, tags in tags_by_cat.items %}
@@ -62,8 +68,11 @@
 			
 		</ul>
 	</div>
-	
 
+
+</div>
+	
+<!--
 {% if course_list|length == 0 %}
 	<div class="courseBlock grid_5">
 	<h3 style="padding:15px 10px 15px; font-weight:normal; color:#656565;">
@@ -72,13 +81,44 @@
 	</div>
 	
 {% endif %}
+-->
 
 
 
-<div class="coursesBlock">
+
+
+
+<div class="grid_10">
 
 
 {% for course in course_list %}
+
+	<div class="lessonCreatedBlock browse">
+		<div style="height:180px; width:220px; background:#eee; padding-top:16px; margin-top:10px; margin-left:10px">
+		
+			<a href="{% url view_course course_id=course.id course_slug=course.slug %}" class="coursename">{{ course.name}}</a>			
+			<h4 style="margin-left:10px; font-size:14px; margin-top:5px;">
+			By <a href="{% url view_profile uname=course.creator.user.username %}">{{ course.creator.user.first_name }} {{ course.creator.user.last_name }}</a>
+			</h4>
+			<div class="grid_1">
+				<img src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" style="width:60px; height:60px; margin-top:10px;"></img>
+				
+			</div>
+			
+			<div class="grid_2" style="width:120px;">
+				<p class="coursedescription">{{ course.description|truncate_chars:125 }}</p>
+			</div>
+		
+			<div class="clear"></div>
+		
+		</div>
+		
+		<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.followers.count }}
+			<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon" style="margin-right:5px; height:20px; width:auto;"></img>  {{ course.lesson_set.count }} </p>
+
+	</div> <!-- end lesson created block -->
+	
+	<!--
 		<div class="courseBlock">
 			<div class="grid_1 alpha">
 				<img class="courseimage" src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" ></img>
@@ -117,20 +157,19 @@
 				</div> 
 
 			</div>
+
+	
 			
-			
-		<!-- 
-			<div class="grid_1 omega">
-					<a href="#" class="like browselike"><span>102</a></span>
-			</div> -->
-			
-		</div> <!-- end course block -->
+		</div>
+		
+		-->
 		
 {% endfor %}
 
 </div> <!-- end coursesblock -->
 
-</div> <!-- end container6 -->
+
+</div> <!-- end container_12-->
 
 
 

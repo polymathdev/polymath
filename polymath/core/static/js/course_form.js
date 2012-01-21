@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	
 	
-//	$('#id_tags').placeHolder({
-//		"text":"Enter tags, separated by a comma"
+//	$('#id_name').placeHolder({
+//		"text":"Course Name"
 //	});
 	
  	$("#id_category option:eq(0)").text("Course Category");
@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 
 	$('#id_tags').tagsInput({
-		'width':'290px',
+		'width':'280px',
 		'height':'75px',
 		'defaultText':'Add a tag',
 	});

@@ -17,13 +17,13 @@
 
 {% block body %}
 	<div class="homeheader" style="padding-top:40px;">
-		<div class="container_6">
+		<div class="container_12">
 			
-			<div class="grid_3 alpha" id="homelogo">
+			<div class="grid_5 alpha" id="homelogo">
 				<img src="{{ STATIC_URL }}css/images/logo.png"></img>
 			</div>
 			
-			<div class="grid_3 omega" id="ticker">
+			<div class="grid_7 omega" id="ticker">
 					<h1>Learn</h1>
 						<ul>
 							<li>web design.</li>
@@ -34,7 +34,7 @@
 			
 			<div class="clear"></div>
 		
-			<div class="grid_6 homecopy">
+			<div class="grid_12 homecopy">
 					<h3><center>An <b>easy</b>, <b>fun</b>, and <b>social</b> way to learn new skills and knowledge.<br> Learn from the web's best content, organized by experts, or share your own expertise.</h3>
 			</div>
 		
@@ -42,7 +42,7 @@
 		
 		<div class="clear"></div>
 		
-		</div> <!-- end container_6 -->
+		</div> <!-- end container_12 -->
 		
 	</div> <!-- end homeheader -->
 
@@ -51,14 +51,14 @@
 
 
 <div class="fbsignin">
-	<div class="container_6">
-		<div class="grid_2">
-				<h3 class="fblogincopy"><b>Join Polymath now & start learning!</h3></b>
+	<div class="container_12">
+		<div class="grid_4">
+				<h3 class="fblogincopy"><!--<b>Join Polymath now & start learning!</h3>--></b>
 		</div>
-		<div class="grid_2">
-			<a href="{% url socialauth_begin 'facebook' %}" class="fbloginbutton"><span>Connect with Facebook</span></a>
+		<div class="grid_4">
+			<a href="{% url socialauth_begin 'facebook' %}" class="fbloginbutton"><span>Sign in with Facebook</span></a>
 		</div>
-		<div class="grid_2">
+		<div class="grid_4">
 			<h3 class="emailcopy"><a href="/about/" id="learnmorelink">Learn More &nbsp;&nbsp;></a></h3>
 		</div>
 	</div> 
@@ -71,7 +71,7 @@
 
 
 <div class="featured">
-	<div class="container_6">
+	<div class="container_12">
 	
 		<div class="grid_6">
 			<h3 id="title">Featured courses</h3>
@@ -79,7 +79,7 @@
 		
 		<div class="clear"></div>
 		
-		<div class="grid_2">
+		<div class="grid_4">
 
 			<div class="featuredblock">
 				<img src="images/avatars/Prof11.jpg"></img>
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 		
-		<div class="grid_2">
+		<div class="grid_4">
 
 			<div class="featuredblock">
 				<img src="images/avatars/Prof11.jpg"></img>
@@ -105,7 +105,7 @@
 			</div>
 		</div>
 		
-		<div class="grid_2">
+		<div class="grid_4">
 
 			<div class="featuredblock">
 				<img src="images/avatars/Prof11.jpg"></img>
@@ -118,6 +118,7 @@
 			</div>
 			
 			<div class="clear"></div>
+			
 			<div style="float:right; margin-top:25px;">
 				<a href="/courses/browse/" id="learnmorelink">Browse more courses&nbsp;&nbsp;></a>
 			</div>

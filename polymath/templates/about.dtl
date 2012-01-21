@@ -14,9 +14,9 @@
 {% block body %}
 
 
-	<div class="container_6" style="margin-top:50px">
+	<div class="container_12" style="margin-top:50px">
 	
-		<div class="grid_1 aboutsidebar">
+		<div class="grid_2 aboutsidebar">
 			<img src="{{ STATIC_URL }}css/images/favicon.png" class="favicon"></img>
 		
 			<ul>
@@ -28,7 +28,7 @@
 		
 		</div>
 	
-		<div class="grid_5 about">
+		<div class="grid_10 about">
 			<h1 id="browsetitle">What is Polymath?</h1>
 			<hr>
 			<h2>Polymath is an <b>easy</b>, <b>fun</b> way to <b>learn anything</b>.</h2>

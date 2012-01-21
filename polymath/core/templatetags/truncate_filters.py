@@ -13,4 +13,4 @@ def truncate_chars(value, max_length):
         if rightmost_space != -1:
             truncd_val = truncd_val[:rightmost_space]
  
-    return truncd_val + "..."
+    return truncd_val + " ..."
