@@ -34,13 +34,13 @@
 		<div class="grid_4 alpha">
 			<div class="grid_4 omega" id="coursepagemeta">
 			
-				  {% if profile_edit_form %}
-	                    <form id="profile_edit_form" method="post" enctype="multipart/form-data"> 
-	                        {% csrf_token %}
+
 			
 				<div class="grid_1">
-					<img id="profile" src="{{ profile_owner.get_profile.get_pic_url }}"></img>
-					<a id="editimageprofile"><center>{% if profile_owner.get_profile.fb_profile_thumb  %}Edit Image{% else %}Add Image{% endif %}</center></a>
+					<img id="profile" src="{% if profile_owner.get_profile.get_pic_url  %}{{ profile_owner.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
+				
+				{% if is_my_profile %}
+					<a id="editimageprofile"><center>{% if profile_owner.get_profile.fb_profile_thumb  %}Edit Image{% else %}Add Image{% endif %}</center></a> {% endif %}
 				</div>
 						
 		
@@ -54,6 +54,9 @@
 				
 				<div style="margin-left:10px; margin-right:10px;">	
 				
+				  {% if profile_edit_form %}
+	                    <form id="profile_edit_form" method="post" enctype="multipart/form-data"> 
+	                        {% csrf_token %}
 				
 				<div id="pictureeditdiv">
 				
@@ -80,7 +83,7 @@
 							{% else %}
 								Blurb goes here.
 							{% endif %}
-								<a href="#" id="editprofile">Edit</a>
+							{% if is_my_profile %}	<a href="#" id="editprofile">Edit</a> {% endif %}
 							</p>
 						
 	

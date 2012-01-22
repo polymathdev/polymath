@@ -11,50 +11,104 @@ $(document).ready(function(){
 		}
 	});*/
 	
+	var remainderLessons = lessons - 2;
+	
+	if (remainderLessons <= 0){
+		$('#loginmore').hide();
+		$('#loginmore').parent().hide();
+		
+	} else if (remainderLessons == 1){
+		$('#loginmore').text('Log in to see ' + remainderLessons + ' more lesson');
+	} else {
+		$('#loginmore').text('Log in to see ' + remainderLessons + ' more lessons');
+	}
+
 	
 	console.log('completed lessons: %s and the user is %s', completed_lessons, isLoggedIn);
 	
-	$('.vote_link').click(function() {
-		
-		if (isLoggedIn){
+		$('.vote_link').click(function() {
+
+			if (isLoggedIn){
+
+		//		if( $(this).closest('.lessonBlock').find('.checkb').hasClass('.done') ){
+
+				 	lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
+			        is_up = $(this).attr('rel');
+			        vote_status_span = $(this).closest('.lessonBlock').find('.vote_status');
+
+
+					var donebutton = $(this);
+					var otherbutton = $(this).siblings(".done");
+					var currentscore = parseInt(donebutton.closest('.lessonBlock').find('.votescore').text());
+					var newscore;
+					
+					if (donebutton.is(".done")){
+
+					} else {
+					
+
+			            $.post(
+			                from_server['vote_lesson_url'],
+			                {
+			                lesson_id: lesson_id,
+			                is_up: is_up
+			                },
+			                function(response) {
+			                if( response['vote_successful'] ) {
+								donebutton.addClass("done");
+								otherbutton.removeClass("done");
+							//	alert('got it!');
+			                    vote_status_span.html('Vote = ' + response['vote_result']);
+								if (is_up == 1){
+									// increment the vote count
+									if (currentscore == -1 ){
+										newscore = 1;
+									} else {
+										newscore = currentscore + 1;
+									}
+									donebutton.closest('.lessonBlock').find('.votescore').text( newscore );
+									console.log('the value is %s', newscore);
+									donebutton.attr('original-title', 'You liked this');
+									otherbutton.attr('original-title', 'Didn\'t like this?');
+								} else {
+									// decrement the vote count
+									if (currentscore == 1 ){
+										newscore = -1;
+									} else {
+										newscore = currentscore - 1;
+									}
+									donebutton.closest('.lessonBlock').find('.votescore').text( newscore );
+									console.log('the value is %s', newscore);
+									donebutton.attr('original-title', 'You didn\'t like this');
+									otherbutton.attr('original-title', 'Liked this?');
+								}
+			               }
+			            }
+			       	);
+			}
+	//			} else {
+	//				alert("Complete the lesson first!");
+	//			}
+
+			} else {
+				$.colorbox({
+					width:"500px",
+					height:"350px",
+					inline: true,
+					href:"#logindivnewcourse",
+					opacity:'0.6',
+					top:"10%",
+					returnFocus:false,
+				});
+			}
 			
-	//		if( $(this).closest('.lessonBlock').hasClass('.done') ){
-			
-			 lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
-		        is_up = $(this).attr('rel');
-		        vote_status_span = $(this).closest('.lessonBlock').find('.vote_status');
-
-				var donebutton = $(this);
-				var otherbutton = $(this).siblings(".done");
-
-		            $.post(
-		                from_server['vote_lesson_url'],
-		                {
-		                lesson_id: lesson_id,
-		                is_up: is_up
-		                },
-		                function(response) {
-		                if( response['vote_successful'] ) {
-							donebutton.addClass("done");
-							otherbutton.removeClass("done");
-							alert('got it!');
-		                    vote_status_span.html('Vote = ' + response['vote_result']);
-		               }
-		            }
-		       	);
-//			} else {
-//				alert("Complete the lesson first!");
-//			}
 		
-		} else {
-			alert("You have to log in first, fool!");
-		}
-		
-		
-       
 
 
-    });
+
+
+	    });
+	
         
 	// set the current value of the progress bar
 	$('#progressbar').progressbar({
@@ -103,7 +157,15 @@ $(document).ready(function(){
 	        		);
 	
 				} else {
-					alert("You gotta log in, fool!");
+						$.colorbox({
+						width:"500px",
+						height:"350px",
+						inline: true,
+						href:"#logindivnewcourse",
+						opacity:'0.6',
+						top:"10%",
+						returnFocus:false,
+					});
 				}
 
 			} // endif
@@ -184,6 +246,8 @@ $(document).ready(function(){
 	$('.lessonname').tipsy({fade: false, gravity: 'w', opacity:0.8, offset:10});
 	
 	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.8, offset:0});
+	
+		$('.completed').tipsy({fade: false, gravity: 's', opacity:0.8});
 
 
 
@@ -281,5 +345,103 @@ $(document).ready(function(){
 	
 	
 	
+	$('#seemorecourses').colorbox({
+		width:"500px",
+		height:"350px",
+		inline: true,
+		href:"#logindivnewcourse",
+		opacity:'0.6',
+		top:"10%",
+		returnFocus:false,
+	});
+	
+	
     
 }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+	$('.vote_link').click(function() {
+		
+		if (isLoggedIn){
+			
+	//		if( $(this).closest('.lessonBlock').find('.checkb').hasClass('.done') ){
+			
+			 	lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
+		        is_up = $(this).attr('rel');
+		        vote_status_span = $(this).closest('.lessonBlock').find('.vote_status');
+
+
+				var donebutton = $(this);
+				var otherbutton = $(this).siblings(".done");
+				var currentscore = parseInt(donebutton.closest('.lessonBlock').find('.votescore').text());
+				var newscore;
+				
+				
+		            $.post(
+		                from_server['vote_lesson_url'],
+		                {
+		                lesson_id: lesson_id,
+		                is_up: is_up
+		                },
+		                function(response) {
+		                if( response['vote_successful'] ) {
+							donebutton.addClass("done");
+							otherbutton.removeClass("done");
+						//	alert('got it!');
+		                    vote_status_span.html('Vote = ' + response['vote_result']);
+							if (is_up == 1){
+								// increment the vote count
+								if (currentscore == -1 ){
+									newscore = 1;
+								} else {
+									newscore = currentscore + 1;
+								}
+								donebutton.closest('.lessonBlock').find('.votescore').text( newscore );
+								console.log('the value is %s', newscore);
+								donebutton.attr('original-title', 'You liked this');
+								otherbutton.attr('original-title', 'Didn\'t like this?');
+							} else {
+								// decrement the vote count
+								if (currentscore == 1 ){
+									newscore = -1;
+								} else {
+									newscore = currentscore - 1;
+								}
+								donebutton.closest('.lessonBlock').find('.votescore').text( newscore );
+								console.log('the value is %s', newscore);
+								donebutton.attr('original-title', 'You didn\'t like this');
+								otherbutton.attr('original-title', 'Liked this?');
+							}
+		               }
+		            }
+		       	);
+//			} else {
+//				alert("Complete the lesson first!");
+//			}
+		
+		} else {
+			alert("You have to log in first, fool!");
+		}
+		
+		
+       
+
+
+    });
+
+
+*/

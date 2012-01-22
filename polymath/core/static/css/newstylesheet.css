@@ -9,9 +9,9 @@ body {
   	height:100%;
   	background-color:#fefef6;
   	font-family:'PT Sans Caption', sans-serif;
-	background-image:url(images/bg_test1.png);
+	background-image:url(images/bg1.png); 
 	background-opacity:0.1;  
-/*	background-image:url(images/background_texture.jpg);  */
+/*	background-image:url(images/background_texture.jpg);  bg_test1.png*/
   	background-repeat: repeat; 
 }
 
@@ -1555,7 +1555,9 @@ a.label:hover{
 
 
 #coursepagemeta{
-	background:#eeefe6; padding-top:10px; padding-bottom:15px; border-radius:4px; border:1px solid #d1d4c5;
+	background:#eeefe6; 
+	 padding-top:10px; padding-bottom:15px; border-radius:4px; border:1px solid #d1d4c5;
+	box-shadow:0px 1px 1px rgba(0,0,0,0.1);
 }
 
 .headingtags{
@@ -1791,19 +1793,23 @@ p{
 	
 	position:relative;
 
+
 }
 
-/*
 
+/*
 .lessonBlock:before {
    content:"";
    position:absolute;
    top:0;
    right:0;
-   border-width:20px;
+   border-width:0 16px 16px 0;
    border-style:solid;
-   border-color:#c8c5bd #d9d6ce;
-	z-index:10;
+   border-color:#c8c5bd #e5e3dc;
+   -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+   -moz-box-shadow:0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+   box-shadow:0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+
 } */
 
 
@@ -4170,6 +4176,9 @@ a.remove_lesson_lnk:hover{
 	margin-left:70px;
 }
 
+#logindivnewcourse{
+}
+
 #logindivnewcourse h2{
 	font-size:22px;
 	text-shadow:0px -1px 1px white;
@@ -4209,7 +4218,7 @@ a.remove_lesson_lnk:hover{
 
 
 .red{
-	padding-bottom:10px!important;
+	padding-bottom:0px!important;
 	font-weight:bold!important;
 	color:red!important;
 }
@@ -4686,7 +4695,7 @@ a.remove_lesson_lnk:hover{
 #editprofilesubmit{
 	float:right;
 	margin-top:-20px;
-	margin-left:20px;
+	margin-left:10px;
 	background:url(images/pixel_pattern.png) left top, #98DD01; 
 	background:url(images/pixel_pattern.png) left top, -moz-linear-gradient(top, #98DD01 0%, #7FB024 100%);	
 	background:url(images/pixel_pattern.png) left top,  -webkit-gradient(linear, left top, left bottom, color-stop(0%,#98DD01), color-stop(100%,#7FB024));
