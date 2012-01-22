@@ -176,6 +176,9 @@ def view_course(request, course_id, course_slug=None):
         'completed_lessons': completed_lesson_list,
         'creator': creator,
         'is_my_course': (creator == request.user),
+        'next' : reverse('view_course', kwargs={'course_id':course_id,'course_slug':course_slug}),
+        'delete_comment_action' : reverse('simple_comments_delete'),
+        'test_lesson' : Lesson.objects.get(pk=18),
         'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson')})
     },
     context_instance=RequestContext(request))
@@ -184,7 +187,7 @@ def view_course(request, course_id, course_slug=None):
 @login_required
 def add_course(request):
     EditLessonFormSet = inlineformset_factory(Course, Lesson, can_delete=False, form=LessonForm, formset=OrderedLessonFormSet, extra=1) 
- 
+                                         
     if request.method == 'POST':
         course_form = CourseForm(request.POST, request.FILES)
         lesson_fs = EditLessonFormSet(request.POST)     

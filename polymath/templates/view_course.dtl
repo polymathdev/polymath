@@ -124,8 +124,8 @@
 						  description={{ requested_course.description }}&
 						  redirect_uri=http://whatispolymath.com" target="_blank" class="shareonfb"><span>Share on Facebook</span></a>
 						
-						
-						
+
+
 						
 						{% if is_my_course %}
 						<a href="https://twitter.com/share?url=http://whatispolymath&text=Check%20out%20this%20course%20I%20created%20on%20Polymath%20-%20'{{ requested_course.name}}'!" target="_blank" class="shareontw"><span>Share on Twitter</span></a>						
@@ -186,9 +186,28 @@
 
 
 <div class="container_6">
+    {% comment %}  
+        {% load comments %}  
+        {% get_comment_list for requested_course as comment_list %}
+        {% for comment in comment_list %}
+            <p>Posted by: {{ comment.userinfo.name }} on {{ comment.submit_date }}</p>
+            <p>Comment: {{ comment.comment }}</p>
+            {% if comment.user == user %}
+                <form action="{{ delete_comment_action }}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="comment_id" value="{{ comment.pk }}">
+                    <input type="hidden" name="next" value="{{ next }}">
+                    <input type="submit" value="Delete">
+                </form>
+            {% endif %}
+        {% endfor %}
 
+    {% if user.is_authenticated %} 
+        {% render_comment_form for requested_course %}
+    {% endif %}
+    {% endcomment %}
 {% if lessons %}
-
+    {% load comments %}  
 	<div class="lessonsBlock"> <!-- where each lesson block fits in-->
 	
 	{% for lesson in lessons %}
@@ -269,18 +288,40 @@
 			
 			<div class="grid_3 alpha" style="margin-top:16px; margin-left:105px;">
 				<p class="expanded">{{ lesson.lesson.description|linebreaks }}<a href="{{ lesson.lesson.link }}"></a></p>
+                {# COMMENTS #}
+                <div>
+                    {% get_comment_list for lesson.lesson as comment_list %}
+                    {% for comment in comment_list %}
+                        <div>
+                            <p>Posted by: {{ comment.userinfo.name }} on {{ comment.submit_date }}</p>
+                            <p>Comment: {{ comment.comment }}</p>
+                            {% if comment.user == user %}
+                                <form action="{{ delete_comment_action }}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="comment_id" value="{{ comment.pk }}">
+                                    <input type="hidden" name="next" value="{{ next }}">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <div>
+                        {% if user.is_authenticated %} 
+                            {% render_comment_form for lesson.lesson %}
+                        {% endif %}
+                    </div>
+                </div>
 			</div>
 			
 				<div class="embedclass grid_2 omega">
 					<a href="{{ lesson.lesson.link }}"></a>
 				</div>
-			
 		</div>
-
+        
 		
 		{% endfor %}
 		
-		
+
 </div> <!-- end lessons block -->					
 
 	
