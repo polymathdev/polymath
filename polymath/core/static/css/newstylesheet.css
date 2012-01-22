@@ -1755,7 +1755,7 @@ p{
 	float:left;
 	font-weight:bold;
 	font-size:12px;
-	padding-bottom:20px;
+	padding-bottom:10px;
 	margin-left:10px;
 	z-index:3;
 	
@@ -1788,8 +1788,23 @@ p{
 	margin-bottom:15px; 
 	border-radius:6px;
 	border-top:1px solid #d1d4c5;
+	
+	position:relative;
 
 }
+
+/*
+
+.lessonBlock:before {
+   content:"";
+   position:absolute;
+   top:0;
+   right:0;
+   border-width:20px;
+   border-style:solid;
+   border-color:#c8c5bd #d9d6ce;
+	z-index:10;
+} */
 
 
 .emptylessondiv{
@@ -4430,7 +4445,32 @@ a.remove_lesson_lnk:hover{
 
 /**************************/
 
+.votescore{
+	font-weight:bold!important;
+	color:#667b4e!important;
+	font-size:16px!important;
+	background:#fefef6;
+	margin-left:5px!important;
+	margin-top:0px!important;
+	padding-top:12px;
+	padding-left:12px;
+	display:block;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	background: url(images/vote_count_bg.png) no-repeat 0 0;
+	width:44px;
+	height:40px;
+}
+
+
+.votescore:hover{
+	text-decoration:none;
+	cursor: default;
+}
+
 .thumbsbuttons{
+	display:inline;
 	margin-top:13px;
 	margin-left:0px;
 }
@@ -4454,6 +4494,7 @@ a.remove_lesson_lnk:hover{
 	text-indent: -9999px;
 	border-radius:4px;
 	border: solid 1px #c0bfb9;
+	float:left;
 }
 
 #thumbsup:hover {

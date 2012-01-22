@@ -98,7 +98,7 @@
 		
 			<a href="{% url view_course course_id=course.id course_slug=course.slug %}" class="coursename">{{ course.name}}</a>			
 			<h4 style="margin-left:10px; font-size:14px; margin-top:5px;">
-			By <a href="{% url view_profile uname=course.creator.user.username %}">{{ course.creator.user.first_name }} {{ course.creator.user.last_name }}</a>
+			By <a href="{% url view_profile uname=course.creator.username %}">{{ course.creator.first_name }} {{ course.creator.last_name }}</a>
 			</h4>
 			<div class="grid_1">
 				<img src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" style="width:60px; height:60px; margin-top:10px;"></img>

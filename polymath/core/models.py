@@ -17,7 +17,7 @@ class UserProfile(models.Model):
         if self.profile_pic:
             return self.profile_pic.url
         else:
-            return self.fb_profile_pic
+            return self.fb_profile_thumb
 
     def __unicode__(self):
         return self.user.username

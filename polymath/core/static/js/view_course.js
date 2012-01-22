@@ -18,7 +18,7 @@ $(document).ready(function(){
 		
 		if (isLoggedIn){
 			
-			if( $(this).closest('.lessonBlock').hasClass('.done') ){
+	//		if( $(this).closest('.lessonBlock').hasClass('.done') ){
 			
 			 lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
 		        is_up = $(this).attr('rel');
@@ -42,9 +42,9 @@ $(document).ready(function(){
 		               }
 		            }
 		       	);
-			} else {
-				alert("Complete the lesson first!");
-			}
+//			} else {
+//				alert("Complete the lesson first!");
+//			}
 		
 		} else {
 			alert("You have to log in first, fool!");
@@ -177,11 +177,13 @@ $(document).ready(function(){
 
 	$('.checkb.done').tipsy({fade: false, gravity: 'sw', opacity:0.8});
 
-	$('.takecourse').tipsy({fade: false, gravity: 's', opacity:0.6});
-
-	$('.lessonname').tipsy({fade: false, gravity: 'w', opacity:0.6, offset:10});
+	$('.takecourse').tipsy({fade: false, gravity: 's', opacity:0.8});
 	
-	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.6, offset:0});
+	$('.votescore').tipsy({fade: false, gravity: 'se', opacity:0.8});
+
+	$('.lessonname').tipsy({fade: false, gravity: 'w', opacity:0.8, offset:10});
+	
+	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.8, offset:0});
 
 
 
@@ -265,6 +267,19 @@ $(document).ready(function(){
 				show: { ready: true },
 	        });
 	});
+	
+	
+	
+	
+	
+	
+	$('.votescore').click(function(){
+	//	$(this).hide();
+		$(this).closest('.lessonBlock').find('.thumbsbuttons').show();
+	});
+	
+	
+	
 	
     
 }); 
