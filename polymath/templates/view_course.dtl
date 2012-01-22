@@ -115,7 +115,7 @@
 				
 				<hr id="titlehr">
 				
-				<p id="coursepagedescription">{{ requested_course.description|truncate_chars:250 }}</p>
+				<p id="coursepagedescription">{{ requested_course.description }}</p>
 			
 				<hr id="titlehr" style="margin-bottom:10px;">
 				
