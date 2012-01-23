@@ -144,8 +144,8 @@
 						  description={{ requested_course.description }}&
 						  redirect_uri=http://whatispolymath.com" target="_blank" class="shareonfb"><span>Share on Facebook</span></a>
 						
-						
-						
+
+
 						
 				{% if is_my_course %}
 					<a href="https://twitter.com/share?url=http://whatispolymath&text=Check%20out%20this%20course%20I%20created%20on%20Polymath%20-%20'{{ requested_course.name}}'!" target="_blank" class="shareontw"><span>Share on Twitter</span></a>						
@@ -200,11 +200,15 @@
 		
 
 
+
 <div class="grid_8">
 
 	{% if lessons %}
 	
 		<div class="lessonsBlock"> <!-- where each lesson block fits in-->
+
+
+    {% load comments %}  
 	
 	
 		{% if user.is_authenticated %}
@@ -349,13 +353,38 @@
 			
 				<div class="clear"></div>
 			
-				<div class="grid_3 prefix_1" style="margin-top:16px; margin-left:10px;">
-					<p class="expanded">{{ lesson.lesson.description|linebreaks }}<a href="{{ lesson.lesson.link }}"></a></p>
-				</div>
+
+			<div class="grid_3 prefix_1" style="margin-top:16px; margin-left:10px;">
+				<p class="expanded">{{ lesson.lesson.description|linebreaks }}<a href="{{ lesson.lesson.link }}"></a></p>
+                {# COMMENTS #}
+                <div>
+                    {% get_comment_list for lesson.lesson as comment_list %}
+                    {% for comment in comment_list %}
+                        <div>
+                            <p>Posted by: {{ comment.userinfo.name }} on {{ comment.submit_date }}</p>
+                            <p>Comment: {{ comment.comment }}</p>
+                            {% if comment.user == user %}
+                                <form action="{{ delete_comment_action }}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="comment_id" value="{{ comment.pk }}">
+                                    <input type="hidden" name="next" value="{{ next }}">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <div>
+                        {% if user.is_authenticated %} 
+                            {% render_comment_form for lesson.lesson %}
+                        {% endif %}
+                    </div>
+                </div>
+			</div>
 			
 				<div class="embedclass grid_2 omega" style="width:200px;">
 					<a href="{{ lesson.lesson.link }}"></a>
 				</div>
+
 				
 				<div class="clear"></div>
 		
@@ -402,10 +431,16 @@
 		
 					
 	{% else %} <!-- if no lessons -->
+
+		
+
+
 	
 		<div class="lessonBlock emptyblock">
 			<h3 id="empty">Uh oh, this course is empty! {% if is_my_course %}<a href="{% url edit_course course_id=requested_course.id %}"><b>Add some lessons and share your expertise.</b></a>{% endif %} </h3>
 		</div>
+		
+		</div> <!-- end lessons block -->					
 		
 	{% endif %}
 	

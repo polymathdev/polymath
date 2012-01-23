@@ -28,8 +28,10 @@ LOGIN_REDIRECT_URL = '/myprofile/'
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
 AUTH_PROFILE_MODULE = 'core.UserProfile'
-TAGGIT_FORCE_LOWERCASE = True
+TAGGIT_FORCE_LOWERCASE = True # was this only in that other github fork??
 INTERNAL_IPS = '127.0.0.1'
+
+COMMENTS_APP = 'simple_comments'
 
 # this is just for the staticfiles app, so all it does is say where files should be collected to when you run collectstatic (i.e. sync everything to S3)
 # it has nothing to do with where uploaded files are saved, that is the default file system which is overridden in settings_prod.py to point to S3
@@ -138,6 +140,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'django.contrib.humanize',
+    'django.contrib.comments',
+    'simple_comments',
     'core',
     'south',
     'taggit',

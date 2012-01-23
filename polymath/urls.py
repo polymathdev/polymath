@@ -29,6 +29,9 @@ urlpatterns = patterns('',
     url(r'^logout/$','django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
     url(r'', include('social_auth.urls')),
 
+    # auth testing
+    (r'^logintest/$', 'django.contrib.auth.views.login', {'template_name':'registration/logintest.dtl'}),
+
     # view profile
     url(r'^myprofile/$','core.views.view_myprofile', name='view_my_profile'),
     url(r'^profile/(?P<uname>[a-z0-9]+)/$','core.views.view_profile', name='view_profile'), 
@@ -53,7 +56,10 @@ urlpatterns = patterns('',
     url(r'^votelesson/$', 'core.views.vote_lesson', name='vote_lesson'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
-     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+     # comments
+    (r'^comments/', include('simple_comments.urls')),
 
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),
