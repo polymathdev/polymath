@@ -1,15 +1,12 @@
 $(document).ready(function(){
 	
-	/*
-	var stickyHeaderTop = $('#coursepagemeta').offset().top;
-
-	 $(window).scroll(function(){
-		if( $(window).scrollTop() > stickyHeaderTop - 50) {
-			$('#coursepagemeta').css({position: 'fixed', top: '50px'});
-		} else {
-			$('#coursepagemeta').css({position: 'static', top: '50px'});
-		}
-	});*/
+		
+		$('.submit-post').click( function(){
+			if ($('#id_comment').val().length == 0) {
+			  return false;
+			
+			}
+		});
 	
 	var remainderLessons = lessons - 2;
 	
@@ -30,8 +27,6 @@ $(document).ready(function(){
 
 			if (isLoggedIn){
 
-		//		if( $(this).closest('.lessonBlock').find('.checkb').hasClass('.done') ){
-
 				 	lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
 			        is_up = $(this).attr('rel');
 			        vote_status_span = $(this).closest('.lessonBlock').find('.vote_status');
@@ -43,7 +38,7 @@ $(document).ready(function(){
 					var newscore;
 					
 					if (donebutton.is(".done")){
-
+						alert('you already clicked this');
 					} else {
 					
 
@@ -57,7 +52,6 @@ $(document).ready(function(){
 			                if( response['vote_successful'] ) {
 								donebutton.addClass("done");
 								otherbutton.removeClass("done");
-							//	alert('got it!');
 			                    vote_status_span.html('Vote = ' + response['vote_result']);
 								if (is_up == 1){
 									// increment the vote count
@@ -86,11 +80,8 @@ $(document).ready(function(){
 			            }
 			       	);
 			}
-	//			} else {
-	//				alert("Complete the lesson first!");
-	//			}
 
-			} else {
+			} else { //if not logged in
 				$.colorbox({
 					width:"500px",
 					height:"350px",
@@ -101,11 +92,6 @@ $(document).ready(function(){
 					returnFocus:false,
 				});
 			}
-			
-		
-
-
-
 
 	    });
 	
@@ -250,7 +236,7 @@ $(document).ready(function(){
 		$('.completed').tipsy({fade: false, gravity: 's', opacity:0.8});
 
 
-
+/*
   $('.vote_link').click(function() {
         lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
         is_up = $(this).attr('rel');
@@ -269,7 +255,7 @@ $(document).ready(function(){
        	);
 
 
-    });
+    }); */
 
 
 
@@ -360,88 +346,3 @@ $(document).ready(function(){
 }); 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-
-	$('.vote_link').click(function() {
-		
-		if (isLoggedIn){
-			
-	//		if( $(this).closest('.lessonBlock').find('.checkb').hasClass('.done') ){
-			
-			 	lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
-		        is_up = $(this).attr('rel');
-		        vote_status_span = $(this).closest('.lessonBlock').find('.vote_status');
-
-
-				var donebutton = $(this);
-				var otherbutton = $(this).siblings(".done");
-				var currentscore = parseInt(donebutton.closest('.lessonBlock').find('.votescore').text());
-				var newscore;
-				
-				
-		            $.post(
-		                from_server['vote_lesson_url'],
-		                {
-		                lesson_id: lesson_id,
-		                is_up: is_up
-		                },
-		                function(response) {
-		                if( response['vote_successful'] ) {
-							donebutton.addClass("done");
-							otherbutton.removeClass("done");
-						//	alert('got it!');
-		                    vote_status_span.html('Vote = ' + response['vote_result']);
-							if (is_up == 1){
-								// increment the vote count
-								if (currentscore == -1 ){
-									newscore = 1;
-								} else {
-									newscore = currentscore + 1;
-								}
-								donebutton.closest('.lessonBlock').find('.votescore').text( newscore );
-								console.log('the value is %s', newscore);
-								donebutton.attr('original-title', 'You liked this');
-								otherbutton.attr('original-title', 'Didn\'t like this?');
-							} else {
-								// decrement the vote count
-								if (currentscore == 1 ){
-									newscore = -1;
-								} else {
-									newscore = currentscore - 1;
-								}
-								donebutton.closest('.lessonBlock').find('.votescore').text( newscore );
-								console.log('the value is %s', newscore);
-								donebutton.attr('original-title', 'You didn\'t like this');
-								otherbutton.attr('original-title', 'Liked this?');
-							}
-		               }
-		            }
-		       	);
-//			} else {
-//				alert("Complete the lesson first!");
-//			}
-		
-		} else {
-			alert("You have to log in first, fool!");
-		}
-		
-		
-       
-
-
-    });
-
-
-*/

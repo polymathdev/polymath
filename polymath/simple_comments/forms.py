@@ -20,6 +20,11 @@ class SimpleCommentForm(CommentForm):
             is_removed = False,
         )
 
+	class Meta:
+		widgets = { 
+			'comment': forms.Textarea(attrs={'placeholder':'Add a comment...'}),
+		}
+
 # in simple_comments, there is no need for the below fields since comments are only for registered users
 SimpleCommentForm.base_fields.pop('url')
 SimpleCommentForm.base_fields.pop('email')

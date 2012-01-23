@@ -1556,7 +1556,9 @@ a.label:hover{
 
 #coursepagemeta{
 	background:#eeefe6; 
-	 padding-top:10px; padding-bottom:15px; border-radius:4px; border:1px solid #d1d4c5;
+	background:#eae7df;
+	 padding-top:10px; padding-bottom:15px; border-radius:4px; 
+	border:1px solid #d1d4c5; 
 	box-shadow:0px 1px 1px rgba(0,0,0,0.1);
 }
 
@@ -1753,21 +1755,24 @@ p{
 
 
 .lessonBlock{
-	width:620px;
+	width:580px;
 	float:left;
 	font-weight:bold;
 	font-size:12px;
-	padding-bottom:10px;
-	margin-left:10px;
+	padding-bottom:0px;
+	margin-left:30px;
 	z-index:3;
 	
 	box-shadow:inset 0 0px 5px rgba(255,255,255,0.6), 0px 1px 6px rgba(0,0,0,0.2); 
 	
 	border:1px solid #d1d4c5;
 	
-	border-top:0px; 
+	border:5px solid #d9d6ce;
+	margin-bottom:5px;
 	
 	background:#eee;
+	background:#eae7df;
+
 	
 	/*
 	background:url(images/lesson_fill.jpg) repeat-y 1004px 0px, #fefdf6;  
@@ -1787,8 +1792,6 @@ p{
 	-webkit-transition:0.2s;
 	overflow:hidden;
 	
-	margin-bottom:15px; 
-	border-radius:6px;
 	border-top:1px solid #d1d4c5;
 	
 	position:relative;
@@ -1853,10 +1856,10 @@ p{
 }
 
 .lessonBlock:hover{
-	box-shadow:0px 0px 10px #4c8f47;
+/*	box-shadow:0px 0px 10px #4c8f47;
 	-webkit-box-shadow:0px 0px 10px #4c8f47;
-	-moz-box-shadow:0px 0px 10px #4c8f47;
-	cursor:pointer;
+	-moz-box-shadow:0px 0px 10px #4c8f47; 
+	cursor:pointer; */
 }
 
 
@@ -1996,7 +1999,7 @@ p{
 
 	
 	margin-top:10px;
-	margin-left:5px;
+	margin-left:0px;
 }
 
 #number{
@@ -2058,7 +2061,7 @@ p{
 .checkb{
 	position:absolute;
 	top:10px;
-	right:5px;
+	right:15px;
 	padding:0px;
 /*float:right;
 		margin-top:10px; 
@@ -4499,8 +4502,10 @@ a.remove_lesson_lnk:hover{
 
 .thumbsbuttons{
 	display:inline;
-	margin-top:13px;
+	margin-top:0px;
 	margin-left:0px;
+	margin-right:20px;
+	float:right;
 }
 
 .thumbsbuttons ul{
@@ -4515,9 +4520,9 @@ a.remove_lesson_lnk:hover{
 }
 
 #thumbsup {
-	background: url(images/button_icon_thumb.png) no-repeat 0 0;
-	width: 35px;
-	height: 35px;
+	background: url(images/button_icon_thumb2.png) no-repeat 0 0;
+	width: 20px;
+	height: 20px;
 	display: block;
 	text-indent: -9999px;
 	border-radius:4px;
@@ -4526,17 +4531,17 @@ a.remove_lesson_lnk:hover{
 }
 
 #thumbsup:hover {
-	background-position:0 -36px;
+	background-position:0 -20px;
 }
 
 #thumbsup.done{
-	background: url(images/button_icon_thumb.png) no-repeat 0 -72px;
+	background: url(images/button_icon_thumb2.png) no-repeat 0 -40px;
 }
 
 #thumbsdown {
-	background: url(images/button_icon_thumb.png) no-repeat 0 -108px;
-	width: 35px;
-	height: 35px;
+	background: url(images/button_icon_thumb2.png) no-repeat 0 -60px;
+	width: 20px;
+	height: 20px;
 	display: block;
 	text-indent: -9999px;
 	border-radius:4px;
@@ -4544,11 +4549,11 @@ a.remove_lesson_lnk:hover{
 }
 
 #thumbsdown:hover {
-	background-position:0 -145px;
+	background-position:0 -80px;
 }
 
 #thumbsdown.done{
-	background-position:0 -180px;
+	background-position:0 -100px;
 }
 
 
@@ -4809,4 +4814,169 @@ a.remove_lesson_lnk:hover{
 #pictureeditdiv{
 	display:none;
 	margin-bottom:40px;
+}
+
+
+#commentimage{
+	display:inline;
+	height:32px;
+	width:32px;
+	border:2px solid white;
+	float:left;
+	margin-right:10px;
+	margin-left:10px;
+}
+
+.addcomment{
+	border:1px solid #ccc;
+	padding-top:10px;
+}
+
+.addcomment label{
+	display:none;
+}
+
+.addcomment input[type=submit]{
+	float:right;
+	background:url(images/pixel_pattern.png) left top, #98DD01; 
+	background:url(images/pixel_pattern.png) left top, -moz-linear-gradient(top, #98DD01 0%, #7FB024 100%);	
+	background:url(images/pixel_pattern.png) left top,  -webkit-gradient(linear, left top, left bottom, color-stop(0%,#98DD01), color-stop(100%,#7FB024));
+	background:url(images/pixel_pattern.png) left top, -webkit-linear-gradient(top, #98DD01 0%,#7FB024 100%);
+	background:url(images/pixel_pattern.png) left top, -o-linear-gradient(top, #98DD01 0%,#7FB024 100%); 
+	background:url(images/pixel_pattern.png) left top, -ms-linear-gradient(top, #98DD01 0%,#7FB024 100%); 
+	background:url(images/pixel_pattern.png) left top, linear-gradient(top, #98DD01 0%,#7FB024 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98DD01', endColorstr='#7FB024',GradientType=0 ); 
+	border:1px solid #667b4e;
+	padding:5px 10px;
+	color:white;
+	text-shadow:0px -1px 0px rgba(0,0,0,0.5);
+	font-size:12px;	
+	margin-top:-40px;
+	margin-right:10px;
+}
+
+.addcomment input[type=submit]:hover{
+	cursor:pointer;
+	background:#99DE05; 
+	background: -moz-linear-gradient(top, #99DE05 0%, #92DB00 100%);	
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6A9753), color-stop(100%,#92DB00));
+	background: -webkit-linear-gradient(top, #99DE05 0%,#92DB00 100%);
+	background: -o-linear-gradient(top, #99DE05 0%,#92DB00 100%); 
+	background: -ms-linear-gradient(top, #99DE05 0%,#92DB00 100%); 
+	background: linear-gradient(top, #99DE05 0%,#92DB00 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99DE05', endColorstr='#92DB00',GradientType=0 );
+}
+
+.addcomment input[type=submit]:active{
+	background:#7FB024; 
+
+	-moz-box-shadow: inset 0 1px 0px #b0b396;
+	-webkit-box-shadow: inset 0 1px 0px #b0b396;
+	box-shadow: inset 0 1px 0px rgba(0,0,0,0.5);
+}
+
+.deletecomment{
+	width:20px;	
+	float:right;
+	margin-right:10px;
+	margin-top:-40px;
+	border:1px solid #ccc;
+	background:#ddd;
+}
+
+.deletecomment:hover{
+	background:#A60400;
+	color:white;
+	cursor:pointer;
+}
+
+#id_comment{
+	margin-left:5px;
+	margin-top:-8px;
+	width:390px;
+	height:25px;
+	
+}
+
+.comment{
+	padding-top:5px;
+	border:1px solid #ccc;
+}
+
+.comment p{
+	margin-bottom:5px;
+	margin-top:5px;
+}
+
+.lessonmeta{
+	font-weight:bold;
+	color:#656565;
+	padding-top:10px;
+	margin-bottom:0px;
+	box-shadow:0px -1px 1px rgba(0,0,0,0.1);
+	background:#d9d6ce; 
+	width:100%;
+	height:25px; 
+	margin-top:10px;
+}
+
+#seemorecourses{
+	width:590px;
+
+	box-shadow:0px 2px 1px #ccc;
+	-moz-box-shadow:0px 2px 1px #ccc;
+	-webkit-box-shadow:0px 2px 1px #ccc;
+	
+	
+	background: #98DD01; 
+	background: -moz-linear-gradient(top, #98DD01 0%, #7FB024 100%);	
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7FB024), color-stop(100%,#405734));
+	background: -webkit-linear-gradient(top, #98DD01 0%,#7FB024 100%);
+	background: -o-linear-gradient(top, #98DD01 0%,#7FB024 100%); 
+	background: -ms-linear-gradient(top, #98DD01 0%,#7FB024 100%); 
+	background: linear-gradient(top, #98DD01 0%,#7FB024 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98DD01', endColorstr='#7FB024',GradientType=0 ); 
+	border:1px solid #667b4e;
+	
+	
+	padding-top:10px;
+	padding-bottom:10px;
+	
+	border-radius:6px;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;	
+	transition:0s;
+	-moz-transition:0s;
+	-webkit-transition:0s;
+}
+
+#seemorecourses:hover{
+	cursor:pointer;
+	background:#99DE05; 
+	background: -moz-linear-gradient(top, #99DE05 0%, #92DB00 100%);	
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6A9753), color-stop(100%,#92DB00));
+	background: -webkit-linear-gradient(top, #99DE05 0%,#92DB00 100%);
+	background: -o-linear-gradient(top, #99DE05 0%,#92DB00 100%); 
+	background: -ms-linear-gradient(top, #99DE05 0%,#92DB00 100%); 
+	background: linear-gradient(top, #99DE05 0%,#92DB00 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99DE05', endColorstr='#92DB00',GradientType=0 );	
+}
+
+#seemorecourses:active{
+	background:#7FB024; 
+
+	-moz-box-shadow: inset 0 1px 0px #b0b396;
+	-webkit-box-shadow: inset 0 1px 0px #b0b396;
+	box-shadow: inset 0 1px 0px rgba(0,0,0,0.5);
+	
+	margin-top:2px;
+}
+
+#loginmore{
+	text-align:center;
+	padding-bottom:10px;
+	font-size:14px;
+	font-weight:bold;
+	color:white;
+	text-shadow:0px -1px 1px rgba(0,0,0,0.2);
 }
