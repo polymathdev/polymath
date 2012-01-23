@@ -283,7 +283,7 @@
 
 					<div class="grid_8" style="width:580px;">		
 						{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
-						<!--<a class="votescore" original-title="Lesson Votes" href="#">--><span id="score">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}
+						<span id="score"><span id="scorecount">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.lesson.vote_score }}</span>
 
 						<ul class="thumbsbuttons">
 							{% if lesson.my_vote == "up" %}

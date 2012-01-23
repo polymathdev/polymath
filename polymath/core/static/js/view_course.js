@@ -34,11 +34,48 @@ $(document).ready(function(){
 
 					var donebutton = $(this);
 					var otherbutton = $(this).siblings(".done");
-					var currentscore = parseInt(donebutton.closest('.lessonBlock').find('.votescore').text());
+					var currentscore = parseInt(donebutton.closest('.lessonBlock').find('#scorecounthidden').text());
 					var newscore;
 					
 					if (donebutton.is(".done")){
-						alert('you already clicked this');
+						 is_up = !(is_up);
+						 $.post(
+				                from_server['vote_lesson_url'],
+				                {
+				                lesson_id: lesson_id,
+				                is_up: is_up
+				                },
+				                function(response) {
+				                if( response['vote_successful'] ) {
+									donebutton.removeClass("done");
+				                    vote_status_span.html('Vote = ' + response['vote_result']);
+									if (is_up == 1){
+										// increment the vote count
+										newscore = currentscore - 1;
+										if ( newscore == 1){
+											donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' like');
+										} else {
+											donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' likes');
+										}
+										donebutton.attr('original-title', 'You liked this');
+										otherbutton.attr('original-title', 'Didn\'t like this?');
+									} else {
+										// decrement the vote count
+										newscore = currentscore + 1;
+										if ( newscore == 1){
+											donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' like');
+										} else {
+											donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' likes');
+										}
+										donebutton.attr('original-title', 'You didn\'t like this');
+										otherbutton.attr('original-title', 'Liked this?');
+									}
+
+									donebutton.closest('.lessonBlock').find('#scorecounthidden').text( newscore );	
+
+				               }
+				            }
+				       	);
 					} else {
 					
 
@@ -55,27 +92,28 @@ $(document).ready(function(){
 			                    vote_status_span.html('Vote = ' + response['vote_result']);
 								if (is_up == 1){
 									// increment the vote count
-									if (currentscore == -1 ){
-										newscore = 1;
+									newscore = currentscore + 1;
+									if ( newscore == 1){
+										donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' like');
 									} else {
-										newscore = currentscore + 1;
+										donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' likes');
 									}
-									donebutton.closest('.lessonBlock').find('.votescore').text( newscore );
-									console.log('the value is %s', newscore);
 									donebutton.attr('original-title', 'You liked this');
 									otherbutton.attr('original-title', 'Didn\'t like this?');
 								} else {
 									// decrement the vote count
-									if (currentscore == 1 ){
-										newscore = -1;
+									newscore = currentscore - 1;
+									if ( newscore == 1){
+										donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' like');
 									} else {
-										newscore = currentscore - 1;
+										donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' likes');
 									}
-									donebutton.closest('.lessonBlock').find('.votescore').text( newscore );
-									console.log('the value is %s', newscore);
 									donebutton.attr('original-title', 'You didn\'t like this');
 									otherbutton.attr('original-title', 'Liked this?');
 								}
+								
+								donebutton.closest('.lessonBlock').find('#scorecounthidden').text( newscore );	
+								
 			               }
 			            }
 			       	);
