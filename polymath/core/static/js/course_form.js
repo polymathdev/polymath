@@ -1,15 +1,12 @@
 $(document).ready(function(){
 	
 	
-//	$('#id_name').placeHolder({
-//		"text":"Course Name"
-//	});
 	
  	$("#id_category option:eq(0)").text("Course Category");
 
- 	$("#id_category").change(function() {
-		$("#id_category option:first").remove()
-	});
+// 	$("#id_category").change(function() {
+//		$("#id_category option:first").remove()
+//	});
 
 
 	$('#id_tags').tagsInput({
