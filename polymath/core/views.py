@@ -178,7 +178,6 @@ def view_course(request, course_id, course_slug=None):
         'is_my_course': (creator == request.user),
         'next' : reverse('view_course', kwargs={'course_id':course_id,'course_slug':course_slug}),
         'delete_comment_action' : reverse('simple_comments_delete'),
-        'test_lesson' : Lesson.objects.get(pk=18),
         'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson')})
     },
     context_instance=RequestContext(request))
