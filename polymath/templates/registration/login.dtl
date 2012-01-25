@@ -24,7 +24,9 @@
 		<div class="logindiv">
 			
 			<div class="grid_6"  <!--style="border-right:1px dotted #ccc; height:250px; margin-top:25px;"-->
+					<center><h3>Sign up or login by connecting to Facebook. It's easy & takes just one click!</h3></center>
                 <a href="{% url socialauth_begin 'facebook' %}{% if next %}?next={{ next }}{% endif %}" class="fblogin"><span>Log in with Facebook</span></a>
+				<center><p>Don't worry, we'll never post on your wall unless you tell us to.</p>
 			</div>
 			
 	<!--		<div class="grid_6">

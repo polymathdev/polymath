@@ -48,6 +48,18 @@ $(document).ready(function(){
 	});
 	
 	
+	var stickyHeaderTop = $('#leftsidediv').offset().top;
+
+	 $(window).scroll(function(){
+		if( $(window).scrollTop() > stickyHeaderTop - 30) {
+			$('#leftsidediv').css({position: 'fixed', top: '30px'});
+		} else {
+			$('#leftsidediv').css({position: 'static', top: '30px'});
+		}
+	});
+	
+	
+	
 //	$('.subject').tipsy({fade: false, gravity: 's', opacity:0.6});
 	
 //	$('.lessonCreatedBlock').tipsy({fade: false, gravity: 's', opacity:0.6});

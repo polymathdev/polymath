@@ -31,7 +31,7 @@
 
 	<div class="container_12" style="margin-top:15px;">
 	
-		<div class="grid_4 alpha">
+		<div class="grid_4 alpha" id="leftsidediv">
 			<div class="grid_4 omega" id="coursepagemeta">
 			
 
@@ -128,13 +128,10 @@
 		
 		
 				
-		
-								{% if is_my_profile %}
-							<!--	<div class="grid_1 omega" style="float:right; margin-top:14px;"><a class="createcourse" href="{% url add_course %}"><span>Create Course</span></a></div> -->
-								{% endif %}           
+       
 
 
-<div class="grid_8" style="width:630px;">
+<div class="grid_8" style="width:630px; float:right;">
 
 
 	<!-- courses taking -->
