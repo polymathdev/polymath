@@ -42,6 +42,10 @@ $(document).ready(function(){
 		opacity: 0.8,
 		forcePlaceholderSize: true,
 		placeholder: "ui-state-highlight",
+		connectWith: '#lesson_list_div',
+		helper: function(event, element) {
+		        return element.clone().appendTo("body");
+		    }
 	});
 	
 	
