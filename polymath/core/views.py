@@ -46,8 +46,9 @@ def welcome(request):
             course_id = int(match.group('course_id')) 
             return_to_course = get_object_or_None(Course, pk=course_id)
 
-    return render(request, 'welcome.dtl', {
-        'return_to_course' : return_to_course
+    return render(request, 'howitworks.dtl', {
+        'return_to_course' : return_to_course,
+        'is_welcome' : True
         })
 
 def new_user(request):
