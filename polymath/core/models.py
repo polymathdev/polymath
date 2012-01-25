@@ -127,7 +127,7 @@ class Lesson(models.Model):
 
 class LessonCompletion(models.Model):
     lesson = models.ForeignKey(Lesson, editable=False)
-    user_profile = models.ForeignKey(User, editable=False)
+    user_profile = models.ForeignKey(User)
     date_completed = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):

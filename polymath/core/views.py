@@ -175,6 +175,7 @@ def view_course(request, course_id, course_slug=None):
         'course_tags': requested_course.tags.all(),
 	    'lessons': lesson_list_info,
         'completed_lessons': completed_lesson_list,
+        'users_with_progress': User.objects.filter(lessoncompletion__lesson__in=lesson_list).distinct(),
         'creator': creator,
         'is_my_course': (creator == request.user),
         'next' : reverse('view_course', kwargs={'course_id':course_id,'course_slug':course_slug}),
