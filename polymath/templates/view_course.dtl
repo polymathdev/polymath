@@ -465,6 +465,7 @@
 	
 	
 	
+	
 	{% endif %} <!-- end of user logged in loop -->
 	
 		
@@ -513,7 +514,7 @@
 		
 		
 		
-		
+<a href="/welcome/">TRY THIS OUT</a>
 
 {% endblock %}
 

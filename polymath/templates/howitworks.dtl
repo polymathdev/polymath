@@ -16,6 +16,11 @@
 
 	<div class="container_12" style="margin-top:50px">
 	
+	{% if is_welcome %}
+		<div class="messages welcome"><h3>Welcome to Polymath, a fun and simple way to share skills and knowledge. Learn a little about how you can use the site to find great material and learn with the help of a community.</h3><a href="#" id="close">x</a></div>
+	{% endif %}
+	
+	
 		<div class="grid_2 aboutsidebar">
 					<img src="{{ STATIC_URL }}css/images/favicon.png" class="favicon"></img>
 			<ul>
@@ -26,6 +31,7 @@
 			</ul>
 		
 		</div>
+		
 	
 		<div class="grid_10 about">
 			<h1 id="browsetitle">How It Works</h1>
@@ -67,12 +73,20 @@
 			</div>
 			
 			<div class="clear"></div>
-						<hr>
-			<div class="grid_6" style="float:right;">
-			<h3 style="margin-top:32px; position:absolute;">So let's get started!</h3>
-			<a href="/courses/browse" class="browsecourses"><span>Browse courses &nbsp;&nbsp;> </span></a>
+						
+			<div class="grid_10" style="float:right; background:#11BF82; margin-top:40px; margin-bottom:20px; border-radius:4px; border:1px solid #d1d4c5; box-shadow:inset 0px 0px 4px rgba(0,0,0,0.45)">
+			
+			{% if return_to_course %}
+				<h3 style="margin-top:34px; padding-left:40px; position:absolute; text-shadow:0px 1px 2px rgba(0,0,0,0.4); color:white;">So let's get started! Go back to "{{ return_to_course.name }}"</h3>
+				<a href="/courses/browse" class="browsecourses view"><span>Go to course &nbsp;&nbsp;> </span></a>
+			{% else %}
+				<h3 style="margin-top:34px; padding-left:200px; position:absolute; text-shadow:0px 1px 2px rgba(0,0,0,0.4); color:white;">
+					So let's get started!
+				</h3>
+				<a href="/courses/browse" class="browsecourses"><span>Browse courses &nbsp;&nbsp;> </span></a>
+			{% endif %}
 			</div>
-									<hr>
+
 		
 		</div>
 	

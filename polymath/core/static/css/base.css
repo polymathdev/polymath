@@ -81,3 +81,8 @@
 	text-decoration:none;
 	opacity:1;
 }
+
+.messages.welcome{
+	margin-top:-45px;
+	margin-bottom:40px;
+}
