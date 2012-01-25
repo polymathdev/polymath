@@ -60,14 +60,19 @@
 				<span id="numcircle"><span id="number">3</span></span>
 			</div>
 			
-			<div class="grid_8">
+			<div class="grid_8" style="margin-bottom:20px;">
 			<h2><b>Create a Course</h2></b>
 			<p>A course is just a set of links to great material online -- it's like a syllabus that a new student can use to guide their learning. Anyone who knows about a subject can create a course on Polymath, whether you're an expert or someone who's just recently taught yourself the topic. <b>Share your knowledge, make the world a better place.</b>
 			</p>
 			</div>
 			
 			<div class="clear"></div>
-			
+						<hr>
+			<div class="grid_6" style="float:right;">
+			<h3 style="margin-top:32px; position:absolute;">So let's get started!</h3>
+			<a href="/courses/browse" class="browsecourses"><span>Browse courses &nbsp;&nbsp;> </span></a>
+			</div>
+									<hr>
 		
 		</div>
 	

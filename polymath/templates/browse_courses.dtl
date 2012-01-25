@@ -43,12 +43,12 @@
 
 
 
-<div class="grid_12" style="background:#ddded5; padding-top:20px; box-shadow:0px 1px 2px rgba(0,0,0,0.4)">
+<div class="grid_12" style="background:#eeefe6; padding-top:20px; padding-bottom:20px; box-shadow:0px 2px 6px rgba(0,0,0,0.4); border:1px solid #e4e4dc">
 
 
 <div class="grid_2">
 
-	<div class="grid_2" style="height:900px">
+	<div class="grid_2" style="height:900px;">
 		<ul class="aboutsidebar browse">
 		<!--	<li id="first">Categories</li> -->
 			<li><a href="/courses/browse/">All</a></li>
@@ -190,7 +190,7 @@
 
 
 {% block footer %}
-		<div id="footer"><div class="container_6"></div></div>
+		<div id="footer" style="margin-top:100px;"><div class="container_6"></div></div>
 		
 {% endblock %}
 

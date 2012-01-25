@@ -1,12 +1,18 @@
 $(document).ready(function(){
 	
+
+		$('.submit-post').attr('disabled', 'true');
 		
-		$('.submit-post').click( function(){
-			if ($('#id_comment').val().length == 0) {
-			  return false;
-			
-			}
-		});
+		$('.addcomment textarea').addClass('commentbox');
+	
+		
+			$('.commentbox').bind('keyup change input', function() {
+				if ($(this).val != ""){
+					$(this).closest('.addcomment').find('.submit-post').removeAttr('disabled');
+				}
+			});
+
+
 	
 	var remainderLessons = lessons - 2;
 	
@@ -38,7 +44,12 @@ $(document).ready(function(){
 					var newscore;
 					
 					if (donebutton.is(".done")){
-						 is_up = !(is_up);
+//						if ( is_up == 0 ){
+//							is_up = 1;
+//						} else {
+//							is_up = 0;
+//						}
+						is_up = !Boolean(parseInt(is_up));
 						 $.post(
 				                from_server['vote_lesson_url'],
 				                {
@@ -51,12 +62,12 @@ $(document).ready(function(){
 				                    vote_status_span.html('Vote = ' + response['vote_result']);
 									if (is_up == 1){
 										// decrement the vote count
-										newscore = currentscore - 1;
+										newscore = currentscore + 1;
 										donebutton.attr('original-title', 'You liked this');
 										otherbutton.attr('original-title', 'Didn\'t like this?');
 									} else {
 										// increment the vote count
-										newscore = currentscore + 1;
+										newscore = currentscore - 1;
 										donebutton.attr('original-title', 'You didn\'t like this');
 										otherbutton.attr('original-title', 'Liked this?');
 									}
@@ -261,7 +272,7 @@ $(document).ready(function(){
 	
 	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.8, offset:0});
 	
-		$('.completed').tipsy({fade: false, gravity: 's', opacity:0.8});
+	$('.completed').tipsy({fade: false, gravity: 's', opacity:0.8});
 
 
 /*
@@ -285,24 +296,6 @@ $(document).ready(function(){
 
     }); */
 
-
-
-	$('.takecourse').click(function(){
-		if(isLoggedIn){
-			
-		} else {
-			$.colorbox({
-				width:"500px",
-				inline: true,
-				href:"#logindivnewcourse",
-				opacity:'0.6',
-				top:"10%",
-				returnFocus:false,
-			});
-			
-		}
-	});
-	
 	
 /*	$('.embedclass').embedly({
         maxWidth: 450,
@@ -368,6 +361,19 @@ $(document).ready(function(){
 		top:"10%",
 		returnFocus:false,
 	});
+	
+	
+	
+	var stickyHeaderTop = $('#leftinfoblock').offset().top;
+
+	 $(window).scroll(function(){
+		if( $(window).scrollTop() > stickyHeaderTop - 30) {
+			$('#leftinfoblock').css({position: 'fixed', top: '30px'});
+		} else {
+			$('#leftinfoblock').css({position: 'static', top: '30px'});
+		}
+	});
+
 	
 	
     

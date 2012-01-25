@@ -110,10 +110,10 @@
 	    	{% for lesson_form in lesson_fs %}
 	        	<div class="lesson_div {% if not lesson_form.initial %}extra{% endif %}">
 
-				<div style="background:#d9d6ce; height:100px; margin-top:0px; padding-top:20px; border-bottom:1px solid #e4e4dc;">
-				<div class="grid_1 alpha" style="width:80px;">
-				<span id="numcircle" class="teachnumber"><p id="number"> {{ forloop.counter }}</p></span>
-				</div>
+				<div style="background:#d9d6ce; margin-top:0px; padding-top:20px; padding-bottom:20px; border-bottom:1px solid #e4e4dc; float:left; width:100%">
+					<div class="grid_1 alpha" style="width:80px;">
+						<span id="numcircle" class="teachnumber"><p id="number"> {{ forloop.counter }}</p></span>
+					</div>
 
 
 				<div class="grid_4">

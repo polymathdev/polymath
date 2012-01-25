@@ -12,7 +12,8 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.backgroundposition.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.qtip-1.0.0-rc3.js"></script>
-		    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-placeholder.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-placeholder.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="http://www.websnapr.com/js/websnapr.js"></script>
 		<script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
 	<script type="text/javascript">
@@ -81,7 +82,7 @@
 	<div class="clear"></div>
 	
 	
-	<div class="grid_4 alpha">
+	<div class="grid_4 alpha" id="leftinfoblock">
 	
 		
 		<div class="grid_4" id="coursepagemeta">
@@ -173,7 +174,7 @@
 		
 		<div class="completed" style="margin-top:20px; margin-left:10px;" original-title="Your progress">
 			<span>Completed:</span>
-			<span id="numbercompleted">
+			<h3 id="numbercompleted">
 				{% if completed_lessons %}
 					{{ completed_lessons.count }}
 				{% else %}
@@ -181,7 +182,7 @@
 				{% endif %}
 			</span>
 
-			<span id="total">of {{ requested_course.lesson_set.count }}</span>
+			<h4 id="total">of {{ requested_course.lesson_set.count }}</span>
 
 			<div id="progressbar"></div>
 
@@ -202,7 +203,7 @@
 
 
 
-<div class="grid_8" style="margin-left:20px;">
+<div class="grid_8" style="margin-left:20px; float:right;">
 
 	{% if lessons %}
 	
@@ -284,7 +285,9 @@
 					<div class="grid_8" style="width:580px;">		
 						{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
 						<span id="score"><span id="scorecount">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.lesson.vote_score }}</span>
-
+					
+					{% if is_my_course %}
+					{% else %}
 						<ul class="thumbsbuttons">
 							{% if lesson.my_vote == "up" %}
 								<li id="thumbsup" class="vote_link done" rel="1" original-title="You liked this"></li>
@@ -298,6 +301,7 @@
 								<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
 							{% endif %}  
 						</ul>
+					{% endif %}
 					</div> 
 				</div>
 				
@@ -471,7 +475,7 @@
 
 
 	
-		<div class="lessonBlock emptyblock">
+		<div class="lessonBlock emptyBlock">
 			<h3 id="empty">Uh oh, this course is empty! {% if is_my_course %}<a href="{% url edit_course course_id=requested_course.id %}"><b>Add some lessons and share your expertise.</b></a>{% endif %} </h3>
 		</div>
 		
@@ -490,7 +494,6 @@
 <div style="display:none;">
 	<div id="logindivnewcourse">
 		<h2>Login</h2>
-		<p class="red">You need to be logged in to do that!</p>
 		<p>Sign up or log in by connecting with Facebook. It's easy and takes just one click!</p>
 		<a href="{% url socialauth_begin 'facebook' %}?next={{ request.get_full_path }}" class="fblogin" style:"margin-top:45px"><span>Connect with Facebook</span></a>
 		<h4>Don't worry, we'll never post on your wall unless you tell us to.</h4>
