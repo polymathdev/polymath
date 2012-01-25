@@ -191,7 +191,12 @@
 		{% endif %}
 			
 			
-			
+		<div class="grid_4 omega" id="coursepagemeta" style="margin-top:20px;">
+		
+		
+		
+		
+		</div>
 		
 		
 </div>  <!-- end left side nav -->

@@ -27,6 +27,8 @@ padding:0px;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d9248', endColorstr='#304826',GradientType=0 ); /* IE6-9 */
 	
 	
+	background:url(images/homeheader.png) no-repeat left top;
+	background-size:100%;
 	box-shadow:inset 0px -1px 5px #2b4221;
 	-webkit-box-shadow:inset 0px -1px 5px #2b4221;
 	-moz-box-shadow:inset 0px -1px 5px #2b4221;
