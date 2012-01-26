@@ -263,16 +263,12 @@ $(document).ready(function(){
 	$('.checkb').tipsy({fade: false, gravity: 'se', opacity:0.8});
 
 	$('.checkb.done').tipsy({fade: false, gravity: 'sw', opacity:0.8});
-
-	$('.takecourse').tipsy({fade: false, gravity: 's', opacity:0.8});
-	
-	$('.votescore').tipsy({fade: false, gravity: 'se', opacity:0.8});
-
-	$('.lessonname').tipsy({fade: false, gravity: 'w', opacity:0.8, offset:10});
 	
 	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.8, offset:0});
 	
 	$('.completed').tipsy({fade: false, gravity: 's', opacity:0.8});
+	
+	$('.takingimage').tipsy({fade: false, gravity: 's', opacity:0.8});
 
 
 /*

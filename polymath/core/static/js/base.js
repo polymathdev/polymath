@@ -29,4 +29,16 @@ $(document).ready(function(){
 		returnFocus:false,
 	});
 	
+	
+	$('#homevideo').colorbox({
+		width:"522px",
+		height:"335px",
+		inline: true,
+		href:"#videolightbox",
+		opacity:'0.7',
+		top:"10%",
+		returnFocus:false,
+	});
+	
+	
 });

@@ -106,7 +106,7 @@
 	
 					<div id="followers">
 						<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon"></img>
-						{{ requested_course.followers.count }} learning 
+						{{ users_with_progress.count }} learning 
 					</div>
 
 
@@ -191,10 +191,30 @@
 		{% endif %}
 			
 			
-		<div class="grid_4 omega" id="coursepagemeta" style="margin-top:20px;">
+		<div class="grid_4 omega" id="coursepagemeta" style="margin-top:20px; padding-left:0px; padding-right:0px;">
+			<div style="margin-left:10px; margin-right:10px;">
+			<p><strong>Users learning from this course</strong></p>
+			<hr id="titlehr">
+			<div style="margin-top:10px;">
+
+			{% if users_with_progress %}
+
+			{% for user in users_with_progress %}
+				
+				<a href="{% url view_profile uname=user.username %}"><img class="takingimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" original-title=" {{ user.first_name }} {{ user.last_name }}"></img></a>
+				
+		
+		{% endfor %}
 		
 		
-		
+			{% else %}
+			
+				<p>No one is taking this yet! {% if is_my_course %}Time to rally the troops, champ.{% else %}Fortune favors the bold.{% endif %}</p>
+			{% endif %}
+			
+			</div>
+
+			</div>
 		
 		</div>
 		
@@ -318,7 +338,7 @@
         <div>
             {% for comment in comment_list %}
                 <div class="comment">
-					<p><img id="commentimage" src="{{ comment.user.get_profile.get_pic_url }}"></img>
+					<p><img id="commentimage" src="{% if comment.user.get_profile.get_pic_url  %}{{ comment.user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
 
 					<b>	{{ comment.userinfo.name }}</b> <span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>
                     <p>{{ comment.comment }}</p>
@@ -334,7 +354,7 @@
             {% endfor %}
             <div class="addcomment">
                 {% if user.is_authenticated %} 
-				<img id="commentimage" src="{{ user.get_profile.get_pic_url }}"></img>
+				<img id="commentimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
                     {% render_comment_form for lesson.lesson %}
                 {% endif %}
             </div>
@@ -519,11 +539,11 @@
 		
 		
 		
-<a href="/welcome/">TRY THIS OUT</a>
+
 
 {% endblock %}
 
-
+<a href="/welcome/">TRY THIS OUT</a>
 
 
 
