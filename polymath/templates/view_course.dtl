@@ -254,15 +254,15 @@
 
 			  	{% endif %}
 
-				  <div style="background:#d9d6ce; height:65px; width:100%;">
+				  <div style="background:#d9d6ce; width:100%; float:left; padding-bottom:10px;">
 
-					<div class="grid_6 alpha omega" style="width:420px;">
+					<div class="grid_6 alpha omega" style="width:500px;">
 
 						<div class="grid_1">
 							<span id="numcircle"><span id="number">{{ forloop.counter }}</span></span>
 						</div>
 
-						<div class="grid_4">
+						<div class="grid_5 alpha omega">
 							<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
 							<h3 id="courselessonname"><a href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> 			
 							</h3>
@@ -274,7 +274,7 @@
 
 
 
-					<div class="grid_2 alpha omega" style="width:160px">
+					<div class="grid_1" style="width:60px; float:right">
 
 						{% if is_my_course %}
 
@@ -405,15 +405,15 @@
 		
 						<div class="lessonBlock">      
 
-						  <div style="background:#d9d6ce; height:65px; width:100%; box-shadow:0px 1px 1px rgba(0,0,0,0.1);">
+					  <div style="background:#d9d6ce; width:100%; float:left; padding-bottom:10px;">
 
-							<div class="grid_6 alpha omega" style="width:420px;">
+						<div class="grid_6 alpha omega" style="width:500px;">
 
 								<div class="grid_1">
 									<span id="numcircle"><span id="number">{{ forloop.counter }}</span></span>
 								</div>
 
-								<div class="grid_4">
+								<div class="grid_5 alpha omega">
 									<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
 									<h3 id="courselessonname"><a href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> 			
 									</h3>
