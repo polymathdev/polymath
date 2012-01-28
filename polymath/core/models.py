@@ -81,6 +81,10 @@ class Course(models.Model):
 
     tags = TaggableManager()
     
+    # get a unique list of the users who have completed at least one lesson in this course
+    def users_with_progress(self):
+        return User.objects.filter(lessoncompletion__lesson__in=self.lesson_set.all()).distinct()
+
     class Meta:
         ordering = ['-creation_date']
 
