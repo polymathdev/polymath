@@ -352,6 +352,7 @@ def browse_courses(request, cat_slug=None, tag_slug=None):
         # browse a single category
         if not tag_slug:
             course_list = Course.objects.filter(category=cat)
+            filters = { 'category' : cat }
 
         # filter by both category and tag
         else:
