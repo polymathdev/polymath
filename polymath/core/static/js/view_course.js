@@ -32,59 +32,60 @@ $(document).ready(function(){
 		$('.vote_link').click(function() {
 
 			if (isLoggedIn){
+					
 
-				 	lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
+				 	lesson_id = $(this).closest('.lessonmetablock').find('.lesson_id').val();
+					console.log(lesson_id);
 			        is_up = $(this).attr('rel');
-			        vote_status_span = $(this).closest('.lessonBlock').find('.vote_status');
+			        vote_status_span = $(this).closest('.lessonmetablock').find('.vote_status');
 
 
 					var donebutton = $(this);
 					var otherbutton = $(this).siblings(".done");
-					var currentscore = parseInt(donebutton.closest('.lessonBlock').find('#scorecounthidden').text());
+					var currentscore = parseInt(donebutton.closest('.border-callout').find('#scorecounthidden').text());
+				
 					var newscore;
 					
-					if (donebutton.is(".done")){
-//						if ( is_up == 0 ){
-//							is_up = 1;
-//						} else {
-//							is_up = 0;
-//						}
-						is_up = !Boolean(parseInt(is_up));
+					if (donebutton.is(".done")){ // if a button is already selected
+						if ( is_up == 0 ){
+								is_up = 1;
+							} else {
+								is_up = 0;
+						}
 						 $.post(
-				                from_server['vote_lesson_url'],
-				                {
-				                lesson_id: lesson_id,
-				                is_up: is_up
-				                },
-				                function(response) {
-				                if( response['vote_successful'] ) {
-									donebutton.removeClass("done");
-				                    vote_status_span.html('Vote = ' + response['vote_result']);
-									if (is_up == 1){
-										// decrement the vote count
-										newscore = currentscore + 1;
-										donebutton.attr('original-title', 'You liked this');
-										otherbutton.attr('original-title', 'Didn\'t like this?');
-									} else {
-										// increment the vote count
-										newscore = currentscore - 1;
-										donebutton.attr('original-title', 'You didn\'t like this');
-										otherbutton.attr('original-title', 'Liked this?');
+							from_server['vote_lesson_url'],
+								{
+									lesson_id: lesson_id,
+									is_up: is_up
+								},
+								function(response) {
+									if( response['vote_successful'] ) {
+										donebutton.removeClass("done");
+										vote_status_span.html('Vote = ' + response['vote_result']);
+										if (is_up == 1){
+											// decrement the vote count
+											newscore = currentscore + 1;
+											donebutton.attr('original-title', 'You liked this');
+											otherbutton.attr('original-title', 'Didn\'t like this?');
+										} else {
+											// increment the vote count
+											newscore = currentscore - 1;
+											donebutton.attr('original-title', 'You didn\'t like this');
+											otherbutton.attr('original-title', 'Liked this?');
+										}
+
+										donebutton.closest('.lessonmetablock').find('#scorecounthidden').text( newscore );	
+										if ( newscore == 1){
+											donebutton.closest('.lessonmetablock').find('#score').text( newscore  + ' like');
+										} else {
+											donebutton.closest('.lessonmetablock').find('#score').text( newscore  + ' likes');
+										}
+
 									}
-
-									donebutton.closest('.lessonBlock').find('#scorecounthidden').text( newscore );	
-									if ( newscore == 1){
-										donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' like');
-									} else {
-										donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' likes');
-									}
-
-				               }
-				            }
-				       	);
-					} else {
-					
-
+								}
+							);
+						} else {
+	
 			            $.post(
 			                from_server['vote_lesson_url'],
 			                {
@@ -93,8 +94,14 @@ $(document).ready(function(){
 			                },
 			                function(response) {
 			                if( response['vote_successful'] ) {
-								donebutton.addClass("done");
-								otherbutton.removeClass("done");
+								if(otherbutton.is(".done")){
+									otherbutton.removeClass("done");
+									donebutton.removeClass("done");
+								} else {
+									donebutton.addClass("done");
+									otherbutton.removeClass("done");
+								}
+
 			                    vote_status_span.html('Vote = ' + response['vote_result']);
 								if (is_up == 1){
 									// increment the vote count
@@ -108,11 +115,11 @@ $(document).ready(function(){
 									otherbutton.attr('original-title', 'Liked this?');
 								}
 								
-								donebutton.closest('.lessonBlock').find('#scorecounthidden').text( newscore );	
+								donebutton.closest('.lessonmetablock').find('#scorecounthidden').text( newscore );	
 								if ( newscore == 1){
-									donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' like');
+									donebutton.closest('.lessonmetablock').find('#score').text( newscore  + ' like');
 								} else {
-									donebutton.closest('.lessonBlock').find('#score').text( newscore  + ' likes');
+									donebutton.closest('.lessonmetablock').find('#score').text( newscore  + ' likes');
 								}
 								
 			               }
@@ -142,11 +149,12 @@ $(document).ready(function(){
 	
 	////
 	
-	$('.checkb').click(function(){ // when the done button is clicked...
+	$('.donethis').click(function(){ // when the done button is clicked...
 		
 		var checkbox = $(this);
 		
 		if ( $(this).hasClass('done')){ // don't do anything if it's already done
+			
 		
 		} else {
 			
@@ -260,9 +268,9 @@ $(document).ready(function(){
 	});
 
 	//tooltips
-	$('.checkb').tipsy({fade: false, gravity: 'se', opacity:0.8});
+	$('.donethis').tipsy({fade: false, gravity: 's', opacity:0.8});
 
-	$('.checkb.done').tipsy({fade: false, gravity: 'sw', opacity:0.8});
+	$('.donethis.done').tipsy({fade: false, gravity: 's', opacity:0.8});
 	
 	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.8, offset:0});
 	

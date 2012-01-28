@@ -254,7 +254,7 @@
 
 			  	{% endif %}
 
-				  <div style="background:#d9d6ce; height:65px; width:100%; box-shadow:0px 1px 1px rgba(0,0,0,0.1);">
+				  <div style="background:#d9d6ce; height:65px; width:100%;">
 
 					<div class="grid_6 alpha omega" style="width:420px;">
 
@@ -280,9 +280,9 @@
 
 						{% else %}
 							{% if not lesson.completed %}
-								<div class="checkb" original-title="Mark this as done"></div>
+								<a class="donethis" original-title="Mark this as done"><span>Done</span></a>
 		            		{% else %}
-		                		<div class="checkb done" original-title="You've done this!"></div>
+								<a class="donethis done"  original-title="You've done this!"><span>Done</span></a>
 		            		{% endif %}     
 						{% endif %}
 
@@ -301,66 +301,98 @@
 					<a href="{{ lesson.lesson.link }}"></a>
 				</div>
 
-				<div class="clear"></div>
 
 
-				<div class="lessonmeta">
-				{% get_comment_list for lesson.lesson as comment_list %}
-
-					<div class="grid_8" style="width:580px;">		
-						{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
-						<span id="score"><span id="scorecount">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.lesson.vote_score }}</span>
-					
-					{% if is_my_course %}
-					{% else %}
-						<ul class="thumbsbuttons">
-							{% if lesson.my_vote == "up" %}
-								<li id="thumbsup" class="vote_link done" rel="1" original-title="You liked this"></li>
-							{% else %}
-								<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
-							{% endif %}
-
-							{% if lesson.my_vote == "down" %}
-								<li id="thumbsdown" class="vote_link done" rel="0" original-title="You didn't like this"></li>
-							{% else %}
-								<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
-							{% endif %}  
-						</ul>
-					{% endif %}
-					</div> 
-				</div>
+	
 				
 			</div> 	
 	
 	
-	<div class="grid_8" style="background:#eee; margin-bottom:50px; width:590px; margin-left:30px;">
+	<div class="grid_8 commentblock">
 		{# COMMENTS #}
-        <div>
+		{% get_comment_list for lesson.lesson as comment_list %}
+        <div class="lessonmetablock">
+			<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
+			<div class="comment border-callout">
+				{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
+				<span id="score"><span id="scorecount">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.lesson.vote_score }}</span> 
+			
+			{% if is_my_course %}
+			{% else %}
+				<ul class="thumbsbuttons">
+					{% if lesson.my_vote == "up" %}
+						<li id="thumbsup" class="vote_link done" rel="1" original-title="You liked this"></li>
+					{% else %}
+						<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
+					{% endif %}
+
+					{% if lesson.my_vote == "down" %}
+						<li id="thumbsdown" class="vote_link done" rel="0" original-title="You didn't like this"></li>
+					{% else %}
+						<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
+					{% endif %}  
+				</ul> 
+			{% endif %}
+			  <b class="border-notch notch"></b>
+				<div class="notch"></div>
+			
+			</div>
+
+
             {% for comment in comment_list %}
                 <div class="comment">
-					<p><img id="commentimage" src="{% if comment.user.get_profile.get_pic_url  %}{{ comment.user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
+				
+					<div class="grid_1 alpha omega" style="margin-top:5px; height:100%">
+					<img id="commentimage" src="{% if comment.user.get_profile.get_pic_url  %}{{ comment.user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
+					</div>
+				
+					<div class="grid_6 alpha">
+				
+					
+						<p>
 
-					<b>	{{ comment.userinfo.name }}</b> <span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>
-                    <p>{{ comment.comment }}</p>
-                    {% if comment.user == user %}
-                        <form action="{{ delete_comment_action }}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="comment_id" value="{{ comment.pk }}">
-                            <input type="hidden" name="next" value="{{ next }}">
-                            <button type="submit" value="" class="deletecomment">x</button>
-                        </form>
-                    {% endif %}
+						<b>	{{ comment.userinfo.name }}</b>
+						<span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>						
+						
+                    	<p>{{ comment.comment }}</p>
+
+                    	{% if comment.user == user %}
+                        
+                    	
+						{% endif %}
+
+					</div>
+					
+					
+						<form action="{{ delete_comment_action }}" method="post" style="display:inline;">
+	                        {% csrf_token %}
+	                        <input type="hidden" name="comment_id" value="{{ comment.pk }}">
+	                        <input type="hidden" name="next" value="{{ next }}">
+	                        <button type="submit" value="" class="deletecomment">x</button>
+	                    </form>
+					
+					<div class="clear"></div>
+					
+
+
                 </div>
             {% endfor %}
+
             <div class="addcomment">
+
                 {% if user.is_authenticated %} 
-				<img id="commentimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
-                    {% render_comment_form for lesson.lesson %}
+					
+					<img id="commentimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}">
+					</img>
+				
+					{% render_comment_form for lesson.lesson %}
+					
                 {% endif %}
+
             </div>
+
         </div>
-	
-	
+
 </div>
 		
 		{% endfor %}
@@ -393,15 +425,15 @@
 
 
 
-							<div class="grid_2 alpha omega" style="width:160px">
+							<div class="grid_1 alpha omega" style="width:60px; float:right;">
 
 								{% if is_my_course %}
 
 								{% else %}
 									{% if not lesson.completed %}
-										<div class="checkb" original-title="Mark this as done"></div>
+										<a class="donethis" original-title="Mark this as done"><span>Done</span></a>
 				            		{% else %}
-				                		<div class="checkb done" original-title="You've done this!"></div>
+				                			<a class="donethis done"  original-title="You've done this!"><span>Done</span></a>
 				            		{% endif %}     
 								{% endif %}
 
@@ -423,62 +455,91 @@
 						<div class="clear"></div>
 
 
-						<div class="lessonmeta">
-						{% get_comment_list for lesson.lesson as comment_list %}
-
-							<div class="grid_8" style="width:580px;">		
-								{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
-								<!--<a class="votescore" original-title="Lesson Votes" href="#">--><span id="score">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}
-
-								<ul class="thumbsbuttons">
-									{% if lesson.my_vote == "up" %}
-										<li id="thumbsup" class="vote_link done" rel="1" original-title="You liked this"></li>
-									{% else %}
-										<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
-									{% endif %}
-
-									{% if lesson.my_vote == "down" %}
-										<li id="thumbsdown" class="vote_link done" rel="0" original-title="You didn't like this"></li>
-									{% else %}
-										<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
-									{% endif %}  
-								</ul>
-							</div> 
-						</div>
 
 					</div> 	
 
 
-			<div class="grid_8" style="background:#eee; margin-bottom:50px; width:590px; margin-left:30px;">
-				{# COMMENTS #}
-		        <div>
-		            {% for comment in comment_list %}
-		                <div class="comment">
-							<p><img id="commentimage" src="{{ comment.user.get_profile.get_pic_url }}"></img>
+					<div class="grid_8 commentblock">
+							{# COMMENTS #}
+							{% get_comment_list for lesson.lesson as comment_list %}
 
-							<b>	{{ comment.userinfo.name }}</b> <span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>
-		                    <p>{{ comment.comment }}</p>
-		                    {% if comment.user == user %}
-		                        <form action="{{ delete_comment_action }}" method="post">
-		                            {% csrf_token %}
-		                            <input type="hidden" name="comment_id" value="{{ comment.pk }}">
-		                            <input type="hidden" name="next" value="{{ next }}">
-		                            <button type="submit" value="" class="deletecomment">x</button>
-		                        </form>
-		                    {% endif %}
-		                </div>
-		            {% endfor %}
-		                {% if user.is_authenticated %} 
-				            <div class="addcomment">
-						<img id="commentimage" src="{{ user.get_profile.get_pic_url }}"></img>
-		                    {% render_comment_form for lesson.lesson %}
-				            </div>
-		                {% endif %}
+								<div class="lessonmetablock">
+							
+								<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
+								
+							{% if comment_list|length == 0 %}
+								<div class="comment border-callout nocomments">
+							{% else %}
+								<div class="comment border-callout">
+							{% endif %}
+									{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
+									<span id="score"><span id="scorecount">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.lesson.vote_score }}</span> 
 
-		        </div>
+								{% if is_my_course %}
+								{% else %}
+									<ul class="thumbsbuttons">
+										{% if lesson.my_vote == "up" %}
+											<li id="thumbsup" class="vote_link done" rel="1" original-title="You liked this"></li>
+										{% else %}
+											<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
+										{% endif %}
+
+										{% if lesson.my_vote == "down" %}
+											<li id="thumbsdown" class="vote_link done" rel="0" original-title="You didn't like this"></li>
+										{% else %}
+											<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
+										{% endif %}  
+									</ul> 
+								{% endif %}
+								  <b class="border-notch notch"></b>
+									<div class="notch"></div>
+
+								</div>
 
 
-		</div>
+					            {% for comment in comment_list %}
+					                <div class="comment">
+
+										<div class="grid_1 alpha omega" style="margin-top:5px; height:100%">
+										<img id="commentimage" src="{% if comment.user.get_profile.get_pic_url  %}{{ comment.user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
+										</div>
+
+										<div class="grid_6 alpha">
+
+
+											<p>
+
+											<b>	{{ comment.userinfo.name }}</b>
+											<span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>						
+
+					                    	<p>{{ comment.comment }}</p>
+
+					                    	{% if comment.user == user %}
+
+
+											{% endif %}
+
+										</div>
+
+
+											<form action="{{ delete_comment_action }}" method="post" style="display:inline;">
+						                        {% csrf_token %}
+						                        <input type="hidden" name="comment_id" value="{{ comment.pk }}">
+						                        <input type="hidden" name="next" value="{{ next }}">
+						                        <button type="submit" value="" class="deletecomment">x</button>
+						                    </form>
+
+										<div class="clear"></div>
+
+
+
+					                </div>
+					            {% endfor %}
+								
+
+					        </div>
+
+					</div>
 			
 		
 	{% endfor %}
