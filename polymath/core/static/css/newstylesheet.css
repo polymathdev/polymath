@@ -497,8 +497,8 @@ label,
 input,
 select,
 textarea {
-  font-family: "PT Sans", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
+  font-size: 14px;
   font-weight: normal;
   line-height: normal;
 	border-radius:6px;
@@ -1677,7 +1677,7 @@ a.label:hover{
 	cursor: pointer;
 	text-align: center;
 	text-decoration: none;
-	font: 12px 'PT Sans', sans-serif;
+	font: 10px 'PT Sans Caption', sans-serif;
 	padding-bottom:5px;
 	padding-top:5px;
 	border:1px solid #e4e4dc;
@@ -1717,7 +1717,7 @@ a.label:hover{
 	cursor: pointer;
 	text-align: center;
 	text-decoration: none;
-	font: 12px 'PT Sans', sans-serif;
+	font: 10px 'PT Sans Caption', sans-serif;
 	padding-bottom:5px;
 	padding-top:5px;
 	float:right;
@@ -2195,69 +2195,6 @@ p{
 
 
 
-.open{
-	display: inline-block;
-	outline: none;
-	cursor: pointer;
-	text-align: center;
-	text-decoration: none;
-	font: 18px 'PT Sans', sans-serif;
-
-	text-shadow:0px 1px 0px white;
-	font-weight:normal;
-	color:#667B4E;  
-	
-
-	-webkit-border-radius: 4px; 
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	
-	-webkit-box-shadow: 0 1px 1px #c0bfb9;
-	-moz-box-shadow: 0 1px 1px #c0bfb9;
-	box-shadow: 0 1px 1px #c0bfb9;
-	
-	background: url(images/button_icon_take.png) no-repeat left top, #fefdf6; /* Old browsers */
-	background: url(images/button_icon_take.png) no-repeat left top, -moz-linear-gradient(top, #fefdf6 0%, #eeede6 100%); /* FF3.6+ */
-	background: url(images/button_icon_take.png) no-repeat left top, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefdf6), color-stop(100%,#eeede6)); /* Chrome,Safari4+ */
-	background: url(images/button_icon_take.png) no-repeat left top, -webkit-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Chrome10+,Safari5.1+ */
-	background: url(images/button_icon_take.png) no-repeat left top, -o-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Opera 11.10+ */
-	background: url(images/button_icon_take.png) no-repeat left top, -ms-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* IE10+ */
-	background: url(images/button_icon_take.png) no-repeat left top, linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdf6', endColorstr='#eeede6',GradientType=0 ); /* IE6-9 */
-	
-	width:154px;
-	padding-top:5px;
-	padding-bottom:5px;
-	
-	border: solid 1px #c0bfb9;
-	
-}
-
-
-.open:hover{
-	background: #d9dbc7; /* Old browsers */
-	background: -moz-linear-gradient(top,  #d9dbc7 0%, #cfd6a5 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d9dbc7), color-stop(100%,#cfd6a5)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  #d9dbc7 0%,#cfd6a5 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  #d9dbc7 0%,#cfd6a5 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  #d9dbc7 0%,#cfd6a5 100%); /* IE10+ */
-	background: linear-gradient(top,  #d9dbc7 0%,#cfd6a5 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d9dbc7', endColorstr='#cfd6a5',GradientType=0 ); /* IE6-9 */
-
-	text-decoration:none;
-	color:#667B4E;
-}
-
-.open:active{
-	color: #667B4E;
-	background:#d6ddaa;
-	background: -webkit-gradient(linear, left top, left bottom, from(#c8cf9f), to(#d6ddaa));
-	background: -moz-linear-gradient(top,  #c8cf9f, #d6ddaa );
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
-	-moz-box-shadow: inset 0 0 4px #ccc;
-	-webkit-box-shadow: inset 0 0 4px #ccc;
-	box-shadow: inset 0 0 4px  #ccc;
-}
 
 
 .addlesson{
@@ -2620,8 +2557,8 @@ p{
 }
 
 .completed h3{
-	font-family:'PT Sans', sans-serif;
-	font-size:26px;
+	font-family:'PT Sans Caption', sans-serif;
+	font-size:24px;
 	font-weight:bold;
 	margin-top:10px;
 		margin-left:218px;
@@ -2631,13 +2568,13 @@ p{
 }
 
 .completed h4{
-	font-family:'PT Sans', sans-serif;
-	font-size:26px;
+	font-family:'PT Sans Caption', sans-serif;
+	font-size:24px;
 	font-weight:bold;
 	margin-top:10px;
 	margin-left:240px;
 	position:absolute;
-		display:block inline;
+	display:block inline;
 	padding:0px;
 }
 
@@ -4077,7 +4014,7 @@ a.remove_lesson_lnk:hover{
 	outline: none;
 	cursor: pointer;
 	text-decoration: none;
-	font: 16px 'PT Sans', sans-serif;
+	font: 14px 'PT Sans Caption', sans-serif;
 	font-weight:normal;
 	text-shadow: 0 -1px 0px black;
 	color:white;
