@@ -106,7 +106,7 @@
 	
 					<div id="followers">
 						<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon"></img>
-						{{ users_with_progress.count }} learning 
+						{{ requested_course.users_with_progress.count }} learning 
 					</div>
 
 
@@ -197,9 +197,9 @@
 			<hr id="titlehr">
 			<div style="margin-top:10px;">
 
-			{% if users_with_progress %}
+                {% if requested_course.users_with_progress.count > 0 %}
 
-			{% for user in users_with_progress %}
+			{% for user in requested_course.users_with_progress %}
 				
 				<a href="{% url view_profile uname=user.username %}"><img class="takingimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" original-title=" {{ user.first_name }} {{ user.last_name }}"></img></a>
 				
