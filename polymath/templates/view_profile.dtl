@@ -129,7 +129,7 @@
 			
 			<div class="grid_4" id="coursepagemeta" style="margin-top:20px;">
 				<div style="margin-left:10px; margin-right:10px;">	
-				 <div class="points"><h4>Courses Taken</h4><span>{% if courses_following %}{{ courses_following|length }}{% else %}0{% endif %}</span></div>
+                    <div class="points"><h4>Courses Taken</h4><span>{{ profile_owner.get_profile.courses_with_progress|length }}</span></div>
 					<div class="points"><h4>Courses Created</h4><span>{{ courses_created_by_user.count }}</span></div>
 				</div>
 			
@@ -150,14 +150,14 @@
 
 		<div class="heading grid_8 omega" style="width:630px;">
 				<div class="grid_8 alpha">
-					<h2 class="profile_heading">{% if is_my_profile %}You've{% else %}{{ profile_owner.first_name }} has{% endif %} made progress in {{ courses_following|length }} course{{ courses_following|length|pluralize }}</h2>
+					<h2 class="profile_heading">{% if is_my_profile %}You've{% else %}{{ profile_owner.first_name }} has{% endif %} made progress in {{ profile_owner.get_profile.courses_with_progress|length }} course{{ profile_owner.get_profile.courses_with_progress|length|pluralize }}</h2>
 				</div>
 		</div> <!-- end heading block -->
 
 
-	{% if courses_following %}
+        {% if profile_owner.get_profile.courses_with_progress|length > 0 %}
 	<div class="parentlessoncreatedblock">
- 		{% for course in courses_following %}
+ 		{% for course in profile_owner.get_profile.courses_with_progress %}
 
 		<div class="lessonCreatedBlock" original-title="{{ course.name }} by Harish Venkatesan">
 			<div style="height:130px; width:170px; background:#f5f5f5; padding-top:16px; margin-top:10px; margin-left:10px">

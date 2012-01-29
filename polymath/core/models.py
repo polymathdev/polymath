@@ -19,6 +19,10 @@ class UserProfile(models.Model):
         else:
             return self.fb_profile_thumb
 
+    # get a unique list of the courses that this user has completed at least 1 lesson in
+    def courses_with_progress(self):
+        return Course.objects.filter(lesson__lessoncompletion__user_profile=self.user).distinct() 
+
     def __unicode__(self):
         return self.user.username
 
@@ -130,7 +134,7 @@ class Lesson(models.Model):
 
 
 class LessonCompletion(models.Model):
-    lesson = models.ForeignKey(Lesson, editable=False)
+    lesson = models.ForeignKey(Lesson)
     user_profile = models.ForeignKey(User)
     date_completed = models.DateTimeField(auto_now_add=True)
 
