@@ -117,7 +117,7 @@
 		
 				<ul class="socialmedia">
 					<li id="facebook"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_facebook.png"></img></a></li>
-					<li id="twitter"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_twitter.png"></img></a></li>
+				<!--	<li id="twitter"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_twitter.png"></img></a></li> -->
 <!-- 					<li id="gplus"><a href="facebook.com" target="_blank"> <img src="{{ STATIC_URL }}css/images/button_gplus.png"></img></a></li> -->
 				</ul>
 		

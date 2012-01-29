@@ -25,8 +25,8 @@
 					<img src="{{ STATIC_URL }}css/images/favicon.png" class="favicon"></img>
 			<ul>
 				<li><a href="/about/">About</a></li>
-				<li><a href="/beliefs/">Our Beliefs</a></li>
 				<li><a href="/howitworks/">How It Works</a></li>
+				<li><a href="/beliefs/">Our Beliefs</a></li>
 				<li><a href="#">Contact</a></li>
 			</ul>
 		
@@ -36,15 +36,21 @@
 		<div class="grid_10 about">
 			<h1 id="browsetitle">How It Works</h1>
 			<hr>
-			<p> Polymath is a fun and simple way to learn anything and share your knowledge online. Here's how it works!</p>
+			<p> Polymath is a fun and simple way to learn anything and share your knowledge online. Here's how it works.</p>
+			
 			<div class="grid_1" style="margin-top:25px;">
 				<span id="numcircle"><span id="number">1</span></span>
 			</div>
 			
 			<div class="grid_8">
-			<h2><b>Find a Course</h2></b>
-			<p>Each course features the best content online about a subject, organized by an expert. Discover great material and get help from people who've done it before. Here's an example of a course.
-			</p>
+				<h2><b>Find a Course</h2></b>
+				<div class="grid_4 alpha">
+					<p>Each course features the best content online about a subject, organized by an expert. Discover great material and get help from people who've done it before. Here's an example of a course.
+					</p>
+				</div>
+				<div class="grid_4 omega">
+					<img src="{{ STATIC_URL }}css/images/findcourse.png" id="findcourseimage"></img>
+				</div>
 			</div>
 			
 			<div class="clear"></div>
@@ -54,10 +60,15 @@
 				<span id="numcircle"><span id="number">2</span></span>
 			</div>
 			
-			<div class="grid_8">
-			<h2><b>Track your Progress</h2></b>
-			<p>One of the toughest parts of learning something outside of school is staying motivated and continuing to regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system that rewards you on your work.
-			</p>
+			<div class="grid_8" style="margin-bottom:20px;">
+				<h2><b>Track your Progress</h2></b>
+				<div class="grid_2 alpha">
+					<img src="{{ STATIC_URL }}css/images/trackprogress.png" id="trackprogressimage"></img>
+				</div>
+				<div class="grid_6 omega">
+					<p>One of the toughest parts of learning something outside of school is staying motivated and continuing to regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system that rewards you on your work.
+					</p>
+				</div>
 			</div>
 			
 			<div class="clear"></div>
@@ -67,20 +78,28 @@
 			</div>
 			
 			<div class="grid_8" style="margin-bottom:20px;">
-			<h2><b>Create a Course</h2></b>
-			<p>A course is just a set of links to great material online -- it's like a syllabus that a new student can use to guide their learning. Anyone who knows about a subject can create a course on Polymath, whether you're an expert or someone who's just recently taught yourself the topic. <b>Share your knowledge, make the world a better place.</b>
-			</p>
-			</div>
+				<h2><b>Create a Course</h2></b>
+				<div class="grid_5 alpha">
+					<p>A course is just a set of links to great material online -- it's like a syllabus that a new student can use to guide their learning. Anyone who knows about a subject can create a course on Polymath, whether you're an expert or someone who's just recently taught yourself the topic. <b>Share your knowledge, make the world a better place.</b>
+					</p>
+				</div>
+				<div class="grid_3 omega">
+					<img src="{{ STATIC_URL }}css/images/createcourse.png" id="createcourseimage"></img>
+				</div>
+			
 			
 			<div class="clear"></div>
+			
+			
+			
 						
-			<div class="grid_10" style="float:right; background:#ddded5; margin-top:40px; margin-bottom:20px; border-radius:4px; border:1px solid #aaa;">
+			<div class="grid_9 omega" id="howitworkscall">
 			
 			{% if return_to_course %}
-				<h3 style="margin-top:34px; padding-left:40px; position:absolute; text-shadow:0px 1px 2px white; color:#5f7647;">So let's get started! Go back to "{{ return_to_course.name }}"</h3>
+				<h3 id="returntocourseh3">So let's get started! Go back to "{{ return_to_course.name }}"</h3>
 				<a href="/courses/browse" class="browsecourses view"><span>Go to course &nbsp; &#8594; </span></a>
 			{% else %}
-				<h3 style="margin-top:34px; padding-left:200px; position:absolute; text-shadow:0px 1px 2px white; color:#5f7647;">
+				<h3 id="getstartedh3">
 					So let's get started!
 				</h3>
 				<a href="/courses/browse" class="browsecourses"><span>Browse courses &nbsp; &#8594; </span></a>

@@ -356,7 +356,7 @@
 					
 						<p>
 
-						<b>	{{ comment.userinfo.name }}</b>
+						<b>	<a href="{% url view_profile uname=comment.userinfo.username %}">{{ comment.userinfo.name }}</b></a>
 						<span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>						
 						
                     	<p>{{ comment.comment }}</p>
@@ -514,7 +514,9 @@
 
 											<p>
 
-											<b>	{{ comment.userinfo.name }}</b>
+											<b>
+												{{ comment.userinfo.name }}
+												</b>
 											<span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>						
 
 					                    	<p>{{ comment.comment }}</p>

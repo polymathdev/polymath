@@ -3032,7 +3032,7 @@ p{
 
 .createcourse.profilepage span{
 	font-size:12px;
-	padding-left:43px;
+	padding-left:18px;
 	padding-top:10px;
 	padding-bottom:10px;
 }
@@ -5365,4 +5365,30 @@ a.remove_lesson_lnk:hover{
 
 .donethis span{
 	padding-left:40px;
+}
+
+
+#findcourseimage{
+	float:right; width:320px; margin-top:-50px; border:2px solid white;
+}
+
+
+#trackprogressimage{
+	float:left; width:120px; margin-top:5px; border:2px solid white;
+}
+
+#createcourseimage{
+	float:right; width:200px; margin-top:-10px; border:2px solid white;
+}
+
+#howitworkscall{
+	float:right; background:#ddded5; margin-top:60px; margin-bottom:20px; border-radius:4px; border:1px solid #aaa;
+}
+
+#returntocourseh3{
+	margin-top:34px; padding-left:40px; position:absolute; text-shadow:0px 1px 2px white; color:#5f7647;
+}
+
+#getstartedh3{
+	margin-top:34px; padding-left:100px; position:absolute; text-shadow:0px 1px 2px white; color:#5f7647;
 }
