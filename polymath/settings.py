@@ -141,6 +141,7 @@ INSTALLED_APPS = (
 	'django.contrib.humanize',
     'django.contrib.comments',
     'simple_comments',
+    'gunicorn',
     'core',
     'south',
     'taggit',
