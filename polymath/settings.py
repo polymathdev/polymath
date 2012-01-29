@@ -23,6 +23,13 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # STUFF THAT I AM ADDING MYSELF
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True 
+SERVER_EMAIL = 'Polymath Error <hello@whatispolymath.com>'
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', '')
+
 LOGIN_REDIRECT_URL = '/myprofile/'
 LOGIN_URL = '/login/'
 LOGOUT_URL = '/logout/'
