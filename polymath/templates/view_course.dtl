@@ -40,6 +40,11 @@
 {% load humanize %}
 {% load natural_time %}
 
+{% if user.is_authenticated %}
+{% else %}
+	<div class="messages"><h3>Get started on a course - it's easy! &nbsp; 1) Log in. &nbsp;2) Take a lesson.&nbsp; 3) Mark it as done to track your progress.</h3><a href="#" id="close">x</a></div>
+{% endif %}
+
 
 	<div class="headingbox">
 	
@@ -297,7 +302,7 @@
 					<p class="expanded">{{ lesson.lesson.description|linebreaks }}<a href="{{ lesson.lesson.link }}"></a></p>
 				</div>
 
-				<div class="embedclass grid_2 omega" style="width:200px;">
+				<div class="embedclass grid_2 omega" style="width:200px; padding-bottom:80px;">
 					<a href="{{ lesson.lesson.link }}"></a>
 				</div>
 

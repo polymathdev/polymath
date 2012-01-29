@@ -42,7 +42,7 @@ $(document).ready(function(){
 		opacity: 0.8,
 		forcePlaceholderSize: true,
 		placeholder: "ui-state-highlight",
-		connectWith: '#lesson_list_div',
+	//	connectWith: '#lesson_list_div',
 		helper: function(event, element) {
 		        return element.clone().appendTo("body");
 		    }
@@ -158,6 +158,18 @@ $(document).ready(function(){
 	});
 	
 	
+
+	var stickyHeaderTop = $('#leftsidenav').offset().top;
+
+	 $(window).scroll(function(){
+		if( $(window).scrollTop() > stickyHeaderTop - 40) {
+			$('#leftsidenav').css({position: 'fixed', top: '20px'});
+		} else {
+			$('#leftsidenav').css({position: 'static', top: '20px'});
+		}
+	});
+	
+
 
 }); 
 
