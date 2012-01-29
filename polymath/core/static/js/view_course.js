@@ -1,18 +1,13 @@
 $(document).ready(function(){
 	
+    $('.addcomment textarea').addClass('commentbox');
 
-		$('.submit-post').attr('disabled', 'true');
-		
-		$('.addcomment textarea').addClass('commentbox');
-	
-		
-			$('.commentbox').bind('keyup change input', function() {
-				if ($(this).val != ""){
-					$(this).closest('.addcomment').find('.submit-post').removeAttr('disabled');
-				}
-			});
-
-
+    // don't submit the post comment form if the comment box is blank
+    $('.comment_form').submit(function() {
+        if ( $.trim( $(this).find('.commentbox').val() ) == "" ) {
+            return false;
+        }
+    });
 	
 	var remainderLessons = lessons - 2;
 	
