@@ -15,6 +15,8 @@ if host in ['harish-venkatesans-macbook.local', 'DSMBP.local']:
 else:
     from settings_prod import *
 
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
      ('Daniel Shapiro', 'registration@dshap.com'),
