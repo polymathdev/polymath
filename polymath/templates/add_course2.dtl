@@ -38,7 +38,7 @@
 
 		<div class="grid_1" style="margin-top:3px;">
 			<div id="editimage"><center>{% if course_form.instance.photo %}Edit Image{% else %}Add Image{% endif %}</center></div>
-			<img src="{% if course_form.instance.photo %}{{ course_form.instance.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="courseLogo"></img>
+			<img src="{% if course_form.instance.photo %}{{ course_form.instance.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}" id="courseLogo"></img>
 		</div>
 
 		<div class="grid_3 alpha omega">
