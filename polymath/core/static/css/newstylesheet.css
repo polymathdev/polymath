@@ -26,7 +26,7 @@ body {
 	padding-bottom: -30px;}  /* must be same height as the footer */
 
 #footer {
-/*	background:#699652; */
+/*	background:#444444;  */
 	border-top:1px dotted #bbb;
 	width:960px;
 	margin-left:auto;
@@ -1245,8 +1245,8 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
 /*	 background:#3d753a; */
 	background:#4e864b;
 	background:#1d8b3e;
-	background:url(images/homeheader.png) left top;
 	background:#009d60;
+	background:url(images/homeheader.png) left top;
 	background-repeat:repeat-x;
 /*	background:#00ae71; */
 	width:100%;
@@ -1586,6 +1586,11 @@ a.label.success{
 }
 
 a.label:hover{
+	text-decoration:none;
+	background-color:#a6cd00;
+}
+
+.a.label.selected{
 	text-decoration:none;
 	background-color:#a6cd00;
 }
@@ -3667,6 +3672,7 @@ margin-left:10px;;
 	padding-bottom:10px;
 	height:40px;
 	padding-left:10px;
+	border:1px solid #ddd;
 }
 
 
@@ -3695,6 +3701,7 @@ margin-left:10px;;
 	margin-bottom:-20px;
 	line-height:1.5;
 	resize:none;
+	border:1px solid #ddd;
 }
 
 #id_category{
@@ -3749,11 +3756,13 @@ margin-left:10px;;
 	height:20px;
 	width:335px;
 	background:white;
-	font-size:16px;
+	font-size:14px;
+	text-shadow:0px -1px 1px white;
 	margin-bottom:10px;
 	padding-top:10px;
 	padding-left:10px;
 	padding-bottom:10px;
+	border:1px solid #ccc;
 }
 
 .lessondescription textarea{
@@ -3762,31 +3771,32 @@ margin-left:10px;;
 	margin-left:90px;
 	width:335px;
 	height:110px;
-	background:#fefef6;
-	font-size:16px;
+	font-size:14px;
 	padding-top:10px;
 	padding-left:10px;
 	padding-bottom:10px;
+	border:1px solid #eee;
+	text-shadow:0px -1px 1px white;
 }
 
 .lessonlink{
 	font-weight:bold;
 	font-size:14px;
 	color:#0a580b;
+	padding-top:5px;
 }
 
-.lessonlink{
-	display:inline;
-}
 
 .lessonlink input{
 	width:335px;
 	background:white;
-	font-size:16px;
+	font-size:14px;
 	margin-left:0px;
-	padding-top:10px;
+	padding-top:12px;
 	padding-left:10px;
 	padding-bottom:10px;
+	border:1px solid #ccc;
+	text-shadow:0px -1px 1px white;
 }
 
 
@@ -3901,7 +3911,8 @@ h5.edit_heading{
 }
 
 
-a.remove_lesson_lnk{
+.remove_lesson_lnk{
+	/*
 	position:absolute;
 	margin-top:110px;
 	right:10px;
@@ -3923,12 +3934,35 @@ a.remove_lesson_lnk{
 	background:url(images/trash_icon_tan_white.png) no-repeat -1px 0px, -o-linear-gradient(top, #fefdf6 0%,#eeede6 100%); 
 	background:url(images/trash_icon_tan_white.png) no-repeat -1px 0px, -ms-linear-gradient(top, #fefdf6 0%,#eeede6 100%); 
 	background:url(images/trash_icon_tan_white.png) no-repeat -1px 0px, linear-gradient(top, #fefdf6 0%,#eeede6 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdf6', endColorstr='#eeede6',GradientType=0 );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdf6', endColorstr='#eeede6',GradientType=0 );*/
+	width:20px;	
+	height:20px;
+	float:right;
+	margin-right:15px;
+	margin-top:125px;
+	border:1px solid #ccc;
+	background:#ddd;
+	display:inline;
+	font-size:14px;
+	padding-left:10px;
+	padding-top:5px;
+	color:#aaa!important;
+	
 }
 
 a.remove_lesson_lnk:hover{
-	background:url(images/trash_icon_tan_white.png) no-repeat -1px -39px #fefef6;
+/*	background:url(images/trash_icon_tan_white.png) no-repeat -1px -39px #fefef6; */
 	text-decoration:none;
+	background:#D93733;
+	background:  -moz-linear-gradient(top, #D93733 0%, #A60400 100%); /* FF3.6+ */
+	background:  -webkit-gradient(linear, left top, left bottom, color-stop(0%,#D93733), color-stop(100%,#A60400)); /* Chrome,Safari4+ */
+	background:  -webkit-linear-gradient(top,#D93733  0%,#A60400 100%); /* Chrome10+,Safari5.1+ */
+	background:  -o-linear-gradient(top, #D93733 0%,#A60400 100%); /* Opera 11.10+ */
+	background:  -ms-linear-gradient(top, #D93733 0%,#A60400 100%); /* IE10+ */
+	background:  linear-gradient(top, #D93733 0%,#A60400 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#D93733', endColorstr='#A60400',GradientType=0 ); /* IE6-9 */
+	color:white!important;
+	cursor:pointer;
 }
 
 .move_up_lnk, .move_down_lnk{
@@ -4322,10 +4356,10 @@ a.remove_lesson_lnk:hover{
 }
 
 .lesson_div{
-		width:620px;
+		width:610px;
 		float:left;
 /*		padding-top:20px; */
-		background:#eae7df;
+		background:#f5f5f5;
 		/*
 		background: #fefdf6; 
 		background: -moz-linear-gradient(top, #fefdf6 0%, #eeede6 100%); 
@@ -4352,6 +4386,7 @@ a.remove_lesson_lnk:hover{
 		border-radius:6px;
 		-moz-border-radius:6px;
 		-webkit-border-radius:6px;
+		border:6px solid #D9D6CE;
 }
 
 .lesson_div:hover{
@@ -4976,9 +5011,6 @@ a.remove_lesson_lnk:hover{
 	float:right;
 	margin-right:10px;
 	margin-top:5px;
-	/*
-	margin-right:10px;
-	margin-top:10px;*/
 	border:1px solid #ccc;
 	background:#ddd;
 	display:inline;

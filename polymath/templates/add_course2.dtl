@@ -31,7 +31,7 @@
 <form id="new_course_form" method="post" enctype="multipart/form-data">
 {% csrf_token %}
 	
-<div class="grid_4 alpha">
+<div class="grid_4 alpha" id="leftsidenav">
 
 	
 	<div class="grid_4 omega" id="coursepagemeta">
@@ -81,7 +81,7 @@
 		</div> <!-- end coursepagemeta -->
 		
 		
-		<div class="grid_4 omega" id="coursepagemeta" style="margin-top:10px;">
+		<div class="grid_4 omega" style="margin-top:30px; margin-bottom:0px;">
 				<button id="sim_save_course" class="takecourse" style="margin-right:70px;"><span>Save Course</span></button>
 		</div>
 		
@@ -100,7 +100,7 @@
 </div>  <!-- end left side nav -->
 	
 	
-<div class="grid_8">
+<div class="grid_8" style="float:right;">
 	
 	
 	
@@ -110,13 +110,13 @@
 	    	{% for lesson_form in lesson_fs %}
 	        	<div class="lesson_div {% if not lesson_form.initial %}extra{% endif %}">
 
-				<div style="background:#d9d6ce; margin-top:0px; padding-top:20px; padding-bottom:20px; border-bottom:1px solid #e4e4dc; float:left; width:100%">
+				<div style="background:#d9d6ce; margin-top:0px; padding-top:15px; padding-bottom:20px; border-bottom:1px solid #e4e4dc; float:left; width:100%">
 					<div class="grid_1 alpha" style="width:80px;">
 						<span id="numcircle" class="teachnumber"><p id="number"> {{ forloop.counter }}</p></span>
 					</div>
 
 
-				<div class="grid_4">
+				<div class="grid_4 omega">
 					{{ lesson_form.id }}
 					<div class="lessonname">
 					{{ lesson_form.name.errors }}
@@ -128,7 +128,9 @@
 					{% if lesson_form.instance.id %}{{ lesson_form.instance.link }}{% else %}{{ lesson_form.link }}{% endif %}
 					{{ lesson_form.order.as_hidden }}
 					</div>
+
 				</div>
+				
 				</div>
 				<div class="clear"></div>
 
@@ -138,10 +140,11 @@
 		        	{{ lesson_form.description }}
 					</div>				
 				</div>
+				
+				<a href="#" class="remove_lesson_lnk">X</a>
 
 
 
-					<a href="#" class="remove_lesson_lnk"></a>
 
 
 				</div>
@@ -175,73 +178,6 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-<!---------------------------------------------------------------------------------
-
-	<form id="new_course_form" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-		<div class="grid_1">
-			
-			<div id="editimage"><center>{% if course_form.instance.photo %}Edit Image{% else %}Add Image{% endif %}</center></div>
-			<img src="{% if course_form.instance.photo %}{{ course_form.instance.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" id="courseLogo"></img> 
-		</div>
-
-		<div class="grid_3" style="margin-bottom:25px;">
-
-	{{ course_form.name }}
-	{{ course_form.name.errors }}
-				<br>
-				{{ course_form.description }}	
-				{{ course_form.description.errors }}
-				
-	
-
-		<div id="photouploaddiv">
-		{{ course_form.photo }}
-		{{ course_form.photo.errors }}
-		</div>
-		
-
-		</div>
-	
-	<div class="grid_2 addcoursebuttons omega">
-	
-		<span class="categorylabel"><span>
-		{{ course_form.category }}
-		{{ course_form.category.errors }}
-		<br><br>
-		
-		<span class="taglabel">Course Tags:</span>
-		{{ course_form.tags }}
-		{{ course_form.tags.errors }}
-	
-	
-		<div class="grid_1 alpha">
-			<button type="button" id="add_lesson_btn" class="addlesson" style="opacity:0;"><span>Add Lesson</span></button> 
-			</div>
-		<div class="grid_2 omega" style="float:right;">
-			<button type="submit" class="takecourse" id="save_course" style="display:none"><span>Save Course</span></button> 
-		</div>
-		
-		<br>
-		<br>
-			
-		
-		<div class="clear"></div>
-		
-		
-	</div>
-	
-
-	---------------------->	
 	
 
 	
@@ -289,7 +225,7 @@
 
 
 
-				<a href="#" class="remove_lesson_lnk"></a>
+				<a href="#" class="remove_lesson_lnk">X</a>
 		
 
 			</div>
@@ -328,7 +264,7 @@
 <div style="display:none" id="empty_lesson_form_div">
 
 
-	<div style="background:#d9d6ce; height:100px; margin-top:0px; padding-top:20px; border-bottom:1px solid #e4e4dc;">
+<div style="background:#d9d6ce; margin-top:0px; padding-top:15px; padding-bottom:20px; border-bottom:1px solid #e4e4dc; float:left; width:100%">
 	<div class="grid_1 alpha" style="width:80px;">
 	<span id="numcircle" class="teachnumber"><p id="number" class="lesson_num_spn">X</p></span>
 	</div>
@@ -346,6 +282,7 @@
 		{{ lesson_fs.empty_form.link }}
 		</div>
 	</div>
+
 	</div>
 	<div class="clear"></div>
 	
@@ -356,35 +293,10 @@
 	</div>
 	
 	   {{ lesson_fs.empty_form.order.as_hidden }}
+	<a href="#" class="remove_lesson_lnk">X</a>
 
 
-    
-	<!-- <div class="grid_1 alpha" align="center">
-		<span id="number" class="lesson_num_spn">X</span> 
-	</div>
 
-
-	<div class="grid_3">
-    	{{ lesson_form.id }}
-		
-		<div class="lessonname">
-    	<p>{{ lesson_fs.empty_form.name }}</p>
-		</div>
-	
-    	<div class="lessonlink"> <p>{{ lesson_fs.empty_form.link }}</p>
-		</div>
-		
-		<div class="lessondescription">
-    	<p>{{ lesson_fs.empty_form.description }}</p>
-		</div>
-		
-    	{{ lesson_fs.empty_form.order.as_hidden }}
-
-	</div> -->
-	
-
-			<a href="#" class="remove_lesson_lnk"></a>
-<!--			<a href="#" class="move_up_lnk"></a><br><a href="#" class="move_down_lnk"></a>  -->
 
 
 
@@ -401,5 +313,5 @@
 
 
 {% block footer %}
-		<div id="footer" style="margin-top:100px;"><div class="container_6"></div></div>
+		<div id="footer" style="margin-top:10px;"><div class="container_6"></div></div>
 {% endblock %}

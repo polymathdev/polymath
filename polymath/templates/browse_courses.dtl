@@ -86,6 +86,13 @@
 <div class="grid_9 omega" style="margin-left:10px;">
 
 
+{% if filters %}
+<div style="margin-left:20px; margin-top:5px; margin-bottom:20px;">
+	<a class="label success">{{ filters.tag.name }}</a>
+</div>
+{% endif %}
+
+
 {% for course in course_list %}
 
 	<div class="lessonCreatedBlock browse">
@@ -119,7 +126,7 @@
 			{% endfor %}
 		</p>
 			
-		<p class="coursefollowers lesson browse"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.followers.count }}
+		<p class="coursefollowers lesson browse"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.users_with_progress.count }}
 			<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon" style="margin-right:5px; height:20px; width:auto;"></img>  {{ course.lesson_set.count }} </p>
 
 	</div> <!-- end lesson created block -->

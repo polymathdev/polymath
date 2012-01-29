@@ -174,7 +174,7 @@
 			
 			</div>
 			
-			<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.followers.count }}2
+			<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.users_with_progress|length }}
 				<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon" style="margin-right:5px; height:20px; width:auto;"></img>  {{ course.total }} </p>
 
 		</div> <!-- end lesson created block -->
@@ -242,7 +242,7 @@
 			
 			</div>
 			
-				<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.followers.count }} 
+				<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.users_with_progress.count }} 
 				<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon" style="margin-right:5px; height:20px; width:auto;"></img> {{ course.lesson_set.count }}</p>
 
 		</div>

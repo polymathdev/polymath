@@ -31,7 +31,7 @@ $(document).ready(function(){
 		} else if (current_page.match(/entrepreneurship/)) {
 				$(".aboutsidebar li:eq(3)").addClass('selected');
 		}  else if (current_page.match()) {
-					$(".aboutsidebar li:eq(0)").addClass('selected');
+				$(".aboutsidebar li:eq(0)").addClass('selected');
 		} else { // don't mark any nav links as selected
 			$(".aboutsidebar li").removeClass('selected');
 		};
