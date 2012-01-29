@@ -57,7 +57,31 @@ def new_user(request):
     return render(request, 'test.dtl')
 
 def home_page(request):
-    return render(request, 'home_page.dtl')
+    default_course = Course.objects.all()[0]
+
+    # there has to be a more elegant way to accomplish the below
+    if Course.objects.filter(homepage_featured='A').count() > 0:
+        left = Course.objects.filter(homepage_featured='A')[0]
+    else:
+        left = default_course
+
+    if Course.objects.filter(homepage_featured='B').count() > 0:
+        middle = Course.objects.filter(homepage_featured='B')[0]
+    else:
+        middle = default_course
+
+    if Course.objects.filter(homepage_featured='C').count() > 0:
+        right = Course.objects.filter(homepage_featured='C')[0]
+    else:
+        right = default_course
+
+    return render(request, 'home_page.dtl', {
+        'featured_courses' : {
+            'left' : left,
+            'middle' : middle,
+            'right' : right
+            }        
+        })
 
 def view_profile(request, uname):
     profile_owner = get_object_or_404(User, username=uname)    

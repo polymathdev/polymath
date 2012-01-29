@@ -85,6 +85,10 @@ class Course(models.Model):
 
     tags = TaggableManager()
     
+    FEATURED_HOMEPAGE_POSITIONS = [('A', 'Left'), ('B', 'Middle'), ('C', 'Right')]
+
+    homepage_featured = models.CharField(max_length=1, blank=True, choices=FEATURED_HOMEPAGE_POSITIONS)
+
     # get a unique list of the users who have completed at least one lesson in this course
     def users_with_progress(self):
         return User.objects.filter(lessoncompletion__lesson__in=self.lesson_set.all()).distinct()
