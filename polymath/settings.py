@@ -15,7 +15,6 @@ if host in ['harish-venkatesans-macbook.local', 'DSMBP.local']:
 else:
     from settings_prod import *
 
-
 ADMINS = (
      ('Daniel Shapiro', 'registration@dshap.com'),
 )
@@ -142,6 +141,7 @@ INSTALLED_APPS = (
 	'django.contrib.humanize',
     'django.contrib.comments',
     'simple_comments',
+    'gunicorn',
     'core',
     'south',
     'taggit',
