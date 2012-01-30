@@ -13,6 +13,9 @@ class UserProfile(models.Model):
     fb_profile_pic = models.URLField(blank=True)
     fb_profile_thumb = models.URLField(blank=True)
 
+    def get_facebook_url(self):
+        return u'http://www.facebook.com/profile.php?id=' + self.user.social_auth.get(provider='facebook').uid
+
     def get_pic_url(self):
         if self.profile_pic:
             return self.profile_pic.url
