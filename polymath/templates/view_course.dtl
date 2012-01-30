@@ -206,7 +206,7 @@
 
 			{% for user in requested_course.users_with_progress %}
 				
-				<a href="{% url view_profile uname=user.username %}"><img class="takingimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" original-title=" {{ user.first_name }} {{ user.last_name }}"></img></a>
+            <a href="{% url view_profile uname=user.username %}"><img class="takingimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" original-title=" {{ user.first_name }} {{ user.last_name }}"></img></a>
 				
 		
 		{% endfor %}
@@ -356,7 +356,7 @@
 					
 						<p>
 
-						<b>	<a href="{% url view_profile uname=comment.userinfo.username %}">{{ comment.userinfo.name }}</b></a>
+						<b>	<a href="{% url view_profile uname=comment.user.username %}">{{ comment.userinfo.name }}</b></a>
 						<span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>						
 						
                     	<p>{{ comment.comment }}</p>
