@@ -37,5 +37,11 @@ $(document).ready(function(){
 		};
 	
 	
+		$('.lessoncount').tipsy({fade: false, gravity: 's', opacity:0.8});
+		$('.numfollowers').tipsy({fade: false, gravity: 's', opacity:0.8});
+		
+		$('.closetagfilter').click(function(){
+			window.location.href="/courses/browse/";
+		});
 	
 });

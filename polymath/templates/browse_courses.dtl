@@ -8,6 +8,7 @@
 
 {% block js_includes %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/browse_courses.js"></script>
+
 {% endblock %}
 
 
@@ -48,7 +49,7 @@
 
 <div class="grid_2">
 
-	<div class="grid_2" style="height:900px;">
+	<div class="grid_2">
 		<ul class="aboutsidebar browse">
 		<!--	<li id="first">Categories</li> -->
 			<li><a href="/courses/browse/">All</a></li>
@@ -83,12 +84,12 @@
 
 
 
-<div class="grid_9 omega" style="margin-left:10px;">
+<div class="grid_10 alpha omega" style="margin-left:10px; margin-right:-10px; float:right;">
 
 
-{% if filters %}
-<div style="margin-left:20px; margin-top:5px; margin-bottom:20px;">
-	<a class="label success">{{ filters.tag.name }}</a>
+{% if filters.tag %}
+<div class="filterbytag">
+	Courses with tag: <a class="label success nohover">{{ filters.tag.name }} <span class="closetagfilter"> x</span></a>
 </div>
 {% endif %}
 
@@ -96,7 +97,6 @@
 {% for course in course_list %}
 
 	<div class="lessonCreatedBlock browse">
-	<!--	<div style="height:180px; width:220px; background:#eee; padding-top:16px; margin-top:10px; margin-left:10px"> -->
 	
 	<div class="grid_2" style="width:110px;">
 		<img src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" style="width:100px; height:100px; margin-top:10px; margin-left:10px; border:2px solid #fff; box-shadow:0px 1px 1px rgba(0,0,0,0.2);"></img>
@@ -118,7 +118,6 @@
 		
 			<div class="clear"></div>
 		
-	<!--	</div> -->
 		
 		<p class="browsecoursetags">
 			{% for tag in course.tags.all %}
@@ -126,56 +125,11 @@
 			{% endfor %}
 		</p>
 			
-		<p class="coursefollowers lesson browse"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img> {{ course.users_with_progress.count }}
-			<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon" style="margin-right:5px; height:20px; width:auto;"></img>  {{ course.lesson_set.count }} </p>
+		<p class="coursefollowers lesson browse"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="# of learners"></img> {{ course.users_with_progress.count }}
+			<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon lessoncount" style="margin-right:5px; height:20px; width:auto;" original-title="# of lessons"></img>  {{ course.lesson_set.count }} </p>
 
 	</div> <!-- end lesson created block -->
 	
-	<!--
-		<div class="courseBlock">
-			<div class="grid_1 alpha">
-				<img class="courseimage" src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" ></img>
-			</div>
-			<div class="grid_4 courseDetails">
-				<h3><a href="{% url view_course course_id=course.id course_slug=course.slug %}">{{ course.name }}</a> 	{% if is_my_course %}| <a href="{% url edit_course course_slug=requested_course.slug %}">Edit course</a>{% endif %}</h3>
-			
-			
-				<h4>
-				By <a href="{% url view_profile uname=course.creator.username %}">{{ course.creator.first_name }} {{ course.creator.last_name }}</a>
-				 | 	{% if course.followers.count == 1 %}
-						{{ course.followers.count }} follower 
-					{% else %}
-						{{ course.followers.count }} followers
-					{% endif %}
-				<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon"></img>
-				| 
-				
-				{% if course.lesson_set.count == 1%}
-				{{ course.lesson_set.count }} lesson
-				{% else %}
-				{{ course.lesson_set.count }} lessons
-				{% endif %}
-			
-				
-				</h4>
-				
-				
-				<p>"{{ course.description }}"</p>
-				
-
-			    <div class="coursetags">
-				{% for tag in course.tags.all %}
-			<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=course.category.slug tag_slug=tag.slug %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
-				{% endfor %}
-				</div> 
-
-			</div>
-
-	
-			
-		</div>
-		
-		-->
 		
 {% endfor %}
 
@@ -191,54 +145,7 @@
 
 
 {% block footer %}
-		<div id="footer" style="margin-top:100px;"><div class="container_6"></div></div>
+		<div id="footer" style="margin-top:100px;"><div class="container_6"><span style="float:right">&#169; Polymath, 2011</span></div></div>
 		
 {% endblock %}
 
-
-
-<!-- 
-
-
-
-<h1 style="margin-top:100px">Browse Courses</h1>
-
-{# stupid logic for inserting an "all categories" link...just for testing, kind of a hack #}
-
-{% if tags_by_cat.keys|length == 1 or not tags_by_cat %}
-    <p>
-    <a href="{% url browse_courses_all %}">View All Categories</a>
-    </p>
-{% endif %}
-
-{# browsing all courses or single category #}
-{% if tags_by_cat %}
-    {% for cat, tags in tags_by_cat.items %}
-    <h3><a href="{% url browse_courses_by_cat cat_slug=cat.slug %}">{{ cat }}</a></h3>
-            <b>Tags:</b>
-            {% for tag in tags %}
-            <a href="{% url browse_courses_by_cat_and_tag cat_slug=cat.slug tag_slug=tag.slug %}">{{ tag }}</a >{% if not forloop.last %},{% endif %}
-            {% endfor %}
-    {% endfor %}
-
-{# filter by category + tag #}
-{% else %}
-<h3><a href="{% url browse_courses_by_cat cat_slug=filters.category.slug %}">{{ filters.category.name }}</a> :: {{ filters.tag.name }}</h3>
-{% endif %}
-
-<hr>
-<h3><u>Courses</u></h3>
-
-{% for course in course_list %}
-    <p>
-    <a href="{% url view_course course_id=course.id course_slug=course.slug %}">{{ course.name }}</a> by <a href="{% url view_profile uname=course.creator.username %}">{{ course.creator.first_name }} {{ course.creator.last_name }}</a><br />
-    <i>{{ course.description }}</i><br />
-    <b>Tags:</b>
-    {% for tag in course.tags.all %}
-    <a href="{% url browse_courses_by_cat_and_tag cat_slug=course.category.slug tag_slug=tag.slug %}">{{ tag }}</a>{% if not forloop.last %},{% endif %}
-    {% endfor %}
-    </p>
-    {% if not forloop.last %}<hr>{% endif %}
-{% endfor %}
-
- -->

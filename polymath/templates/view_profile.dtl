@@ -206,6 +206,43 @@
 	
 	<!-- end courses taking -->
 
+
+	<!-- lessons liked -->
+	
+		<div class="heading grid_8" style="margin-top:20px;">
+				<div class="grid_8 alpha">
+					<h2 class="profile_heading">{% if is_my_profile %}You like{% else %}{{ profile_owner.first_name }} likes {% endif %} these lessons</h2>
+				</div>
+		</div>
+		
+	<div>
+	{% if upvoted_lessons %}
+		{% for lesson in upvoted_lessons %}	
+			{% if lesson.up %}
+			<div class="profilecourseBlock grid_8" id="liked">
+				
+				
+				<div class="grid_2 alpha subject" original-title="{{ lesson.lesson.course }}"><b><a href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a></b></div>
+				
+				<div class="grid_4 alpha omega"><div class="lessondescription">{{ lesson.lesson.description|linebreaks }}</div></div>
+				
+				<div class="grid_2 alpha omega lessondate" style="float:right;"> {{ lesson.date_voted|naturalday|capfirst }}</div>
+		
+			</div>
+			{% endif %}
+		{% endfor %}
+		
+	{% else %}
+		<div class="profilecourseBlock grid_8" id="liked">
+			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} liked any lessons yet!</div>
+		</div>
+	{% endif %}
+	
+	<div>
+	
+	
+	<!-- end lessons liked -->
+
 	
 	
 	
@@ -275,42 +312,6 @@
 	<!-- end courses created -->
 	
 	
-	<!-- lessons liked -->
-	
-		<div class="heading grid_8" style="margin-top:20px;">
-				<div class="grid_8 alpha">
-					<h2 class="profile_heading">{% if is_my_profile %}You like{% else %}{{ profile_owner.first_name }} likes {% endif %} these lessons</h2>
-				</div>
-		</div>
-		
-	<div>
-	{% if upvoted_lessons %}
-		{% for lesson in upvoted_lessons %}	
-			{% if lesson.up %}
-			<div class="profilecourseBlock grid_8" id="liked">
-				
-				
-				<div class="grid_2 alpha subject" original-title="{{ lesson.lesson.course }}"><b><a href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a></b></div>
-				
-				<div class="grid_4 alpha omega"><div class="lessondescription">{{ lesson.lesson.description|linebreaks }}</div></div>
-				
-				<div class="grid_2 alpha omega lessondate" style="float:right;"> {{ lesson.date_voted|naturalday|capfirst }}</div>
-		
-			</div>
-			{% endif %}
-		{% endfor %}
-		
-	{% else %}
-		<div class="profilecourseBlock grid_8" id="liked">
-			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} liked any lessons yet!</div>
-		</div>
-	{% endif %}
-	
-	<div>
-	
-	
-	<!-- end lessons liked -->
-
 	
 	
 </div>

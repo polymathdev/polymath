@@ -279,7 +279,7 @@
 
 
 
-					<div class="grid_1" style="width:60px; float:right">
+					<div class="grid_1 omega" style="width:60px; float:right">
 
 						{% if is_my_course %}
 

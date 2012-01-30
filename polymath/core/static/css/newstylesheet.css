@@ -1590,6 +1590,10 @@ a.label:hover{
 	background-color:#a6cd00;
 }
 
+a.label.nohover:hover{
+	background-color:#d7dead;
+}
+
 .a.label.selected{
 	text-decoration:none;
 	background-color:#a6cd00;
@@ -3099,11 +3103,21 @@ p{
 
 #liked:first-child{
 	margin-top:10px;
+	border-top-left-radius:6px;
+	border-top-right-radius:6px;
+	-moz-border-top-left-radius:6px;
+	-moz-border-top-right-radius:6px;
+	-webkit-border-top-left-radius:6px;
+	-webkit-border-top-right-radius:6px;
 }
 
 #liked:last-child{
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius:6px;
+	-moz-border-bottom-left-radius:6px;
+	-moz-border-bottom-right-radius:6px;
+	-webkit-border-bottom-left-radius:6px;
+	-webkit-border-bottom-right-radius:6px;
 }
 
 
@@ -3709,6 +3723,7 @@ margin-left:10px;;
 	margin-left:-20px;
 	width:280px;
 	height:50px;
+	background:#fefef6;
 }
 
 #id_tags{
@@ -5338,13 +5353,13 @@ a.remove_lesson_lnk:hover{
 		text-decoration:none;
 		cursor:pointer;
 		color:#667b4e;
-		background: url(images/checkmarkDone.png) no-repeat left top, #fefdf6; /* Old browsers */
-		background: url(images/checkmarkDone.png) no-repeat left top, -moz-linear-gradient(top, #fefdf6 0%, #eeede6 100%); /* FF3.6+ */
-		background: url(images/checkmarkDone.png) no-repeat left top, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefdf6), color-stop(100%,#eeede6)); /* Chrome,Safari4+ */
-		background: url(images/checkmarkDone.png) no-repeat left top, -webkit-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Chrome10+,Safari5.1+ */
-		background: url(images/checkmarkDone.png) no-repeat left top, -o-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Opera 11.10+ */
-		background: url(images/checkmarkDone.png) no-repeat left top, -ms-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* IE10+ */
-		background: url(images/checkmarkDone.png) no-repeat left top, linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* W3C */
+		background: url(images/checkmarkdone.png) no-repeat left top, #fefdf6; /* Old browsers */
+		background: url(images/checkmarkdone.png) no-repeat left top, -moz-linear-gradient(top, #fefdf6 0%, #eeede6 100%); /* FF3.6+ */
+		background: url(images/checkmarkdone.png) no-repeat left top, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefdf6), color-stop(100%,#eeede6)); /* Chrome,Safari4+ */
+		background: url(images/checkmarkdone.png) no-repeat left top, -webkit-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Chrome10+,Safari5.1+ */
+		background: url(images/checkmarkdone.png) no-repeat left top, -o-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Opera 11.10+ */
+		background: url(images/checkmarkdone.png) no-repeat left top, -ms-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* IE10+ */
+		background: url(images/checkmarkdone.png) no-repeat left top, linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* W3C */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdf6', endColorstr='#eeede6',GradientType=0 ); /* IE6-9 */
 }
 
@@ -5352,13 +5367,13 @@ a.remove_lesson_lnk:hover{
 .donethis.done{
 	text-decoration:none;
 	color:#667b4e;
-	background: url(images/checkmarkDone.png) no-repeat left top, #fefdf6; /* Old browsers */
-	background: url(images/checkmarkDone.png) no-repeat left top, -moz-linear-gradient(top, #fefdf6 0%, #eeede6 100%); /* FF3.6+ */
-	background: url(images/checkmarkDone.png) no-repeat left top, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefdf6), color-stop(100%,#eeede6)); /* Chrome,Safari4+ */
-	background: url(images/checkmarkDone.png) no-repeat left top, -webkit-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Chrome10+,Safari5.1+ */
-	background: url(images/checkmarkDone.png) no-repeat left top, -o-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Opera 11.10+ */
-	background: url(images/checkmarkDone.png) no-repeat left top, -ms-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* IE10+ */
-	background: url(images/checkmarkDone.png) no-repeat left top, linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* W3C */
+	background: url(images/checkmarkdone.png) no-repeat left top, #fefdf6; /* Old browsers */
+	background: url(images/checkmarkdone.png) no-repeat left top, -moz-linear-gradient(top, #fefdf6 0%, #eeede6 100%); /* FF3.6+ */
+	background: url(images/checkmarkdone.png) no-repeat left top, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefdf6), color-stop(100%,#eeede6)); /* Chrome,Safari4+ */
+	background: url(images/checkmarkdone.png) no-repeat left top, -webkit-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Chrome10+,Safari5.1+ */
+	background: url(images/checkmarkdone.png) no-repeat left top, -o-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Opera 11.10+ */
+	background: url(images/checkmarkdone.png) no-repeat left top, -ms-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* IE10+ */
+	background: url(images/checkmarkdone.png) no-repeat left top, linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdf6', endColorstr='#eeede6',GradientType=0 ); /* IE6-9 */
 }
 
@@ -5370,15 +5385,18 @@ a.remove_lesson_lnk:hover{
 
 #findcourseimage{
 	float:right; width:320px; margin-top:-50px; border:2px solid white;
+		box-shadow:0px 0px 1px rgba(0,0,0,0.2);
 }
 
 
 #trackprogressimage{
 	float:left; width:120px; margin-top:5px; border:2px solid white;
+	box-shadow:0px 0px 1px rgba(0,0,0,0.2);
 }
 
 #createcourseimage{
 	float:right; width:200px; margin-top:-10px; border:2px solid white;
+		box-shadow:0px 0px 1px rgba(0,0,0,0.2);
 }
 
 #howitworkscall{
@@ -5391,4 +5409,25 @@ a.remove_lesson_lnk:hover{
 
 #getstartedh3{
 	margin-top:34px; padding-left:100px; position:absolute; text-shadow:0px 1px 2px white; color:#5f7647;
+}
+
+
+.filterbytag{
+	margin-left:20px; margin-top:5px; margin-bottom:20px;
+	color:#656565;
+	font-size:14px;
+	text-shadow:0px -1px 1px white;
+}
+
+
+.closetagfilter{
+		margin-bottom:6px;
+	margin-left:5px;
+	text-transform:lowercase;
+	color:grey;
+}
+
+.closetagfilter:hover{
+	cursor:pointer;
+	color:black;
 }
