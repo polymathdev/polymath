@@ -8,7 +8,7 @@ import ipdb
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    blurb = models.TextField(blank=True)
+    blurb = models.TextField(blank=True, default='Polymath Newbie')
     profile_pic = models.ImageField(upload_to='user_profile_pics', blank=True)
     fb_profile_pic = models.URLField(blank=True)
     fb_profile_thumb = models.URLField(blank=True)
@@ -18,6 +18,10 @@ class UserProfile(models.Model):
             return self.profile_pic.url
         else:
             return self.fb_profile_thumb
+
+    # get a unique list of the courses that this user has completed at least 1 lesson in
+    def courses_with_progress(self):
+        return Course.objects.filter(lesson__lessoncompletion__user_profile=self.user).distinct() 
 
     def __unicode__(self):
         return self.user.username
@@ -81,6 +85,10 @@ class Course(models.Model):
 
     tags = TaggableManager()
     
+    FEATURED_HOMEPAGE_POSITIONS = [('A', 'Left'), ('B', 'Middle'), ('C', 'Right')]
+
+    homepage_featured = models.CharField(max_length=1, blank=True, choices=FEATURED_HOMEPAGE_POSITIONS)
+
     # get a unique list of the users who have completed at least one lesson in this course
     def users_with_progress(self):
         return User.objects.filter(lessoncompletion__lesson__in=self.lesson_set.all()).distinct()
@@ -130,7 +138,7 @@ class Lesson(models.Model):
 
 
 class LessonCompletion(models.Model):
-    lesson = models.ForeignKey(Lesson, editable=False)
+    lesson = models.ForeignKey(Lesson)
     user_profile = models.ForeignKey(User)
     date_completed = models.DateTimeField(auto_now_add=True)
 

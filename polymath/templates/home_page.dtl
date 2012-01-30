@@ -99,12 +99,12 @@
 		<div class="grid_4">
 
 			<div class="featuredblock">
-				<img src="images/avatars/Prof11.jpg"></img>
-				<h3>Web Design My Way</h3>
-				<h5>By <a>Ted Power</a>, foursquare UX Designer</h5>
+                <img src="{{ featured_courses.left.creator.get_profile.get_pic_url }}"></img>
+                <h3>{{ featured_courses.left.name }}</h3>
+                <h5>By <a>{{ featured_courses.left.creator.first_name }} {{ featured_courses.left.creator.last_name }}</a>, {{ featured_courses.left.creator.get_profile.blurb }}</h5>
 				<div class="content">
-					<img src="images/helvetica-a_design.png"></img>
-					<span>Whenever anyone asks me about the best design resources out there, here's what I tell them!</span>
+                    <img src="{% if featured_courses.left.photo %}{{ featured_courses.left.photo.url }}{% endif %}"></img>
+                    <span>{{ featured_courses.left.description }}</span>
 				</div>
 			</div>
 		</div>
@@ -112,12 +112,12 @@
 		<div class="grid_4">
 
 			<div class="featuredblock">
-				<img src="images/avatars/Prof11.jpg"></img>
-				<h3>Web Design My Way</h3>
-				<h5>By <a>Ted Power</a>, foursquare UX Designer</h5>
+                <img src="{{ featured_courses.middle.creator.get_profile.get_pic_url }}"></img>
+                <h3>{{ featured_courses.middle.name }}</h3>
+                <h5>By <a>{{ featured_courses.middle.creator.first_name }} {{ featured_courses.middle.creator.last_name }}</a>, {{ featured_courses.middle.creator.get_profile.blurb }}</h5>
 				<div class="content">
-					<img src="images/helvetica-a_design.png"></img>
-					<span>Whenever anyone asks me about the best design resources out there, here's what I tell them!</span>
+                    <img src="{% if featured_courses.middle.photo %}{{ featured_courses.middle.photo.url }}{% endif %}"></img>
+                    <span>{{ featured_courses.middle.description }}</span>
 				</div>
 			</div>
 		</div>
@@ -125,14 +125,15 @@
 		<div class="grid_4">
 
 			<div class="featuredblock">
-				<img src="images/avatars/Prof11.jpg"></img>
-				<h3>Web Design My Way</h3>
-				<h5>By <a>Ted Power</a>, foursquare UX Designer</h5>
+                <img src="{{ featured_courses.right.creator.get_profile.get_pic_url }}"></img>
+                <h3>{{ featured_courses.right.name }}</h3>
+                <h5>By <a>{{ featured_courses.right.creator.first_name }} {{ featured_courses.right.creator.last_name }}</a>, {{ featured_courses.right.creator.get_profile.blurb }}</h5>
 				<div class="content">
-					<img src="images/helvetica-a_design.png"></img>
-					<span>Whenever anyone asks me about the best design resources out there, here's what I tell them!</span>
+                    <img src="{% if featured_courses.right.photo %}{{ featured_courses.right.photo.url }}{% endif %}"></img>
+                    <span>{{ featured_courses.right.description }}</span>
 				</div>
 			</div>
+        </div>
 			
 			<div class="clear"></div>
 			
