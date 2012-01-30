@@ -8,7 +8,7 @@ import ipdb
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    blurb = models.TextField(blank=True)
+    blurb = models.TextField(blank=True, default='Polymath Newbie')
     profile_pic = models.ImageField(upload_to='user_profile_pics', blank=True)
     fb_profile_pic = models.URLField(blank=True)
     fb_profile_thumb = models.URLField(blank=True)
