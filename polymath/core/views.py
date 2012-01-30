@@ -256,7 +256,8 @@ def edit_course(request, course_id):
         
         edit_course_form = CourseForm(request.POST, request.FILES, instance=course_to_edit)
         edit_lesson_fs = EditLessonFormSet(request.POST, instance=course_to_edit)
-        
+        new_data = request.POST.copy();
+
         if edit_course_form.is_valid() and edit_lesson_fs.is_valid():
             edit_course_form.save() 
             edited_lessons = edit_lesson_fs.save()
@@ -269,6 +270,7 @@ def edit_course(request, course_id):
         edit_lesson_fs = EditLessonFormSet(instance=course_to_edit)
     
     return render_to_response('add_course2.dtl', {
+		'requested_course': course_to_edit,
         'course_form': edit_course_form,
         'lesson_fs': edit_lesson_fs,
         'to_client': json.dumps({'delete_lesson_url': reverse('delete_lesson')})

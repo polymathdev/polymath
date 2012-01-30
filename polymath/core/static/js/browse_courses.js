@@ -24,7 +24,7 @@ $(document).ready(function(){
 		
 		
 		// apply selected states depending on current page
-		if (current_page.match(/python/)) {
+		if (current_page.match(/programming/)) {
 			$(".aboutsidebar li:eq(1)").addClass('selected');
 		} else if (current_page.match(/design/)) {
 				$(".aboutsidebar li:eq(2)").addClass('selected');
@@ -33,7 +33,7 @@ $(document).ready(function(){
 		}  else if (current_page.match()) {
 				$(".aboutsidebar li:eq(0)").addClass('selected');
 		} else { // don't mark any nav links as selected
-			$(".aboutsidebar li").removeClass('selected');
+			$(".aboutsidebar li:eq(0)").addClass('selected');
 		};
 	
 	

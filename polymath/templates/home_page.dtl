@@ -23,8 +23,9 @@
 				<img src="{{ STATIC_URL }}css/images/logo.png"></img>
 			</div>
 			
-			<div class="grid_7 omega" id="ticker">
-					<h1>Learn</h1>
+			<div class="clear"></div>
+			<h1 id="learnh1">Learn</h1>
+			<div id="ticker">
 						<ul>
 							<li>web design.</li>
 							<li>programming.</li>
@@ -34,12 +35,12 @@
 			
 			<div class="clear"></div>
 		
-			<div class="grid_10 homecopy">
-					<h3>An <b>easy</b>, <b>fun</b>, and <b>social</b> way to learn new skills and knowledge.<br> Learn from the web's best content, organized by experts, or share your own expertise.</h3>
+			<div class="grid_5 homecopy">
+					<h3>An <b>easy</b>, <b>fun</b>, and <b>social</b> way to learn new skills and knowledge.<br> Learn from the web's best content, organized by experts, or share your own expertise. <a href="/howitworks/">Find out more &#8594;</a></h3>
 			</div>
-			<div class="grid_2" style="margin-top:20px; float:right;">
+			<div class="grid_2" style="margin-top:0px; float:right;">
 				<img src="{{ STATIC_URL }}css/images/videothumbnail.png" id="homevideo"></img>
-				<a href="/about/" id="learnmorelink">Learn More</a>
+<!--				<a href="/howitworks/" id="learnmorelink">Learn More</a> -->
 			</div>
 	
 		
@@ -48,13 +49,7 @@
 					
 		<div class="fbsignin">
 			<div class="grid_4">
-					<h3 class="fblogincopy"><!--<b>Join Polymath now & start learning!</h3>--></b>
-			</div>
-			<div class="grid_4">
 				<a href="{% url socialauth_begin 'facebook' %}" class="fbloginbutton"><span>Sign in with Facebook</span></a>
-			</div>
-			<div class="grid_4">
-			<!--	<h3 class="emailcopy"><a href="/about/" id="learnmorelink">Learn More &nbsp;&nbsp;></a></h3> -->
 			</div>
 		</div>
 		
@@ -62,28 +57,12 @@
 		
 	</div> <!-- end homeheader -->
 
+
+
 <div>
 
 
-<!--
-<div class="fbsignin">
-	<div class="container_12">
-	
-		<div class="grid_4">
-				<h3 class="fblogincopy"></b>
-		</div>
-		<div class="grid_4">
-			<a href="{% url socialauth_begin 'facebook' %}" class="fbloginbutton"><span>Sign in with Facebook</span></a>
-		</div>
-		<div class="grid_4">
-			<h3 class="emailcopy"><a href="/about/" id="learnmorelink">Learn More</a></h3>
-		</div>
-	</div> 
-</div>
-
--->
-
-
+{% load truncate_filters %}
 
 
 
@@ -104,7 +83,7 @@
                 <h5>By <a>{{ featured_courses.left.creator.first_name }} {{ featured_courses.left.creator.last_name }}</a>, {{ featured_courses.left.creator.get_profile.blurb }}</h5>
 				<div class="content">
                     <img src="{% if featured_courses.left.photo %}{{ featured_courses.left.photo.url }}{% endif %}"></img>
-                    <span>{{ featured_courses.left.description }}</span>
+                    <span>{{ featured_courses.left.description|truncate_chars:204 }}</span>
 				</div>
 			</div>
 		</div>
@@ -117,7 +96,7 @@
                 <h5>By <a>{{ featured_courses.middle.creator.first_name }} {{ featured_courses.middle.creator.last_name }}</a>, {{ featured_courses.middle.creator.get_profile.blurb }}</h5>
 				<div class="content">
                     <img src="{% if featured_courses.middle.photo %}{{ featured_courses.middle.photo.url }}{% endif %}"></img>
-                    <span>{{ featured_courses.middle.description }}</span>
+                    <span>{{ featured_courses.middle.description|truncate_chars:204 }}</span>
 				</div>
 			</div>
 		</div>
@@ -130,15 +109,15 @@
                 <h5>By <a>{{ featured_courses.right.creator.first_name }} {{ featured_courses.right.creator.last_name }}</a>, {{ featured_courses.right.creator.get_profile.blurb }}</h5>
 				<div class="content">
                     <img src="{% if featured_courses.right.photo %}{{ featured_courses.right.photo.url }}{% endif %}"></img>
-                    <span>{{ featured_courses.right.description }}</span>
+                    <span>{{ featured_courses.right.description|truncate_chars:204 }}</span>
 				</div>
 			</div>
         </div>
 			
 			<div class="clear"></div>
 			
-			<div style="float:right; margin-top:25px;">
-				<a href="/courses/browse/" id="learnmorelink" style="margin-right:0px;">Browse more courses&nbsp; &#8594;</a>
+			<div style="float:right; margin-right:10px; margin-top:25px;">
+				<a href="/courses/browse/" id="learnmorelink" style="margin-right:0px;">Browse more courses<b>&nbsp; &#8594;</b></a>
 			</div>
 			
 		</div>
