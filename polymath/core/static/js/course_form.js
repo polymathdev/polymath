@@ -1,19 +1,37 @@
 $(document).ready(function(){
-	
-	
+
 	
  	$("#id_category option:eq(0)").text("Course Category");
 
-// 	$("#id_category").change(function() {
-//		$("#id_category option:first").remove()
-//	});
 
 
 	$('#id_tags').tagsInput({
 		'width':'280px',
 		'height':'75px',
 		'defaultText':'Add a tag',
+		'onAddTag': updatehiddendiv,
 	});
+	
+	
+	function updatehiddendiv(){
+		var value = $('#id_tags').val();
+		$("#tagsexist").val(value);
+		var tagsexistval = 	$("#tagsexist").val();
+		console.log(tagsexistval);
+		$("#new_course_form").validate().form();
+	}
+	
+	
+	$("#testspan").click(function(){
+		var value = $('#id_tags').val();
+		
+		$("#tagsexist").val(value);
+		
+		var tagsexistval = 	$("#tagsexist").val();
+		console.log("the tags that exist are: "+ tagsexistval);
+		
+	});
+
     
     $('#test_btn').click(function() {
         $('.lesson_div').each(function(i) {
@@ -158,7 +176,7 @@ $(document).ready(function(){
 	});
 	
 	
-
+/*
 	var stickyHeaderTop = $('#leftsidenav').offset().top;
 
 	 $(window).scroll(function(){
@@ -168,9 +186,198 @@ $(document).ready(function(){
 			$('#leftsidenav').css({position: 'static', top: '20px'});
 		}
 	});
+	*/
+	
+	
+	// COURSE PHOTO JAVASCRIPT
+	
+	$('#editimage').colorbox({
+		width:"350px",
+		height:"250px",
+		inline: true,
+		href:"#uploadphoto",
+		opacity:'0',
+		top:"10%",
+		returnFocus:false,
+		onLoad:function(){
+			$('#cboxClose').remove();
+		}
+	});
+	
+	var intervalFunc = function () {	// update our custom span with the value of the default, hidden id_photo div
+		$("#file-name").show();
+		var shortText = jQuery.trim($('#id_photo').val()).substring(0, 33)
+		    .split(" ").slice(0, -1).join(" ") + "...";
+		
+        $('#file-name').html("You've selected: " + shortText);
+    };
+
+
+	$("#browsephoto").unbind("click").bind("click", function () { // bind our custom browse button to the default id_photo functionality
+	   $("#id_photo").click();
+	   setInterval(intervalFunc, 1);
+       return false;
+	});
+		
+	
+	$('#id_photo').change(function(){	
+			var val = $(this).val();
+
+			    switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+			        case 'gif': case 'jpg': case 'png': case 'jpeg':
+						handleFiles(this.files)  // if file select input was changed, trigger the store & image preview function
+			            break;
+			        default:
+			            $(this).val('');
+			            // error message here
+			            alert("Please upload an image file.");
+			            break;
+			    }
+		
+	  });
+	
+	
+
+	function handleFiles(files){		// use HTML5 filereader api to preview the image, and hide any existing images
+		for (var i = 0; i < files.length; i++) {  
+	    var file = files[i];  
+	    var imageType = /image.*/;  
+
+	    if (!file.type.match(imageType)) {  
+	      continue;  
+	    }  
+
+	    var img = document.createElement("img");  
+	    img.classList.add("obj");  
+	    img.file = file;  
+		img.height = 60;
+		img.width =60;
+	
+		var box = document.getElementById('imageBox');
+		
+		if ( box.hasChildNodes() )					// loop to remove any existing images
+		{
+		    while ( box.childNodes.length >= 1 )
+		    {
+		        box.removeChild( box.firstChild );	       
+		    } 
+		}
+		
+		box.appendChild(img);  				//add preview image to the DOM
+		
+		$('#existingphoto').hide(); 			// hide old photo and delete button
+		$('#deletephotobutton').hide();
+	
+		img.setAttribute('id', 'previewImage');		// #previewImage
+
+
+		if (typeof FileReader !== "undefined"){
+			console.log('ok');
+			img.src = window.URL.createObjectURL(file);
+			$('#existingphoto').hide();
+		} else {
+	    	var reader = new FileReader();  
+	    	reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);  
+	    	reader.readAsDataURL(file);  
+		}
+		
+	  }
+	
+	}
+	
+	
+	
+	var blankPhoto = $("#hiddenblankphoto").attr("src");
+	var originalimage = $("#courseLogo").attr("src");
+	
+	$("#savephoto").click(function(){		// when the save/okay button is clicked...
+		
+		
+		$('#editimage').colorbox.close();	
+		
+		var newfile = $("#id_photo").val();   // save the value of the new file input, whether empty (no image) or new image
+
+		$("#photourl").text("New photo: " + newfile);  // update span on front-end on course form
+		
+		var newimage = $("#previewImage").attr('src');    // store preview image value
+		
+		
+		if (newfile.length > 0){	// check if new image or not
+			$("#courseLogo").attr("src", newimage);			// update front-end with this image preview
+			$('#photo-clear_id').removeAttr("checked");    // override the default behavior of the ClearableInput field
+		} else {
+			$("#courseLogo").attr("src", blankPhoto);		// if no image, update front-end with the default "blank" image
+		}
+		
+
+	});
+	
+	
+	
+	$("#deletephotobutton").click(function(){
+		$('#photo-clear_id').trigger('click'); // check the Django ClearableInput checkbox to remove the file
+		$('#existingphoto').hide(); // hide the current photo
+		$(this).hide(); // hide the X button
+		$("#file-name").text("No image currently selected.");	// hide the filename
+	});
 	
 
 
-}); 
 
+	$("#photocancel").click(function(){  // when cancelled, reset all properties
+		
+		$('#editimage').colorbox.close();			// hide the colorbox
+		
+		$("#existingphoto").attr("src", originalimage); // return photo to last saved image on course form
+		$('#existingphoto').show(); 				// show the latest photo
+		
+		
+		$('#deletephotobutton').show(); 			// show the delete button
+		$("#file-name").show();						// show the file name
+		$('#photo-clear_id').removeAttr("checked");    // reset clearableinput to default
+		$("#previewImage").remove();				// remove the preview image in the photo div
+		
+		$("#id_photo").replaceWith($("#id_photo").clone(true));	// since we can't edit the form instance, we create a new one
+		$("#id_photo").val("");	// the form will take a blank value
+		
+		$("#courseLogo").attr("src", originalimage);
+	});
+	
+	
+	
+	
+	
+	
+	// SUBMIT COURSE FORM
+	
+		$("#save_course").click(function(){
+			updatehiddendiv();
+		});
+	
+
+		$("#new_course_form").validate({
+			ignore:"",
+			rules: {
+				name: {
+					required: true
+				},
+				description: {
+					required: true
+				},
+				category: {
+					required: true
+				},
+				tagsexist : {
+					required: true
+				}
+			}
+		});
+
+	
+	
+	
+	
+	
+
+}); 
 

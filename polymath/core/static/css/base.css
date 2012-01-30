@@ -86,3 +86,8 @@
 	margin-top:-45px;
 	margin-bottom:40px;
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) 
+{ 
+	.messages h3 { font-weight: 500; }
+}

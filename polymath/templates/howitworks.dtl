@@ -22,7 +22,7 @@
 	
 	
 		<div class="grid_2 aboutsidebar">
-					<img src="{{ STATIC_URL }}css/images/favicon.png" class="favicon"></img>
+					<img src="{{ STATIC_URL }}css/images/Favicon.png" class="favicon"></img>
 			<ul>
 				<li><a href="/about/">About</a></li>
 				<li><a href="/howitworks/">How It Works</a></li>
@@ -38,7 +38,11 @@
 			<hr>
 			<p> Polymath is a fun and simple way to learn anything and share your knowledge online. Here's how it works.</p>
 			
-			<div class="grid_1" style="margin-top:25px;">
+			<div style="margin-left:20px; margin-top:20px;">
+			
+	
+			
+			<div class="grid_1" style="margin-top:15px;">
 				<span id="numcircle"><span id="number">1</span></span>
 			</div>
 			
@@ -54,9 +58,10 @@
 			</div>
 			
 			<div class="clear"></div>
+			<hr style="height:1px; border-bottom:1px dotted #aaa; background:none; margin-top:45px; margin-bottom:15px;">
 			
 			
-			<div class="grid_1" style="margin-top:25px;">
+			<div class="grid_1" style="margin-top:15px;">
 				<span id="numcircle"><span id="number">2</span></span>
 			</div>
 			
@@ -66,14 +71,15 @@
 					<img src="{{ STATIC_URL }}css/images/trackprogress.png" id="trackprogressimage"></img>
 				</div>
 				<div class="grid_6 omega">
-					<p>One of the toughest parts of learning something outside of school is staying motivated and continuing to regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system that rewards you on your work.
+					<p>One of the toughest parts of learning something outside of school is staying motivated and continuing to regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system (coming soon!) that rewards you on your work.
 					</p>
 				</div>
 			</div>
 			
 			<div class="clear"></div>
+			<hr style="height:1px; border-bottom:1px dotted #aaa; background:none; margin-top:25px; margin-bottom:15px;">
 			
-			<div class="grid_1" style="margin-top:25px;">
+			<div class="grid_1" style="margin-top:15px;">
 				<span id="numcircle"><span id="number">3</span></span>
 			</div>
 			
@@ -87,13 +93,13 @@
 					<img src="{{ STATIC_URL }}css/images/createcourse.png" id="createcourseimage"></img>
 				</div>
 			
-			
+			</div>
 			<div class="clear"></div>
 			
 			
 			
 						
-			<div class="grid_9 omega" id="howitworkscall">
+			<div class="grid_10 omega" id="howitworkscall">
 			
 			{% if return_to_course %}
 				<h3 id="returntocourseh3">So let's get started! Go back to "{{ return_to_course.name }}"</h3>
@@ -105,7 +111,8 @@
 				<a href="/courses/browse" class="browsecourses"><span>Browse courses &nbsp; &#8594; </span></a>
 			{% endif %}
 			</div>
-
+			
+			</div>
 		
 		</div>
 	

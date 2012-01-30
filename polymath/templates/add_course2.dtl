@@ -5,7 +5,11 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/course_form.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-placeholder.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tagsinput.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery.tagsinput.css" />
+	
+	
+
 {% endblock %}
 
 
@@ -24,55 +28,84 @@
 	
 	<h3 class="edit_heading">Share your knowledge with the world!</h3>
 	
+	<img src="{{ STATIC_URL }}css/images/courseDefault.png" id="hiddenblankphoto" style="display:none;"></img>
 	<hr id="headinghr">
 	
 <!------------------------------------------------------------------------------------>
 	
 <form id="new_course_form" method="post" enctype="multipart/form-data">
 {% csrf_token %}
+
+
 	
 <div class="grid_4 alpha" id="leftsidenav">
-
 	
 	<div class="grid_4 omega" id="coursepagemeta">
 
 		<div class="grid_1" style="margin-top:3px;">
 			<div id="editimage"><center>{% if course_form.instance.photo %}Edit Image{% else %}Add Image{% endif %}</center></div>
+			
+			{% if course_form.errors %}
+				<span id="errorboolean" style="display:none">errors</span>
+			{% endif %}
+
 			<img src="{% if course_form.instance.photo %}{{ course_form.instance.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}" id="courseLogo"></img>
+
 		</div>
 
 		<div class="grid_3 alpha omega">
 			<h2 id="coursetitle">{{ course_form.name }}
 			{{ course_form.name.errors }} </h2>
 			
-			<div id="photouploaddiv">
+		<!--	<div id="photouploaddiv">
 			{{ course_form.photo }}
 			{{ course_form.photo.errors }}
+			</div>  -->
+			
+			<div style="display:none;">
+				<div id="uploadphoto">
+					<h3>{% if course_form.instance.photo %}Edit photo{% else %}Add photo{% endif %}</h3>
+					<hr>
+					<div id="photodefault">
+						{{ course_form.photo }}
+						{{ course_form.photo.errors }}
+					</div>
+					{% if course_form.instance.photo %}
+						<img id="existingphoto" src="{{ course_form.instance.photo.url }}"></img>
+						<a id="deletephotobutton">x</a> 
+					{% endif %}
+					<a id="browsephoto">Browse</a>
+					<span id="file-name"></span>
+					<output id="imageBox"></output>
+					<div id="divider"></div>
+					<a id="savephoto">Save changes</a><a id="photocancel">Cancel</a>
+				</div>
 			</div>
+			
+			<span id="photourl"></span>
  
 		</div>
 			
 		<div class="clear"></div>
 		
 		<div style="margin-left:10px; margin-right:10px;">	
-			<hr id="titlehr" style="margin-top:20px;">	
+			<hr id="titlehr" style="margin-top:25px;">	
 			
 			
 			
-			<p id="coursepagedescription">{{ course_form.description }}	
-			{{ course_form.description.errors }}</p>
+<!--			<p id="coursepagedescription">  -->
+			{{ course_form.description }}	
+			{{ course_form.description.errors }}
 			
 			
-		
-			<span class="categorylabel"><span>
+			<p class="taglabel">Course Category:</p>
 			{{ course_form.category }}
 			{{ course_form.category.errors }}
-			<br><br>
 
-			<span class="taglabel">Course Tags:</span>
+			<p class="taglabel">Course Tags:</p>
 			{{ course_form.tags }}
 			{{ course_form.tags.errors }}
-	
+			<input style="display:none" name="tagsexist" id="tagsexist"></input>
 		</div> <!-- end div with course description and content -->
 		
 		
@@ -303,6 +336,9 @@
 
 </div>
 
+
+
+
 {% endblock %}
 
 
@@ -313,6 +349,6 @@
 
 
 {% block footer %}
-		<div id="footer" style="margin-top:10px;"><div class="container_6"></div></div>
+		<div id="footer" style="margin-top:10px;"><div class="container_6"><span style="float:right">&#169; Polymath, 2011</span></div></div>
 {% endblock %}
 
