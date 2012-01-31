@@ -75,7 +75,8 @@
 						<a id="deletephotobutton">x</a> 
 					{% endif %}
 					<a id="browsephoto">Browse</a>
-					<span id="file-name"></span>
+					<span id="file-name" style="overflow: hidden;
+						text-overflow: ellipsis;"></span>
 					<output id="imageBox"></output>
 					<div id="divider"></div>
 					<a id="savephoto">Save changes</a><a id="photocancel">Cancel</a>
@@ -105,7 +106,7 @@
 			<p class="taglabel">Course Tags:</p>
 			{{ course_form.tags }}
 			{{ course_form.tags.errors }}
-			<input style="display:none" name="tagsexist" id="tagsexist"></input>
+			<input style="visibility:hidden" name="tagsexist" id="tagsexist" class="required"></input>
 		</div> <!-- end div with course description and content -->
 		
 		
@@ -121,10 +122,10 @@
 
 
 		<div class="grid_3 alpha">
-			<button type="button" id="add_lesson_btn" class="addlesson" style="opacity:0;"><span>Add Lesson</span></button> 
+			<button type="button" id="add_lesson_btn" class="addlesson" style="visibility:hidden;"><span>Add Lesson</span></button> 
 		</div>
 		<div class="grid_3 omega" style="float:right;">
-			<button type="submit" class="takecourse" id="save_course" style="display:none"><span>Save Course</span></button> 
+			<button type="submit" name="send" class="takecourse" id="save_course" style="visibility:hidden;"><span>Save Course</span></button> 
 		</div>
 		
 		

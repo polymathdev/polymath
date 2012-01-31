@@ -14,6 +14,8 @@ $(document).ready(function(){
 	$(".aboutsidebar ul li:eq(1)").addClass('selected');
 	}  else if (current_page.match(/welcome/)) {
 	$(".aboutsidebar ul li:eq(1)").addClass('selected');
+	} else if (current_page.match(/contact/)) {
+	$(".aboutsidebar ul li:eq(3)").addClass('selected');
 	} else { // don't mark any nav links as selected
 	$("ul#navigation li").removeClass('selected');
 	};

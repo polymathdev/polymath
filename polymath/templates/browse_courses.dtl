@@ -96,7 +96,7 @@
 
 {% for course in course_list %}
 
-	<div class="lessonCreatedBlock browse">
+	<div class="browseBlock">
 	
 	<div class="grid_2" style="width:110px;">
 		<img src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}/css/images/courseDefault.png{% endif %}" style="width:100px; height:100px; margin-top:10px; margin-left:10px; border:2px solid #fff; box-shadow:0px 1px 1px rgba(0,0,0,0.2);"></img>

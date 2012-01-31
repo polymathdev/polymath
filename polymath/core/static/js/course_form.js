@@ -9,7 +9,7 @@ $(document).ready(function(){
 		'width':'280px',
 		'height':'75px',
 		'defaultText':'Add a tag',
-		'onAddTag': updatehiddendiv,
+		'onAddTag': updatehiddendiv,			// when a new tag is added, update the hidden div that the validate function checks
 	});
 	
 	
@@ -156,10 +156,10 @@ $(document).ready(function(){
         });
     }
 
-    $('#new_course_form').submit(function() {
-        $('#new_course_form :submit').attr('disabled','true');
-        reorder_lessons()
-    });
+  //  $('#new_course_form').submit(function() {
+    //    $('#new_course_form :submit').attr('disabled','true');
+      //  reorder_lessons()
+//    });
 
 
 
@@ -206,10 +206,9 @@ $(document).ready(function(){
 	
 	var intervalFunc = function () {	// update our custom span with the value of the default, hidden id_photo div
 		$("#file-name").show();
-		var shortText = jQuery.trim($('#id_photo').val()).substring(0, 33)
-		    .split(" ").slice(0, -1).join(" ") + "...";
-		
-        $('#file-name').html("You've selected: " + shortText);
+		var filename = $('#id_photo').val().replace(/^.*[\\\/]/, '')
+//		var shorttext = $.trim(filename).substring(0, 30).split(" ").slice(0, -1).join(" ") + "...";
+        $('#file-name').html(filename);
     };
 
 
@@ -270,16 +269,9 @@ $(document).ready(function(){
 	
 		img.setAttribute('id', 'previewImage');		// #previewImage
 
-
-		if (typeof FileReader !== "undefined"){
-			console.log('ok');
-			img.src = window.URL.createObjectURL(file);
-			$('#existingphoto').hide();
-		} else {
 	    	var reader = new FileReader();  
 	    	reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);  
 	    	reader.readAsDataURL(file);  
-		}
 		
 	  }
 	
@@ -296,8 +288,8 @@ $(document).ready(function(){
 		$('#editimage').colorbox.close();	
 		
 		var newfile = $("#id_photo").val();   // save the value of the new file input, whether empty (no image) or new image
-
-		$("#photourl").text("New photo: " + newfile);  // update span on front-end on course form
+		var filename = newfile.replace(/^.*[\\\/]/, '')
+		$("#photourl").text("New photo: " + filename);  // update span on front-end on course form
 		
 		var newimage = $("#previewImage").attr('src');    // store preview image value
 		
@@ -330,6 +322,7 @@ $(document).ready(function(){
 		
 		$("#existingphoto").attr("src", originalimage); // return photo to last saved image on course form
 		$('#existingphoto').show(); 				// show the latest photo
+		$("#photourl").text("");  // update span on front-end on course form
 		
 		
 		$('#deletephotobutton').show(); 			// show the delete button
@@ -356,7 +349,11 @@ $(document).ready(function(){
 	
 
 		$("#new_course_form").validate({
-			ignore:"",
+			submitHandler: function(form){
+				$('#new_course_form :submit').attr('disabled','true');
+		        reorder_lessons()
+				form.submit();
+			},
 			rules: {
 				name: {
 					required: true
@@ -370,13 +367,9 @@ $(document).ready(function(){
 				tagsexist : {
 					required: true
 				}
-			}
+			}, 		
 		});
-
-	
-	
-	
-	
+		
 	
 
 }); 

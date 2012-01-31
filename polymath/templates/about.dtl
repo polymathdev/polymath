@@ -23,7 +23,7 @@
 				<li><a href="/about/">About</a></li>
 				<li><a href="/howitworks/">How It Works</a></li>
 				<li><a href="/beliefs/">Our Beliefs</a></li>
-				<li><a href="#">Contact</a></li>
+				<li><a href="/contact/">Contact</a></li>
 			</ul>
 		
 		</div>
@@ -40,11 +40,11 @@ Polymath lets you find and learn from the best educational content from across t
 			</p>
 		
 			<h2>Our Mission</h2>
-			<p>Our mission is to build the best learning experience on the web.
+			<p>Our mission is to empower individuals to learn new skills and find what they love doing by building the best learning experience on the web. We want to be the central resource for the web’s best educational content, and the go-to site for online community-based learning.
 			</p>
 			
 			<h2>The Team</h2>
-			<p>Our mission is to build the best learning experience on the web.
+			<p>Polymath is built by <b><a href="http://beta.whatispolymath.com/profile/dshap/">Dan</a></b> and <b><a href="http://beta.whatispolymath.com/profile/harishvenkatesan/">Harish</a></b>, two guys who wish they had Polymath as they taught themselves how to build the site. 
 			</p>
 			
 			

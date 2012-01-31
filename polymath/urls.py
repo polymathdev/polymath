@@ -9,6 +9,12 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^test/', 'core.views.test'),
 
+	# 404 test
+    (r'^404test/', direct_to_template, {'template':'404.html'}),
+
+	#500 test
+    (r'^500test/', direct_to_template, {'template':'500.html'}),
+
     # home page
     (r'^$', 'core.views.home_page'),
 
@@ -23,6 +29,9 @@ urlpatterns = patterns('',
 
 	#howitworks
     (r'^howitworks/', direct_to_template, {'template':'howitworks.dtl'}),
+
+	#contact
+    (r'^contact/', direct_to_template, {'template':'contact.dtl'}),
 	
     # auth
     url(r'^login/$','django.contrib.auth.views.login', {'template_name':'registration/login.dtl'}, name='login'),

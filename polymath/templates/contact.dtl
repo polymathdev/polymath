@@ -1,0 +1,46 @@
+{% extends "base.dtl" %}
+
+{% block title %}Polymath | Contact{% endblock %}
+
+{% block css_includes %}
+    <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
+   	<link href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" /> 
+{% endblock %}
+
+{% block js_includes %}
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/about_page.js"></script>
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container_12" style="margin-top:50px">
+	
+		<div class="grid_2 aboutsidebar">
+					<img src="{{ STATIC_URL }}css/images/favicon.png" class="favicon"></img>
+			<ul>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/howitworks/">How It Works</a></li>
+				<li><a href="/beliefs/">Our Beliefs</a></li>
+				<li><a href="/contact/">Contact</a></li>
+			</ul>
+		
+		</div>
+	
+		<div class="grid_10 about">
+			<h1 id="browsetitle">Contact</h1>
+			<hr>
+			<p>If you have any <b>questions</b>, <b>inquiries</b>, <b>feedback</b>, or need <b>support</b>, feel free to get in touch! We'd love to talk to you.
+			</p><br>
+			<p>Send us an email: <b><a href="mailto:hello@whatispolymath.com">hello@whatispolymath.com</a></b></p><br>
+			<p>Or find us on Twitter and Facebook:</p><br>
+			<p><a href="http://twitter.com/getpolymath"><img src="{{ STATIC_URL }}css/images/button_twitter.png"></a>
+			<a href="http://facebook.com/whatispolymath"><img src="{{ STATIC_URL }}css/images/button_facebook.png"></a></p>
+		
+		</div>
+	
+	
+	</div>
+
+
+{% endblock %}
