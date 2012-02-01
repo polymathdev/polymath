@@ -1,3 +1,5 @@
+
+
 html{
 	height:100%;
 }
@@ -1239,21 +1241,13 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   	overflow: visible;
   	font-family:'PT Sans Caption', sans-serif;
 	margin:0px auto 0;
-/*	background-image:url('images/topbartextest.png'); 
-	background-repeat:repeat-x;
-	background-size:100%;
-/*	 background:#3d753a; */
-	background:#4e864b;
+/*	background:#4e864b;
 	background:#1d8b3e;
-	background:#009d60;
+	background:#009d60; */
 	background:url(images/homeheader1.png) left top;
 	background-repeat:repeat-x;
-/*	background:#00ae71; */
 	width:100%;
 	min-width:1024px;
-/*	box-shadow:0px 2px 5px rgba(0,0,0,0.2); */
-	/*background:url(images/homeheader.png) no-repeat left top; 83B71F*/
-	border-bottom:2px solid #a2d101;
 }
 
 .topbar .brand:hover, .topbar ul .active > a {
@@ -1272,14 +1266,6 @@ body#learn a#learnnav {
 	background:url(images/pixel_pattern.png) left top,  -ms-linear-gradient(top, #A2D101 0%,#80B000 100%); 
 	background:url(images/pixel_pattern.png) left top,  linear-gradient(top, #A2D101 0%,#80B000 100%); 
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#A2D101', endColorstr='#80B000',GradientType=0 );
-	/*
-	background:url(images/pixel_pattern.png) left top,  -moz-linear-gradient(top, #98DD01 0%, #7FB024 100%);	
-	background:url(images/pixel_pattern.png) left top,  -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7FB024), color-stop(100%,#405734));
-	background:url(images/pixel_pattern.png) left top, -webkit-linear-gradient(top, #98DD01 0%,#7FB024 100%);
-	background:url(images/pixel_pattern.png) left top,  -o-linear-gradient(top, #98DD01 0%,#7FB024 100%); 
-	background:url(images/pixel_pattern.png) left top,  -ms-linear-gradient(top, #98DD01 0%,#7FB024 100%); 
-	background:url(images/pixel_pattern.png) left top,  linear-gradient(top, #98DD01 0%,#7FB024 100%); 
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98DD01', endColorstr='#7FB024',GradientType=0 );  */
 	background-repeat:repeat;
 }
 
@@ -1346,6 +1332,7 @@ body#teach a#teachnav {
 	margin-right:-10px;
 	width:400px;
 	list-style: none;
+	opacity:0.9;
 }
 
 
@@ -1885,9 +1872,9 @@ p{
 	
 	box-shadow:inset 0 0px 5px rgba(255,255,255,0.6), 0px 1px 2px rgba(0,0,0,0.5); 
 	
-	
+	border:5px solid #c3c3a8;	
 	border:5px solid #d9d6ce;
-	border:5px solid #c3c3a8;
+
 	margin-bottom:12px;
 	
 	background:#eee;
@@ -1930,15 +1917,16 @@ p{
 	float:left;
 	padding-bottom:10px;
 	
-	background:#d9d6ce;
+	
 	background:#BDB096; 
 	
 	background:#b2b297;
 	  
 	background:#c3c3a8;
 	
-
 	
+
+	background:#d9d6ce;
 }
 
 
@@ -4536,7 +4524,7 @@ a.remove_lesson_lnk:hover{
 	background:#00ae71;
 	background:#2e9c4f;
 	background:#00ae71;
-		background:#009d60;
+	background:#008743;
 	color:white;
 	cursor:pointer;
 }
@@ -5286,22 +5274,6 @@ a.remove_lesson_lnk:hover{
 
 .border-callout .border-notch { border-bottom-color: #ccc; top: -10px; }
 
-# browser prefix hacks to get text rendering correctly
-
-@-moz-document url-prefix() {
-	.nav { font-weight: 400; }
-	#learnnav, #teachnav, .browsecourses, .editcourse { font-weight: 200; }
-	.createcourse, .takecourse { font-weight: 100; }
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) 
-{ 
-	.nav { font-weight: 400; }
-	#learnnav, #teachnav, .browsecourses, .editcourse { font-weight: 200; }
-	.createcourse, .takecourse { font-weight: 100; }
-	.editcourse span { font-weight:100; }
-}
-
 
 
 .commentblock{
@@ -5749,3 +5721,27 @@ textarea.error { border: 1px dotted red; }
 	float:left;
 	margin-right:10px;
 }
+
+
+
+
+/*------- ---------------*/
+
+
+
+@-moz-document url-prefix(){
+	.nav { font-weight: normal; }
+	.nav a {opacity:0.9;}
+	#learnnav, #teachnav { font-weight: normal; color:(255,255,255,0.1); opacity:0.9;}
+	 .browsecourses, .editcourse, .createcourse, .takecourse { font-weight: normal; }
+	-webkit-font-smoothing: antialiased!important; 
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) 
+{ 
+	.nav { font-weight: 400!important; }
+	#learnnav, #teachnav, .browsecourses, .editcourse { font-weight: 400; }
+	.createcourse, .takecourse { font-weight: 400; }
+	.editcourse span { font-weight:400; }
+}
+
