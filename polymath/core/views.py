@@ -104,44 +104,43 @@ def view_profile(request, uname):
                 return redirect('view_profile', uname=uname)
 
     user_blurb = user_profile.blurb
+
     courses_created_by_user = profile_owner.courses_created.all()
-     
-    # EVALUATE AND OPTIMIZE THE BELOW IF POSSIBLE, THE CODE IS RATHER MESSY IN MY OPINION AND THERE ARE PROBABLY MUCH BETTER WAYS TO DO THIS
-
     upvoted_lessons = LessonVote.objects.filter(user_profile=profile_owner).select_related('course')
-    courses_following = profile_owner.courses_following.select_related('category').all()
-
-    lessons_following = Lesson.objects.filter(course__in=courses_following)
-    lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=profile_owner)  
-
-    lessons = { les['id'] : les for les in lessons_following.values() }
-    completed_lessons = { les['id'] : les for les in lessons_following_completed.values() }
-
-    courses_following_with_progress = { c['id'] : c for c in courses_following.values() }
-
-    for c in courses_following:
-        courses_following_with_progress[c.id]['category_id'] = c.category.id
-        courses_following_with_progress[c.id]['category'] = c.category.name
-
-    course_progress = { c.id : { 'total' : 0, 'completed' : 0 } for c in courses_following } 
-
-    for les_id, les in lessons.iteritems():
-        course_progress[les['course_id']]['total'] = course_progress[les['course_id']]['total'] + 1
-
-        if completed_lessons.has_key(les_id):
-            course_progress[les['course_id']]['completed'] = course_progress[les['course_id']]['completed'] + 1 
     
-    for c_id, c in courses_following_with_progress.iteritems():
-       c['total'] = course_progress.get(c_id, 0)['total']
-       c['completed'] = course_progress.get(c_id, 0)['completed']
+    # courses_following = profile_owner.courses_following.select_related('category').all()
 
-    courses_following = courses_following_with_progress.values()
+    # lessons_following = Lesson.objects.filter(course__in=courses_following)
+    # lessons_following_completed = Lesson.objects.filter(course__in=courses_following, completers=profile_owner)  
+
+    # lessons = { les['id'] : les for les in lessons_following.values() }
+    # completed_lessons = { les['id'] : les for les in lessons_following_completed.values() }
+
+    # courses_following_with_progress = { c['id'] : c for c in courses_following.values() }
+
+    # for c in courses_following:
+    #     courses_following_with_progress[c.id]['category_id'] = c.category.id
+    #     courses_following_with_progress[c.id]['category'] = c.category.name
+
+    # course_progress = { c.id : { 'total' : 0, 'completed' : 0 } for c in courses_following } 
+
+    # for les_id, les in lessons.iteritems():
+    #     course_progress[les['course_id']]['total'] = course_progress[les['course_id']]['total'] + 1
+
+    #     if completed_lessons.has_key(les_id):
+    #         course_progress[les['course_id']]['completed'] = course_progress[les['course_id']]['completed'] + 1 
+    # 
+    # for c_id, c in courses_following_with_progress.iteritems():
+    #    c['total'] = course_progress.get(c_id, 0)['total']
+    #    c['completed'] = course_progress.get(c_id, 0)['completed']
+
+    # courses_following = courses_following_with_progress.values()
 
     return render_to_response('view_profile.dtl', {
     'profile_owner': profile_owner,
 	'user_blurb': user_blurb,
     'courses_created_by_user': courses_created_by_user,
-    'courses_following': courses_following,
+    # 'courses_following': courses_following,
     'upvoted_lessons': upvoted_lessons,
     'is_my_profile': (profile_owner == request.user),
     'profile_edit_form': profile_edit_form

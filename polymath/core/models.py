@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.db.models import Count
 from taggit.managers import TaggableManager
 from django.template.defaultfilters import slugify
 from facepy import GraphAPI
@@ -22,9 +23,27 @@ class UserProfile(models.Model):
         else:
             return self.fb_profile_thumb
 
-    # get a unique list of the courses that this user has completed at least 1 lesson in
     def courses_with_progress(self):
-        return Course.objects.filter(lesson__lessoncompletion__user_profile=self.user).distinct() 
+        """
+        get a list of dictionaries that contains data about all of the courses that this user has completed at least 1 lesson in
+        each dictionary in the list contains the course object, the number of total lessons, and the number of lessons this user has completed
+        """
+        # get the courses that the user has completed lessons on, each annotated with the number of completed lessons by this user
+        courses_with_completions = Course.objects.filter(lesson__lessoncompletion__user_profile=self.user).annotate(num_completed=Count('lesson__lessoncompletion'))
+
+        # << the reason I added num_lessons in here is because I can get all of them with 1 query, as opposed to calling course.lesson_set.count in the template which would query for each course >> #
+        # << maybe i can use select_related() to get all of the lesson data in 1 query somewhere? >>
+
+        # get a list of the above courses, each annotated with the number of total lessons in each respective course
+        courses_with_num_lessons = Course.objects.annotate(num_lessons=Count('lesson')).filter(pk__in=courses_with_completions)
+
+        # build a dictionary that maps course id to total number of lessons in that course
+        id_to_lessons = { c.id : c.num_lessons for c in courses_with_num_lessons }
+
+        # build the list of dictionaries to return, as described in docstring
+        courses_with_progress_data = [ { 'course' : c, 'num_lessons' : id_to_lessons[c.id], 'num_completed' : c.num_completed } for c in courses_with_completions ]
+
+        return courses_with_progress_data
 
     def __unicode__(self):
         return self.user.username

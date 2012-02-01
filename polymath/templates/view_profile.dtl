@@ -183,17 +183,17 @@
 
         {% if profile_owner.get_profile.courses_with_progress|length > 0 %}
 	<div class="parentlessoncreatedblock">
- 		{% for course in profile_owner.get_profile.courses_with_progress %}
+ 		{% for course_data in profile_owner.get_profile.courses_with_progress %}
 
 		<div class="lessonCreatedBlock" original-title="{{ course.name }} by Harish Venkatesan">
 			<div style="height:130px; width:170px; background:#eae7df; padding-top:16px; margin-top:10px; margin-left:10px">
 			
-				<a href="{% url view_course course_id=course.id course_slug=course.slug %}" class="coursename">{{ course.name|truncate_chars:17 }}</a>			
+				<a href="{% url view_course course_id=course_data.course.id course_slug=course_data.course.slug %}" class="coursename">{{ course_data.course.name|truncate_chars:17 }}</a>			
 			
 				<div class="grid_2" style="margin-left:10px; width:160px;">
-					<p class="coursedescription">{{ course.description|truncate_chars:80 }}</p>
-					<div class="progressbar1">({{ course.completed }}*100)/{{ course.lesson_set.count }}</div><br>
-					<span class="progressbar1status">{{ course.completed }} of {{ course.lesson_set.count }}</span>
+					<p class="coursedescription">{{ course_data.course.description|truncate_chars:80 }}</p>
+					<div class="progressbar1">({{ course_data.num_completed }}*100)/{{ course_data.num_lessons }}</div><br>
+					<span class="progressbar1status">{{ course_data.num_completed }} of {{ course_data.num_lessons }}</span>
 				</div>
 			
 				<div class="clear"></div>
