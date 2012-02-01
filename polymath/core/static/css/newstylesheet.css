@@ -5653,6 +5653,7 @@ label.error{
 	padding:0px;
 	border:none;
 	float:none;
+	display:block;
 }
 
 
@@ -5731,8 +5732,7 @@ textarea.error { border: 1px dotted red; }
 
 @-moz-document url-prefix(){
 	.nav { font-weight: normal; }
-	.nav a {opacity:0.9;}
-	#learnnav, #teachnav { font-weight: normal; color:(255,255,255,0.1); opacity:0.9;}
+	#learnnav, #teachnav { font-weight: normal; color:(255,255,255,0.1);}
 	 .browsecourses, .editcourse, .createcourse, .takecourse { font-weight: normal; }
 	-webkit-font-smoothing: antialiased!important; 
 }
@@ -5745,3 +5745,26 @@ textarea.error { border: 1px dotted red; }
 	.editcourse span { font-weight:400; }
 }
 
+/************ block IE **********/
+
+.ieblock{
+	font-family:'Helvetica Neue', sans-serif;
+	width:960px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.ieblock h2{
+	margin-top:150px;
+	margin-bottom:50px;
+	text-align:center;
+	color:#2B9248;
+	text-shadow:0px 1px 3px rgba(255,255,255,0.5);
+}
+
+.ieblock p{
+	color:#333;
+	text-shadow:0px 1px 2px rgba(255,255,255,0.3);
+	font-size:14px;
+	line-height:1.3;
+}

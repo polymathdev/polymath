@@ -40,7 +40,6 @@
 	<hr style="border-top:1px dotted #ccc; margin-bottom:20px; margin-top:0px; height:1px; border-bottom:1px dotted #ccc; margin-left:7px; margin-right:7px; border-left:none; border-right:none;">
 	
 
-<!-- background:#ddded5; 96c19a rgba(150,193,154,0.5)-->
 
 
 
@@ -145,7 +144,7 @@
 
 
 {% block footer %}
-		<div id="footer" style="margin-top:100px;"><div class="container_6"><span style="float:right">&#169; Polymath, 2011</span></div></div>
+		<div id="footer" style="margin-top:80px;"><div class="container_6"><span style="float:right">&#169; Polymath, 2011</span></div></div>
 		
 {% endblock %}
 

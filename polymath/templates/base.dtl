@@ -21,6 +21,7 @@
    		<link href="{{ STATIC_URL }}css/tipsy.css" rel="stylesheet" type="text/css" /> 
 		<link href="{{ STATIC_URL }}css/base.css" rel="stylesheet" type="text/css" />
     	<link href="{{ STATIC_URL }}css/newstylesheet.css" rel="stylesheet" type="text/css" /> 
+    	<link href="{{ STATIC_URL }}css/jquery.sb.css" rel="stylesheet" type="text/css" /> 
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         {% block css_includes %}{% endblock %}
@@ -35,6 +36,23 @@
                 var from_server = {{ to_client|safe }};
             {% endif %}
         </script>
+		
+		{% if "MSIE" in request.META.HTTP_USER_AGENT %}
+		
+		<div class="ieblock">
+		<h2>
+		We're sorry.
+		</h2>
+
+		<p>
+		We noticed that you're using Internet Explorer. Polymath currently does not support this browser because compatibility issues prevent us from delivering an ideal experience. We're working on fixing these issues. 
+		<br><br><b>In the meantime, please visit our site again on any other major browser, like Firefox, Chrome, or Safari.</b> Hope to see you soon!
+		</p>
+		
+		</div>
+		
+		{% else %}
+		
 		
 		{% block topbar %}
 
@@ -155,6 +173,8 @@
 	{% block footer %}
 
 	{% endblock %}
+	
+	{% endif %}
 	
     </body>
 </html>

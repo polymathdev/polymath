@@ -498,3 +498,15 @@ padding:0px;
 	top:15px;
 	left:-140px;
 }
+
+
+.emptyspan{
+	  position:absolute; 
+	  width:100%;
+	  height:100%;
+	  top:0;
+	  left: 0;
+
+	  /* edit: added z-index */
+	  z-index: 1 
+}

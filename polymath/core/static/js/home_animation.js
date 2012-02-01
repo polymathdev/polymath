@@ -20,17 +20,15 @@ $('.featuredblock').mouseleave(function(){
 	$(this).toggleClass("highlight");
 });
 
-$('.featuredblock.1').click(function(){
-	document.location.href='course1.html'; 
-});
 
-$('.featuredblock.2').click(function(){
-	document.location.href='course2.html'; 
-});
-
-$('.featuredblock.3').click(function(){
-	document.location.href='course3.html'; 
-});
+$(".featuredBlock").click(function(){
+	if( $(this).find(".coursename").attr("href") ){
+     window.location=$(this).find(".coursename").attr("href");
+     return false;
+	} else {
+		
+	}
+})
 
 
 	$(function(){

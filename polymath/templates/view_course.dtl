@@ -143,8 +143,8 @@
 			<div class="socialmedia course">
 				<a href="http://www.facebook.com/dialog/feed?
 						  app_id=349907371691622&
-						  link=http://beta.whatispolymath.com{{ request.get_current_url }}&
-						  picture=https://si0.twimg.com/profile_images/1582513204/polymathtwitter.png&
+						  link=http://beta.whatispolymath.com{{ request.get_full_path }}&
+						  picture=https://si0.twimg.com/profile_images/1725019547/Favicon.png&
 						  name={{ requested_course.name }}&
 						  caption=Polymath&
 						  description={{ requested_course.description }}&
@@ -154,11 +154,11 @@
 
 						
 				{% if is_my_course %}
-					<a href="https://twitter.com/share?url=http://whatispolymath&text=Check%20out%20this%20course%20I%20created%20on%20Polymath%20-%20'{{ requested_course.name}}'!" target="_blank" class="shareontw"><span>Share on Twitter</span></a>						
+					<a href="https://twitter.com/share?url=http://beta.whatispolymath.com{{ request.get_full_path }}&text=Check%20out%20this%20course%20I%20created%20on%20Polymath%20-%20'{{ requested_course.name}}'!" target="_blank" class="shareontw"><span>Share on Twitter</span></a>						
 				
 				{% else %}
 					
-					<a href="https://twitter.com/share?url=http://whatispolymath&text=Check%20out%20this%20course%20I%20found%20on%20Polymath%20-%20'{{ requested_course.name}}'!" target="_blank" class="shareontw"><span>Share on Twitter</span></a>
+					<a href="https://twitter.com/share?url=http://beta.whatispolymath.com{{ request.get_full_path }}&text=Check%20out%20this%20course%20I%20found%20on%20Polymath%20-%20'{{ requested_course.name}}'!" target="_blank" class="shareontw"><span>Share on Twitter</span></a>
 				
 				{% endif %}
 				
@@ -357,7 +357,6 @@
 					
 						<p>
 
-
 						<b>	<a href="{% url view_profile uname=comment.user.username %}">{{ comment.userinfo.name }}</b></a>
 
 						<span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>						
@@ -518,7 +517,7 @@
 
 											<p>
 
-											<b>{{ comment.userinfo.name }}</b>
+											<b><a href="{% url view_profile uname=comment.user.username %}">{{ comment.userinfo.name }}</b></a>
 											<span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>						
 					                    	<p>{{ comment.comment }}</p>
 											</p>

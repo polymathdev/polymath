@@ -1,9 +1,8 @@
 $(document).ready(function(){
 
 	
- 	$("#id_category option:eq(0)").text("Course Category");
-
-
+// 	$("#id_category option:eq(0)").text("Course Category");
+	$("select").sb();
 
 	$('#id_tags').tagsInput({
 		'width':'280px',
@@ -177,16 +176,16 @@ $(document).ready(function(){
 	
 	
 /*
-	var stickyHeaderTop = $('#leftsidenav').offset().top;
+	var stickyHeaderTop = $('#sim_save_course').offset().top;
 
 	 $(window).scroll(function(){
 		if( $(window).scrollTop() > stickyHeaderTop - 40) {
-			$('#leftsidenav').css({position: 'fixed', top: '20px'});
+			$('#sim_save_course').css({position: 'fixed', top: '40px', left:'20px'});
 		} else {
-			$('#leftsidenav').css({position: 'static', top: '20px'});
+			$('#sim_save_course').css({position: 'static', top: '40px'});
 		}
-	});
-	*/
+	});*/
+	
 	
 	
 	// COURSE PHOTO JAVASCRIPT
@@ -345,6 +344,7 @@ $(document).ready(function(){
 	
 		$("#save_course").click(function(){
 			updatehiddendiv();
+			
 		});
 	
 
@@ -369,6 +369,9 @@ $(document).ready(function(){
 				}
 			}, 		
 		});
+		
+		
+		
 		
 	
 

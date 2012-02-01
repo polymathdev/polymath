@@ -207,15 +207,9 @@ $(document).ready(function(){
 
 
 	$("#photocancel").click(function(){	 // reset all properties -- this is ideal but couldn't get the functionality right
-		
-		
-		
-//		$("#id_profile_pic").replaceWith($("#id_profile_pic").clone(true));	// since we can't edit the form instance, we create a new one
-		
-		
+				
+//		$("#id_profile_pic").replaceWith($("#id_profile_pic").clone(true));	// since we can't edit the form instance, we create a new one		
 		$('#uploadprofilephoto').colorbox.close(); // close colorbox
-		
-		
 	});
 	
 	/*
