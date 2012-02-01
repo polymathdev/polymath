@@ -17,7 +17,7 @@
 	<div class="container_12" style="margin-top:50px">
 	
 		<div class="grid_2 aboutsidebar">
-			<img src="{{ STATIC_URL }}css/images/favicon.png" class="favicon"></img>
+			<img src="{{ STATIC_URL }}css/images/Favicon.png" class="favicon"></img>
 		
 			<ul>
 				<li><a href="/about/">About</a></li>

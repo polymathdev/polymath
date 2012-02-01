@@ -108,7 +108,7 @@
 				<h3 id="getstartedh3">
 					So let's get started!
 				</h3>
-				<a href="/courses/browse" class="browsecourses"><span>Browse courses &nbsp; &#8594; </span></a>
+				<a href="/courses/browse" class="browsecourses"><span>Browse courses &nbsp; <b>&#8594;</b> </span></a>
 			{% endif %}
 			</div>
 			
