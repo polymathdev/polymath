@@ -18,19 +18,13 @@ from facepy import GraphAPI
 import ipdb, re
 
 def test(request):
-    ipdb.set_trace()
-    fb_data = request.user.social_auth.get(provider='facebook').extra_data
-    access_token = fb_data['access_token']
-    fb_uid = fb_data['id']
-    fb = GraphAPI(access_token)
-    pic = fb.get('fql',q='select pic_big from user where uid='+fb_uid)
-     
-    ipdb.set_trace()
+    # fb_data = request.user.social_auth.get(provider='facebook').extra_data
+    # access_token = fb_data['access_token']
+    # fb_uid = fb_data['id']
+    # fb = GraphAPI(access_token)
+    # pic = fb.get('fql',q='select pic_big from user where uid='+fb_uid)
 
-    return render(request, 'test.dtl', {
-        'course_form' : cf
-        })
-
+    return render(request, 'howitworks.dtl', {} )
 
 def welcome(request):
     return_to_course = None
@@ -50,11 +44,6 @@ def welcome(request):
         'return_to_course' : return_to_course,
         'is_welcome' : True
         })
-
-def new_user(request):
-    ipdb.set_trace()
-
-    return render(request, 'test.dtl')
 
 def home_page(request):
     default_course = Course.objects.all()[0]
