@@ -3,10 +3,13 @@
 
 {% block js_includes %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/course_form.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-placeholder.js"></script>
+
+<!--    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-placeholder.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tagsinput.min.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.sb.js"></script>
-	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.sb.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script> -->
+	
+	
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery.tagsinput.css" />
 	
 	

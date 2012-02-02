@@ -1,4 +1,9 @@
+head.ready(function(){
+	
+
+
 $(document).ready(function(){
+	
 	
 	$(".messages").animate({
 	  opacity:"show"
@@ -42,4 +47,7 @@ $(document).ready(function(){
 	
 	
 	
+});
+
+
 });

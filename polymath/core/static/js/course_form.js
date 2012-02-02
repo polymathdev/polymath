@@ -1,3 +1,8 @@
+head.ready(function(){
+	
+
+
+
 $(document).ready(function(){
 
 	
@@ -356,7 +361,8 @@ $(document).ready(function(){
 			},
 			rules: {
 				name: {
-					required: true
+					required: true,
+					maxlength: 40
 				},
 				description: {
 					required: true
@@ -377,3 +383,7 @@ $(document).ready(function(){
 
 }); 
 
+
+
+
+});
