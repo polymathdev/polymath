@@ -9,16 +9,19 @@
  <script type="text/javascript" src="{{ STATIC_URL }}js/view_profile.js"></script>
 
 <script type="text/javascript">
-	$(function() {
+	head.ready(function(){
+	
+		$(document).ready(function(){
+			$('.progressbar1').each(function() {
+		            var value = eval($(this).text());
+		            $(this).empty().progressbar({value: value});
+		 			$(this).css({ 'height': '20px' });
+		      });
+		});
+	
+	}); 
 
-	$('.progressbar1').each(function() {
-            var value = eval($(this).text());
-            $(this).empty().progressbar({value: value});
- 			$(this).css({ 'height': '20px' });
-      });
-	
-	
-	});
+
 
 </script>
 
@@ -319,12 +322,12 @@
 	{% else %}
 	
 	
-	<div class="lessonCreatedBlock">
+	<div class="lessonCreatedBlock empty">
 		<div class="blockbg empty">
 			<div class="grid_1" style="width:160px;">
 			<p class="coursedescription">
 			{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} created any courses yet!
-			{% if is_my_profile %}Get started and share your knowledge.
+			{% if is_my_profile %}Get started & share your knowledge.
 			</p>
 			<a href="{% url add_course %}" class="createcourse profilepage"><span>Create Course</span></a>{% endif %}
 			</div>

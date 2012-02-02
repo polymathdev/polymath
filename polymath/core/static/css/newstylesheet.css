@@ -1653,7 +1653,7 @@ a.label.nohover:hover{
 	background:#f5f5f5;
 /*	background:rgba(162,209,1, 0.1); */
 	padding-top:10px; padding-bottom:10px; border-radius:4px; 
-	padding-right:10px;
+	padding-right:0px;
 	border:1px solid #d1d4c5; 
 	box-shadow:inset 0px 2px 3px rgba(0,0,0,0.15);
 }
@@ -2126,7 +2126,6 @@ p{
 	display:inline;
 	font-size:12px;
 	color:#aaa;
-	color:#f5f5f5;
 	font-weight:normal;
 	margin-top:3px;
 	display:block;
@@ -2728,7 +2727,6 @@ p{
 }
 
 #profile:hover{
-	cursor:pointer;
 }
 
 .heading{
@@ -2870,6 +2868,7 @@ p{
 } 
 
 .lessonCreatedBlock:nth-child(3n){
+	
 	margin-right:0px;
 }
 /*
@@ -3029,7 +3028,7 @@ p{
 
 .createcourse.profilepage span{
 	font-size:12px;
-	padding-left:18px;
+	padding-left:25px;
 	padding-top:10px;
 	padding-bottom:10px;
 }
@@ -3130,6 +3129,7 @@ p{
 	font-weight:bold;
 	font-size:20px;
 	margin-top:5px;
+	padding-right:10px;
 }
 
 

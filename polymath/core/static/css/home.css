@@ -58,6 +58,17 @@ padding:0px;
 	text-shadow:-1px -1px 1px rgba(0,0,0,0.2);
 }
 
+#webdesign{
+	position:relative;
+	color:#a2d101;
+	font-size:20px;
+	font-weight:bold;
+	text-shadow: 0 -2px 2px rgba(0, 0, 0, 0.25);
+	margin-left:178px;
+	margin-top:-1px;
+	margin-bottom:11px;
+}
+
 #ticker{
 	position:absolute;
   	text-shadow: 0 -2px 2px rgba(0, 0, 0, 0.25);
@@ -67,6 +78,7 @@ padding:0px;
 	padding-left:5px;
 	width:228px!important;
 	height:30px!important;
+	visibility:hidden;
 }
 
 
@@ -193,7 +205,7 @@ padding:0px;
 	background:#314a27; */
 	
 /*	border-bottom:1px solid #ccc; */
-	z-index: 10000;
+	z-index: 10;
 	margin-left:80px;
 	margin-right:0px;
 	margin-bottom:0px;
