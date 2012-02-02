@@ -55,7 +55,7 @@
 					</p>
 				</div>
 				<div class="grid_4 omega">
-					<img src="{{ STATIC_URL }}css/images/findcourse.png" id="findcourseimage"></img>
+					<img src="{{ STATIC_URL }}css/images/FindCourse.png" id="findcourseimage"></img>
 				</div>
 			</div>
 			
@@ -70,7 +70,7 @@
 			<div class="grid_8" style="margin-bottom:20px;">
 				<h2><b>Track your Progress</h2></b>
 				<div class="grid_2 alpha">
-					<img src="{{ STATIC_URL }}css/images/trackprogress.png" id="trackprogressimage"></img>
+					<img src="{{ STATIC_URL }}css/images/TrackProgress.png" id="trackprogressimage"></img>
 				</div>
 				<div class="grid_6 omega">
 					<p>One of the toughest parts of learning something outside of school is staying motivated and continuing to regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system (coming soon!) that rewards you on your work.
