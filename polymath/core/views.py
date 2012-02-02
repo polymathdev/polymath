@@ -153,7 +153,8 @@ def view_course(request, course_id, course_slug=None):
     lesson_list = requested_course.lesson_set.all()
 
     completed_lesson_list = None
-    
+    show_course_message = None
+
     # list of dictionaries where each contains relevant info about a lesson.  initialize with 'lesson' key to contain Lesson object
     lesson_list_info = [ {'lesson' : l } for l in lesson_list ]
 
@@ -181,8 +182,16 @@ def view_course(request, course_id, course_slug=None):
 
             except ObjectDoesNotExist:
                 pass
+    
+    # i.e. not logged in - determine if course message should be displayed
+    else:
+        # should have more organized session handling for this kind of stuff down the road but this is fine for now
+        if not request.session.get('has_seen_course_msg', False):
+            show_course_message = True
+            request.session['has_seen_course_msg'] = True
 
     return render_to_response('view_course.dtl',  {
+        'show_course_message' : show_course_message,
         'requested_course': requested_course,
         'course_tags': requested_course.tags.all(),
 	    'lessons': lesson_list_info,
