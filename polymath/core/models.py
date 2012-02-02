@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.db.models import Count
 from taggit.managers import TaggableManager
 from django.template.defaultfilters import slugify
+from django.core.mail import send_mail
 from facepy import GraphAPI
 import ipdb
 
@@ -74,6 +75,14 @@ def new_users_handler(sender, user, response, details, **kwargs):
     profile.fb_profile_thumb = fb_pics['data'][0]['pic_square']
 
     profile.save()
+
+    # send quick+dirty welcome email
+    message = 'Hey ' + user.first_name + ',\n\nWelcome to Polymath!\n\n'
+    message += 'We\'re working on building a central resource for the web\'s best educational content and the ultimate community-based online learning experience.\n\n'
+    message += 'Learn more here: http://beta.whatispolymath.com/howitworks/\n\n'
+    message += 'Thanks,\nThe Polymath Team'
+
+    send_mail('Welcome to Polymath!', message, 'Polymath <hello@whatispolymath.com>', [user.email])
 
     return False
 
