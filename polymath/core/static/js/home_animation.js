@@ -2,7 +2,10 @@ head.ready(function(){
 	
 	
 $(document).ready(function(){
+	
+$('#webdesign').hide();
 
+$('#ticker').show();
 
 $('#ticker').jCarouselLite({  
         vertical: true,  
