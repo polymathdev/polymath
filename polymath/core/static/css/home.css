@@ -13,7 +13,9 @@ padding:0px;
 .homeheader{
 	margin-top:0px;
 	margin-left:0px;
-	padding-top:0px; padding-left:0px;
+	padding-top:0px;
+	padding-left:0px;
+	padding-bottom:0px;
 	height:350px;
 	
 	
@@ -28,7 +30,10 @@ padding:0px;
 	
 	
 	background:url(images/homeheader.png) no-repeat left top;
-	background-size:100%;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+	background-size:cover;
 	box-shadow:inset 0px -1px 5px #2b4221;
 	-webkit-box-shadow:inset 0px -1px 5px #2b4221;
 	-moz-box-shadow:inset 0px -1px 5px #2b4221;
@@ -208,7 +213,6 @@ padding:0px;
 	z-index: 10;
 	margin-left:80px;
 	margin-right:0px;
-	margin-bottom:0px;
 }
 
 .fbloginbutton:link{
