@@ -375,11 +375,11 @@ $(document).ready(function(){
 	var stickyHeaderTop = $('#leftinfoblock').offset().top;
 
 	 $(window).scroll(function(){
-		if( $(window).scrollTop() > stickyHeaderTop - 30) {
-			$('#leftinfoblock').css({position: 'fixed', top: '30px'});
-		} else {
-			$('#leftinfoblock').css({position: 'static', top: '30px'});
-		}
+//		if( $(window).scrollTop() > stickyHeaderTop - 30) {
+//			$('#leftinfoblock').css({position: 'fixed', top: '30px'});
+//		} else {
+//			$('#leftinfoblock').css({position: 'static', top: '30px'});
+//		}
 	});
 
 	
