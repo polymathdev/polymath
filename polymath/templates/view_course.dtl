@@ -41,7 +41,9 @@
 
 {% if user.is_authenticated %}
 {% else %}
+    {% if show_course_message %}
 	<div class="messages"><h3>Get started on a course - it's easy! &nbsp; 1) Log in. &nbsp;2) Take a lesson.&nbsp; 3) Mark it as done to track your progress.</h3><a href="#" id="close">x</a></div>
+    {% endif %}
 {% endif %}
 
 
