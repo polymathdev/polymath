@@ -3,7 +3,6 @@
 
 
 {% block js_includes %}
-		<script type="text/javascript" src="http://www.gmarwaha.com/jquery/jcarousellite/js/jcarousellite_1.0.1.min.js"></script> 
         <script type="text/javascript" src="{{ STATIC_URL }}js/home_animation.js"></script>
 {% endblock %}
 
@@ -18,6 +17,8 @@
 
 
 {% block body %}
+
+{% load truncate_filters %}
 	<div class="homeheader" style="padding-top:30px;">
 		<div class="container_12">
 			
@@ -85,7 +86,7 @@
 			<div class="featuredblock">
                 <img src="{{ featured_courses.left.creator.get_profile.get_pic_url }}"></img>
                 <a href="{% url view_course course_id=featured_courses.left.id course_slug=featured_courses.left.slug %}"><span class="emptyspan"></span></a>
-				<h3>{{ featured_courses.left.name }}</h3>
+				<h3>{{ featured_courses.left.name|truncate_chars:30 }}</h3>
                 <h5>By <a href="{% url view_profile uname=featured_courses.left.creator.username %}">{{ featured_courses.left.creator.first_name }} {{ featured_courses.left.creator.last_name }}</a>, {{ featured_courses.left.creator.get_profile.blurb }}</h5>
 				<div class="content">
                     <img src="{% if featured_courses.left.photo %}{{ featured_courses.left.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}"></img>
@@ -99,7 +100,7 @@
 			<div class="featuredblock">
                 <img src="{{ featured_courses.middle.creator.get_profile.get_pic_url }}"></img>
                 <a href="{% url view_course course_id=featured_courses.middle.id course_slug=featured_courses.middle.slug %}"><span class="emptyspan"></span></a>
-                <h3>{{ featured_courses.middle.name }}</h3>
+                <h3>{{ featured_courses.middle.name|truncate_chars:30 }}</h3>
                 <h5>By <a href="{% url view_profile uname=featured_courses.middle.creator.username %}">{{ featured_courses.middle.creator.first_name }} {{ featured_courses.middle.creator.last_name }}</a>, {{ featured_courses.middle.creator.get_profile.blurb }}</h5>
 				<div class="content">
                     <img src="{% if featured_courses.middle.photo %}{{ featured_courses.middle.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}"></img>
@@ -113,7 +114,7 @@
 			<div class="featuredblock">
                 <img src="{{ featured_courses.right.creator.get_profile.get_pic_url }}"></img>
                 <a href="{% url view_course course_id=featured_courses.right.id course_slug=featured_courses.right.slug %}"><span class="emptyspan"></span></a>
-                <h3>{{ featured_courses.right.name }}</h3>
+                <h3>{{ featured_courses.right.name|truncate_chars:30 }}</h3>
                 <h5>By <a href="{% url view_profile uname=featured_courses.right.creator.username %}">{{ featured_courses.right.creator.first_name }} {{ featured_courses.right.creator.last_name }}</a>, {{ featured_courses.right.creator.get_profile.blurb }}</h5>
 				<div class="content">
                     <img src="{% if featured_courses.right.photo %}{{ featured_courses.right.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}"></img>

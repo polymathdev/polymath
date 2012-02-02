@@ -1,5 +1,12 @@
+head.ready(function(){
+	
+
+
 $(document).ready(function(){
 
+
+	$("body").attr("id","learn");
+	
 	$('.categoryli').click(function(){
 		$('.selectedtags').show();
 	});
@@ -44,4 +51,7 @@ $(document).ready(function(){
 			window.location.href="/courses/browse/";
 		});
 	
+});
+
+
 });

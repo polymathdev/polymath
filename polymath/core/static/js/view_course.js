@@ -1,3 +1,6 @@
+head.ready(function(){
+
+
 $(document).ready(function(){
 	
     $('.addcomment textarea').addClass('commentbox');
@@ -272,6 +275,10 @@ $(document).ready(function(){
 	$('.completed').tipsy({fade: false, gravity: 's', opacity:0.8});
 	
 	$('.takingimage').tipsy({fade: false, gravity: 's', opacity:0.8});
+	
+	$('.lessoncount').tipsy({fade: false, gravity: 's', opacity:0.8});
+	
+	$('.followercount').tipsy({fade: false, gravity: 's', opacity:0.8});
 
 
 /*
@@ -382,3 +389,4 @@ $(document).ready(function(){
 }); 
 
 
+});

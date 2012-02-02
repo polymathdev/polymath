@@ -1653,6 +1653,7 @@ a.label.nohover:hover{
 	background:#f5f5f5;
 /*	background:rgba(162,209,1, 0.1); */
 	padding-top:10px; padding-bottom:10px; border-radius:4px; 
+	padding-right:10px;
 	border:1px solid #d1d4c5; 
 	box-shadow:inset 0px 2px 3px rgba(0,0,0,0.15);
 }
@@ -5191,7 +5192,7 @@ a.remove_lesson_lnk:hover{
 	background:url(images/pixel_pattern.png) left top, linear-gradient(top, #98DD01 0%,#7FB024 100%); 
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#98DD01', endColorstr='#7FB024',GradientType=0 ); 
 	border:1px solid #667b4e;
-	margin-right:200px;
+	margin-right:280px;
 	margin-left:20px;
 	margin-top:20px;
 	margin-bottom:30px;
@@ -5410,11 +5411,11 @@ a.remove_lesson_lnk:hover{
 }
 
 #returntocourseh3{
-	margin-top:34px; padding-left:40px; position:absolute; text-shadow:0px 1px 2px white; color:#5f7647;
+	margin-top:34px; margin-left:110px;position:absolute; text-shadow:0px 1px 2px white; color:#5f7647;
 }
 
 #getstartedh3{
-	margin-top:34px; padding-left:160px; position:absolute; text-shadow:0px 1px 2px white; color:#5f7647;
+	margin-top:34px; padding-left:110px; position:absolute; text-shadow:0px 1px 2px white; color:#5f7647;
 }
 
 
@@ -5731,7 +5732,7 @@ textarea.error { border: 1px dotted red; }
 
 
 @-moz-document url-prefix(){
-	.nav { font-weight: normal; }
+	.nav { font-weight: normal; opacity:1;}
 	#learnnav, #teachnav { font-weight: normal; color:(255,255,255,0.1);}
 	 .browsecourses, .editcourse, .createcourse, .takecourse { font-weight: normal; }
 	-webkit-font-smoothing: antialiased!important; 

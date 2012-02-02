@@ -10,12 +10,11 @@
 
 {% block js_includes %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.backgroundposition.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.qtip-1.0.0-rc3.js"></script>
+	<!--	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.qtip-1.0.0-rc3.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-placeholder.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="http://www.websnapr.com/js/websnapr.js"></script>
-		<script src="http://scripts.embed.ly/jquery.embedly.min.js"></script>
+		<script src="http://scripts.embed.ly/jquery.embedly.min.js"></script> -->
 	<script type="text/javascript">
 		
 		var completed_lessons;
@@ -109,13 +108,13 @@
 				<hr id="titlehr">	
 	
 					<div id="followers">
-						<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon"></img>
+						<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon followercount" original-title="# of learners"></img>
 						{{ requested_course.users_with_progress.count }} learning 
 					</div>
 
 
 					<span class="lessoncount">
-					<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon" style="margin-right:5px; height:15px; width:auto;"></img>
+					<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon lessoncount" style="margin-right:5px; height:15px; width:auto;" original-title="# of lessons"></img>
 					 	{{ requested_course.lesson_set.count }} lesson{{ requested_course.lesson_set.count|pluralize }}
 					</span>
 				
@@ -565,7 +564,7 @@
 
 	
 		<div class="lessonBlock emptyBlock">
-			<h3 id="empty">Uh oh, this course is empty. {% if is_my_course %}<a href="{% url edit_course course_id=requested_course.id %}"><b>Add some lessons and share your expertise; you're a genius!</b></a>{% else %}Come back later and say hi.{% endif %} </h3>
+			<h3 id="empty">Uh oh, this course is empty.&nbsp;&nbsp;{% if is_my_course %}<a href="{% url edit_course course_id=requested_course.id %}"><b>Add some lessons and share your expertise; you're a genius!</b></a>{% else %}Come back later and say hi.{% endif %} </h3>
 		</div>
 		
 		</div> <!-- end lessons block -->					

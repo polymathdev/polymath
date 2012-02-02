@@ -2,9 +2,6 @@
 
 {% block title %}Polymath: Browse Courses{% endblock %}
 
-{% block css_includes %}
-   <!-- {# <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> #}   -->
-{% endblock %}
 
 {% block js_includes %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/browse_courses.js"></script>
@@ -16,8 +13,6 @@
 {% block body %}
 
 {% load truncate_filters %}
-
-<body id="learn">
 
 
 <div class="container_12" style="margin-top:30px;">
