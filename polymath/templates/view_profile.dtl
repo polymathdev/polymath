@@ -185,7 +185,7 @@
 	<div class="parentlessoncreatedblock">
  		{% for course_data in profile_owner.get_profile.courses_with_progress %}
 
-		<div class="lessonCreatedBlock" original-title="{{ course.name }} by Harish Venkatesan">
+		<div class="lessonCreatedBlock" original-title="{{ course_data.course.name }} by Harish Venkatesan">
 			<div style="height:130px; width:170px; background:#eae7df; padding-top:16px; margin-top:10px; margin-left:10px">
 			
 				<a href="{% url view_course course_id=course_data.course.id course_slug=course_data.course.slug %}" class="coursename">{{ course_data.course.name|truncate_chars:17 }}</a>			
@@ -200,8 +200,8 @@
 			
 			</div>
 			
-			<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="# of learners"></img> {{ course.users_with_progress|length }}
-				<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon lessoncount" style="margin-right:5px; height:20px; width:auto;" original-title="# of lessons"></img>  {{ course.lesson_set.count }} </p>
+			<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="# of learners"></img> {{ course_data.course.users_with_progress|length }}
+				<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon lessoncount" style="margin-right:5px; height:20px; width:auto;" original-title="# of lessons"></img>  {{ course_data.course.lesson_set.count }} </p>
 
 		</div> <!-- end lesson created block -->
 		
