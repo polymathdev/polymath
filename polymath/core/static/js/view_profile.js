@@ -103,9 +103,10 @@ $(document).ready(function(){
 
 
 
-	var intervalFunc = function () {	// update our custom span with the value of the default, hidden id_photo div
+	var intervalFunc = function () {	// update our custom span with the value of the default, hidden id_profile_pic div
 		$("#file-name").show();
-	    $('#file-name').html($('#id_profile_pic').val());
+		var filename = $('#id_profile_pic').val().replace(/^.*[\\\/]/, '')
+	    $('#file-name').html(filename);
 	    $('#urlname').html($('#id_profile_pic').val());
 	};
 
@@ -170,14 +171,10 @@ $(document).ready(function(){
 
 		$("#previewImage").show();
 		
-		if (typeof FileReader !== "undefined"){
-			img.src = window.URL.createObjectURL(file);
-			$('#existingphoto').hide();
-		} else {
 	    	var reader = new FileReader();  
 	    	reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);  
 	    	reader.readAsDataURL(file);  
-		}
+
 		
 		if (newfile.length > 0){	// check if new image or not
 			$('#photo-clear_id').removeAttr("checked");    // override the default behavior of the ClearableInput field

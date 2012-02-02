@@ -20,21 +20,9 @@ $(document).ready(function(){
 	function updatehiddendiv(){
 		var value = $('#id_tags').val();
 		$("#tagsexist").val(value);
-		var tagsexistval = 	$("#tagsexist").val();
-		console.log(tagsexistval);
-		$("#new_course_form").validate().form();
+		$("#new_course_form").validate().element("#tagsexist");
 	}
 	
-	
-	$("#testspan").click(function(){
-		var value = $('#id_tags').val();
-		
-		$("#tagsexist").val(value);
-		
-		var tagsexistval = 	$("#tagsexist").val();
-		console.log("the tags that exist are: "+ tagsexistval);
-		
-	});
 
     
     $('#test_btn').click(function() {
