@@ -522,3 +522,9 @@ padding:0px;
 	  /* edit: added z-index */
 	  z-index: 1 
 }
+
+
+
+@-moz-document url-prefix(){
+	#webdesign{ visibility:hidden;}
+}
