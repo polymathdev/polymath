@@ -80,6 +80,7 @@ def new_users_handler(sender, user, response, details, **kwargs):
     message = 'Hey ' + user.first_name + ',\n\nWelcome to Polymath!\n\n'
     message += 'We\'re working on building a central resource for the web\'s best educational content and the ultimate community-based online learning experience.\n\n'
     message += 'Learn more here: http://beta.whatispolymath.com/howitworks/\n\n'
+    message += 'Looking forward to seeing you out there!\n\n'
     message += 'Thanks,\nThe Polymath Team'
 
     send_mail('Welcome to Polymath!', message, 'Polymath <hello@whatispolymath.com>', [user.email])
