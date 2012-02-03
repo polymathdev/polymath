@@ -92,7 +92,7 @@
                 <h5>By <a href="{% url view_profile uname=featured_courses.left.creator.username %}">{{ featured_courses.left.creator.first_name }} {{ featured_courses.left.creator.last_name }}</a>, {{ featured_courses.left.creator.get_profile.blurb }}</h5>
 				<div class="content">
                     <img src="{% if featured_courses.left.photo %}{{ featured_courses.left.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}"></img>
-                    <span>{{ featured_courses.left.description|truncate_chars:186 }}</span>
+                    <span>{{ featured_courses.left.description|truncate_chars:175 }}</span>
 				</div>
 			</div>
 		</div>
@@ -106,7 +106,7 @@
                 <h5>By <a href="{% url view_profile uname=featured_courses.middle.creator.username %}">{{ featured_courses.middle.creator.first_name }} {{ featured_courses.middle.creator.last_name }}</a>, {{ featured_courses.middle.creator.get_profile.blurb }}</h5>
 				<div class="content">
                     <img src="{% if featured_courses.middle.photo %}{{ featured_courses.middle.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}"></img>
-                    <span>{{ featured_courses.middle.description|truncate_chars:186 }}</span>
+                    <span>{{ featured_courses.middle.description|truncate_chars:175 }}</span>
 				</div>
 			</div>
 		</div>
@@ -120,7 +120,7 @@
                 <h5>By <a href="{% url view_profile uname=featured_courses.right.creator.username %}">{{ featured_courses.right.creator.first_name }} {{ featured_courses.right.creator.last_name }}</a>, {{ featured_courses.right.creator.get_profile.blurb }}</h5>
 				<div class="content">
                     <img src="{% if featured_courses.right.photo %}{{ featured_courses.right.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}"></img>
-                    <span>{{ featured_courses.right.description|truncate_chars:186 }}</span>
+                    <span>{{ featured_courses.right.description|truncate_chars:175 }}</span>
 				</div>
 			</div>
         </div>
