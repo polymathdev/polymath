@@ -43,7 +43,7 @@ urlpatterns = patterns('',
 
     # view profile
     url(r'^myprofile/$','core.views.view_myprofile', name='view_my_profile'),
-    url(r'^profile/(?P<uname>[a-z0-9]+)/$','core.views.view_profile', name='view_profile'), 
+    url(r'^profile/(?P<uname>.+)/$','core.views.view_profile', name='view_profile'), 
 
     # add / edit courses
     url(r'^courses/add/$','core.views.add_course', name='add_course'),   
