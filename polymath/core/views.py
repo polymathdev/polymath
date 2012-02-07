@@ -370,7 +370,7 @@ def browse_courses(request, cat_slug=None, tag_slug=None):
         course_list = Course.objects.all().select_related()
 
     if cat_slug:
-        cat = CourseCategory.objects.get(slug=cat_slug) 
+        cat = get_object_or_404(CourseCategory, slug=cat_slug) 
 
         # browse a single category
         if not tag_slug:
