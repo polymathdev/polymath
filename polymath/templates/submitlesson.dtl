@@ -1,0 +1,78 @@
+{% extends "base.dtl" %}
+
+{% block title %}Polymath | Submit Lesson{% endblock %}
+
+{% block css_includes %}
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery.tagsinput.css" />
+{% endblock %}
+
+{% block js_includes %}
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/submit_lesson.js"></script>
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="container_12" style="margin-top:50px">
+	
+	
+		<div class="grid_12 about">
+			<h1 id="browsetitle">Submit a Lesson</h1>
+			<hr>
+			<p>A lesson is just a link to any good piece of content you would recommend to someone learning about a subject. It can be a link to a <b>pdf</b>, <b>webpage</b>, <b>book</b>, <b>video</b>, or <b>audio file</b>.</p>
+			
+			<div class="grid_9 alpha" style="width:710px;">
+			
+			<div class="submitbg">
+			
+				<form>
+				<div class="grid_5 alpha omega">
+				<div class="lessonname">
+					<input type="text" placeholder="Lesson Name"></input>
+				</div>
+			
+				<div class="lessonlink">
+					<input type="text" placeholder="Lesson URL"></input>
+				</div>
+				
+				<div class="lessondescription">
+					<input type="textarea" style="width:340px; height:100px;margin-top:30px; margin-bottom:20px;" placeholder="Describe the link. What's this all about?"></input>
+				</div>
+			
+				</div>
+			
+				<div class="grid_4 omega">
+
+					<p class="taglabel submitlesson">Lesson Category:</p>
+					<select></select><br>
+					<p class="taglabel submitlesson second">Lesson Type:</p>
+					<select></select><br>
+								<input type="text" id="tags_input"></input>
+			
+				
+				<br>
+			
+				</div>
+			
+				<div class="clear"></div>
+
+			</form>
+			</div>
+			<div class="clear"></div>
+			
+					<button class="createcourse submitlesson"><span>Submit</span></button>
+				
+				
+			</div>
+			<div class="clear"></div>
+			
+			<hr style="margin-top:100px;">
+			<p style="float:right;">Feeling ambitious? Got a bunch of links you want to submit? <b><a href="/courses/add">Create a course.</a></b></p>
+			
+		</div>
+	
+	
+	</div>
+
+
+{% endblock %}
