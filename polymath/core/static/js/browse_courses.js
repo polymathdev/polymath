@@ -3,6 +3,8 @@ head.ready(function(){
 
 
 $(document).ready(function(){
+	
+
 
 
 	$("body").attr("id","learn");
@@ -10,6 +12,12 @@ $(document).ready(function(){
 	$('.categoryli').click(function(){
 		$('.selectedtags').show();
 	});
+	
+	$("#browsecourselist").jCarouselLite({
+		btnPrev:"#previous",
+        btnNext: "#next", 
+		visible: 3,
+    });
 
 
 	var stickyHeaderTop = $('.aboutsidebar.browse').offset().top;
