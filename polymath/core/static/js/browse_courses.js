@@ -16,7 +16,7 @@ $(document).ready(function(){
 	$("#browsecourselist").jCarouselLite({
 		btnPrev:"#previous",
         btnNext: "#next", 
-		visible: 3,
+		visible: 0,
     });
 
 
@@ -54,6 +54,8 @@ $(document).ready(function(){
 	
 		$('.lessoncount').tipsy({fade: false, gravity: 's', opacity:0.8});
 		$('.numfollowers').tipsy({fade: false, gravity: 's', opacity:0.8});
+		$('.browsepageheading').tipsy({fade: false, gravity: 'e', opacity:0.9});
+
 		
 		$('.closetagfilter').click(function(){
 			window.location.href="/courses/browse/";

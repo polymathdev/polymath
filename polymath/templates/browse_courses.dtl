@@ -21,7 +21,7 @@
 
 
 	<div class="grid_4 omega" style="margin-bottom:18px">
-		<span id="browsetitle">Browse Courses</span><br>
+		<span id="browsetitle">Browse Polymath</span><br>
 		<h5 class="edit_heading">What can you learn today?</h5>
 	</div>
 
@@ -74,18 +74,22 @@
 
 {% if filters.tag %}
 <div class="filterbytag">
-	Content with tag: <a class="label success nohover">{{ filters.tag.name }} <span class="closetagfilter"> x</span></a>
+	Courses & lessons with tag: <a class="label success nohover">{{ filters.tag.name }} <span class="closetagfilter"> x</span></a>
 </div>
 <hr id="filterbytaghr">
 {% endif %}
 
-<h3 style="margin-left:20px;">Courses</h3>
-<div id="browsecourselist">
+<h3 style="margin-left:20px;" class="browsepageheading" original-title="Courses are sets of lessons organized by experts">Courses</h3>
+{% if course_list|length > 0 %}<div id="browsecourselist">{% else %}<div class="emptycourselist">{% endif %}
 
 	{% if course_list|length > 3 %}
 		<a id="previous"><</a>
 	{% endif %}
 
+{% if course_list|length == 0 %}
+	<p>Uh oh, there are no courses in this category yet!</p>
+
+{% else %}
 
 <ul>
 {% for course in course_list %}
@@ -114,7 +118,10 @@
 	</li>
 
 {% endfor %}
+
 </ul>
+
+{% endif %}
 {% if course_list|length > 3 %}
 	<a id="next">></a>
 {% endif %}
@@ -125,7 +132,20 @@
 
 <div class="clear"></div>
 
-<h3 style="margin-left:20px; margin-top:20px; margin-bottom:20px;">Lessons</h3>
+
+<!-- THIS IS WHERE LESSONS GO -->
+
+
+<h3 style="margin-left:20px; margin-top:20px; margin-bottom:20px;" original-title="A lesson is a link to something on the web that will help you learn about the subject" class="browsepageheading">Lessons</h3>
+
+
+{% if course_list|length == 0 %}
+	<div class="emptycourselist">
+		<p>Uh oh, there are no lessons in this category yet!</p>
+	</div>
+
+{% else %}
+
 
 {% for course in course_list %}
 
@@ -168,6 +188,8 @@
 	
 		
 {% endfor %}
+
+{% endif %}
 
 </div> <!-- end coursesblock -->
 
