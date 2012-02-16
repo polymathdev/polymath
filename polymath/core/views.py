@@ -204,31 +204,35 @@ def view_course(request, course_id, course_slug=None):
     },
     context_instance=RequestContext(request))
 
-
 @login_required
 def add_course(request):
-    EditLessonFormSet = inlineformset_factory(Course, Lesson, can_delete=False, form=LessonForm, formset=OrderedLessonFormSet, extra=1) 
-                                         
+    LessonFormSet = modelformset_factory(Lesson, form=LessonForm)                                   
+
     if request.method == 'POST':
         course_form = CourseForm(request.POST, request.FILES)
-        lesson_fs = EditLessonFormSet(request.POST)     
+        lesson_fs = LessonFormSet(request.POST)     
         
         if course_form.is_valid() and lesson_fs.is_valid():
             new_course = course_form.save(commit=False)
             new_course.creator = request.user
             new_course.save()
+
             # save tags
             course_form.save_m2m()
 
-            lesson_fs.instance = new_course
             lesson_fs.save()
+
+            # add the M2M relationship from each lesson to the new course after the lessons are created with lesson_fs.save() above
+            # does this hit the database a separate time for each lesson?  is there a way to avoid that?
+            for lesson_form in lesson_fs.forms:
+                lesson_form.instance.course = [new_course]
 
             messages.success(request, 'Your course has been created! Share it with your friends on Twitter and Facebook.')
             return redirect('view_my_profile')
 
     else:
         course_form = CourseForm()            
-        lesson_fs = EditLessonFormSet()
+        lesson_fs = LessonFormSet(queryset=Lesson.objects.none())
 
 	messages.success(request, 'A course is a set of resources for someone to progress through to learn about the subject. Get creative! You\'re the expert.')
     return render_to_response('add_course2.dtl', {
@@ -238,6 +242,7 @@ def add_course(request):
     },
     context_instance=RequestContext(request))
 
+
 @login_required
 def edit_course(request, course_id):
     course_to_edit = get_object_or_404(Course, pk=course_id)
@@ -246,25 +251,30 @@ def edit_course(request, course_id):
     if request.user != course_to_edit.creator:
         messages.error(request, 'You can only edit courses that you have created')
         return redirect('view_course', course_id=course_id, course_slug=course_to_edit.slug)
-
-    EditLessonFormSet = inlineformset_factory(Course, Lesson, can_delete=False, form=LessonForm, formset=OrderedLessonFormSet, extra=1)
+    
+    EditLessonFormSet = modelformset_factory(Lesson, form=LessonForm, formset=OrderedLessonFormSet)                                    
     
     if request.method == 'POST':
         
         edit_course_form = CourseForm(request.POST, request.FILES, instance=course_to_edit)
-        edit_lesson_fs = EditLessonFormSet(request.POST, instance=course_to_edit)
-        new_data = request.POST.copy();
+        edit_lesson_fs = EditLessonFormSet(request.POST, queryset=course_to_edit.lesson_set.all()) 
 
         if edit_course_form.is_valid() and edit_lesson_fs.is_valid():
             edit_course_form.save() 
-            edited_lessons = edit_lesson_fs.save()
+
+            edit_lesson_fs.save()
             
+            # create relations between new lessons and this course (is this querying the database for overwriting the FK relation on existing courses?  check this later, if so that is inefficient)
+            for lesson_form in edit_lesson_fs.forms:
+                if lesson_form.instance.pk:
+                    lesson_form.instance.course = [course_to_edit]
+
             messages.success(request, 'Your changes have been saved!')
             return redirect('view_course', course_id=course_id, course_slug=course_to_edit.slug) 
         
     else:
         edit_course_form = CourseForm(instance=course_to_edit)
-        edit_lesson_fs = EditLessonFormSet(instance=course_to_edit)
+        edit_lesson_fs = EditLessonFormSet(queryset=course_to_edit.lesson_set.all())
     
     return render_to_response('add_course2.dtl', {
 		'requested_course': course_to_edit,

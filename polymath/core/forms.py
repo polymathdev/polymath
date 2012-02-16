@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from core.models import Course, UserProfile
-from django.forms.models import BaseFormSet, BaseInlineFormSet
+from django.forms.models import BaseModelFormSet
 import ipdb
 
 class CourseForm(ModelForm):
@@ -68,7 +68,7 @@ class LessonForm(ModelForm):
 
 
 # i overrode the __iter__ method of the inline formset to display in order of the saved_order attribute i created (see above for explanation on that)
-class OrderedLessonFormSet(BaseInlineFormSet):
+class OrderedLessonFormSet(BaseModelFormSet):
     def __iter__(self):
         # if this formset is bound, it means the user actually changed the form and is trying to submit something, so display in the saved_order because the order fields in the DB may not be updated
         if self.is_bound:

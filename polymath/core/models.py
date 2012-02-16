@@ -128,18 +128,17 @@ class Course(models.Model):
     class Meta:
         ordering = ['-creation_date']
 
-    # WE DON'T WANT COURSE NAMES TO CHANGE, RIGHT?  MAY NEED TO UDPATE THIS ACCORDINGLY
+    # update the slug on save
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Course, self).save(*args, **kwargs)
-
 
     def __unicode__(self):
         return self.name
         
 
 class Lesson(models.Model): 
-    course = models.ForeignKey(Course, editable=False)
+    course = models.ManyToManyField(Course, editable=False)
     name = models.CharField(max_length=200)
     description = models.TextField()
     link = models.URLField()
