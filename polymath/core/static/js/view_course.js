@@ -74,9 +74,9 @@ $(document).ready(function(){
 
 										donebutton.closest('.lessonmetablock').find('#scorecounthidden').text( newscore );	
 										if ( newscore == 1){
-											donebutton.closest('.lessonmetablock').find('#score').text( newscore  + ' like');
+											donebutton.closest('.lessonmetablock').find('.score').text( newscore  + ' like');
 										} else {
-											donebutton.closest('.lessonmetablock').find('#score').text( newscore  + ' likes');
+											donebutton.closest('.lessonmetablock').find('.score').text( newscore  + ' likes');
 										}
 
 									}
@@ -115,9 +115,9 @@ $(document).ready(function(){
 								
 								donebutton.closest('.lessonmetablock').find('#scorecounthidden').text( newscore );	
 								if ( newscore == 1){
-									donebutton.closest('.lessonmetablock').find('#score').text( newscore  + ' like');
+									donebutton.closest('.lessonmetablock').find('.score').text( newscore  + ' like');
 								} else {
-									donebutton.closest('.lessonmetablock').find('#score').text( newscore  + ' likes');
+									donebutton.closest('.lessonmetablock').find('.score').text( newscore  + ' likes');
 								}
 								
 			               }
@@ -279,6 +279,7 @@ $(document).ready(function(){
 	$('.lessoncount').tipsy({fade: false, gravity: 's', opacity:0.8});
 	
 	$('.followercount').tipsy({fade: false, gravity: 's', opacity:0.8});
+	
 
 
 /*
@@ -369,8 +370,23 @@ $(document).ready(function(){
 		top:"10%",
 		returnFocus:false,
 	});
-	
-	
+
+
+	$('.score').click(function(){
+		var relattr = $(this).closest(".lessonmetablock").find(".lessonmetaname").text(); 
+		var url = ".usersliked[rel=" + relattr + "]";
+		
+		$(".score").colorbox({
+				width:"500px",
+				height:"350px",
+				inline: true,
+				href:url,
+				opacity:'0.6',
+				top:"10%",
+				returnFocus:false,
+		}); 
+	});
+
 	
 	var stickyHeaderTop = $('#leftinfoblock').offset().top;
 

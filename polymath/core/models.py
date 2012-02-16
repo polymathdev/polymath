@@ -145,7 +145,11 @@ class Lesson(models.Model):
     order = models.IntegerField()
     creation_date = models.DateTimeField(auto_now_add=True)
 
-    completers = models.ManyToManyField(User, through='LessonCompletion', editable=False) 
+    completers = models.ManyToManyField(User, through='LessonCompletion', editable=False)
+
+	# get list of users who've voted on a lesson
+    def users_voted(self):
+		return User.objects.filter(lessonvote__lesson=self)
 
     # count up votes as +1 and down votes as -1 to calculate an aggregate score for this lesson
     def vote_score(self):
@@ -159,7 +163,6 @@ class Lesson(models.Model):
                 score -= 1
 
         return score
-
 
     class Meta:
         ordering = ['order']

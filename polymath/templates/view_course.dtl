@@ -250,6 +250,7 @@
 		
 	
 			{% for lesson in lessons %}
+			
 				
 				{% if not lesson.completed %}
 
@@ -260,6 +261,34 @@
 				<div class="lessonBlock completedBlock">
 
 			  	{% endif %}
+		
+			<div style="display:none;">		
+				<div class="usersliked" rel="{{ lesson.lesson.id }}">
+				<h2>Users who liked this</h2>
+				{% if lesson.lesson.users_voted %}
+					{% for user in lesson.lesson.users_voted %}
+				        <div class="userliked">
+							<div class="grid_1 alpha omega" style="margin-top:5px; height:100%">
+							<img id="commentimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
+							</div>
+
+							<div class="grid_6 alpha">
+								<b>	<a href="{% url view_profile uname=user.username %}"> {{ user.first_name }} {{ user.last_name }}</b></a>
+								<p class="userblurb">{{ user.get_profile.blurb|truncate_chars:40 }}</p>
+							</div>
+
+							<div class="clear"></div>
+
+		                </div>
+					{% endfor %}
+				{% else %}
+					<div class="userliked">
+						<p class="nolikes"> No one likes this yet :(</p>
+					</div>
+				{% endif %}
+				</div>
+			</div>
+			
 
 				  <div class="lessonblocktopbar">
 
@@ -290,9 +319,9 @@
 								<a class="donethis" original-title="Mark this as done"><span>Done</span></a>
 		            		{% else %}
 								<a class="donethis done"  original-title="You've done this!"><span>Done</span></a>
-		            		{% endif %}     
+		            		{% endif %}	
+							<p class="numberdone">Done by {{ lesson.lesson.completers.count }} user{{ lesson.lesson.completers.count|pluralize }}</p>
 						{% endif %}
-
 					</div>
 
 
@@ -307,22 +336,21 @@
 				<div class="embedclass grid_2 omega" style="width:200px; padding-bottom:80px;">
 					<a href="{{ lesson.lesson.link }}"></a>
 				</div>
-
-
-
-	
 				
+
 			</div> 	
+
 	
 	
 	<div class="grid_8 commentblock">
 		{# COMMENTS #}
 		{% get_comment_list for lesson.lesson as comment_list %}
         <div class="lessonmetablock">
+			<span class="lessonmetaname" style="display:none">{{ lesson.lesson.id }}</span>
 			<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
 			<div class="comment border-callout">
 				{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
-				<span id="score"><span id="scorecount">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.lesson.vote_score }}</span> 
+				<a><span class="score"><span id="scorecount">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.lesson.vote_score }}</span></a> 
 			
 			{% if is_my_course %}
 			{% else %}
@@ -412,7 +440,35 @@
 	
 		{% for lesson in lessons|slice:":2" %}
 		
-						<div class="lessonBlock">      
+					<div class="lessonBlock">      
+					
+					<div style="display:none;">		
+						<div class="usersliked" rel="{{ lesson.lesson.id }}">
+						<h2>Users who liked this</h2>
+						{% if lesson.lesson.users_voted %}
+							{% for user in lesson.lesson.users_voted %}
+						        <div class="userliked">
+									<div class="grid_1 alpha omega" style="margin-top:5px; height:100%">
+									<img id="commentimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
+									</div>
+
+									<div class="grid_6 alpha">
+										<b>	<a href="{% url view_profile uname=user.username %}"> {{ user.first_name }} {{ user.last_name }}</b></a>
+										<p class="userblurb">{{ user.get_profile.blurb|truncate_chars:40 }}</p>
+									</div>
+
+									<div class="clear"></div>
+
+				                </div>
+							{% endfor %}
+						{% else %}
+							<div class="userliked">
+								<p class="nolikes"> No one likes this yet :(</p>
+							</div>
+						{% endif %}
+						</div>
+					</div>
+					
 
 					  <div style="background:#d9d6ce; width:100%; float:left; padding-bottom:10px;">
 
@@ -443,7 +499,8 @@
 										<a class="donethis" original-title="Mark this as done"><span>Done</span></a>
 				            		{% else %}
 				                			<a class="donethis done"  original-title="You've done this!"><span>Done</span></a>
-				            		{% endif %}     
+				            		{% endif %}
+									<p class="numberdone">Done by {{ lesson.lesson.completers.count }} user{{ lesson.lesson.completers.count|pluralize }}</p>     
 								{% endif %}
 
 							</div>
@@ -473,7 +530,7 @@
 							{% get_comment_list for lesson.lesson as comment_list %}
 
 								<div class="lessonmetablock">
-							
+								<span class="lessonmetaname" style="display:none">{{ lesson.lesson.id }}</span>
 								<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
 								
 							{% if comment_list|length == 0 %}
@@ -482,7 +539,7 @@
 								<div class="comment border-callout">
 							{% endif %}
 									{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
-									<span id="score"><span id="scorecount">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.lesson.vote_score }}</span> 
+									<a><span class="score"><span id="scorecount">{{ lesson.lesson.vote_score }} </span> like{{ lesson.lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.lesson.vote_score }}</span></a>
 
 								{% if is_my_course %}
 								{% else %}

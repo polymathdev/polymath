@@ -15,6 +15,9 @@ urlpatterns = patterns('',
 	#500 test
     (r'^500test/', direct_to_template, {'template':'500.html'}),
 
+	#500 test
+    (r'^submitlesson/', direct_to_template, {'template':'submitlesson.dtl'}),
+
     # home page
     (r'^$', 'core.views.home_page'),
 

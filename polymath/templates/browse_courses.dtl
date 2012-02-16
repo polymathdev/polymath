@@ -21,7 +21,7 @@
 
 
 	<div class="grid_4 omega" style="margin-bottom:18px">
-		<span id="browsetitle">Browse Courses</span><br>
+		<span id="browsetitle">Browse Polymath</span><br>
 		<h5 class="edit_heading">What can you learn today?</h5>
 	</div>
 
@@ -43,22 +43,16 @@
 
 <div class="grid_2">
 
-	<div class="grid_2">
+	<div class="grid_2 browsing">
+		<input type="text" id="txtSearch" name="txtSearch" maxlength="40" />
+		<div>
 		<ul class="aboutsidebar browse">
-		<!--	<li id="first">Categories</li> -->
+
 			<li><a href="/courses/browse/">All</a></li>
 			
 			{% if tags_by_cat %}
 			    {% for cat, tags in tags_by_cat.items %}
 			    <li><a href="{% url browse_courses_by_cat cat_slug=cat.slug %}">{{ cat }}</a></li>
-
-				<!-- class="categoryli"
-					<div class="selectedtags">
-			            <b>Tags:</b>
-			            {% for tag in tags %}
-			            <a href="{% url browse_courses_by_cat_and_tag cat_slug=cat.slug tag_slug=tag.slug %}">{{ tag }}</a >{% if not forloop.last %},{% endif %}
-			            {% endfor %}
-					</div> -->
 
 			    {% endfor %}
 
@@ -66,6 +60,7 @@
 			
 			
 		</ul>
+		</div>
 	</div>
 
 	
@@ -83,12 +78,109 @@
 
 {% if filters.tag %}
 <div class="filterbytag">
-	Courses with tag: <a class="label success nohover">{{ filters.tag.name }} <span class="closetagfilter"> x</span></a>
+	Courses & lessons with tag: <a class="label success nohover">{{ filters.tag.name }} <span class="closetagfilter"> x</span></a>
 </div>
+<hr id="filterbytaghr">
 {% endif %}
 
+<h3 style="margin-left:20px;" class="browsepageheading" original-title="Courses are sets of lessons organized by experts">Courses</h3>
+{% if course_list|length > 0 %}<div id="browsecourselist">{% else %}<div class="emptycourselist">{% endif %}
+
+	{% if course_list|length > 3 %}
+		<a id="previous"><</a>
+	{% endif %}
+
+{% if course_list|length == 0 %}
+		<p class="nocourses">Uh oh, there are no courses in this category yet!</p>
+
+{% else %}
+		<p class="nocourses" style="display:none;">Uh oh, there are no courses in this category yet!</p>
+
+<ul>
+{% for course in course_list %}
+	<li>
+		<div class="lessonCreatedBlock browse">
+
+			<div class="blockbg browse">
+				<a href="{% url view_course course_id=course.id course_slug=course.slug %}" class="coursename">{{ course.name|truncate_chars:21 }}</a>
+		
+			<div class="shown">
+			<div class="grid_1" style="margin-left:0px; width:40px;">
+								<img src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}" style="width:40px; height:40px; margin-top:10px; margin-left:10px; border:2px solid #fff; box-shadow:0px 1px 1px rgba(0,0,0,0.2);"></img>
+			</div>
+			<div class="grid_1" style="margin-left:0px; width:140px;">
+					<p class="coursedescription">{{ course.description|truncate_chars:130 }}</p>	
+			</div>
+			
+			<div class="clear"></div>
+			
+			</div> <!-- end shown div -->
+			
+			<div class="hidden">
+				<div class="grid_1" style="margin-left:0px; width:40px;">
+				<img src="{% if course.creator.get_profile.get_pic_url  %}{{ course.creator.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" style="height:40px; width:40px; border-radius:2px; float:left; margin-left:10px; margin-top:10px;"></img>
+				</div>
+				
+				<div class="grid_1" style="margin-left:0px; width:140px;">
+						<p class="coursecreator">By {{ course.creator.first_name }} {{ course.creator.last_name }}</p>
+				</div>
+				
+				<div class="clear"></div>
+				
+				<div class="grid_2 browsingcoursetags">
+					{% for tag in course.tags.all %}
+				<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=course.category.slug tag_slug=tag.slug %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
+					{% endfor %}
+				
+				</div>
+				<div class="clear"></div>
+			
+			</div> <!-- end hidden div -->
+			
+			</div> <!-- end blockbg -->
+			
+				<p class="coursefollowers lesson"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="# of learners"></img> {{ course.users_with_progress.count }} 
+				<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon lessoncount" style="margin-right:5px; height:20px; width:auto;" original-title="# of lessons"></img> {{ course.lesson_set.count }}</p>
+
+		</div>
+	</li>
+
+{% endfor %}
+
+</ul>
+
+{% endif %}
+{% if course_list|length > 3 %}
+	<a id="next">></a>
+{% endif %}
+</div>
+
+
+
+
+<div class="clear"></div>
+
+
+<!-- THIS IS WHERE LESSONS GO -->
+
+
+<h3 style="margin-left:20px; margin-top:20px; margin-bottom:20px;" original-title="A lesson is a link to something on the web that will help you learn about the subject" class="browsepageheading">Lessons</h3>
+
+
+{% if course_list|length == 0 %}
+	<div class="emptycourselist">
+		<p>Uh oh, there are no lessons in this category yet!</p>
+	</div>
+
+{% else %}
+	<div class="emptycourselist" style="display:none;">
+		<p>Uh oh, there are no lessons in this category yet!</p>
+	</div>
 
 {% for course in course_list %}
+
+
+
 
 	<div class="browseBlock">
 	
@@ -126,6 +218,8 @@
 	
 		
 {% endfor %}
+
+{% endif %}
 
 </div> <!-- end coursesblock -->
 
