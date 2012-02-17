@@ -11,8 +11,9 @@ $('#ticker').jCarouselLite({
         vertical: true,  
         visible: 1,  
         auto:1700,  
-        speed:100 ,
+        speed:200 ,
 		hoverPause : true,
+		easing: "easeOutBounce"
  });
 
 
