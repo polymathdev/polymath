@@ -6044,3 +6044,22 @@ textarea.error { border: 1px dotted red; }
 }
 
 
+.lessonname input{
+	width:345px!important;
+}
+
+.lessondescription textarea{
+	width:340px!important;
+	height:100px!important;
+	margin-top:20px!important;
+	margin-left:0px;
+}
+
+
+.lessonlink input{
+	width:345px!important;
+}
+
+#submit_lesson_form .error{
+	margin-right:20px;
+}

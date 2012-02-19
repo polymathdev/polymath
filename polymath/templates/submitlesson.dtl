@@ -41,7 +41,7 @@
 				</div>
 				
 				<div class="lessondescription">
-                    {# <input type="textarea" style="width:340px; height:100px;margin-top:30px; margin-bottom:20px;" placeholder="Describe the link. What's this all about?"></input> #}
+                    {# <input type="textarea" placeholder="Describe the link. What's this all about?"></input> #}
                     {{ lesson_form.description }}
 				</div>
 			
@@ -56,7 +56,7 @@
                     {{ lesson_form.type }}<br>
                     {# <input type="text" id="tags_input"></input> #}
                     {{ lesson_form.tags }}
-			
+					<input style="visibility:hidden" name="tagsexist" id="tagsexist" class="required"></input>
 				
 				<br>
 			
@@ -67,7 +67,7 @@
 			</div>
 			<div class="clear"></div>
 			
-            <button type="submit" class="createcourse submitlesson"><span>Submit</span></button>
+            <button type="submit" class="createcourse submitlesson" id="submitlesson"><span>Submit</span></button>
 				
 			</form>
 			</div>

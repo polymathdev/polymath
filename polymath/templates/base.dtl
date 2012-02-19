@@ -92,7 +92,7 @@
 		      				<a class="brand" href="/"><img src='{{ STATIC_URL }}css/images/Polymath25px.png'></img></a>
 							<div class="learn">
 								<a href="/courses/browse" id="learnnav">Learn</a>
-								<a href="{% url add_course %}" id="teachnav">Share</a>
+								<a href="/submitlesson" id="teachnav">Share</a>
 							</div>
 						</div>
 				
