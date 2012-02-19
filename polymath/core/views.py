@@ -222,7 +222,7 @@ def add_lesson(request):
         else:
             # this whole thing kind of feels like a hack - maybe there's a better way to do this
             all_error_msg = str(lesson_form.errors.get('__all__')[0]) 
-            ipdb.set_trace()
+            
             if all_error_msg.startswith('StandaloneDuplicate'):
                 extra_errors['duplicate_lesson_pk'] = int(all_error_msg.split('::')[1])
             
