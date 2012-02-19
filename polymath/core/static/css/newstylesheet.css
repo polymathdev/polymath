@@ -5918,7 +5918,14 @@ textarea.error { border: 1px dotted red; }
 	margin-bottom:15px;
 	background: white url(images/searchicon.png) right no-repeat;
 	padding-right: 30px;
-	
+}
+
+#txtSearch::-webkit-input-placeholder{
+	font-size:10px;
+}
+
+#txtSearch::-moz-input-placeholder{
+	font-size:10px;
 }
 
 #browsecourselist:hover #next{
@@ -5957,6 +5964,15 @@ textarea.error { border: 1px dotted red; }
 	display:block;
 }
 
+
+.blockbg.browse hr{
+	margin-top:5px;
+	margin-bottom:0px;
+	border:0;
+	width:90%;
+	height:1px;
+	background-color:#d1d4c5;
+}
 
 .coursecreator{
 	font-size:12px;
@@ -6026,3 +6042,5 @@ textarea.error { border: 1px dotted red; }
 	margin-top:45px!important;
 	position:absolute;
 }
+
+

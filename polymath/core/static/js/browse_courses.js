@@ -1,6 +1,5 @@
 head.ready(function(){
 	
-	
 	jQuery.expr[":"].containsNoCase = function(el, i, m) {
 	             var search = m[3];
 	             if (!search) return false;
@@ -25,12 +24,31 @@ $(document).ready(function(){
 		$('.selectedtags').show();
 	});
 	
-	$("#browsecourselist").jCarouselLite({
+
+	
+		$("#coursescarousel").jcarousel({
+			scroll: 1,
+			wrap: "circular",
+			easing: "easeOutBounce",
+			animation: 200
+		});
+	
+		$('#next').click(function() {
+		    $('#coursescarousel').jcarousel('scroll', '+=1');
+		});
+		
+		$('#previous').click(function() {
+		    $('#coursescarousel').jcarousel('scroll', '-=1');
+		});
+	
+	
+	
+/*	$("#browsecourselist").jCarouselLite({
 		btnPrev:"#previous",
 		btnNext: "#next",
-		visible: 0,
+		visible: 3,
 		circular: "true",
-    });
+    });*/
 
 /*
 	var stickyHeaderTop = $('.aboutsidebar.browse').offset().top;
@@ -91,11 +109,16 @@ $(document).ready(function(){
 		$("#txtSearch").keyup(function(){
 			if ($('#txtSearch').val().length > 2) {
 				$(".browseBlock").hide();
-				$('.browseBlock:containsNoCase(\'' + $('#txtSearch').val() + '\')').show();	
+				$('.browseBlock:containsNoCase(\'' + $('#txtSearch').val() + '\')').show();
 //				$(".lessonCreatedBlock.browse").parent().hide();
 //				$('.lessonCreatedBlock.browse:containsNoCase(\'' + $('#txtSearch').val() + '\')').parent().show();	
 				$(".lessonCreatedBlock.browse").parent().hide();
 				$('.lessonCreatedBlock.browse:containsNoCase(\'' + $('#txtSearch').val() + '\')').parent().show();
+					$("#browsecourselist").trigger("endCarousel");
+		//			$("#browsecourselist").jCarouselLite({
+		//				visible: 0,
+		//				circular: "true",
+		//		    });
 			} else if ($('#txtSearch').val().length == 0){
 				resetSearch();
 			}
@@ -107,12 +130,13 @@ $(document).ready(function(){
 			if($('.lessonCreatedBlock.browse:visible').parent().length == 0){
 				// if search results in no courses, show message, hide nav buttons, and resize course block
 				$(".nocourses").show();
-				$("#next").hide();
-				$("#previous").hide();
 				$("#browsecourselist").css("height","40");
 			}
 			
-			
+			if($('.lessonCreatedBlock.browse:visible').parent().length < 3){
+				$("#next").hide();
+				$("#previous").hide();
+			}
 			
 		});
 		
@@ -130,7 +154,11 @@ $(document).ready(function(){
 			$("#previous").show();
 			//reset height of courses block
 			$("#browsecourselist").css("height","");
-		
+
+	//		$("#browsecourselist").jCarouselLite({
+	//			visible: 3,
+	//			circular: "true",
+	//	    });
 	
 		    // make sure we re-focus on the textbox for usability
 		    $('#txtSearch').focus();
