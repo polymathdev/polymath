@@ -5,6 +5,7 @@ from django.db.models import Count
 from taggit.managers import TaggableManager
 from django.template.defaultfilters import slugify
 from django.core.mail import send_mail
+from annoying.functions import get_object_or_None 
 from facepy import GraphAPI
 import ipdb
 
@@ -138,14 +139,31 @@ class Course(models.Model):
         
 
 class Lesson(models.Model): 
-    course = models.ManyToManyField(Course, editable=False)
+    course = models.ManyToManyField(Course, editable=False, blank=True)
+    completers = models.ManyToManyField(User, through='LessonCompletion', editable=False) 
+    category = models.ForeignKey(CourseCategory) # should change CourseCategory to just Category at some point, given that it looks like we'll be applying them to both Lessons and Courses.
+
     name = models.CharField(max_length=200)
     description = models.TextField()
     link = models.URLField()
-    order = models.IntegerField()
+    order = models.IntegerField(blank=True, default=0)
     creation_date = models.DateTimeField(auto_now_add=True)
 
-    completers = models.ManyToManyField(User, through='LessonCompletion', editable=False)
+    LESSON_TYPES = [('t', 'Text'), ('v', 'Video'), ('i', 'Interactive')]
+
+    type = models.CharField(max_length=1, blank=True, choices=LESSON_TYPES)
+
+    tags = TaggableManager(blank=True) 
+
+    # don't allow a duplicate URL for standalone lessons (i.e. lessons without courses)
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        
+        duplicate = get_object_or_None(Lesson, link=self.link, course=None)
+
+        if duplicate:
+            raise ValidationError('StandaloneDuplicate::'+str(duplicate.pk))
+
 
 	# get list of users who've voted on a lesson
     def users_voted(self):

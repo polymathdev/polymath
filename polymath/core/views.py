@@ -3,7 +3,7 @@ from core.models import Course, Lesson, CourseCategory, LessonCompletion, Lesson
 from taggit.models import Tag
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from core.forms import CourseForm, LessonForm, OrderedLessonFormSet, ProfileForm
+from core.forms import CourseForm, LessonForm, OrderedLessonFormSet, ProfileForm, StandaloneLessonForm
 from django.core.urlresolvers import reverse
 from django.forms.models import modelformset_factory, inlineformset_factory
 from django.forms import ModelForm
@@ -16,7 +16,7 @@ from django.views.decorators.http import require_POST
 from annoying.functions import get_object_or_None
 from facepy import GraphAPI
 import ipdb, re
-
+         
 def test(request):
     # fb_data = request.user.social_auth.get(provider='facebook').extra_data
     # access_token = fb_data['access_token']
@@ -204,6 +204,36 @@ def view_course(request, course_id, course_slug=None):
     },
     context_instance=RequestContext(request))
 
+# can we accomplish this exact same thing with one of Django's generic views?
+@login_required
+def add_lesson(request):
+    # errors that we'll handle manually so we can manipulate the error message as opposed to having the ModelForm handle it automatically
+    extra_errors = {} 
+
+    if request.method == 'POST':
+        lesson_form = StandaloneLessonForm(request.POST)
+
+        if lesson_form.is_valid():
+            lesson_form.save()
+
+            messages.success(request, 'Your lesson has been submitted! Share it with your friends on Twitter and Facebook.')
+            return redirect('browse_courses_all')
+
+        else:
+            # this whole thing kind of feels like a hack - maybe there's a better way to do this
+            all_error_msg = str(lesson_form.errors.get('__all__')[0]) 
+            ipdb.set_trace()
+            if all_error_msg.startswith('StandaloneDuplicate'):
+                extra_errors['duplicate_lesson_pk'] = int(all_error_msg.split('::')[1])
+            
+    else:
+        lesson_form = StandaloneLessonForm()
+
+    return render(request, 'submitlesson.dtl', {
+        'lesson_form': lesson_form,
+        'extra_errors': extra_errors
+        })
+
 @login_required
 def add_course(request):
     LessonFormSet = modelformset_factory(Lesson, form=LessonForm)                                   
@@ -220,12 +250,15 @@ def add_course(request):
             # save tags
             course_form.save_m2m()
 
-            lesson_fs.save()
+            lesson_fs.save(commit=False)
 
             # add the M2M relationship from each lesson to the new course after the lessons are created with lesson_fs.save() above
             # does this hit the database a separate time for each lesson?  is there a way to avoid that?
+            # also add category to match course's category - this may be temporary but for now we'll associate every lesson object with a category
             for lesson_form in lesson_fs.forms:
-                lesson_form.instance.course = [new_course]
+                lesson_form.instance.category = new_course.category
+                lesson_form.instance.save()
+                lesson_form.instance.course = [new_course] 
 
             messages.success(request, 'Your course has been created! Share it with your friends on Twitter and Facebook.')
             return redirect('view_my_profile')
@@ -233,8 +266,8 @@ def add_course(request):
     else:
         course_form = CourseForm()            
         lesson_fs = LessonFormSet(queryset=Lesson.objects.none())
-
-	messages.success(request, 'A course is a set of resources for someone to progress through to learn about the subject. Get creative! You\'re the expert.')
+        
+    messages.success(request, 'A course is a set of resources for someone to progress through to learn about the subject. Get creative! You\'re the expert.')
     return render_to_response('add_course2.dtl', {
         'course_form': course_form,
         'lesson_fs': lesson_fs,
@@ -262,11 +295,15 @@ def edit_course(request, course_id):
         if edit_course_form.is_valid() and edit_lesson_fs.is_valid():
             edit_course_form.save() 
 
-            edit_lesson_fs.save()
+            edit_lesson_fs.save(commit=False)
             
             # create relations between new lessons and this course (is this querying the database for overwriting the FK relation on existing courses?  check this later, if so that is inefficient)
+            # need to examine how many queries are run as a result of all this...
             for lesson_form in edit_lesson_fs.forms:
-                if lesson_form.instance.pk:
+                # there is probably a better way to do this, but i'm just trying to ignore blank forms.  for some reason is_valid() is returning true on them so i can't check that...
+                if lesson_form.saved_order <> 999:
+                    lesson_form.instance.category = course_to_edit.category
+                    lesson_form.instance.save()
                     lesson_form.instance.course = [course_to_edit]
 
             messages.success(request, 'Your changes have been saved!')

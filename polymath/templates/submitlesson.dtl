@@ -24,19 +24,25 @@
 			<div class="grid_9 alpha" style="width:710px;">
 			
 			<div class="submitbg">
-			
-				<form>
+                {% if extra_errors.duplicate_lesson_pk %}
+                ** That link has already been submitted!  You can check out lesson #{{ extra_errors.duplicate_lesson_pk }} **
+                {% endif %}
+				<form id="submit_lesson_form" method="post" action="{% url core.views.add_lesson %}"> 
+                {% csrf_token %} 
 				<div class="grid_5 alpha omega">
 				<div class="lessonname">
-					<input type="text" placeholder="Lesson Name"></input>
+                    {# <input type="text" placeholder="Lesson Name"></input> #}
+                    {{ lesson_form.name }}
 				</div>
 			
 				<div class="lessonlink">
-					<input type="text" placeholder="Lesson URL"></input>
+                    {# <input type="text" placeholder="Lesson URL"></input> #}
+                    {{ lesson_form.link }}
 				</div>
 				
 				<div class="lessondescription">
-					<input type="textarea" style="width:340px; height:100px;margin-top:30px; margin-bottom:20px;" placeholder="Describe the link. What's this all about?"></input>
+                    {# <input type="textarea" style="width:340px; height:100px;margin-top:30px; margin-bottom:20px;" placeholder="Describe the link. What's this all about?"></input> #}
+                    {{ lesson_form.description }}
 				</div>
 			
 				</div>
@@ -44,10 +50,12 @@
 				<div class="grid_4 omega">
 
 					<p class="taglabel submitlesson">Lesson Category:</p>
-					<select></select><br>
+                    {# <select></select><br> #}
+                    {{ lesson_form.category }}
 					<p class="taglabel submitlesson second">Lesson Type:</p>
-					<select></select><br>
-								<input type="text" id="tags_input"></input>
+                    {{ lesson_form.type }}<br>
+                    {# <input type="text" id="tags_input"></input> #}
+                    {{ lesson_form.tags }}
 			
 				
 				<br>
@@ -56,13 +64,12 @@
 			
 				<div class="clear"></div>
 
-			</form>
 			</div>
 			<div class="clear"></div>
 			
-					<button class="createcourse submitlesson"><span>Submit</span></button>
+            <button type="submit" class="createcourse submitlesson"><span>Submit</span></button>
 				
-				
+			</form>
 			</div>
 			<div class="clear"></div>
 			

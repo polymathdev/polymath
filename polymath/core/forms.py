@@ -1,8 +1,10 @@
 from django import forms
 from django.forms import ModelForm
-from core.models import Course, UserProfile
+from core.models import Course, Lesson, UserProfile
 from django.forms.models import BaseModelFormSet
+from taggit.forms import TagField
 import ipdb
+
 
 class CourseForm(ModelForm):
     class Meta:
@@ -19,8 +21,27 @@ class ProfileForm(ModelForm):
         model = UserProfile
         fields = ['blurb', 'profile_pic']
 
+
+class StandaloneLessonForm(ModelForm):
+    class Meta:
+        model = Lesson
+        exclude = ['order']
+        widgets = { 
+			'name': forms.TextInput(attrs={'placeholder':'Lesson Name'}),
+            'link': forms.TextInput(attrs={'placeholder':'Lesson URL'}),
+			'description': forms.Textarea(attrs={'placeholder':'Describe the link - what\'s this all about?'}),
+		}        
+
+    # tags have blank=True in the Lesson model since there are no lesson tags added to lessons when people create a full course right now.  w
+    # on individual lesson submissions, tags should be required so we need to redclare this and set the parameter accordingly
+    tags = TagField(required=True)
+
+
+# this should probably be called CourseLessonForm, since it's a form that deals specifically with lessons in courses and not with standalone lessons
 class LessonForm(ModelForm):
     class Meta:
+        model = Lesson
+        exclude = ['category']
         widgets = {
                'name': forms.TextInput(attrs={'placeholder':'Lesson Name, e.g. "Dive Into Python"'}), 
                'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your lesson here, e.g. "This is a great resource for Python beginners!"'}),

@@ -24,7 +24,7 @@ class CourseAdmin(admin.ModelAdmin):
 	inlines = [LessonUnderCourse]
 
 admin.site.register(User, UserProfileAdmin) 
-admin.site.register(Course, CourseAdmin)
+admin.site.register(Course)
 admin.site.register(CourseCategory)
 admin.site.register(LessonCompletion)
 admin.site.register(LessonVote)
