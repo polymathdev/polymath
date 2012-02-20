@@ -214,18 +214,26 @@ def add_lesson(request):
         lesson_form = StandaloneLessonForm(request.POST)
 
         if lesson_form.is_valid():
-            lesson_form.save()
+            new_lesson = lesson_form.save(commit=False)
+            new_lesson.creator = request.user
+            new_lesson.save()
+
+            # save tags
+            lesson_form.save_m2m()
 
             messages.success(request, 'Your lesson has been submitted! Share it with your friends on Twitter and Facebook.')
-            return redirect('browse_courses_all')
-
+            return redirect('browse_all')
+    
+        # handling if lesson_form is not valid.  normally this is handled automatically by django passing errors to template, but in this case we have a special error we want to manually handle here
         else:
-            # this whole thing kind of feels like a hack - maybe there's a better way to do this
-            all_error_msg = str(lesson_form.errors.get('__all__')[0]) 
+            # this whole thing kind of feels like a bit of a hack - maybe there's a better way to do this
+            if lesson_form.errors.has_key('__all__'):
+                all_error_msg = str(lesson_form.errors.get('__all__')[0]) 
             
-            if all_error_msg.startswith('StandaloneDuplicate'):
-                extra_errors['duplicate_lesson_pk'] = int(all_error_msg.split('::')[1])
+                if all_error_msg.startswith('StandaloneDuplicate'):
+                    extra_errors['duplicate_lesson_pk'] = int(all_error_msg.split('::')[1])
             
+    # if this is not a POST request
     else:
         lesson_form = StandaloneLessonForm()
 

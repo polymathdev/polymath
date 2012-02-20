@@ -25,7 +25,7 @@ class ProfileForm(ModelForm):
 class StandaloneLessonForm(ModelForm):
     class Meta:
         model = Lesson
-        exclude = ['order']
+        exclude = ['order', 'creator']
         widgets = { 
 			'name': forms.TextInput(attrs={'placeholder':'Lesson Name'}),
             'link': forms.TextInput(attrs={'placeholder':'Lesson URL'}),
