@@ -53,6 +53,10 @@
 
     <body>
         <script type="text/javascript">
+            var urls = {}
+            urls['browse_all'] = '{% url browse_all %}';
+            urls['add_course'] = '{% url add_course %}';
+
             {% if to_client %}
                 var from_server = {{ to_client|safe }};
             {% endif %}
