@@ -455,5 +455,6 @@ def view_lesson(request, lesson_id, lesson_slug=None):
 
     return render(request, 'view_lesson.dtl', {
         'lesson' : requested_lesson,
-        'next' : reverse('view_lesson', kwargs={'lesson_id':lesson_id,'lesson_slug':lesson_slug})
+        'next' : reverse('view_lesson', kwargs={'lesson_id':lesson_id,'lesson_slug':lesson_slug}),
+        'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson')}) 
         })
