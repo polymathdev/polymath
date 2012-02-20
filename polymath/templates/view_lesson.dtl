@@ -18,11 +18,11 @@
 			<b><p>Submitted by:</p></b>
 			<hr id="titlehr">
 			<div class="grid_1" style="margin-left:0px; width:40px;">
-				<img src="{% if course.creator.get_profile.get_pic_url  %}{{ course.creator.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" style="height:40px; width:40px; border-radius:2px;"></img> 
+                <img src="{{ lesson.creator.get_profile.get_pic_url }}" style="height:40px; width:40px; border-radius:2px;"></img> 
 			</div>
 			<div class="grid_2">
-				<p style="margin-top:5px"><a href="/browse"><b>Daniel Shapiro</p></a></b>
-				<p style="margin-top:5px">Polymath Newbie</p>
+                <p style="margin-top:5px"><a href="/browse"><b>{{ lesson.creator.first_name}} {{ lesson.creator.last_name }}</p></a></b>
+                <p style="margin-top:5px">{{ lesson.creator.get_profile.blurb }}</p>
 			</div>
 			<div class="clear"></div>
 		</div>
@@ -32,7 +32,7 @@
 			<p><b>Lesson Information</p></b>
 			<hr id="titlehr">
 			<p>This material is primarily <b>{{ lesson.lesson_type.name }}</b></p>
-			<p style="margin-top:5px">Submitted under <a href="{% url browse_by_cat cat_slug=lesson.category.name|lower %}"><b>{{ lesson.category.name }}</p></a></b>
+			<p style="margin-top:5px">Submitted under <a href="{% url browse_by_cat cat_slug=lesson.category.slug %}"><b>{{ lesson.category.name }}</p></a></b>
 			<div style="margin-top:10px">
 			{% for tag in lesson.tags.all %}
 		<a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
@@ -68,7 +68,7 @@
 				<div class="grid_6 omega" style="width:500px;">
 
 					<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
-					<h3 id="courselessonname"><a href="{{ lesson.link }}" target="_blank">{{ lesson.name }}</a> 			
+                    <h3 id="courselessonname"><a href="{{ lesson.link }}" target="_blank">{{ lesson.name }}</a> (the type is "{{ lesson.get_type_display }}") 			
 					</h3>
 					<span class="courselessonlink">{{ lesson.link }}</span> 
 
