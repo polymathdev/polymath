@@ -1914,6 +1914,10 @@ p{
 
 }
 
+.lessonBlock.lessonpage{
+	margin-left:0px;
+}
+
 .lessonblocktopbar{
 	width:100%;
 	float:left;
@@ -2997,9 +3001,13 @@ p{
 	margin-left:16px;
 }
 
+.categoryname{
+	margin-top:8px;
+	margin-left:10px;
+}
 
 .coursefollowers{
-			margin-top:16px;
+	margin-top:16px;
 	text-shadow:0px -1px 1px white;
 }
 
@@ -3015,7 +3023,9 @@ p{
 }
 
 .browsecoursetags{
-	margin-left:150px;
+	margin-top:10px;
+	margin-bottom:-10px;
+	margin-left:20px;
 	width:485px;
 }
 
@@ -5320,6 +5330,9 @@ a.remove_lesson_lnk:hover{
 	margin-left:36px;
 }
 
+.commentblock.lessonpage{
+	margin-left:6px;
+}
 .comment.border-callout{
 	padding-left:10px;
 	padding-top:15px; padding-bottom:15px;
@@ -6062,4 +6075,25 @@ textarea.error { border: 1px dotted red; }
 
 #submit_lesson_form .error{
 	margin-right:20px;
+}
+
+.lessonsidebar{
+	width:100%;
+	margin-bottom:20px;
+	background:#f5f5f5;
+	/*	background:rgba(162,209,1, 0.1); */
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	padding:10px;
+		border:1px solid #d1d4c5; 
+		box-shadow:inset 0px 2px 3px rgba(0,0,0,0.15);
+}
+
+
+.lessonsidebar span{
+	font-size:12px;
+	color:#656565;
+	margin-bottom:10px;
+	display:block;
 }

@@ -71,14 +71,14 @@
 	<div class="grid_12 categories">
 	
 		<div class="grid_6 alpha">
-		<a href="/courses/browse">Learn</a> > <a href="{% url browse_courses_by_cat cat_slug=requested_course.category.slug %}">{{requested_course.category}}</a> > <a href="{{ request.path }}">{{requested_course.name}}</a>
+		<a href="/courses/browse">Learn</a> > <a href="{% url browse_by_cat cat_slug=requested_course.category.slug %}">{{requested_course.category}}</a> > <a href="{{ request.path }}">{{requested_course.name}}</a>
 		</div>
 		
 		<div class="grid_6 omega">
 			<div class="headingtags">
 		<!--	Tags:
 			{% for tag in course_tags %}
-				<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a>
+				<a class="label success" href="{% url browse_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a>
 			{% endfor %} -->
 			</div>
 		</div>
@@ -127,7 +127,7 @@
 				<hr id="titlehr" style="margin-bottom:10px;">
 				
 					{% for tag in course_tags %}
-						<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a>
+						<a class="label success" href="{% url browse_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a>
 					{% endfor %}
 
 		

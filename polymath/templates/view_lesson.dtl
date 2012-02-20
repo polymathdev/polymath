@@ -11,15 +11,146 @@
 
 {% block body %}
 
-This is a lesson view page for the lesson named <b>{{ lesson.name }}</b>
+<div class="container_12" style="margin-top:40px;">
 
-
-
-{% endblock %}
-
-
-{% block footer %}
-		<div id="footer" style="margin-top:80px;"><div class="container_6"><span style="float:right">&#169; Polymath, 2011</span></div></div>
+	<div class="grid_4" style="float:right; margin-right:20px">
+		<div class="lessonsidebar">
+			<b><p>Submitted by:</p></b>
+			<hr id="titlehr">
+			<div class="grid_1" style="margin-left:0px; width:40px;">
+				<img src="{% if course.creator.get_profile.get_pic_url  %}{{ course.creator.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" style="height:40px; width:40px; border-radius:2px;"></img> 
+			</div>
+			<div class="grid_2">
+				<p style="margin-top:5px"><a href="/browse"><b>Daniel Shapiro</p></a></b>
+				<p style="margin-top:5px">Polymath Newbie</p>
+			</div>
+			<div class="clear"></div>
+		</div>
 		
+		
+		<div class="lessonsidebar">
+			<p><b>Lesson Information</p></b>
+			<hr id="titlehr">
+			<p>This material is primarily <b>{{ lesson.lesson_type.name }}</b></p>
+			<p style="margin-top:5px">Submitted under <a href="{% url browse_by_cat cat_slug=lesson.category.name|lower %}"><b>{{ lesson.category.name }}</p></a></b>
+			<div style="margin-top:10px">
+			{% for tag in lesson.tags.all %}
+		<a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
+			{% endfor %}
+			</div>
+		</div>
+		
+		<div class="lessonsidebar">
+			<p><b>People who've done this</p></b>
+			<hr id="titlehr">
+			{% if lesson.completers.count > 0 %}
+			
+			
+			{% for user in lesson.completers %}
+			  <a href="{% url view_profile uname=user.username %}"><img class="takingimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" original-title=" {{ user.first_name }} {{ user.last_name }}"></img></a>
+			
+			{% endfor %}
+			
+			{% else %}
+			<p>No one has done this yet! Fortune favors the bold.</p>
+			{% endif %}
+		
+		</div>
+		
+	</div>
+
+
+
+	<div class="grid_8 alpha omega">
+		<div class="lessonBlock lessonpage">
+			<div class="lessonblocktopbar">
+
+				<div class="grid_6 omega" style="width:500px;">
+
+					<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
+					<h3 id="courselessonname"><a href="{{ lesson.link }}" target="_blank">{{ lesson.name }}</a> 			
+					</h3>
+					<span class="courselessonlink">{{ lesson.link }}</span> 
+
+				</div> 
+
+
+
+				<div class="grid_1 omega" style="width:60px; float:right">
+
+						{% if not lesson.completed %}
+							<a class="donethis" original-title="Mark this as done"><span>Done</span></a>
+	            		{% else %}
+							<a class="donethis done"  original-title="You've done this!"><span>Done</span></a>
+	            		{% endif %}	
+						<p class="numberdone">Done by {{ lesson.completers.count }} user{{ lesson.completers.count|pluralize }}</p>
+				</div>
+
+
+			</div> <!-- end lessonblock title bar -->
+			
+			
+			<div class="clear"></div>
+			
+			<div class="grid_4" style="margin-top:20px; margin-left:20px;">
+				<p class="expanded">{{ lesson.description|linebreaks }}<a href="{{ lesson.link }}"></a></p>
+			</div>
+
+			<div class="embedclass grid_2 omega" style="width:200px; padding-bottom:80px;">
+				<a href="{{ lesson.link }}"></a>
+			</div>
+	
+
+		</div>
+	</div>
+	
+	
+	
+	<div class="grid_8 commentblock lessonpage">
+		{# COMMENTS #}
+	
+        <div class="lessonmetablock">
+			<span class="lessonmetaname" style="display:none">{{ lesson.id }}</span>
+			<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
+			<div class="comment border-callout">
+				{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
+				<a><span class="score"><span id="scorecount">{{ lesson.vote_score }} </span> like{{ lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.vote_score }}</span></a> 
+			
+			{% if is_my_course %}
+			{% else %}
+				<ul class="thumbsbuttons">
+					{% if lesson.my_vote == "up" %}
+						<li id="thumbsup" class="vote_link done" rel="1" original-title="You liked this"></li>
+					{% else %}
+						<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
+					{% endif %}
+
+					{% if lesson.my_vote == "down" %}
+						<li id="thumbsdown" class="vote_link done" rel="0" original-title="You didn't like this"></li>
+					{% else %}
+						<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
+					{% endif %}  
+				</ul> 
+			{% endif %}
+			  <b class="border-notch notch"></b>
+				<div class="notch"></div>
+			
+			</div>
+
+
+
+   
+        
+
+        </div>
+	</div> <!-- end grid 8 -->
+	
+
+
+
+</div>
+
+
 {% endblock %}
+
 
