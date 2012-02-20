@@ -438,9 +438,13 @@ def browse(request, cat_slug=None, tag_slug=None):
         })
 
 
-def view_lesson(request, lesson_id):
-    lesson_to_view = Lesson.objects.get(pk=lesson_id)
+def view_lesson(request, lesson_id, lesson_slug=None):
+    requested_lesson = get_object_or_404(Lesson, pk=lesson_id, course=None) 
+
+    # redirect to appropriate URL with complete slug if necessary (this is a cosmetic thing)
+    if lesson_slug != requested_lesson.slug:
+        return redirect('view_lesson', permanent=True, lesson_id=lesson_id, lesson_slug=requested_lesson.slug)
 
     return render(request, 'view_lesson.dtl', {
-        'lesson': lesson_to_view
+        'lesson': requested_lesson
         })
