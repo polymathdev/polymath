@@ -453,6 +453,24 @@ def view_lesson(request, lesson_id, lesson_slug=None):
     if lesson_slug != requested_lesson.slug:
         return redirect('view_lesson', permanent=True, lesson_id=lesson_id, lesson_slug=requested_lesson.slug)
 
+    if request.user.is_authenticated():
+
+        # get the current user's vote on this lesson if it exists and set an attribute on requested_lesson so that it can be accessed in the template
+        current_users_vote = get_object_or_None(LessonVote, lesson=requested_lesson, user_profile=request.user)
+
+        if current_users_vote:
+
+            if current_users_vote.up:
+                vote_text = 'up'
+            else:
+                vote_text = 'down'
+
+            setattr(requested_lesson, 'my_vote', vote_text)
+
+        # check if the current user has completed this lesson and set an attribute on requested_lesson that it can be accessed in the template
+        if LessonCompletion.objects.filter(lesson=requested_lesson, user_profile=request.user).count():
+            setattr(requested_lesson, 'completed', True)
+        
     return render(request, 'view_lesson.dtl', {
         'lesson' : requested_lesson,
         'next' : reverse('view_lesson', kwargs={'lesson_id':lesson_id,'lesson_slug':lesson_slug}),
