@@ -142,7 +142,9 @@ class Lesson(models.Model):
     course = models.ManyToManyField(Course, editable=False, blank=True)
     completers = models.ManyToManyField(User, through='LessonCompletion', editable=False) 
     category = models.ForeignKey(CourseCategory) # should change CourseCategory to just Category at some point, given that it looks like we'll be applying them to both Lessons and Courses.
+    creator = models.ForeignKey(User, related_name='lessons_created') 
 
+    slug = models.SlugField(max_length=200, editable=False) 
     name = models.CharField(max_length=200)
     description = models.TextField()
     link = models.URLField()
@@ -164,6 +166,10 @@ class Lesson(models.Model):
         if duplicate:
             raise ValidationError('StandaloneDuplicate::'+str(duplicate.pk))
 
+    # update the slug on save
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Lesson, self).save(*args, **kwargs)
 
 	# get list of users who've voted on a lesson
     def users_voted(self):
