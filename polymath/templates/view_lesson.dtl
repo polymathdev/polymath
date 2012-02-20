@@ -1,0 +1,25 @@
+
+{% extends "base.dtl" %}
+
+{% block title %}Polymath: View Lesson{% endblock %}
+
+
+{% block js_includes %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/browse_courses.js"></script>
+   	<link href="{{ STATIC_URL }}css/skin.css" rel="stylesheet" type="text/css" /> 
+{% endblock %}
+
+{% block body %}
+
+This is a lesson view page for the lesson named <b>{{ lesson.name }}</b>
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+		<div id="footer" style="margin-top:80px;"><div class="container_6"><span style="float:right">&#169; Polymath, 2011</span></div></div>
+		
+{% endblock %}
+

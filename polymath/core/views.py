@@ -436,3 +436,11 @@ def browse(request, cat_slug=None, tag_slug=None):
         'standalone_lessons' : standalone_lessons,
         'filters' : filters
         })
+
+
+def view_lesson(request, lesson_id):
+    lesson_to_view = Lesson.objects.get(pk=lesson_id)
+
+    return render(request, 'view_lesson.dtl', {
+        'lesson': lesson_to_view
+        })

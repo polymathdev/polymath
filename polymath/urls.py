@@ -63,6 +63,9 @@ urlpatterns = patterns('',
     url(r'^courses/(?P<course_id>\d+)/(?P<course_slug>[a-zA-Z0-9-]*)/$','core.views.view_course', name='view_course'),
     url(r'^courses/(?P<course_id>\d+)/$','core.views.view_course', name='view_course_noslug'), 
 
+    # view lesson
+    url(r'^lessons/(?P<lesson_id>\d+)/$', 'core.views.view_lesson', name='view_lesson'),
+
     # misc ajax actions
     url(r'^deletelesson/$','core.views.delete_lesson', name='delete_lesson'),
     url(r'^completelesson/$', 'core.views.complete_lesson', name='complete_lesson'),
