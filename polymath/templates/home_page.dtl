@@ -128,7 +128,7 @@
 			<div class="clear"></div>
 			
 			<div style="float:right; margin-right:10px; margin-top:25px;">
-				<a href="/courses/browse/" id="learnmorelink" style="margin-right:0px;">Browse more courses<b>&nbsp; &#8594;</b></a>
+                <a href="{% url browse_all %}" id="learnmorelink" style="margin-right:0px;">Browse more courses<b>&nbsp; &#8594;</b></a>
 			</div>
 			
 		</div>

@@ -46,11 +46,11 @@
 		<div>
 		<ul class="aboutsidebar browse">
 
-			<li><a href="/courses/browse/">All</a></li>
+            <li><a href="{% url browse_all %}">All</a></li>
 			
 			{% if tags_by_cat %}
 			    {% for cat, tags in tags_by_cat.items %}
-			    <li><a href="{% url browse_courses_by_cat cat_slug=cat.slug %}">{{ cat }}</a></li>
+			    <li><a href="{% url browse_by_cat cat_slug=cat.slug %}">{{ cat }}</a></li>
 
 			    {% endfor %}
 
@@ -128,7 +128,7 @@
 				
 				<div class="grid_2 browsingcoursetags">
 					{% for tag in course.tags.all %}
-				<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=course.category.slug tag_slug=tag.slug %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
+				<a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
 					{% endfor %}
 				
 				</div>
@@ -163,17 +163,18 @@
 <h3 style="margin-left:20px; margin-top:20px; margin-bottom:20px;" original-title="A lesson is a link to something on the web that will help you learn about the subject" class="browsepageheading">Lessons</h3>
 
 
-{% if course_list|length == 0 %}
+{% if standalone_lessons|length == 0 %}
 	<div class="emptycourselist">
 		<p>Uh oh, there are no lessons in this category yet!</p>
 	</div>
 
 {% else %}
+    {# why is the above div duplicated below with display:none? #}
 	<div class="emptycourselist" style="display:none;">
 		<p>Uh oh, there are no lessons in this category yet!</p>
 	</div>
 
-{% for course in course_list %}
+{% for lesson in standalone_lessons %}
 
 
 	<div class="browseBlock">
@@ -183,16 +184,16 @@
 	</div>
 			
 			<div class="grid_7" style="margin-top:10px;">
-			<a href="{% url view_course course_id=course.id course_slug=course.slug %}" class="coursename">{{ course.name}}</a>			
+                <a href="#" class="coursename">{{ lesson.name }}</a> ({{ lesson.category.name }})   		
 			<h4 style="margin-left:10px; font-size:14px; margin-top:5px;">
 			<img src="{% if course.creator.get_profile.get_pic_url  %}{{ course.creator.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" style="height:30px; width:30px; border-radius:4px; float:left; margin-right:10px;"></img>
-			<a href="{% url view_profile uname=course.creator.username %}" style="margin-top:10px; font-weight:normal; display:block-inline">{{ course.creator.first_name }} {{ course.creator.last_name }}</a>
+			<a href="#" style="margin-top:10px; font-weight:normal; display:block-inline">{{ course.creator.first_name }} {{ course.creator.last_name }}</a>
 			
 			<p style="font-weight:normal; margin-top:5px;">{{ course.creator.get_profile.blurb|truncate_chars:50 }}</p>
 			</h4>
 			
 			<div class="clear"></div>
-			<p class="coursedescription">{{ course.description|truncate_chars:160 }}</p>
+			<p class="coursedescription">{{ lesson.description|truncate_chars:160 }}</p>
 			
 			</div>
 		
@@ -200,8 +201,8 @@
 		
 		
 		<p class="browsecoursetags">
-			{% for tag in course.tags.all %}
-		<a class="label success" href="{% url browse_courses_by_cat_and_tag cat_slug=course.category.slug tag_slug=tag.slug %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
+			{% for tag in lesson.tags.all %}
+            <a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
 			{% endfor %}
 		</p>
 			

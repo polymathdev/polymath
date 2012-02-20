@@ -91,8 +91,8 @@
 						<div class="grid_6">
 		      				<a class="brand" href="/"><img src='{{ STATIC_URL }}css/images/Polymath25px.png'></img></a>
 							<div class="learn">
-								<a href="/courses/browse" id="learnnav">Learn</a>
-								<a href="/submitlesson" id="teachnav">Share</a>
+                                <a href="{% url browse_all %}" id="learnnav">Learn</a>
+                                <a href="{% url add_lesson %}" id="teachnav">Share</a>
 							</div>
 						</div>
 				

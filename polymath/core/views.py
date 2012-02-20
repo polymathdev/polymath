@@ -405,32 +405,34 @@ def vote_lesson(request):
     return HttpResponse(json.dumps({'vote_successful' : vote_successful, 'vote_result' : vote_result }), mimetype="application/json")
 
 
-def browse_courses(request, cat_slug=None, tag_slug=None):
+def browse(request, cat_slug=None, tag_slug=None):
     course_list = None
-    filters = None                            
+    standalone_lessons = None
+    filters = {}                            
     
     cats = CourseCategory.objects.all()
+    # tags_by_cat shouldn't work as expected right now given that we have standalone lessons with tags...
     tags_by_cat = { cat : Course.tags.filter(course__category=cat) for cat in cats } 
 
-    # default browse page with no filtering
-    if not cat_slug and not tag_slug:
-        course_list = Course.objects.all().select_related()
+    # create course/standalone-lesson querysets which we'll filter later based on cat or tag criteria if necessary.
+    # since querysets are lazy we should only be hitting the database a single tine once they are looped through in the template
+    course_list = Course.objects.all()
+    standalone_lessons = Lesson.objects.filter(course=None)
 
     if cat_slug:
-        cat = get_object_or_404(CourseCategory, slug=cat_slug) 
+        cat = get_object_or_404(CourseCategory, slug=cat_slug)  
+        course_list = course_list.filter(category=cat)
+        standalone_lessons = standalone_lessons.filter(category=cat)
+        filters['cat'] = cat
 
-        # browse a single category
-        if not tag_slug:
-            course_list = Course.objects.filter(category=cat)
-            filters = { 'category' : cat }
-
-        # filter by both category and tag
-        else:
-            course_list = Course.objects.filter(category=cat, tags__slug=tag_slug)     
-            filters = { 'category' : cat , 'tag' : Tag.objects.get(slug=tag_slug) }
+    if tag_slug:
+        course_list = course_list.filter(tags__slug=tag_slug)
+        standalone_lessons = standalone_lessons.filter(tags__slug=tag_slug)
+        filters['tag'] = Tag.objects.get(slug=tag_slug)
 
     return render(request, 'browse_courses.dtl', {
         'tags_by_cat' : tags_by_cat,
         'course_list' : course_list,
+        'standalone_lessons' : standalone_lessons,
         'filters' : filters
         })
