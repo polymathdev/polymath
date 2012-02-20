@@ -454,5 +454,6 @@ def view_lesson(request, lesson_id, lesson_slug=None):
         return redirect('view_lesson', permanent=True, lesson_id=lesson_id, lesson_slug=requested_lesson.slug)
 
     return render(request, 'view_lesson.dtl', {
-        'lesson': requested_lesson
+        'lesson' : requested_lesson,
+        'next' : reverse('view_lesson', kwargs={'lesson_id':lesson_id,'lesson_slug':lesson_slug})
         })
