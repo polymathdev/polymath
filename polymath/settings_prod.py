@@ -1,3 +1,5 @@
+from os import environ 
+
 # Settings specific to production environment
 TEMPLATE_DIRS = ('/app/polymath/templates')
 
