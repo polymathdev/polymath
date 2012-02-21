@@ -182,7 +182,7 @@
 	
 			
 			<div class="grid_7" style="margin-top:10px;">
-                <a href="{% url view_lesson lesson_slug=lesson.slug lesson_id=lesson.id %}" class="coursename">{{ lesson.name }}</a><p class="categoryname"> Submitted by <a href="{% url view_profile uname=lesson.creator.username %}">{{ lesson.creator.first_name }} {{ lesson.creator.last_name }}</a> under <a href="{% url browse_by_cat cat_slug=lesson.category.slug %}">{{ lesson.category.name }}</p></a>
+                <a href="{% url view_lesson lesson_slug=lesson.slug lesson_id=lesson.id %}" class="coursename">{{ lesson.name }}</a><p class="categoryname"> Submitted by <b><a href="{% url view_profile uname=lesson.creator.username %}">{{ lesson.creator.first_name }} {{ lesson.creator.last_name }}</a></b> under <b><a href="{% url browse_by_cat cat_slug=lesson.category.slug %}">{{ lesson.category.name }}</p></a></b>
 
 			
 			<div class="clear"></div>

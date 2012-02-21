@@ -51,11 +51,11 @@
 			<div class="grid_8">
 				<h2><b>Find Great Content</h2></b>
 				<div class="grid_3 alpha">
-                    <p>Use Polymath to discover great material in the topics you care about, and get help from people who've done it before. You can browse individual lessons, or work through entire courses. Each course features the best content online about a subject, organized by an expert. <a href="{% url view_course course_id=7 course_slug='front-end-basics' %}" target="_blank"><b>Here's</b></a> an example of a course.
+                    <p>Use Polymath to discover great material in the topics you care about, and get help from people who've done it before. <br><br>You can browse individual lessons, or work through entire courses. Each course features the best content online about a subject, organized by an expert. <a href="{% url view_course course_id=7 course_slug='front-end-basics' %}" target="_blank"><b>Here's</b></a> an example of a course.
 					</p>
 				</div>
 				<div class="grid_5 omega">
-					<img src="{{ STATIC_URL }}css/images/FindCourse.png" id="findcourseimage"></img>
+					<img src="{{ STATIC_URL }}css/images/FindCourse.png" id="findcourseimage" style="margin-top:0px;"></img>
 				</div>
 			</div>
 			
@@ -73,7 +73,7 @@
 					<img src="{{ STATIC_URL }}css/images/TrackProgress.png" id="trackprogressimage"></img>
 				</div>
 				<div class="grid_6 omega">
-					<p>One of the toughest parts of learning something outside of school is staying motivated and continuing to regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system (coming soon!) that rewards you on your work.
+					<p>When you're learning something outside of school, it's <b>tough</b> to stay motivated and regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system (coming soon!) that rewards you on your work.
 					</p>
 				</div>
 			</div>
@@ -88,12 +88,12 @@
 			<div class="grid_8" style="margin-bottom:20px;">
 				<h2><b>Share Your Knowledge</h2></b>
 				<div class="grid_5 alpha">
-					<p>Share your knowledge by curating the best educational content from around the web. You can share individual lessons, which are just links to good content around the web, or create a course.</p>
-					<p>A course is just a set of links to great material online -- it's like a syllabus that a new student can use to guide their learning. Anyone who knows about a subject can create a course on Polymath, whether you're an expert or someone who's just recently taught yourself the topic. <b><a href="/courses/add">Share your knowledge</a>, make the world a better place.</b>
+					<p>Share your knowledge by helping to curate the best educational material from around the web. You can submit individual lessons (a <b>lesson</b> is a link to a piece of good content on the web), or create a <b>course</b> (which is a set of lessons). A course is like a syllabus that a new student can use to guide their learning.</p><br>
+					<p>Anyone can curate material on Polymath, whether you're an expert or someone who's just recently taught yourself a new topic. <b><a href="/courses/add">Share your knowledge</a>, make the world a better place!</b>
 					</p>
 				</div>
 				<div class="grid_3 omega">
-					<img src="{{ STATIC_URL }}css/images/createcourse.png" id="createcourseimage"></img>
+					<img src="{{ STATIC_URL }}css/images/createcourse.png" id="createcourseimage" style="margin-top:0px;"></img>
 				</div>
 			
 			</div>
