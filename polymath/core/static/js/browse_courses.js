@@ -101,7 +101,7 @@ $(document).ready(function(){
 		
 		// user removes "filter by tag", show the entire list of content
 		$('.closetagfilter').click(function(){
-			window.location.href="/courses/browse/";
+			window.location.href=urls['browse_all'];
 		});
 		
 		
