@@ -41,7 +41,7 @@ class StandaloneLessonForm(ModelForm):
 class LessonForm(ModelForm):
     class Meta:
         model = Lesson
-        exclude = ['category']
+        exclude = ['category', 'creator']
         widgets = {
                'name': forms.TextInput(attrs={'placeholder':'Lesson Name, e.g. "Dive Into Python"'}), 
                'description': forms.Textarea(attrs={'placeholder':'Enter a short description of your lesson here, e.g. "This is a great resource for Python beginners!"'}),
