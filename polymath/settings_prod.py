@@ -1,6 +1,9 @@
 # Settings specific to production environment
 TEMPLATE_DIRS = ('/app/polymath/templates')
 
+# Helper lambda for gracefully degrading environmental variables:
+env = lambda e, d: environ[e] if environ.has_key(e) else d
+
 if int(env('IS_STAGING', '')):
     STATIC_URL = 'http://s3.amazonaws.com/polymath_static_staging/' 
 else:
