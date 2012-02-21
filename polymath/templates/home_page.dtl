@@ -41,7 +41,7 @@
 			<div class="clear"></div>
 		
 			<div class="grid_5 homecopy">
-					<h3>An <b>easy</b>, <b>fun</b>, and <b>social</b> way to learn new skills and knowledge.<br> Learn from the web's best content, organized by experts, or keep track of your learning & share your own expertise. <br><a href="/howitworks/">Find out more &#8594;</a></h3>
+					<h3>An <b>easy</b>, <b>fun</b>, and <b>social</b> way to learn new skills & knowledge.<br><br>Learn from the web's best content, organized by experts, or track your learning & share your own expertise. &nbsp;<a href="/howitworks/">Find out more &#8594;</a></h3>
 			</div>
 			<div class="grid_2" style="margin-top:0px; float:right;">
 				<img src="{{ STATIC_URL }}css/images/videothumbnail.png" id="homevideo"></img>

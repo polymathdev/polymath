@@ -34,16 +34,18 @@
 		<hr id="titlehr">
 		<p>This material is primarily <b>{{ lesson.get_type_display|lower }}</b></p>
 		<p style="margin-top:5px">Submitted under <a href="{% url browse_by_cat cat_slug=lesson.category.slug %}"><b>{{ lesson.category.name }}</p></a></b>
-		<div style="margin-top:10px">
+		<hr id="titlehr">
 		{% for tag in lesson.tags.all %}
-	<a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
+			<a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">
+			{{ tag }}
+			</a>
 		{% endfor %}
-		</div>
+
 	</div>
 	
 	
 		<div class="lessonsidebar">
-			<b><p>Submitted by:</p></b>
+			<b><p>Submitted by</p></b>
 			<hr id="titlehr">
 			<div class="grid_1" style="margin-left:0px; width:40px;">
                 <img src= "{% if lesson.creator.get_profile.get_pic_url  %}{{ lesson.creator.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" style="height:40px; width:40px; border-radius:2px;"></img> 
@@ -134,7 +136,16 @@
         <div class="lessonmetablock">
 			<span class="lessonmetaname" style="display:none">{{ lesson.id }}</span>
 			<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
-			<div class="comment border-callout">
+			
+           {% if user.is_authenticated %} 
+				<div class="comment border-callout">
+			{% else %}
+				{% if comment_list|length == 0 %}
+					<div class="comment border-callout empty">
+				{% else %}
+					<div class="comment border-callout">
+				{% endif %}
+			{% endif %}
 				{{ comment_list|length }} comment{{ comment_list|pluralize }}, 	
 				<a><span class="score"><span id="scorecount">{{ lesson.vote_score }} </span> like{{ lesson.vote_score|pluralize }}</span> <span id="scorecounthidden" style="display:none;">{{ lesson.vote_score }}</span></a> 
 			
@@ -200,18 +211,18 @@
 
 
 
-		<div class="addcomment lessonpage">
 
-            {% if user.is_authenticated %} 
-				
+
+           {% if user.is_authenticated %} 
+			<div class="addcomment lessonpage">				
 				<img id="commentimage1" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}">
 				</img>
 			
 				{% render_comment_form for lesson %}
-				
+        		</div>				
             {% endif %}
 
-        </div>
+
 		
 
 

@@ -23,7 +23,10 @@
 		<span id="browsetitle">Browse Polymath</span><br>
 		<h5 class="edit_heading">What can you learn today?</h5>
 	</div>
-
+	
+	<div class="grid_2 prefix_4" style="margin-top:10px; margin-right:10px;">
+		<a href="{% url add_lesson %}" class="createcourse submit"><span>Submit Lesson</span></a>
+	</div>
 	
 	<div class="grid_2" style="margin-top:10px; margin-right:10px; float:right;">
 		<a href="{% url add_course %}" class="createcourse"><span>Create Course</span></a>
@@ -43,7 +46,7 @@
 <div class="grid_2">
 
 	<div class="grid_2 browsing">
-		<input type="text" id="txtSearch" name="txtSearch" maxlength="40" placeholder="Search by name or tag"/>
+		<input type="text" id="txtSearch" name="txtSearch" maxlength="40" placeholder="Search"/>
 		<div>
 		<ul class="aboutsidebar browse">
 
@@ -108,8 +111,8 @@
 			<div class="grid_1" style="margin-left:0px; width:40px;">
 								<img src="{% if course.photo %}{{ course.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}" style="width:40px; height:40px; margin-top:10px; margin-left:10px; border:2px solid #fff; box-shadow:0px 1px 1px rgba(0,0,0,0.2);"></img>
 			</div>
-			<div class="grid_1" style="margin-left:0px; width:140px;">
-					<p class="coursedescription">{{ course.description|truncate_chars:115 }}</p>	
+			<div class="grid_1" style="margin-left:0px; width:140px; height:90px; overflow:hidden;">
+					<p class="coursedescription">{{ course.description|truncate_chars:95 }}</p>	
 			</div>
 			
 			<div class="clear"></div>
@@ -175,6 +178,7 @@
 		<p>Uh oh, there are no lessons in this category yet!</p>
 	</div>
 
+<div>
 {% for lesson in standalone_lessons %}
 
 
@@ -208,7 +212,7 @@
 	
 		
 {% endfor %}
-
+</div>
 {% endif %}
 
 </div> <!-- end coursesblock -->

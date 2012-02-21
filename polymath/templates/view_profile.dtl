@@ -194,7 +194,7 @@
 				<a href="{% url view_course course_id=course_data.course.id course_slug=course_data.course.slug %}" class="coursename">{{ course_data.course.name|truncate_chars:15 }}</a>			
 			
 				<div class="grid_2" style="margin-left:10px; width:160px;">
-					<p class="coursedescription">{{ course_data.course.description|truncate_chars:80 }}</p>
+					<p class="coursedescription">{{ course_data.course.description|truncate_chars:75 }}</p>
 					<div class="progressbar1">({{ course_data.num_completed }}*100)/{{ course_data.num_lessons }}</div><br>
 					<span class="progressbar1status">{{ course_data.num_completed }} of {{ course_data.num_lessons }}</span>
 				</div>
@@ -222,7 +222,7 @@
 					{% if is_my_profile %}You aren't{% else %}{{ profile_owner.first_name }} isn't{% endif %} taking any courses yet!<br>
 					{% if is_my_profile %}Browse some courses and start learning.
 					</p>
-					<a href="/courses/browse" class="editcourse profilepage browse"><span>Browse Courses</span></a>{% endif %}
+					<a href="{% url browse_all %}" class="editcourse profilepage browse"><span>Browse Courses</span></a>{% endif %}
 					</div>
 				</div>
 			</div>
@@ -246,6 +246,7 @@
 		
 	<div>
 	{% if upvoted_lessons %}
+	<div>
 		{% for lesson in upvoted_lessons %}	
 			{% if lesson.up %}
 			<div class="profilecourseBlock grid_8" id="liked">
@@ -260,7 +261,7 @@
 			</div>
 			{% endif %}
 		{% endfor %}
-		
+	</div>
 	{% else %}
 		<div class="profilecourseBlock grid_8" id="liked">
 			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} liked any lessons yet!</div>
@@ -351,8 +352,8 @@
 		</div>
 		
 	<div>
-	{% if user.lessons_created %}
-	{% for lesson_created in user.lessons_created.all %}
+	{% if user.lessons_created.all %}
+		{% for lesson_created in user.lessons_created.all %}
 			<div class="profilecourseBlock grid_8" id="liked">
 				
 				
@@ -366,9 +367,11 @@
 		{% endfor %}
 		
 	{% else %}
+	<div>
 		<div class="profilecourseBlock grid_8" id="liked">
-			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} liked any lessons yet!</div>
+			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} submitted any lessons yet!</div>
 		</div>
+	</div>
 	{% endif %}
 	
 	<div>

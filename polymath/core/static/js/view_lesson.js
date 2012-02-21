@@ -147,7 +147,6 @@ $(document).ready(function(){
 		} else {
 			
 			if(isLoggedIn){
-				alert('not done');
 				$(this).toggleClass("done"); // mark the checkbox as done
 				lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
 				console.log("%s", lesson_id);
@@ -156,11 +155,20 @@ $(document).ready(function(){
 	           		{ lesson_id: lesson_id },
 	           		function(response) {
 	               		if( response['complete_successful'] ) {
-							alert('updated!');
 	              		}
 	           		}
 	       		);
 			
+			} else { // if not logged in
+					$.colorbox({
+						width:"500px",
+						height:"350px",
+						inline: true,
+						href:"#logindivnewcourse",
+						opacity:'0.6',
+						top:"10%",
+						returnFocus:false,
+					});
 			}
 		} // endif*/
 			
