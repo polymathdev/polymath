@@ -202,7 +202,7 @@
 		<p class="coursefollowers lesson browse"> 
 		{{ lesson.vote_score }} like{{ lesson.vote_score|pluralize }},
 		{{ comment_count }} comment{{ comment_count|pluralize }}
-		<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="{{ lesson.completers.count }} people have done this"></img> {{ lesson.completers.count }} </p>
+		<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="{% if lesson.completers.count == 1 %}{{ lesson.completers.count }} person has {% else %}{{ lesson.completers.count }} people have {% endif %}done this"></img> {{ lesson.completers.count }} </p>
 
 	</div> <!-- end lesson created block -->
 	
