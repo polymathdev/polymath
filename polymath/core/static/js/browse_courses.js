@@ -125,12 +125,17 @@ $(document).ready(function(){
 			
 			if ($('.browseBlock:visible').length == 0){
 				$(".emptycourselist").show(); // if search results in no lessons, show message
+			} else {
+				$(".emptycourselist").hide(); 
 			}
 			
 			if($('.lessonCreatedBlock.browse:visible').parent().length == 0){
 				// if search results in no courses, show message, hide nav buttons, and resize course block
 				$(".nocourses").show();
 				$("#browsecourselist").css("height","40");
+			} else {
+				$(".nocourses").hide();
+				$("#browsecourselist").css("height","");
 			}
 			
 			if($('.lessonCreatedBlock.browse:visible').parent().length < 3){

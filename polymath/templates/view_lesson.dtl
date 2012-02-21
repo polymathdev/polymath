@@ -5,22 +5,50 @@
 
 
 {% block js_includes %}
-	<script type="text/javascript" src="{{ STATIC_URL }}js/browse_courses.js"></script>
-   	<link href="{{ STATIC_URL }}css/skin.css" rel="stylesheet" type="text/css" /> 
+	<script type="text/javascript" src="{{ STATIC_URL }}js/view_lesson.js"></script>
+	<script type="text/javascript">
+		
+		var isLoggedIn;
+		
+		{% if user.is_authenticated %}
+			isLoggedIn = true;
+		{% else %}
+			isLoggedIn = false;
+		{% endif %}
+		
+	</script>
 {% endblock %}
+
+{% load truncate_filters %}
+{% load humanize %}
+{% load natural_time %}
 
 {% block body %}
 
 <div class="container_12" style="margin-top:40px;">
 
 	<div class="grid_4" style="float:right; margin-right:20px">
+	
+	<div class="lessonsidebar">
+		<p><b>Lesson Information</p></b>
+		<hr id="titlehr">
+		<p>This material is primarily <b>{{ lesson.get_type_display|lower }}</b></p>
+		<p style="margin-top:5px">Submitted under <a href="{% url browse_by_cat cat_slug=lesson.category.slug %}"><b>{{ lesson.category.name }}</p></a></b>
+		<div style="margin-top:10px">
+		{% for tag in lesson.tags.all %}
+	<a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
+		{% endfor %}
+		</div>
+	</div>
+	
+	
 		<div class="lessonsidebar">
 			<b><p>Submitted by:</p></b>
 			<hr id="titlehr">
 			<div class="grid_1" style="margin-left:0px; width:40px;">
-                <img src="{{ lesson.creator.get_profile.get_pic_url }}" style="height:40px; width:40px; border-radius:2px;"></img> 
+                <img src= "{% if lesson.creator.get_profile.get_pic_url  %}{{ lesson.creator.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" style="height:40px; width:40px; border-radius:2px;"></img> 
 			</div>
-			<div class="grid_2">
+			<div class="grid_3">
                 <p style="margin-top:5px"><a href="/browse"><b>{{ lesson.creator.first_name}} {{ lesson.creator.last_name }}</p></a></b>
                 <p style="margin-top:5px">{{ lesson.creator.get_profile.blurb }}</p>
 			</div>
@@ -28,17 +56,7 @@
 		</div>
 		
 		
-		<div class="lessonsidebar">
-			<p><b>Lesson Information</p></b>
-			<hr id="titlehr">
-			<p>This material is primarily <b>{{ lesson.lesson_type.name }}</b></p>
-			<p style="margin-top:5px">Submitted under <a href="{% url browse_by_cat cat_slug=lesson.category.slug %}"><b>{{ lesson.category.name }}</p></a></b>
-			<div style="margin-top:10px">
-			{% for tag in lesson.tags.all %}
-		<a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
-			{% endfor %}
-			</div>
-		</div>
+
 		
 		<div class="lessonsidebar">
 			<p><b>People who've done this</p></b>
@@ -47,10 +65,10 @@
 			
 			
 			{% for user in lesson.completers.all %}
-			  <a href="{% url view_profile uname=user.username %}"><img class="takingimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" original-title=" {{ user.first_name }} {{ user.last_name }}"></img></a>
+			  <a href="{% url view_profile uname=user.username %}"><img class="takingimage lessonpage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" original-title=" {{ user.first_name }} {{ user.last_name }}"></img></a>
 			
 			{% endfor %}
-			
+			<div class="clear"></div>
 			{% else %}
 			<p>No one has done this yet! Fortune favors the bold.</p>
 			{% endif %}
@@ -68,7 +86,7 @@
 				<div class="grid_6 omega" style="width:500px;">
 
 					<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
-                    <h3 id="courselessonname"><a href="{{ lesson.link }}" target="_blank">{{ lesson.name }}</a> (the type is "{{ lesson.get_type_display }}") 			
+                    <h3 id="courselessonname"><a href="{{ lesson.link }}" target="_blank">{{ lesson.name }}</a>		
 					</h3>
 					<span class="courselessonlink">{{ lesson.link }}</span> 
 
@@ -103,12 +121,16 @@
 
 		</div>
 	</div>
-	
+
+
+	{% load comments %}  
 	
 	
 	<div class="grid_8 commentblock lessonpage">
+
 		{# COMMENTS #}
-	
+		{% get_comment_list for lesson as comment_list %}
+		
         <div class="lessonmetablock">
 			<span class="lessonmetaname" style="display:none">{{ lesson.id }}</span>
 			<input type="hidden" class="lesson_id" value="{{ lesson.id }}">
@@ -125,11 +147,12 @@
 						<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
 					{% endif %}
 
+<!--
 					{% if lesson.my_vote == "down" %}
 						<li id="thumbsdown" class="vote_link done" rel="0" original-title="You didn't like this"></li>
 					{% else %}
 						<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
-					{% endif %}  
+					{% endif %}  -->
 				</ul> 
 			{% endif %}
 			  <b class="border-notch notch"></b>
@@ -137,18 +160,111 @@
 			
 			</div>
 
+        </div>
+		
+		{% for comment in comment_list %}
+            <div class="comment">
+
+				<div class="grid_1 alpha omega" style="margin-top:5px; height:100%">
+				<img id="commentimage1" src="{% if comment.user.get_profile.get_pic_url  %}{{ comment.user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
+				</div>
+
+				<div class="grid_6 alpha">
 
 
-   
-        
+					<p>
+
+					<b><a href="{% url view_profile uname=comment.user.username %}">{{ comment.userinfo.name }}</b></a>
+					<span style="color:#999; margin-left:10px;">{{ comment.submit_date|naturaltime }}</span></p>						
+                	<p>{{ comment.comment }}</p>
+					</p>
+
+				</div>
+
+				{% if comment.user == user %}
+					<form action="{% url simple_comments_delete %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="comment_id" value="{{ comment.pk }}">
+                        <input type="hidden" name="next" value="{{ next }}">
+                        <button type="submit" value="" class="deletecomment">x</button>
+                    </form>
+				{% endif %}
+
+				<div class="clear"></div>
+
+            </div>
+        {% endfor %}
+
+
+
+
+
+
+		<div class="addcomment lessonpage">
+
+            {% if user.is_authenticated %} 
+				
+				<img id="commentimage1" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}">
+				</img>
+			
+				{% render_comment_form for lesson %}
+				
+            {% endif %}
 
         </div>
+		
+
+
 	</div> <!-- end grid 8 -->
 	
 
 
-
 </div>
+
+
+
+
+<!-- login popup -->
+	
+<div style="display:none;">
+	<div id="logindivnewcourse">
+		<h2>Login</h2>
+		<p>Sign up or log in by connecting with Facebook. It's easy and takes just one click!</p>
+		<a href="{% url socialauth_begin 'facebook' %}?next={{ request.get_full_path }}" class="fblogin" style:"margin-top:45px"><span>Connect with Facebook</span></a>
+		<h4>Don't worry, we'll never post on your wall unless you tell us to.</h4>
+	</div>
+</div>
+
+
+<!-- users who liked popup -->
+
+<div style="display:none;">		
+	<div class="usersliked" rel="{{ lesson.id }}">
+	<h2>Users who liked this</h2>
+	{% if lesson.users_voted %}
+		{% for user in lesson.users_voted %}
+	        <div class="userliked">
+				<div class="grid_1 alpha omega" style="margin-top:5px; height:100%">
+				<img id="commentimage1" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
+				</div>
+
+				<div class="grid_6 alpha">
+					<b>	<a href="{% url view_profile uname=user.username %}"> {{ user.first_name }} {{ user.last_name }}</b></a>
+					<p class="userblurb">{{ user.get_profile.blurb|truncate_chars:40 }}</p>
+				</div>
+
+				<div class="clear"></div>
+
+            </div>
+		{% endfor %}
+	{% else %}
+		<div class="userliked">
+			<p class="nolikes"> No one likes this yet :(</p>
+		</div>
+	{% endif %}
+	</div>
+</div>
+
 
 
 {% endblock %}

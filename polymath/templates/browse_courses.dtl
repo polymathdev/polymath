@@ -12,6 +12,7 @@
 
 {% load truncate_filters %}
 
+{% load comments %}  
 
 <div class="container_12" style="margin-top:30px;">
 
@@ -181,12 +182,12 @@
 	
 			
 			<div class="grid_7" style="margin-top:10px;">
-                <a href="{% url view_lesson lesson_slug=lesson.slug lesson_id=lesson.id %}" class="coursename">{{ lesson.name }}</a><p class="categoryname"> Submitted by Daniel Shapiro under <a href="{% url browse_by_cat cat_slug=lesson.category.slug %}">{{ lesson.category.name }}</p></a>
+                <a href="{% url view_lesson lesson_slug=lesson.slug lesson_id=lesson.id %}" class="coursename">{{ lesson.name }}</a><p class="categoryname"> Submitted by <a href="{% url view_profile uname=lesson.creator.username %}">{{ lesson.creator.first_name }} {{ lesson.creator.last_name }}</a> under <a href="{% url browse_by_cat cat_slug=lesson.category.slug %}">{{ lesson.category.name }}</p></a>
 
 			
 			<div class="clear"></div>
 			<p class="coursedescription">{{ lesson.description|truncate_chars:160 }}</p>
-			
+
 			</div>
 		
 			<div class="clear"></div>
@@ -194,11 +195,14 @@
 		
 		<p class="browsecoursetags">
 			{% for tag in lesson.tags.all %}
-            <a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>{% if not forloop.last %}{% endif %}
+            <a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>
 			{% endfor %}
 		</p>
-			
-		<p class="coursefollowers lesson browse"><img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="5 people have done this"></img> 5{{ course.users_with_progress.count }} </p>
+			{% get_comment_count for lesson as comment_count %}
+		<p class="coursefollowers lesson browse"> 
+		{{ lesson.vote_score }} like{{ lesson.vote_score|pluralize }},
+		{{ comment_count }} comment{{ comment_count|pluralize }}
+		<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="{{ lesson.completers.count }} people have done this"></img> {{ lesson.completers.count }} </p>
 
 	</div> <!-- end lesson created block -->
 	

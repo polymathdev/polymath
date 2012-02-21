@@ -342,6 +342,42 @@
 	
 	
 	
+	<!-- lessons submitted -->
+	
+		<div class="heading grid_8" style="margin-top:20px;">
+				<div class="grid_8 alpha">
+					<h2 class="profile_heading">{% if is_my_profile %}You've{% else %}{{ profile_owner.first_name }} has {% endif %} submitted these lessons</h2>
+				</div>
+		</div>
+		
+	<div>
+	{% if user.lessons_created %}
+	{% for lesson_created in user.lessons_created.all %}
+			<div class="profilecourseBlock grid_8" id="liked">
+				
+				
+				<div class="grid_2 alpha subject" original-title="{{ lesson_created.course }}"><b><a href="{% url view_lesson lesson_slug=lesson_created.slug lesson_id=lesson_created.id %}">{{ lesson_created.name }}</a></b></div>
+				
+				<div class="grid_5 alpha omega"><div class="lessondescription">{{ lesson_created.description|linebreaks }}</div></div>
+				
+		
+			</div>
+			
+		{% endfor %}
+		
+	{% else %}
+		<div class="profilecourseBlock grid_8" id="liked">
+			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} liked any lessons yet!</div>
+		</div>
+	{% endif %}
+	
+	<div>
+	
+	
+	<!-- end lessons liked -->
+	
+	
+	
 	
 </div>
 

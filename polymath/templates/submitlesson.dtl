@@ -24,9 +24,11 @@
 			<div class="grid_9 alpha" style="width:710px;">
 			
 			<div class="submitbg">
-                {% if extra_errors.duplicate_lesson_pk %}
-                ** That link has already been submitted!  You can check out lesson #{{ extra_errors.duplicate_lesson_pk }} **
-                {% endif %}
+				<div class="duplicateerror">
+                	{% if extra_errors.duplicate_lesson_pk %}
+                	Looks like that link has already been submitted!  <a href="{% url view_lesson lesson_slug=lesson.slug lesson_id=extra_errors.duplicate_lesson_pk %}">Check out the lesson here.</a>
+                	{% endif %}
+				</div>
 				<form id="submit_lesson_form" method="post" action="{% url core.views.add_lesson %}"> 
                 {% csrf_token %} 
 				<div class="grid_5 alpha omega">
@@ -40,7 +42,7 @@
                     {{ lesson_form.link }}
 				</div>
 				
-				<div class="lessondescription">
+				<div class="lessondescription1">
                     {# <input type="textarea" placeholder="Describe the link. What's this all about?"></input> #}
                     {{ lesson_form.description }}
 				</div>

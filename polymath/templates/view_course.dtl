@@ -361,11 +361,11 @@
 						<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
 					{% endif %}
 
-					{% if lesson.my_vote == "down" %}
+<!--					{% if lesson.my_vote == "down" %}
 						<li id="thumbsdown" class="vote_link done" rel="0" original-title="You didn't like this"></li>
 					{% else %}
 						<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
-					{% endif %}  
+					{% endif %}  -->
 				</ul> 
 			{% endif %}
 			  <b class="border-notch notch"></b>
@@ -400,7 +400,7 @@
 					</div>
 					
 					{% if comment.user == user %}
-						<form action="{{ delete_comment_action }}" method="post" style="display:inline;">
+						<form action="{% url simple_comments_delete %}" method="post" style="display:inline;">
 	                        {% csrf_token %}
 	                        <input type="hidden" name="comment_id" value="{{ comment.pk }}">
 	                        <input type="hidden" name="next" value="{{ next }}">
@@ -550,11 +550,11 @@
 											<li id="thumbsup" class="vote_link" rel="1" original-title="Like this?"></li>
 										{% endif %}
 
-										{% if lesson.my_vote == "down" %}
+<!--										{% if lesson.my_vote == "down" %}
 											<li id="thumbsdown" class="vote_link done" rel="0" original-title="You didn't like this"></li>
 										{% else %}
 											<li id="thumbsdown" class="vote_link" rel="0" original-title="Didn't like this?"></li>
-										{% endif %}  
+										{% endif %}  -->
 									</ul> 
 								{% endif %}
 								  <b class="border-notch notch"></b>

@@ -9,7 +9,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding field 'Lesson.creator'
-        db.add_column('core_lesson', 'creator', self.gf('django.db.models.fields.related.ForeignKey')(default=2, related_name='lessons_created', to=orm['auth.User']), keep_default=False)
+        db.add_column('core_lesson', 'creator', self.gf('django.db.models.fields.related.ForeignKey')(default=1, related_name='lessons_created', to=orm['auth.User']), keep_default=False)
 
         # Adding field 'Lesson.slug'
         db.add_column('core_lesson', 'slug', self.gf('django.db.models.fields.SlugField')(default='x', max_length=200, db_index=True), keep_default=False)
