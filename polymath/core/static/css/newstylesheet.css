@@ -2467,6 +2467,37 @@ p{
 	padding-left:0px;
 }
 
+
+.createcourse.submit span{
+	color:#607843;
+	text-shadow:0px 0px 1px white;
+	padding-left:12px;
+}
+
+.createcourse.submit{
+	width:140px;
+	padding-left:0px;
+	background:url(images/pixel_pattern.png) left top, #fefdf6; /* Old browsers */
+	background:url(images/pixel_pattern.png) left top, -moz-linear-gradient(top, #fefdf6 0%, #eeede6 100%); /* FF3.6+ */
+	background:url(images/pixel_pattern.png) left top, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefdf6), color-stop(100%,#eeede6)); /* Chrome,Safari4+ */
+	background:url(images/pixel_pattern.png) left top, -webkit-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Chrome10+,Safari5.1+ */
+	background:url(images/pixel_pattern.png) left top, -o-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* Opera 11.10+ */
+	background:url(images/pixel_pattern.png) left top, -ms-linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* IE10+ */
+	background:url(images/pixel_pattern.png) left top, linear-gradient(top, #fefdf6 0%,#eeede6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdf6', endColorstr='#eeede6',GradientType=0 ); /* IE6-9 */
+}
+
+.createcourse.submit:hover{
+	background:url(images/pixel_pattern.png) left top, #eeede6; 
+	background:url(images/pixel_pattern.png) left top, -moz-linear-gradient(top, #eeede6 0%, #fefdf6 100%); 
+	background:url(images/pixel_pattern.png) left top, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeede6), color-stop(100%,#fefdf6));
+	background:url(images/pixel_pattern.png) left top, -webkit-linear-gradient(top, #eeede6 0%,#fefdf6 100%); 
+	background:url(images/pixel_pattern.png) left top, -o-linear-gradient(top, #eeede6 0%,#fefdf6 100%); 
+	background:url(images/pixel_pattern.png) left top, -ms-linear-gradient(top, #eeede6 0%,#fefdf6 100%); 
+	background:url(images/pixel_pattern.png) left top, linear-gradient(top, #eeede6 0%,#fefdf6 100%); 
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeede6', endColorstr='#fefdf6',GradientType=0 );
+}
+
 .editcourse{
 	text-decoration: none;
 	font-family: 'PT Sans Caption', sans-serif;
@@ -2784,8 +2815,6 @@ p{
 
 .browseBlock{
 	width:730px;
-	background:#eaffd4;
-	background:#f5f5f5;
 	background:#eae7df;
 
 	
@@ -2818,7 +2847,7 @@ p{
 	border-top-right-radius:4px;
 	-moz-border-top-right-radius:4px;
 	-webkit-border-top-right-radius:4px;
-	border-top:1px solid #d1d4c5;
+	border-top:1px solid #bbb;
 }
 
 .browseBlock:last-child{
@@ -5372,6 +5401,16 @@ a.remove_lesson_lnk:hover{
 	-webkit-border-top-right-radius:6px;
 }
 
+
+.comment.border-callout.empty{
+	border-bottom-left-radius:6px;
+	-moz-border-bottom-left-radius:6px;
+	-webkit-border-bottom-left-radius:6px;
+	border-bottom-right-radius:6px;
+	-moz-border-bottom-right-radius:6px;
+	-webkit-border-bottom-right-radius:6px;
+	box-shadow:0px 0px 2px rgba(0,0,0,0.15);
+}
 
 .nocomments{
 	border-bottom-left-radius:6px;
