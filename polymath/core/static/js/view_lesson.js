@@ -235,15 +235,26 @@ $(document).ready(function(){
 	        // Grab the URL from our link
 	        var url = encodeURIComponent( $(this).attr('href') ),
 	
-
+			
+			
 	        // Create image thumbnail using Websnapr thumbnail service
 	        thumbnail = $('<img />').attr({
-	            src: 'http://images.websnapr.com/?url=' + url + '&key=' + apiKey + '&hash=' + encodeURIComponent(websnapr_hash),
-//				src: 'http://images.websnapr.com/?size=S' + '&key=' + apiKey + '&url=' + url,
+	//		src: "https://api.browshot.com/api/v1/simple?url=" + url + "&key=mWpgvZlCWKaQpOouuwnqvSBwIQv",
+				src: 'http://images.websnapr.com/?url=' + url + '&key=' + apiKey + '&hash=' + encodeURIComponent(websnapr_hash),
 	            alt: 'Loading thumbnail...',
 	            width: 202,
 	            height: 152
 	        });
+	
+	
+/*			$.ajax({
+				url: "https://api.browshot.com/api/v1/simple?url=http://mobilito.net/&key=mWpgvZlCWKaQpOouuwnqvSBwIQv",
+				dataType:'jsonp',
+				success:function(results){
+					console.log(results);
+				}
+			}); */
+		
 
 	        // Setup the tooltip with the content
 	        $(this).qtip({

@@ -61,7 +61,6 @@
                 var from_server = {{ to_client|safe }};
             {% endif %}
         </script>
-		
 		{% if "MSIE" in request.META.HTTP_USER_AGENT %}
 		
 		<div class="ieblock">

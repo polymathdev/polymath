@@ -4679,7 +4679,15 @@ a.remove_lesson_lnk:hover{
 	-webkit-box-shadow:0px 1px 5px rgba(0,0,0,0.6);
 }
 
+.about ul{
+	margin-top:5px;
+}
 
+.about ul li{
+	font-size:14px;
+	text-shadow:0px 1px 1px white;
+	line-height:1.3;
+}
 
 
 /**************************/

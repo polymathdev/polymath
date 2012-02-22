@@ -88,8 +88,11 @@
 			<div class="grid_8" style="margin-bottom:20px;">
 				<h2><b>Share Your Knowledge</h2></b>
 				<div class="grid_5 alpha">
-					<p>Share your knowledge by helping to curate the best educational material from around the web. You can submit individual lessons (a <b>lesson</b> is a link to a piece of good content on the web), or create a <b>course</b> (which is a set of lessons). A course is like a syllabus that a new student can use to guide their learning.</p><br>
-					<p>Anyone can curate material on Polymath, whether you're an expert or someone who's just recently taught yourself a new topic. <b><a href="/courses/add">Share your knowledge</a>, make the world a better place!</b>
+					<p>Show off your knowledge and help students by curating and rating the best educational material from around the web. You can either:
+					<ul><li><b>Submit a lesson</b>: a <b><a href="http://beta.whatispolymath.com/lessons/71/dive-into-python-3/">lesson</a></b> is a link to a piece of good content on the web, or
+					<li><b>Create a course</b>: A course is a set of lessons about the same topic. It's like a syllabus that a new student can use to guide their learning.</li>
+					</p><br>
+					<p>Anyone can curate material on Polymath, whether you're an expert or someone who's just recently taught yourself a new topic. If the content is already on Polymath, share your comments and reviews and let people know what you thought of it! <b><a href="/courses/add">Share your knowledge</a>, make the world a better place.</b>
 					</p>
 				</div>
 				<div class="grid_3 omega">
@@ -123,6 +126,14 @@
 	</div>
 
 
+	<script type="text/javascript">
+	  var uvOptions = {};
+	  (function() {
+	    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+	    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/XpKIrenrItLPF45uAJDxw.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+	  })();
+	</script>
 {% endblock %}
 
 
