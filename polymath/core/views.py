@@ -96,6 +96,7 @@ def view_profile(request, uname):
 
     courses_created_by_user = profile_owner.courses_created.all()
     upvoted_lessons = LessonVote.objects.filter(user_profile=profile_owner).select_related('course')
+    standalone_lessons_created_by_user = Lesson.objects.filter(course=None, creator=profile_owner)
     
     # courses_following = profile_owner.courses_following.select_related('category').all()
 
@@ -129,6 +130,7 @@ def view_profile(request, uname):
     'profile_owner': profile_owner,
 	'user_blurb': user_blurb,
     'courses_created_by_user': courses_created_by_user,
+    'standalone_lessons_created_by_user' : standalone_lessons_created_by_user,
     # 'courses_following': courses_following,
     'upvoted_lessons': upvoted_lessons,
     'is_my_profile': (profile_owner == request.user),
@@ -265,6 +267,7 @@ def add_course(request):
             # also add category to match course's category - this may be temporary but for now we'll associate every lesson object with a category
             for lesson_form in lesson_fs.forms:
                 lesson_form.instance.category = new_course.category
+                lesson_form.instance.creator = request.user
                 lesson_form.instance.save()
                 lesson_form.instance.course = [new_course] 
 
@@ -311,6 +314,7 @@ def edit_course(request, course_id):
                 # there is probably a better way to do this, but i'm just trying to ignore blank forms.  for some reason is_valid() is returning true on them so i can't check that...
                 if lesson_form.saved_order <> 999:
                     lesson_form.instance.category = course_to_edit.category
+                    lesson_form.instance.creator = course_to_edit.creator
                     lesson_form.instance.save()
                     lesson_form.instance.course = [course_to_edit]
 

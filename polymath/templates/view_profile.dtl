@@ -352,8 +352,8 @@
 		</div>
 		
 	<div>
-	{% if user.lessons_created.all %}
-		{% for lesson_created in user.lessons_created.all %}
+	{% if standalone_lessons_created_by_user %}
+		{% for lesson_created in standalone_lessons_created_by_user  %}
 			<div class="profilecourseBlock grid_8" id="liked">
 				
 				
