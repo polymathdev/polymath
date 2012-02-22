@@ -57,7 +57,7 @@
 
 			<div class="grid_4">
 						<span id="signinnow">Get started!</span>
-				<a href="{% url socialauth_begin 'facebook' %}" class="fbloginbutton"><span>Sign in with Facebook</span></a>
+				<a href="{% url socialauth_begin 'facebook' %}" class="fbloginbutton" original-title="We're Facebook-only for now - rest assured that we will never misuse or spam your account. We're cool."><span>Sign in with Facebook</span></a>
 			</div>
 		</div>
 		

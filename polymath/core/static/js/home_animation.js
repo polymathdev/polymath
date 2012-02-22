@@ -3,6 +3,8 @@ head.ready(function(){
 	
 $(document).ready(function(){
 	
+$('.fbloginbutton').tipsy({fade: true, gravity: 'e', opacity:0.9});
+	
 $('#webdesign').hide();
 
 $('#ticker').show();
