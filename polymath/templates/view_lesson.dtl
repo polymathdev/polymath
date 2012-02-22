@@ -51,7 +51,7 @@
                 <img src= "{% if lesson.creator.get_profile.get_pic_url  %}{{ lesson.creator.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}" style="height:40px; width:40px; border-radius:2px;"></img> 
 			</div>
 			<div class="grid_3">
-                <p style="margin-top:5px"><a href="/browse"><b>{{ lesson.creator.first_name}} {{ lesson.creator.last_name }}</p></a></b>
+                <p style="margin-top:5px"><a href="{% url view_profile uname=lesson.creator.username %}"><b>{{ lesson.creator.first_name}} {{ lesson.creator.last_name }}</p></a></b>
                 <p style="margin-top:5px">{{ lesson.creator.get_profile.blurb }}</p>
 			</div>
 			<div class="clear"></div>
