@@ -564,7 +564,7 @@
 
 
 					            {% for comment in comment_list %}
-					                <div class="comment">
+					                <div class="comment notloggedin">
 
 										<div class="grid_1 alpha omega" style="margin-top:5px; height:100%">
 										<img id="commentimage" src="{% if comment.user.get_profile.get_pic_url  %}{{ comment.user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}"></img>
