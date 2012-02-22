@@ -36,7 +36,7 @@
 		<p style="margin-top:5px">Submitted under <a href="{% url browse_by_cat cat_slug=lesson.category.slug %}"><b>{{ lesson.category.name }}</p></a></b>
 		<hr id="titlehr">
 		{% for tag in lesson.tags.all %}
-			<a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">
+			<a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}" style="margin-right:5px;">
 			{{ tag }}
 			</a>
 		{% endfor %}
