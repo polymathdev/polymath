@@ -56,8 +56,8 @@ urlpatterns = patterns('',
     # url(r'^courses/$', redirect_to, {'url' : '/courses/browse' } ), <------- leaving this here for now, might use later 
     url(r'^browse/$', 'core.views.browse', name='browse_all'),
     url(r'^browse/category/(?P<cat_slug>[a-zA-Z0-9-]+)/$', 'core.views.browse', name='browse_by_cat'),
-    url(r'^browse/(?P<tag_slug>[a-zA-Z0-9-]+)/$', 'core.views.browse', name='browse_by_tag'),
-    url(r'^browse/(?P<cat_slug>[a-zA-Z0-9-]+)/(?P<tag_slug>[a-zA-Z0-9-]+)/$', 'core.views.browse', name='browse_by_cat_and_tag'), 
+    url(r'^browse/(?P<tag_slug>[a-zA-Z0-9-_]+)/$', 'core.views.browse', name='browse_by_tag'),
+    url(r'^browse/(?P<cat_slug>[a-zA-Z0-9-]+)/(?P<tag_slug>[a-zA-Z0-9-_]+)/$', 'core.views.browse', name='browse_by_cat_and_tag'), 
 
     # view course (can the below 2 URL regexes be combined? probably, but just tried something real quick and it didn't work so will revisit when i have less things that are higher priority)
     url(r'^courses/(?P<course_id>\d+)/(?P<course_slug>[a-zA-Z0-9-]*)/$','core.views.view_course', name='view_course'),
