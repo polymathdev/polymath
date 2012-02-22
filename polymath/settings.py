@@ -44,9 +44,6 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', '')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', '')
 
-# use the staging bucket by default.  to upload static files to production, execute collectstatic with --settings=settings_s3_prod
-AWS_STORAGE_BUCKET_NAME = 'polymath_static_staging'
-
 FACEBOOK_APP_ID = env('FACEBOOK_APP_ID', '') 
 FACEBOOK_API_SECRET =  env('FACEBOOK_API_SECRET', '')  
 FACEBOOK_EXTENDED_PERMISSIONS = ['email']
