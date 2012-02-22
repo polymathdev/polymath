@@ -344,7 +344,11 @@ $(document).ready(function(){
 		$("#new_course_form").validate({
 			submitHandler: function(form){
 				$('#new_course_form :submit').attr('disabled','true');
-		        reorder_lessons()
+		        reorder_lessons();
+				// Get the current value of the contents within the text box
+				var val = $('#id_tags').val().toLowerCase();
+	           	// Reset the current value to the Upper Case Value
+	           	$('#id_tags').val(val);
 				form.submit();
 			},
 			rules: {
