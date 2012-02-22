@@ -49,5 +49,7 @@ elif host == 'harish-venkatesans-macbook.local':
 
 
 
+# use the staging S3 bucket by default for development.  to upload static files to production, locally execute collectstatic with --settings=settings_s3_prod (the settings file that overrides to production bucket)
+AWS_STORAGE_BUCKET_NAME = 'polymath_static_staging'
 STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/' 
