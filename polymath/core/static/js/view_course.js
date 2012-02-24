@@ -3,6 +3,23 @@ head.ready(function(){
 
 $(document).ready(function(){
 	
+	var lessonheight = $('.lessonsBlock').height();
+	
+	console.log("height is %s", lessonheight);
+	
+	$('.lessonspine.loggedin').css("height",lessonheight-10);
+	
+	if (lessons > 2){
+		$('.lessonspine.loggedout').css("height",lessonheight);		
+	} else {
+		$('.lessonspine.loggedout').css("height", lessonheight-60);
+	}
+	
+
+	
+	$('.thatsit').css("margin-top", lessonheight-30);
+	$('.endcircle').css("margin-top", lessonheight-40);
+	
     $('.addcomment textarea').addClass('commentbox');
 
     // don't submit the post comment form if the comment box is blank
@@ -182,7 +199,8 @@ $(document).ready(function(){
 								$("#numbercompleted").text(+($("#numbercompleted").text()) + 1); // increment the number of completed lessons
 //								checkbox.closest('.lessonBlock').animate({backgroundPosition: '0px 0px'}, {duration: 1300});
 								checkbox.closest('.lessonBlock').toggleClass("completedBlock");
-								console.log("%s", checkbox);
+								checkbox.closest('.lessonBlock').find('.numberdone').text(+(checkbox.closest('.lessonBlock').find('.numberdone').text()) + 1);
+								checkbox.attr('original-title', 'You\'ve done this!');
 	               			}
 	            		}
 	        		);
@@ -266,9 +284,13 @@ $(document).ready(function(){
 	});
 
 	//tooltips
-	$('.donethis').tipsy({fade: false, gravity: 's', opacity:0.8});
+	$('.donethis').tipsy({fade: false, gravity: 's', offset: 2, opacity:0.8});
+	
+	$('.savethis').tipsy({fade: false, gravity: 's', offset: 2, opacity:0.8});
 
 	$('.donethis.done').tipsy({fade: false, gravity: 's', opacity:0.8});
+	
+	$('.donecount').tipsy({fade: false, gravity: 's', offset: 7, opacity:0.8});
 	
 	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.8, offset:0});
 	

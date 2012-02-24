@@ -4,25 +4,22 @@ head.ready(function(){
 
 $(document).ready(function(){
 	
-	// 
+	$('.profileheadings a').click(function(){
+		
+		// switch all tabs off  
+        $(".selected").removeClass("selected");  
+
+        // switch this tab on  
+       $(this).addClass("selected");
 	
-/*
-	$('.profilecourseBlock').mouseenter(function(){
-		$(this).toggleClass("highlight");
-		});
-
-	$('.profilecourseBlock').mouseleave(function(){
-		$(this).toggleClass("highlight");
-	}); 
-
-	$(".lessonCreatedBlock").click(function(){
-		if( $(this).find(".coursename").attr("href") ){
-	     window.location=$(this).find(".coursename").attr("href");
-	     return false;
-		} else {
-			
-		}
-	}); */
+		$(".profilecontent").hide();
+		
+		var content_show = $(this).attr("title");  
+		 $("#"+content_show).show();
+	
+	});
+	
+	
 	
 	$('.lessoncount').tipsy({fade: false, gravity: 's', opacity:0.8});
 	$('.numfollowers').tipsy({fade: false, gravity: 's', opacity:0.8});

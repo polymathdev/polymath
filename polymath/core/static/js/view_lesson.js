@@ -14,9 +14,13 @@ $(document).ready(function(){
 
 
 	//tooltips
-	$('.donethis').tipsy({fade: false, gravity: 's', opacity:0.8});
+	$('.donethis').tipsy({fade: false, gravity: 's', offset: 2, opacity:0.8});
+	
+	$('.savethis').tipsy({fade: false, gravity: 's', offset: 2, opacity:0.8});
 
 	$('.donethis.done').tipsy({fade: false, gravity: 's', opacity:0.8});
+	
+	$('.donecount').tipsy({fade: false, gravity: 's', offset: 5, opacity:0.8});
 
 	$('.takingimage').tipsy({fade: false, gravity: 's', opacity:0.8});
 	$('.vote_link').tipsy({fade: false, gravity: 's', opacity:0.8, offset:0});

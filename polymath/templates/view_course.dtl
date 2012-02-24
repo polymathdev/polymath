@@ -41,9 +41,9 @@
 
 {% if user.is_authenticated %}
 {% else %}
-    {% if show_course_message %}
-	<div class="messages"><h3>Get started on a course - it's easy! &nbsp; 1) Log in. &nbsp;2) Take a lesson.&nbsp; 3) Mark it as done to track your progress.</h3><a href="#" id="close">x</a></div>
-    {% endif %}
+
+	<div class="messages"><h3><b>Start learning right away!</b> &nbsp; 1) Log in. &nbsp;2) Take a lesson, or save it for later.&nbsp; 3) Mark it as done to track your progress.</h3><a href="#" id="close">x</a></div>
+    {% if show_course_message %}    {% endif %}
 {% endif %}
 
 
@@ -59,33 +59,18 @@
 	-->
 	
 	
-	<!--
-        {% if is_authenticated %}
-            You are following
-        {% else %}
-            You are either not logged in or logged in and not following
-        {% endif %}
-	-->
-
-
+	
+	{% if user.is_authenticated %}
 	<div class="grid_12 categories">
 	
 		<div class="grid_6 alpha">
 		<a href="/courses/browse">Learn</a> > <a href="{% url browse_by_cat cat_slug=requested_course.category.slug %}">{{requested_course.category}}</a> > <a href="{{ request.path }}">{{requested_course.name}}</a>
 		</div>
 		
-		<div class="grid_6 omega">
-			<div class="headingtags">
-		<!--	Tags:
-			{% for tag in course_tags %}
-				<a class="label success" href="{% url browse_by_cat_and_tag cat_slug=requested_course.category.slug tag_slug=tag.slug %}">{{ tag.name }}</a>
-			{% endfor %} -->
-			</div>
-		</div>
-		
 	</div>
 	
 	<div class="clear"></div>
+	{% endif %}
 	
 	
 	<div class="grid_4 alpha" id="leftinfoblock">
@@ -176,7 +161,8 @@
 		{% if is_my_course %}
 			
 		{% else %}
-		
+			
+			{% if user.is_authenticated %}
 		<div class="completed" style="margin-top:20px; margin-left:10px;" original-title="Your progress">
 			<span>Completed:</span>
 			<h3 id="numbercompleted">
@@ -192,6 +178,8 @@
 			<div id="progressbar"></div>
 
 			</div> <!-- end completed block -->
+			{% else %}
+			{% endif %}
 			
 		{% endif %}
 			
@@ -239,16 +227,21 @@
 
 	{% if lessons %}
 	
-		<div class="lessonsBlock"> <!-- where each lesson block fits in-->
-
 
     {% load comments %}  
 	
 	
 		{% if user.is_authenticated %}
 		
-		
-	
+			<div class="lessonsBlock" style="height:100%; float:left;"> <!-- where each lesson block fits in-->
+				
+				<div class="lessonspine loggedin" style="border-left:10px solid #C8C5BD; height:600px; margin-top:4px; margin-left:61px; position: absolute; z-index:0">
+				</div>
+				<img src="{{ STATIC_URL }}css/images/startcircle.png" style="margin-left:51px; margin-bottom:15px;">
+				<h1 style="margin-left:91px; margin-top:-37px; margin-bottom:40px; color:#A6A39B; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal;">Start here and work your way down!</h1>
+				
+				<h1 style="margin-left:91px; color:#A6A39B; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal; position:absolute;" class="thatsit">That's it for this course! Nice work.</h1>
+				<img src="{{ STATIC_URL }}css/images/startcircle.png" style="margin-left:51px; position:absolute" class="endcircle">
 			{% for lesson in lessons %}
 			
 				
@@ -292,13 +285,13 @@
 
 				  <div class="lessonblocktopbar">
 
-					<div class="grid_6 alpha omega" style="width:500px;">
+					<div class="grid_6 alpha omega" style="width:590px;">
 
-						<div class="grid_1">
+						<div class="grid_1 omega">
 							<span id="numcircle"><span id="number">{{ forloop.counter }}</span></span>
 						</div>
 
-						<div class="grid_5 alpha omega">
+						<div class="grid_5 alpha omega" style="width:480px;">
 							<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
 							<h3 id="courselessonname"><a href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> 			
 							</h3>
@@ -309,33 +302,36 @@
 					</div> 
 
 
-
-					<div class="grid_1 omega" style="width:60px; float:right">
-
-						{% if is_my_course %}
-
-						{% else %}
-							{% if not lesson.completed %}
-								<a class="donethis" original-title="Mark this as done"><span>Done</span></a>
-		            		{% else %}
-								<a class="donethis done"  original-title="You've done this!"><span>Done</span></a>
-		            		{% endif %}	
-							<p class="numberdone">Done by {{ lesson.lesson.completers.count }} user{{ lesson.lesson.completers.count|pluralize }}</p>
-						{% endif %}
-					</div>
+				
 
 
 				</div> <!-- end lessonblock title bar -->
 
 				<div class="clear"></div>
 
-				<div class="grid_4" style="margin-top:20px; margin-left:20px;">
-					<p class="expanded">{{ lesson.lesson.description|linebreaks }}<a href="{{ lesson.lesson.link }}"></a></p>
+				<div class="grid_4" style="margin-top:15px; margin-left:15px;">
+					<p class="expanded">{{ lesson.lesson.description }}<a href="{{ lesson.lesson.link }}"></a></p>
+					<div style="margin-top:10px">
+						{% if is_my_course %}
+
+						{% else %}
+							{% if not lesson.completed %}
+								<a class="savethis" original-title="Save for later" style="float:left;"><span>Save&nbsp;&nbsp;&nbsp;&#183;</span></a>
+								<a class="donethis" original-title="Mark this as done" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;&#183;</span></a>
+		            		{% else %}
+								<a class="savethis" original-title="Save for later" style="float:left;"><span>Save&nbsp;&nbsp;&nbsp;&#183;</span></a>
+								<a class="donethis done"  original-title="You've done this!" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;&#183;</span></a>
+		            		{% endif %}
+							<img src="{{ STATIC_URL }}css/images/icon_follower_light.png" class="followersicon donecount" original-title="People who've done this"></img><span class="numberdone">{{ lesson.lesson.completers.count }}</p>
+						{% endif %}
+					</div>
 				</div>
 
 				<div class="embedclass grid_2 omega" style="width:200px; padding-bottom:80px;">
 					<a href="{{ lesson.lesson.link }}"></a>
 				</div>
+				<div class="clear"></div>
+
 				
 
 			</div> 	
@@ -433,11 +429,15 @@
 </div>
 		
 		{% endfor %}
-		
+	</div>	
 	
 	{% else %}  <!-- if user is not logged in -->
 	
-	
+	<div class="lessonsBlock" style="height:100%; float:left;">
+		<div class="lessonspine loggedout" style="border-left:10px solid #C8C5BD; height:600px; margin-top:4px; margin-left:56px; position: absolute; z-index:0">
+		</div>
+		<img src="{{ STATIC_URL }}css/images/startcircle.png" style="margin-left:51px; margin-bottom:15px;">
+		<h1 style="margin-left:91px; margin-top:-37px; margin-bottom:40px; color:#A6A39B; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal;">Start here and work your way down!</h1>
 		{% for lesson in lessons|slice:":2" %}
 		
 					<div class="lessonBlock">      
@@ -472,13 +472,13 @@
 
 					  <div style="background:#d9d6ce; width:100%; float:left; padding-bottom:10px;">
 
-						<div class="grid_6 alpha omega" style="width:500px;">
+						<div class="grid_6 alpha omega" style="width:590px;">
 
 								<div class="grid_1">
 									<span id="numcircle"><span id="number">{{ forloop.counter }}</span></span>
 								</div>
 
-								<div class="grid_5 alpha omega">
+								<div class="grid_5 alpha omega" style="width:480px;">
 									<input type="hidden" class="lesson_id" value="{{ lesson.lesson.id }}">
 									<h3 id="courselessonname"><a href="{{ lesson.lesson.link }}" target="_blank">{{ lesson.lesson.name }}</a> 			
 									</h3>
@@ -490,28 +490,23 @@
 
 
 
-							<div class="grid_1 alpha omega" style="width:60px; float:right;">
-
-								{% if is_my_course %}
-
-								{% else %}
-									{% if not lesson.completed %}
-										<a class="donethis" original-title="Mark this as done"><span>Done</span></a>
-				            		{% else %}
-				                			<a class="donethis done"  original-title="You've done this!"><span>Done</span></a>
-				            		{% endif %}
-									<p class="numberdone">Done by {{ lesson.lesson.completers.count }} user{{ lesson.lesson.completers.count|pluralize }}</p>     
-								{% endif %}
-
-							</div>
-
-
 						</div> <!-- end lessonblock title bar -->
 
 						<div class="clear"></div>
 
-						<div class="grid_4" style="margin-top:20px; margin-left:20px;">
-							<p class="expanded">{{ lesson.lesson.description|linebreaks }}<a href="{{ lesson.lesson.link }}"></a></p>
+						<div class="grid_4" style="margin-top:15px; margin-left:15px;">
+							<p class="expanded">{{ lesson.lesson.description }}<a href="{{ lesson.lesson.link }}"></a></p>
+							
+							<div style="margin-top:10px">
+								<a class="savethis" original-title="Save for later" style="float:left;">
+									<span>Save&nbsp;&nbsp;&nbsp;&#183;</span>
+								</a>
+								<a class="donethis" original-title="Mark this as done" style="float:left;">
+									<span>Done&nbsp;&nbsp;&nbsp;&#183;</span>
+								</a>
+								<img src="{{ STATIC_URL }}css/images/icon_follower_light.png" class="followersicon donecount" original-title="People who've done this"></img><span class="numberdone">{{ lesson.lesson.completers.count }}</p>
+								
+							</div>
 						</div>
 
 						<div class="embedclass grid_2 omega" style="width:200px;">
@@ -603,7 +598,7 @@
 			
 		
 	{% endfor %}
-	
+	</div> <!-- end lessons block -->
 	
 	<div class="lessonBlock" id="seemorecourses"> <!-- login message at the end of the first 2 lessons -->
 			<h4 id="loginmore">ok {{ requested_course.lesson_set.count }} more lessons!</h4>

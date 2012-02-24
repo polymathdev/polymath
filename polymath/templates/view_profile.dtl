@@ -172,13 +172,34 @@
        
 
 
-<div class="grid_8" style="width:630px; float:right;">
+<div class="grid_8 omega" style="width:630px; float:right; margin-top:10px;">
 
-
+	<div class="grid_8 omega" style="border-bottom:2px solid #d9d6ce; padding-bottom:9px; margin-bottom:0px;">
+		<ul class="profileheadings">
+			<li><a href="#" title="todo"><b>To do</b><span class="profpgnum">3</span></a></li>
+			
+			<li><a href="#" title="inprogress" class="selected"><b>Courses</b>
+			<span class="profpgnum">{{ profile_owner.get_profile.courses_with_progress|length }} </span>
+			</a></li>
+			
+			<li><a href="#" title="done"><b>Lessons</b><span class="profpgnum">10</span></a></li>
+			
+			<li><a href="#" title="likedtab"><b>Likes</b><span class="profpgnum">{{ upvoted_lessons|length }}</span></a></li>
+			
+			<li><a href="#" title="created"><b>Created</b>
+			<span class="profpgnum">{{ courses_created_by_user.count }}</span>
+			</a></li>
+		</ul>
+	</div>
+	
+	
+	<div class="profilecontent" id="inprogress">
+	
 	<!-- courses taking -->
+	
 
-		<div class="heading grid_8 omega" style="width:630px;">
-				<div class="grid_8 alpha">
+		<div class="grid_8 omega" style="width:610px;">
+				<div class="grid_8 alpha heading" style="width:590px">
 					<h2 class="profile_heading">{% if is_my_profile %}You've{% else %}{{ profile_owner.first_name }} has{% endif %} made progress in {{ profile_owner.get_profile.courses_with_progress|length }} course{{ profile_owner.get_profile.courses_with_progress|length|pluralize }}</h2>
 				</div>
 		</div> <!-- end heading block -->
@@ -189,7 +210,7 @@
  		{% for course_data in profile_owner.get_profile.courses_with_progress %}
 
 		<div class="lessonCreatedBlock" original-title="{{ course_data.course.name }} by Harish Venkatesan">
-			<div style="height:130px; width:170px; background:#eae7df; padding-top:16px; margin-top:10px; margin-left:10px">
+			<div style="height:130px; width:170px; background:#eae7df; padding-top:16px; margin-top:10px; margin-left:7px">
 			
 				<a href="{% url view_course course_id=course_data.course.id course_slug=course_data.course.slug %}" class="coursename">{{ course_data.course.name|truncate_chars:15 }}</a>			
 			
@@ -234,11 +255,13 @@
 	
 	
 	<!-- end courses taking -->
-
+	</div> <!-- end taking tab -->
+	
+	<div class="profilecontent" id="likedtab"> <!-- liked -->
 
 	<!-- lessons liked -->
 	
-		<div class="heading grid_8" style="margin-top:20px;">
+		<div class="heading grid_8" style="margin-top:0px;">
 				<div class="grid_8 alpha">
 					<h2 class="profile_heading">{% if is_my_profile %}You like{% else %}{{ profile_owner.first_name }} likes {% endif %} these lessons</h2>
 				</div>
@@ -261,26 +284,29 @@
 			</div>
 			{% endif %}
 		{% endfor %}
-	</div>
+		</div>
 	{% else %}
 		<div class="profilecourseBlock grid_8" id="liked">
 			<div class="grid_5 alpha subject">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} liked any lessons yet!</div>
 		</div>
 	{% endif %}
 	
-	<div>
+	
+	
+	
+	</div> <!-- end likedtab -->
 	
 	
 	<!-- end lessons liked -->
 
-	
-	
+	</div>
 	
 	<!-- courses created -->
 			
+	<div class="profilecontent" id="created">
 	
-		<div class="heading grid_8 omega" style="margin-top:20px; width:630px;">
-				<div class="grid_8 alpha">
+	<div class="grid_8 omega" style="width:590px!important;">
+			<div class="grid_8 alpha heading" style="width:590px">
 					<h2 class="profile_heading">{% if is_my_profile %}You've{% else %}{{ profile_owner.first_name }} has {% endif %} created {{ courses_created_by_user.count }} course{{ courses_created_by_user.count|pluralize }}</h2>
 				</div>
 		</div>
@@ -374,14 +400,14 @@
 	</div>
 	{% endif %}
 	
-	<div>
+	</div>
 	
 	
 	<!-- end lessons liked -->
 	
+	</div> <!-- end created tab -->
 	
-	
-	
+
 </div>
 
 </div>
