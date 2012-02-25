@@ -5,10 +5,12 @@
 {% block css_includes %}
     <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
    	<link href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" /> 
+   	<link href="{{ STATIC_URL }}css/coda-slider-2.0.css" rel="stylesheet" type="text/css" /> 
 {% endblock %}
 
 {% block js_includes %}
  	<script type="text/javascript" src="{{ STATIC_URL }}js/about_page.js"></script>
+ 	<script type="text/javascript" src="{{ STATIC_URL }}js/howitworks.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -40,9 +42,9 @@
 			<hr>
 			<p> Polymath is a fun, simple way to learn and share your knowledge online. Here's how it works.</p>
 			
-			<div style="margin-left:20px; margin-top:20px;">
+			<div style="margin-top:20px;">
 			
-	
+	<!--
 			
 			<div class="grid_1" style="margin-top:15px;">
 				<span id="numcircle"><span id="number">1</span></span>
@@ -101,8 +103,102 @@
 			
 			</div>
 			<div class="clear"></div>
+			-->
+			
+			<!-- start of slider content -->
+		
+				<div class="coda-slider-wrapper">
+				
+			<!--	<div id="coda-nav-left-1" class="coda-nav-left"><a id="previousbutton"><</a></div> -->
+				<div id="coda-nav-right-1" class="coda-nav-right"><a id="nextbutton">></a></div>
+
+				<div id="coda-slider-1" class="coda-slider">
+
+					<div class="panel">
+						<div id="welcome" class="panel-wrapper">
+							<div class="grid_1">
+								<span id="numcircle"><span id="number">1</span></span>
+							</div>
+
+							<div class="grid_8" style="margin-top:-15px">
+								<h2><b>Find Great Content</h2></b>
+								<div class="grid_3 alpha omega">
+				                    <p>Use Polymath to discover great material about programming and design, and get help from people who've done it before. <br><br>You can browse individual lessons, or work through entire courses. Each course features the best content online about a subject, organized by an expert. <a href="{% url view_course course_id=7 course_slug='front-end-basics' %}" target="_blank"><b>Here's</b></a> an example of a course.
+									</p>
+								</div>
+								<div class="grid_5 alpha omega">
+									<img src="{{ STATIC_URL }}css/images/FindCourse.png" id="findcourseimage" style="margin-top:0px;"></img>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel">
+						<div id="hatstory" class="panel-wrapper">
+							<div class="grid_1"">
+								<span id="numcircle"><span id="number">2</span></span>
+							</div>
+
+							<div class="grid_8" style="margin-bottom:20px; margin-top:-15px">
+								<h2><b>Learn & Track your Progress</h2></b>
+								<div class="grid_2 alpha">
+									<img src="{{ STATIC_URL }}css/images/TrackProgress.png" id="trackprogressimage"></img>
+								</div>
+								<div class="grid_6 omega">
+									<p>When you're learning something outside of school, it's <b>tough</b> to stay motivated and regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system (coming soon!) that rewards you on your work.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="panel">
+						<div id="smelly" class="panel-wrapper">
+							<div class="grid_1" style="margin-top:0px;">
+								<span id="numcircle"><span id="number">3</span></span>
+							</div>
+
+							<div class="grid_8" style="margin-bottom:20px; margin-top:-15px">
+								<h2><b>Share Your Knowledge</h2></b>
+								<div class="grid_5 alpha">
+									<p>Show off your knowledge and help students by curating and rating the best educational material from around the web. You can either:
+									<ul><li><b>Submit a lesson</b>: a <b><a href="http://beta.whatispolymath.com/lessons/71/dive-into-python-3/">lesson</a></b> is a link to a piece of good content on the web, or
+									<li><b>Create a course</b>: A course is a set of lessons about the same topic. It's like a syllabus that a new student can use to guide their learning.</li>
+									</p><br>
+									<p>Anyone can curate material on Polymath, whether you're an expert or someone who's just recently taught yourself a new topic. If the content is already on Polymath, share your comments and reviews and let people know what you thought of it! <br><b><a href="/courses/add">Share your knowledge</a>, make the world a better place.</b>
+									</p>
+								</div>
+								<div class="grid_3 omega">
+									<img src="{{ STATIC_URL }}css/images/createcourse.png" id="createcourseimage" style="margin-top:0px;"></img>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+				
+
+				
+				
+	
+			 </div> <!-- .coda-slider-wrapper -->
+				
+				
+				<p id="coda-nav-1" class="coda-nav previewimages">
+					<span class="tab1 current"><a href="#1" rel="welcome">Find</a></span>
+					<span class="tab2"><a href="#2" rel="hatstory">Track</a></span>
+					<span class="tab4"><a href="#3" rel="smelly">Share</a></span>
+				</p>			
 			
 			
+			
+			
+			
+			
+			<!-- end of slider content -->
 			
 						
 			<div class="grid_10 omega" id="howitworkscall">
@@ -116,6 +212,7 @@
 				</h3>
 				<a href="{% url browse_all %}" class="browsecourses"><span>Browse Polymath <b>&#8594;</b> </span></a>
 			{% endif %}
+			
 			</div>
 			
 			</div>
@@ -138,5 +235,8 @@
 
 
 {% block footer %}
-		<div id="footer" style="margin-top:50px;"><div class="container_6"><span style="float:right">&#169; Polymath, 2011</span></div></div>
+		<div id="footer" style="margin-top:80px;">
+			<div class="container_4" style="float:right;"><span style="color:#006231">&hearts;</span> Crafted with love in SF+NYC</div>
+			<div class="container_4"><span style="float:left">&#169; Polymath, 2011</span></div>
+		</div>
 {% endblock %}

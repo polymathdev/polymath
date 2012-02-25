@@ -48,6 +48,8 @@
 	<div class="grid_2 browsing">
 		<input type="text" id="txtSearch" name="txtSearch" maxlength="40" placeholder="Search"/>
 		<div>
+		<h3 style="margin-left:5px; font-size:14px; margin-top:10px; margin-bottom:5px; text-shadow:0px -1px 1px white">Categories</h3>
+		<hr style="border:0; height:1px; background:#bbb; margin-left:5px;">
 		<ul class="aboutsidebar browse">
 
             <li><a href="{% url browse_all %}">All</a></li>
@@ -62,6 +64,12 @@
 			
 			
 		</ul>
+			<div class="tagsdiv" style="margin-top:30px">
+				<h3 style="margin-left:5px; font-size:14px; margin-bottom:5px; text-shadow:0px -1px 1px white">Popular tags</h3>
+				<hr style="border:0; height:1px; background:#bbb; margin-left:5px;">
+				<a class="label success" href="/browse/python">Python (3)</a>	<a class="label success">Ruby (10)</a><a class="label success">iOS (2)</a>
+				<a class="label success">Design (24)</a>
+			</div>
 		</div>
 	</div>
 
@@ -164,7 +172,7 @@
 <!-- THIS IS WHERE LESSONS GO -->
 
 
-<h3 style="margin-left:20px; margin-top:20px; margin-bottom:20px;" original-title="A lesson is a link to something on the web that will help you learn about the subject" class="browsepageheading">Lessons</h3>
+<h3 style="margin-left:20px; margin-top:30px; margin-bottom:20px;" original-title="A lesson is a link to something on the web that will help you learn about the subject" class="browsepageheading">Individual Lessons</h3>
 
 
 {% if standalone_lessons|length == 0 %}
@@ -226,7 +234,10 @@
 
 
 {% block footer %}
-		<div id="footer" style="margin-top:80px;"><div class="container_6"><span style="float:right">&#169; Polymath, 2011</span></div></div>
+		<div id="footer" style="margin-top:80px;">
+			<div class="container_4" style="float:right;"><span style="color:#006231">&hearts;</span> Crafted with love in SF+NYC</div>
+			<div class="container_4"><span style="float:left">&#169; Polymath, 2011</span></div>
+		</div>
 		
 {% endblock %}
 
