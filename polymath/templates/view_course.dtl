@@ -126,6 +126,11 @@
 	
 	
 		<div class="grid_4 omega" id="coursepagemeta" style="margin-top:20px;">
+			{% if is_my_course %}
+				<p style="margin-left:10px; font-weight:bold;">You made this! Now tell the world about it.</p>
+			{% else %}
+				<p style="margin-left:10px; font-weight:bold;">Did you find this course useful? Share it!</p>
+			{% endif %}
 			<div class="socialmedia course">
 				<a href="http://www.facebook.com/dialog/feed?
 						  app_id=349907371691622&
@@ -238,9 +243,9 @@
 				<div class="lessonspine loggedin" style="border-left:10px solid #C8C5BD; height:600px; margin-top:4px; margin-left:61px; position: absolute; z-index:0">
 				</div>
 				<img src="{{ STATIC_URL }}css/images/startcircle.png" style="margin-left:51px; margin-bottom:15px;">
-				<h1 style="margin-left:91px; margin-top:-37px; margin-bottom:40px; color:#A6A39B; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal;">Start here and work your way down!</h1>
+				<h1 style="margin-left:91px; margin-top:-37px; margin-bottom:40px; color:#848179; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal;">Start here and work your way down!</h1>
 				
-				<h1 style="margin-left:91px; color:#A6A39B; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal; position:absolute;" class="thatsit">That's it for this course! Nice work.</h1>
+				<h1 style="margin-left:91px; color:#848179; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal; position:absolute;" class="thatsit">That's it for this course! Nice work.</h1>
 				<img src="{{ STATIC_URL }}css/images/startcircle.png" style="margin-left:51px; position:absolute" class="endcircle">
 			{% for lesson in lessons %}
 			
@@ -434,7 +439,7 @@
 	{% else %}  <!-- if user is not logged in -->
 	
 	<div class="lessonsBlock" style="height:100%; float:left;">
-		<div class="lessonspine loggedout" style="border-left:10px solid #C8C5BD; height:600px; margin-top:4px; margin-left:56px; position: absolute; z-index:0">
+		<div class="lessonspine loggedout" style="border-left:10px solid #C8C5BD; height:600px; margin-top:4px; margin-left:61px; position: absolute; z-index:0">
 		</div>
 		<img src="{{ STATIC_URL }}css/images/startcircle.png" style="margin-left:51px; margin-bottom:15px;">
 		<h1 style="margin-left:91px; margin-top:-37px; margin-bottom:40px; color:#A6A39B; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal;">Start here and work your way down!</h1>
@@ -664,7 +669,10 @@
 
 
 {% block footer %}
-		<div id="footer" style="margin-top:50px;"><div class="container_6"><span style="float:right">&#169; Polymath, 2011</span></div></div>
+	<div id="footer" style="margin-top:80px;">
+		<div class="container_4" style="float:right;"><span style="color:#006231"><b>&hearts;</b></span> Crafted with love in <span style="color:#006231;">SF</span> + <span style="color:#80B000;">NYC</span></div>
+		<div class="container_4"><span style="float:left">&#169; Polymath, 2012</span></div>
+	</div>
 {% endblock %}
 
 

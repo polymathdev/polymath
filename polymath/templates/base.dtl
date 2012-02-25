@@ -111,7 +111,7 @@
 								<li id="aboutnav"><a href="/howitworks/">About</a></li>
 								{% else %}
 								<li><a href="#" id="loginnav">Login</a></li>
-								<li id="aboutnav"><a href="/about">About</a></li>
+								<li id="aboutnav"><a href="/howitworks/">About</a></li>
 								{% endif %}
 							</ul>
 				
