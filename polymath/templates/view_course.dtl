@@ -243,10 +243,11 @@
 				<div class="lessonspine loggedin" style="border-left:10px solid #C8C5BD; height:600px; margin-top:4px; margin-left:61px; position: absolute; z-index:0">
 				</div>
 				<img src="{{ STATIC_URL }}css/images/startcircle.png" style="margin-left:51px; margin-bottom:15px;">
-				<h1 style="margin-left:91px; margin-top:-37px; margin-bottom:40px; color:#848179; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal;">Start here and work your way down!</h1>
-				
-				<h1 style="margin-left:91px; color:#848179; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal; position:absolute;" class="thatsit">That's it for this course! Nice work.</h1>
-				<img src="{{ STATIC_URL }}css/images/startcircle.png" style="margin-left:51px; position:absolute" class="endcircle">
+				<img src="{{ STATIC_URL }}css/images/startcircle.png" style="margin-left:-30px; position:absolute;" class="endcircle">				
+
+				<h1 style="margin-left:98px; margin-top:-37px; margin-bottom:40px; color:#848179; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal;">Start here and work your way down!</h1>
+				<!--<h1 style="margin-left:91px; color:#848179; text-shadow:0px -1px 1px white; font-style:italic; font-weight:normal; position:absolute;" class="thatsit">That's it for this course! Nice work.</h1> -->
+				<span class="gps_ring"></span>
 			{% for lesson in lessons %}
 			
 				
@@ -321,11 +322,11 @@
 
 						{% else %}
 							{% if not lesson.completed %}
-								<a class="savethis" original-title="Save for later" style="float:left;"><span>Save&nbsp;&nbsp;&nbsp;&#183;</span></a>
-								<a class="donethis" original-title="Mark this as done" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;&#183;</span></a>
+								<a class="savethis" original-title="Save for later" style="float:left;"><span>Save&nbsp;&nbsp;&nbsp;</span></a>
+								<a class="donethis" original-title="Mark this as done" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;</span></a>
 		            		{% else %}
-								<a class="savethis" original-title="Save for later" style="float:left;"><span>Save&nbsp;&nbsp;&nbsp;&#183;</span></a>
-								<a class="donethis done"  original-title="You've done this!" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;&#183;</span></a>
+								<a class="savethis" original-title="Save for later" style="float:left;"><span>Save&nbsp;&nbsp;&nbsp;</span></a>
+								<a class="donethis done"  original-title="You've done this!" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;</span></a>
 		            		{% endif %}
 							<img src="{{ STATIC_URL }}css/images/icon_follower_light.png" class="followersicon donecount" original-title="People who've done this"></img><span class="numberdone">{{ lesson.lesson.completers.count }}</p>
 						{% endif %}
@@ -420,7 +421,7 @@
 
                 {% if user.is_authenticated %} 
 					
-					<img id="commentimage" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}">
+					<img id="commentimageadd" src="{% if user.get_profile.get_pic_url  %}{{ user.get_profile.get_pic_url }}{% else %}{{ STATIC_URL}}css/images/courseDefault.png{% endif %}">
 					</img>
 				
 					{% render_comment_form for lesson.lesson %}
@@ -504,10 +505,10 @@
 							
 							<div style="margin-top:10px">
 								<a class="savethis" original-title="Save for later" style="float:left;">
-									<span>Save&nbsp;&nbsp;&nbsp;&#183;</span>
+									<span>Save&nbsp;&nbsp;&nbsp;</span>
 								</a>
 								<a class="donethis" original-title="Mark this as done" style="float:left;">
-									<span>Done&nbsp;&nbsp;&nbsp;&#183;</span>
+									<span>Done&nbsp;&nbsp;&nbsp;</span>
 								</a>
 								<img src="{{ STATIC_URL }}css/images/icon_follower_light.png" class="followersicon donecount" original-title="People who've done this"></img><span class="numberdone">{{ lesson.lesson.completers.count }}</p>
 								
