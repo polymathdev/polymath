@@ -203,7 +203,7 @@ def view_course(request, course_id, course_slug=None):
         'is_my_course': (creator == request.user),
         'next' : reverse('view_course', kwargs={'course_id':course_id,'course_slug':course_slug}),
         'delete_comment_action' : reverse('simple_comments_delete'),
-        'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson')})
+        'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson'), 'save_lesson_url' : reverse('save_lesson')})
     },
     context_instance=RequestContext(request))
 
@@ -380,6 +380,24 @@ def complete_lesson(request):
 
     return HttpResponse(json.dumps({'complete_successful' : complete_successful, 'result_message' : result_message}), mimetype="application/json")
 
+@login_required
+@require_POST
+def save_lesson(request):
+
+    lesson_id = request.POST['lesson_id']
+    save_successful = False
+
+    try:
+        lesson_to_save = Lesson.objects.get(id=lesson_id)
+        LessonSave.objects.create(lesson=lesson_to_save, user_profile=request.user) 
+
+        save_successful = True
+        result_message = "Saved!"
+
+    except ObjectDoesNotExist:
+        result_message = 'That lesson does not exist (this is most likely a bug)'  # don't want 404 here because then the front-end will just silently fail since this is responding to an ajax request
+
+    return HttpResponse(json.dumps({'save_successful' : complete_successful, 'result_message' : result_message}), mimetype="application/json")
 
 # I should really test for the existence of any required POST variables for any of these ajax views
 @login_required
@@ -500,5 +518,5 @@ def view_lesson(request, lesson_id, lesson_slug=None):
     return render(request, 'view_lesson.dtl', {
         'lesson' : requested_lesson,
         'next' : reverse('view_lesson', kwargs={'lesson_id':lesson_id,'lesson_slug':lesson_slug}),
-        'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson')}) 
+        'to_client': json.dumps({'complete_lesson_url': reverse('complete_lesson'), 'vote_lesson_url' : reverse('vote_lesson'), 'save_lesson_url' : reverse('save_lesson')})
         })

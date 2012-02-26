@@ -165,7 +165,8 @@ class Course(models.Model):
 
 class Lesson(models.Model): 
     course = models.ManyToManyField(Course, editable=False, blank=True)
-    completers = models.ManyToManyField(User, through='LessonCompletion', editable=False) 
+    completers = models.ManyToManyField(User, through='LessonCompletion', related_name='completed_lessons', editable=False) 
+    savers = models.ManyToManyField(User, through='LessonSave', related_name='saved_lessons', editable=False)
     category = models.ForeignKey(CourseCategory) # should change CourseCategory to just Category at some point, given that it looks like we'll be applying them to both Lessons and Courses.
     creator = models.ForeignKey(User, related_name='lessons_created') 
 
@@ -228,6 +229,13 @@ class LessonCompletion(models.Model):
     def __unicode__(self):
         return self.user_profile.first_name + " " + self.user_profile.last_name + " --> " + self.lesson.name
 
+class LessonSave(models.Model):
+    lesson = models.ForeignKey(Lesson)
+    user_profile = models.ForeignKey(User)
+    date_completed = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.user_profile.first_name + " " + self.user_profile.last_name + " --> " + self.lesson.name
 
 class LessonVote(models.Model):
     lesson = models.ForeignKey(Lesson)

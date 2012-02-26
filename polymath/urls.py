@@ -71,6 +71,7 @@ urlpatterns = patterns('',
     url(r'^deletelesson/$','core.views.delete_lesson', name='delete_lesson'),
     url(r'^completelesson/$', 'core.views.complete_lesson', name='complete_lesson'),
     url(r'^votelesson/$', 'core.views.vote_lesson', name='vote_lesson'),
+    url(r'^savelesson/$', 'core.views.save_lesson', name='save_lesson'), 
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
