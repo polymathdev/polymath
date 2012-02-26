@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response, get_object_or_404, render, redirect
-from core.models import Course, Lesson, CourseCategory, LessonCompletion, LessonVote
+from core.models import Course, Lesson, CourseCategory, LessonCompletion, LessonVote, LessonSave
 from taggit.models import Tag, TaggedItem
 from django.db.models import Count, Q
 from django.contrib.auth.models import User
