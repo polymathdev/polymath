@@ -397,7 +397,7 @@ def save_lesson(request):
     except ObjectDoesNotExist:
         result_message = 'That lesson does not exist (this is most likely a bug)'  # don't want 404 here because then the front-end will just silently fail since this is responding to an ajax request
 
-    return HttpResponse(json.dumps({'save_successful' : complete_successful, 'result_message' : result_message}), mimetype="application/json")
+    return HttpResponse(json.dumps({'save_successful' : save_successful, 'result_message' : result_message}), mimetype="application/json")
 
 # I should really test for the existence of any required POST variables for any of these ajax views
 @login_required
