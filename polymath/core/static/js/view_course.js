@@ -17,8 +17,8 @@ $(document).ready(function(){
 	
 
 	
-	$('.thatsit').css("margin-top", lessonheight-30);
-	$('.endcircle').css("margin-top", lessonheight-40);
+	$('.thatsit').css("margin-top", lessonheight-52);
+	$('.endcircle').css("margin-top", lessonheight-20);
 	
     $('.addcomment textarea').addClass('commentbox');
 

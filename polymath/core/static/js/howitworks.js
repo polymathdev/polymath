@@ -9,6 +9,7 @@ $(document).ready(function(){
 				slideEaseDuration: 200,
 			});
 		
+		/*
 			$("#nextbutton").click(function(){
 				$(this).hide();
 				setTimeout(function(){
@@ -34,7 +35,7 @@ $(document).ready(function(){
 				},800);
 
 				
-			});
+			});*/
 	
 		
 });

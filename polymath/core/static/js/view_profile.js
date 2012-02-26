@@ -20,7 +20,7 @@ $(document).ready(function(){
 	});
 	
 	
-	
+		$('.points').tipsy({fade: true, gravity: 's', opacity:0.8});
 	$('.lessoncount').tipsy({fade: false, gravity: 's', opacity:0.8});
 	$('.numfollowers').tipsy({fade: false, gravity: 's', opacity:0.8});
 	

@@ -158,8 +158,8 @@
 			
 			<div class="grid_4" id="coursepagemeta" style="margin-top:20px;">
 				<div style="margin-left:10px; margin-right:10px;">	
-                    <div class="points"><h4>Courses Taken</h4><span>{{ profile_owner.get_profile.courses_with_progress|length }}</span></div>
-					<div class="points"><h4>Courses Created</h4><span>{{ courses_created_by_user.count }}</span></div>
+                    <div class="points" original-title="Coming Soon!"><h4>Badges</h4><span>0</span></div>
+					<div class="points" original-title="Coming Soon!"><h4>Achievement Points</h4><span>0</span></div>
 				</div>
 			
 			</div>
@@ -178,11 +178,10 @@
 		<ul class="profileheadings">
 			<li><a href="#" title="todo"><b>To do</b><span class="profpgnum">3</span></a></li>
 			
-			<li><a href="#" title="inprogress" class="selected"><b>Courses</b>
-			<span class="profpgnum">{{ profile_owner.get_profile.courses_with_progress|length }} </span>
+			<li><a href="#" title="inprogress" class="selected"><b>Taking</b>
 			</a></li>
 			
-			<li><a href="#" title="done"><b>Lessons</b><span class="profpgnum">10</span></a></li>
+<!--			<li><a href="#" title="done"><b>Lessons</b><span class="profpgnum">10</span></a></li> -->
 			
 			<li><a href="#" title="likedtab"><b>Likes</b><span class="profpgnum">{{ upvoted_lessons|length }}</span></a></li>
 			
@@ -279,7 +278,6 @@
 				
 				<div class="grid_4 alpha omega"><div class="lessondescription">{{ lesson.lesson.description|linebreaks }}</div></div>
 				
-				<div class="grid_2 alpha omega lessondate" style="float:right;"> {{ lesson.date_voted|naturalday|capfirst }}</div>
 		
 			</div>
 			{% endif %}
