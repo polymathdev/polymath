@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404, render, redirect
 from core.models import Course, Lesson, CourseCategory, LessonCompletion, LessonVote
-from taggit.models import Tag
+from taggit.models import Tag, TaggedItem
+from django.db.models import Count, Q
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from core.forms import CourseForm, LessonForm, OrderedLessonFormSet, ProfileForm, StandaloneLessonForm
@@ -431,10 +432,20 @@ def browse(request, cat_slug=None, tag_slug=None):
     course_list = Course.objects.all()
     standalone_lessons = Lesson.objects.filter(course=None)
 
+
+    # used later for calculating tag counts
+    tagged_items = TaggedItem.objects.all()
+
     if cat_slug:
         cat = get_object_or_404(CourseCategory, slug=cat_slug)  
         course_list = course_list.filter(category=cat)
         standalone_lessons = standalone_lessons.filter(category=cat)
+        
+        # there might be performance issues with the below...
+        lessons_in_cat = Lesson.objects.filter(category=cat)
+        courses_in_cat = Course.objects.filter(category=cat)
+        tagged_items = tagged_items.filter(Q(course__in=courses_in_cat) | Q(lesson__in=lessons_in_cat))
+        
         filters['cat'] = cat
 
     if tag_slug:
@@ -442,7 +453,18 @@ def browse(request, cat_slug=None, tag_slug=None):
         standalone_lessons = standalone_lessons.filter(tags__slug=tag_slug)
         filters['tag'] = Tag.objects.get(slug=tag_slug)
 
+    # tag counts
+    # get the tag id's for all of the tagged items (i.e. all tagged items or filtered by category from above)
+    tag_ids = tagged_items.values_list('tag_id', flat=True)
+
+    # get the tags that correspond to those tag ids (this is a unique list of tags)
+    tag_list = Tag.objects.filter(id__in=tag_ids)
+
+    # annotate the list with counts of their tagged items and order by those counts
+    tags_by_num_times = tag_list.annotate(num_times=Count('taggit_taggeditem_items')).order_by('-num_times')
+
     return render(request, 'browse_courses.dtl', {
+        'tags_by_num_times' : tags_by_num_times,
         'tags_by_cat' : tags_by_cat,
         'course_list' : course_list,
         'standalone_lessons' : standalone_lessons,

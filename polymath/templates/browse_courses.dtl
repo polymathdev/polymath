@@ -67,8 +67,10 @@
 			<div class="tagsdiv" style="margin-top:30px">
 				<h3 style="margin-left:5px; font-size:14px; margin-bottom:5px; text-shadow:0px -1px 1px white">Popular tags</h3>
 				<hr style="border:0; height:1px; background:#bbb; margin-left:5px;">
-				<a class="label success" href="/browse/python">Python (3)</a>	<a class="label success">Ruby (10)</a><a class="label success">iOS (2)</a>
-				<a class="label success">Design (24)</a>
+                {% for tag in tags_by_num_times|slice:":5" %}
+                <a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag.name }} ({{ tag.num_times }})</a>
+
+                {% endfor %}
 			</div>
 		</div>
 	</div>
