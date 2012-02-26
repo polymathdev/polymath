@@ -165,14 +165,23 @@ def view_course(request, course_id, course_slug=None):
         # lessons that the current user has completed for this course
         completed_lesson_list = Lesson.objects.filter(course=requested_course, completers=request.user) 
 
+        # lessons that the current user has saved for this course
+        saved_lesson_list = Lesson.objects.filter(course=requested_course, savers=request.user)
+
         # all votes that the current user has made on lessons in this course
         lesson_votes = LessonVote.objects.filter(lesson__in=lesson_list, user_profile=request.user)
         
         for l in lesson_list_info:
 
+            # *** We really should just add new attributes to the lesson objects themselves instead of this awkward "info" dictionary setup ****
+
              # add a 'completed' key to this lesson info item if it has been completed
             if l['lesson'] in completed_lesson_list:
                 l['completed'] = True
+
+            # add a 'saved' key to this lesson info item if it has been saved
+            if l['lesson'] in saved_lesson_list:
+                l['saved'] = True
 
             # set 'my_vote' key to the appropriate value if necessary based on lesson_votes queryset
             try:
