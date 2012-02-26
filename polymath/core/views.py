@@ -523,6 +523,10 @@ def view_lesson(request, lesson_id, lesson_slug=None):
         # check if the current user has completed this lesson and set an attribute on requested_lesson that it can be accessed in the template
         if LessonCompletion.objects.filter(lesson=requested_lesson, user_profile=request.user).count():
             setattr(requested_lesson, 'completed', True)
+
+        # check if the current user has saved this lesson for later and set an attribute just like above
+        if LessonSave.objects.filter(lesson=requested_lesson, user_profile=request.user).count(): 
+            setattr(requested_lesson, 'saved', True)
         
     return render(request, 'view_lesson.dtl', {
         'lesson' : requested_lesson,
