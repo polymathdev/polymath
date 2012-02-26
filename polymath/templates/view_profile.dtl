@@ -192,9 +192,88 @@
 	</div>
 	
 	
-	<div class="profilecontent" id="inprogress">
 	
-	<!-- courses taking -->
+	
+	
+
+	
+	
+	<div class="profilecontent" id="todo"> <!-- lessons saved for later -->
+	
+
+		<div class="grid_8 omega" style="width:610px;">
+				<div class="grid_8 alpha heading" style="width:590px">
+					<h2 class="profile_heading">{% if is_my_profile %}You've{% else %}{{ profile_owner.first_name }} has{% endif %} saved {{ profile_owner.saved_lessons|length }} lesson{{ profile_owner.saved_lessons|length|pluralize }}</h2>
+				</div>
+		</div> <!-- end heading block -->
+		
+
+
+    {% if profile_owner.saved_lessons|length > 0 %}
+	<div class="parentlessoncreatedblock">
+	
+
+ 		{% for lesson in profile_owner.saved_lessons.all %} <!-- THIS IS NOT WORKING -->
+
+			
+			<div class="browseBlock profile">
+
+					<div class="grid_5" style="margin-top:10px;">
+		                <a href="{% url view_lesson lesson_slug=lesson.slug lesson_id=lesson.id %}" class="coursename">{{ lesson.name }}</a><p class="categoryname"> Submitted by <b><a href="{% url view_profile uname=lesson.creator.username %}">{{ lesson.creator.first_name }} {{ lesson.creator.last_name }}</a></b> under <b><a href="{% url browse_by_cat cat_slug=lesson.category.slug %}">{{ lesson.category.name }}</p></a></b>
+
+
+					<div class="clear"></div>
+					<p class="coursedescription">{{ lesson.description|truncate_chars:160 }}</p>
+
+					</div>
+
+					<div class="clear"></div>
+
+				<p class="browsecoursetags">
+					{% for tag in lesson.tags.all %}
+		            <a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>
+					{% endfor %}
+				</p>
+				<p class="coursefollowers lesson browse"> 
+				{{ lesson.vote_score }} like{{ lesson.vote_score|pluralize }}
+				<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="{% if lesson.completers.count == 1 %}{{ lesson.completers.count }} person has {% else %}{{ lesson.completers.count }} people have {% endif %}done this"></img> {{ lesson.completers.count }} </p>
+
+			</div> <!-- end browse block -->
+	
+
+
+		{% endfor %}
+	</div>
+	{% else %}
+	
+			
+			<div class="lessonCreatedBlock empty">
+				<div class="blockbg empty">
+					<div class="grid_1" style="width:160px;">
+					<p class="coursedescription">
+					{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} saved any lessons yet!<br>
+					{% if is_my_profile %}Browse Polymath and start learning.
+					</p>
+					<a href="{% url browse_all %}" class="editcourse profilepage browse"><span>Browse Courses</span></a>{% endif %}
+					</div>
+				</div>
+			</div>
+			
+			
+	
+	{% endif %}
+	
+	</div> <!-- end saved tab -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="profilecontent" id="inprogress"> <!-- courses taking -->
 	
 
 		<div class="grid_8 omega" style="width:610px;">
@@ -255,6 +334,13 @@
 	
 	<!-- end courses taking -->
 	</div> <!-- end taking tab -->
+	
+	
+	
+	
+	
+	
+	
 	
 	<div class="profilecontent" id="likedtab"> <!-- liked -->
 

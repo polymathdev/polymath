@@ -174,20 +174,9 @@ $(document).ready(function(){
 		} else {
 			
 			if (isLoggedIn){
-			
-				$(this).toggleClass("done"); // mark the checkbox as done
+	
 	
 				var val = $("#progressbar").progressbar("option", "value"); // set current value of progress bar
-		
-				var pGress = setInterval(function() { // loop to animate progress bar action
-		        	var pVal = $('#progressbar').progressbar('option', 'value');
-		        	var pCnt = !isNaN(pVal) ? (pVal + 1) : (completed_lessons/lessons) *100;
-		        	if (pCnt > val + (100/lessons) + 1) { //animate progress bar to number of currently completed lesson
-		            	clearInterval(pGress);
-		        	} else {
-		            	$('#progressbar').progressbar({value: pCnt});
-		        	}
-		    	}, 10);
 
 
 				lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
@@ -196,11 +185,20 @@ $(document).ready(function(){
 	            		{ lesson_id: lesson_id },
 	            		function(response) {
 	                		if( response['complete_successful'] ) {
+								$(this).toggleClass("done"); // mark the checkbox as done
 								$("#numbercompleted").text(+($("#numbercompleted").text()) + 1); // increment the number of completed lessons
-//								checkbox.closest('.lessonBlock').animate({backgroundPosition: '0px 0px'}, {duration: 1300});
 								checkbox.closest('.lessonBlock').toggleClass("completedBlock");
 								checkbox.closest('.lessonBlock').find('.numberdone').text(+(checkbox.closest('.lessonBlock').find('.numberdone').text()) + 1);
 								checkbox.attr('original-title', 'You\'ve done this!');
+								var pGress = setInterval(function() { // loop to animate progress bar action
+						        	var pVal = $('#progressbar').progressbar('option', 'value');
+						        	var pCnt = !isNaN(pVal) ? (pVal + 1) : (completed_lessons/lessons) *100;
+						        	if (pCnt > val + (100/lessons) + 1) { //animate progress bar to number of currently completed lesson
+						            	clearInterval(pGress);
+						        	} else {
+						            	$('#progressbar').progressbar({value: pCnt});
+						        	}
+						    	}, 10);
 	               			}
 	            		}
 	        		);
@@ -223,9 +221,51 @@ $(document).ready(function(){
 	
 	
 	
+		$('.savethis').click(function(){ // when the done button is clicked...
+
+			var savebutton = $(this);
+
+			if ( $(this).hasClass('done')){ // don't do anything if it's already done
+
+
+			} else {
+
+				if (isLoggedIn){
+
+					console.log('you logged in and are trying to save a course');
+					lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
+					console.log("value of lessonid is %s", lesson_id);
+		        		$.post(
+		            		from_server['save_lesson_url'],
+		            		{ lesson_id: lesson_id },
+		            		function(response) {
+		                		if( response['complete_successful'] ) {
+									alert('your lesson has been saved!');
+									$(this).toggleClass("done"); // change the class of the saved button to done
+		               			}
+		            		}
+		        		);
+
+					} else {
+							$.colorbox({
+							width:"500px",
+							height:"350px",
+							inline: true,
+							href:"#logindivnewcourse",
+							opacity:'0.6',
+							top:"10%",
+							returnFocus:false,
+						});
+					}
+
+				} // endif
+
+			}); // end done animation
 	
 	
-	///
+	
+	
+	
 
     
     $('#test_btn').click(function() {

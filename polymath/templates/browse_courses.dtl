@@ -90,10 +90,12 @@
 
 {% if filters.tag %}
 <div class="filterbytag">
-	Courses & lessons {% if filters.cat %}with category {{ filters.cat.name }} {% endif %} with tag: <a class="label success nohover">{{ filters.tag.name }} <span class="closetagfilter"> x</span></a> <!-- ADD THAT LOGIC IN RIGHT NOW -->
+	Courses & lessons {% if filters.cat %}
+	with category: <span class="label browsecat">{{ filters.cat.name }} <a class="closetagfilter cat" href="{% url browse_by_tag tag_slug=filters.tag.slug %}"> x</a></span> and tag: <span class="label success nohover">{{ filters.tag.name }} <a class="closetagfilter" href="{% url browse_by_cat cat_slug=filters.cat.slug %}"> x</a></span>
+	{% else %}
+	with tag: <span class="label success nohover">{{ filters.tag.name }} <a class="closetagfilter" href="{% url browse_all %}"> x</a></span>
 	
-	
-	
+	{% endif %}  <!-- ADD THAT LOGIC IN RIGHT NOW -->
 	
 </div>
 <hr id="filterbytaghr">
@@ -222,7 +224,7 @@
 		{{ comment_count }} comment{{ comment_count|pluralize }}
 		<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="{% if lesson.completers.count == 1 %}{{ lesson.completers.count }} person has {% else %}{{ lesson.completers.count }} people have {% endif %}done this"></img> {{ lesson.completers.count }} </p>
 
-	</div> <!-- end lesson created block -->
+	</div> <!-- end browse block -->
 	
 		
 {% endfor %}

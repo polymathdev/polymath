@@ -1560,12 +1560,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefdf6', end
 .label.warning {
   background-color: #f89406;
 }
-.label.success {
-  background-color: #46a546;
-}
 .label.notice {
   background-color: #62cffc;
 }
+
+
+.label.browsecat{
+	text-decoration:none;
+	color:white;
+	background-color:#008743;
+	line-height:2.5;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border:1px solid #ccc;
+}
+
+.label.success {
+  	text-decoration:none;
+	color:#0a580b;
+	background-color:#d7dead;
+	line-height:2.5;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border:1px solid #ccc;
+}
+
 
 a.label.success{
 	text-decoration:none;
@@ -2974,6 +2995,11 @@ p{
 }
 
 
+
+.browseBlock.profile{
+	width:590px;
+	
+}
 
 /*** PROFILE PAGE COURSE BLOCKS ****/
 
@@ -5796,7 +5822,7 @@ a.remove_lesson_lnk:hover{
 }
 
 .closetagfilter{
-		margin-bottom:6px;
+	margin-bottom:6px;
 	margin-left:5px;
 	text-transform:lowercase;
 	color:grey;
@@ -5805,8 +5831,16 @@ a.remove_lesson_lnk:hover{
 .closetagfilter:hover{
 	cursor:pointer;
 	color:black;
+	text-decoration:none;
 }
 
+.closetagfilter.cat{
+	color:#ccc;
+}
+
+.closetagfilter.cat:hover{
+	color:#fff;
+}
 
 #uploadphoto{
 	padding:15px;
