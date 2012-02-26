@@ -24,7 +24,7 @@ if host == 'DSMBP.local':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-            'NAME': 'pm_db_psql',                      
+            'NAME': 'new_data',                      
             'USER': 'postgres',                      
             'PASSWORD': 'learnpsql',                 
             'HOST': 'localhost',                     

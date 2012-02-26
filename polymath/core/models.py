@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.db.models import Count
 from taggit.managers import TaggableManager
+from taggit.models import TagBase, GenericTaggedItemBase, Tag, TaggedItem
 from django.template.defaultfilters import slugify
 from django.core.mail import send_mail
+from django.template.defaultfilters import lower
 from annoying.functions import get_object_or_None 
 from facepy import GraphAPI
 import ipdb
@@ -46,6 +48,9 @@ class UserProfile(models.Model):
         courses_with_progress_data = [ { 'course' : c, 'num_lessons' : id_to_lessons[c.id], 'num_completed' : c.num_completed } for c in courses_with_completions ]
 
         return courses_with_progress_data
+
+    def standalone_lessons_completed(self):
+        return Lesson.objects.filter(lessoncompletion__user_profile=self.user, course=None)    
 
     def __unicode__(self):
         return self.user.username
@@ -103,6 +108,26 @@ class CourseCategory(models.Model):
     def __unicode__(self):
         return self.name
 
+
+# # create a custom tag model and override the save() method to force lower case tags
+# class LowerCaseTag(Tag):
+# 
+#     def save(self, *args, **kwargs):
+#         self.name = lower(self.name)
+#         super(LowerCaseTag, self).save(*args, **kwargs)
+# 
+#     class Meta:
+#         proxy = True
+# 
+# class LowerCaseTaggedItem(TaggedItem):
+#     tag = models.ForeignKey(LowerCaseTag, related_name="items")
+# 
+#     class Meta:
+#         # proxy = True
+
+
+# Then in your models
+# tags = TaggableManager(through=MyTagItem)
 
 class Course(models.Model):
     creator = models.ForeignKey(User, related_name='courses_created')
