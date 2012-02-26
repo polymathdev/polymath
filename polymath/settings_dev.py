@@ -7,13 +7,16 @@ TEMPLATE_DEBUG = DEBUG
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'pm_db_psql',                      # Or path to database file if using sqlite3.
+        'NAME': 'new_data',                      # Or path to database file if using sqlite3.
         'USER': 'postgres',                      # Not used with sqlite3.
         'PASSWORD': 'learnpsql',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+
+# pm_db_psql
 
 host = node()
 
@@ -39,7 +42,7 @@ elif host == 'harish-venkatesans-macbook.local':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2', 
-            'NAME': 'pm_db_psql',                      
+            'NAME': 'new_data',                      
             'USER': 'postgres',                      
             'PASSWORD': 'stitch1',                 
             'HOST': 'localhost',                     

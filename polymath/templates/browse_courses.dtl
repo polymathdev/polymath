@@ -90,7 +90,11 @@
 
 {% if filters.tag %}
 <div class="filterbytag">
-	Courses & lessons with tag: <a class="label success nohover">{{ filters.tag.name }} <span class="closetagfilter"> x</span></a>
+	Courses & lessons {% if filters.cat %}with category {{ filters.cat.name }} {% endif %} with tag: <a class="label success nohover">{{ filters.tag.name }} <span class="closetagfilter"> x</span></a> <!-- ADD THAT LOGIC IN RIGHT NOW -->
+	
+	
+	
+	
 </div>
 <hr id="filterbytaghr">
 {% endif %}
