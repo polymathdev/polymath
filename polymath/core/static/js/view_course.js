@@ -239,7 +239,7 @@ $(document).ready(function(){
 		            		from_server['save_lesson_url'],
 		            		{ lesson_id: lesson_id },
 		            		function(response) {
-		                		if( response['complete_successful'] ) {
+		                		if( response['save_successful'] ) {
 									alert('your lesson has been saved!');
 									$(this).toggleClass("done"); // change the class of the saved button to done
 		               			}
