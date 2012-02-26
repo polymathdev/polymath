@@ -240,8 +240,9 @@ $(document).ready(function(){
 		            		{ lesson_id: lesson_id },
 		            		function(response) {
 		                		if( response['save_successful'] ) {
-									alert('your lesson has been saved!');
-									$(this).toggleClass("done"); // change the class of the saved button to done
+									savebutton.toggleClass("done"); // change the class of the saved button to done
+									savebutton.find('span').text("Saved");
+									savebutton.attr('original-title', 'You\'ve saved this!');
 		               			}
 		            		}
 		        		);
