@@ -10,6 +10,13 @@ head.ready(function(){
 
 $(document).ready(function(){
 	
+	$("#dimmed").css("height", $(document).height());
+	
+	$('#close').click(function(){
+		$("#dimmed").fadeOut();
+	});
+	
+	
 	var arr = new Array();
 
 	$('lessonCreatedBlock.browse').each(function() { 

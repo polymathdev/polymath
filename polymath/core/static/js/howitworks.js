@@ -8,7 +8,7 @@ $(document).ready(function(){
 	$('#smelly').appear(function() {
 		$("#howitworkscall").delay(1800).fadeIn();
 		$(".messages").delay(1500).fadeOut();
-		$("#nextbutton").delay(1500).fadeOut();
+		$("#nextbutton").fadeOut();
 		$("#coda-nav-1").delay(1500).fadeIn();
 	});
 	

@@ -18,7 +18,10 @@ urlpatterns = patterns('',
     # add lesson
     url(r'^submitlesson/', 'core.views.add_lesson', name='add_lesson'),
 
-    # home page
+    # tutorial
+	(r'^tutorial/', direct_to_template, {'template':'tutorial.dtl'}),
+	
+	# home page
     (r'^$', 'core.views.home_page'),
 
     # welcome
