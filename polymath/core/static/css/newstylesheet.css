@@ -6563,6 +6563,27 @@ textarea.error { border: 1px dotted red; }
 	background:#c8c5bd;
 }
 
+#nextbutton.welcomebutton{
+	background:#006331;
+	margin-left:735px;
+	width:80px!important;
+	font-weight:bold;
+	text-shadow:0px 1px 1px rgba(0,0,0,0.15);
+	-webkit-animation: buttonpulse 1.5s ease-out;
+  -webkit-animation-iteration-count: infinite; 
+}
+
+#nextbutton.welcomebutton:hover{
+	background:#228553;
+}
+
+@-webkit-keyframes buttonpulse{
+	0% {-webkit-transform: scale(1.0, 1.0); opacity: 1.0;}
+    50% {-webkit-transform: scale(1.03, 1.03);}
+    100% {-webkit-transform: scale(1.0, 1.0); opacity: 1.0;}
+}
+
+
 #dim {
     position:absolute;
     top:0;

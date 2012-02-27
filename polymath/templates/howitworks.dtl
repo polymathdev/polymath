@@ -57,8 +57,12 @@
 				<div class="coda-slider-wrapper">
 				
 			<!--	<div id="coda-nav-left-1" class="coda-nav-left"><a id="previousbutton"><</a></div> -->
-				<div id="coda-nav-right-1" class="coda-nav-right"><a id="nextbutton">></a></div>
-
+				{% if is_welcome %}
+					<div id="coda-nav-right-1" class="coda-nav-right"><a id="nextbutton" class="welcomebutton">Next ></a></div>
+				{% else %}
+					<div id="coda-nav-right-1" class="coda-nav-right"><a id="nextbutton">></a></div>
+				{% endif %}
+				
 				<div id="coda-slider-1" class="coda-slider">
 
 					<div class="panel">
@@ -134,13 +138,19 @@
 	
 			 </div> <!-- .coda-slider-wrapper -->
 				
-				
+			{% if is_welcome %}
+			<p id="coda-nav-1" class="coda-nav previewimages" style="z-index:120!important; position:relative; display:none;">
+				<span class="tab1 current"><a href="#1" rel="welcome">Discover</a></span>
+				<span class="tab2"><a href="#2" rel="hatstory">Track</a></span>
+				<span class="tab4"><a href="#3" rel="smelly">Share</a></span>
+			</p>
+			{% else %}
 				<p id="coda-nav-1" class="coda-nav previewimages" style="z-index:120!important; position:relative;">
 					<span class="tab1 current"><a href="#1" rel="welcome">Discover</a></span>
 					<span class="tab2"><a href="#2" rel="hatstory">Track</a></span>
 					<span class="tab4"><a href="#3" rel="smelly">Share</a></span>
 				</p>			
-			
+			{% endif %}
 			
 			
 			
@@ -150,8 +160,11 @@
 			
 			<!-- end of slider content -->
 			
-						
+			{% if is_welcome %}
+			<div class="grid_10 omega" id="howitworkscall" style="display:none;">
+			{% else %}			
 			<div class="grid_10 omega" id="howitworkscall">
+			{% endif %}
 			
 			{% if return_to_course %}
 				<h3 id="returntocourseh3">Sounds good? Let's get started! Go back to "{{ return_to_course.name|truncate_chars:29 }}"</h3>
