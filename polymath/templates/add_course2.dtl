@@ -355,7 +355,7 @@
 
 {% block footer %}
 <div id="footer" style="margin-top:80px;">
-		<div class="container_4" style="float:right;"><span style="color:#006231"><b>&hearts;</b></span> Crafted with love in <span style="color:#006231;">SF</span> + <span style="color:#80B000;">NYC</span></div>
+		<div class="container_4" style="float:right;"><span style="color:#006231"><b>&hearts;</b></span> Crafted with care in <span style="color:#006231;">SF</span> + <span style="color:#80B000;">NYC</span></div>
 	<div class="container_4"><span style="float:left">&#169; Polymath, 2012</span></div>
 </div>
 {% endblock %}

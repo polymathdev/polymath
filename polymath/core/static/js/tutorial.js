@@ -6,7 +6,6 @@ head.ready(function(){
 $(document).ready(function(){
 
 
-
 	
 	$('#fbsignup').tipsy({fade: true, gravity: 's', offset: 2, opacity:0.8});	
 	

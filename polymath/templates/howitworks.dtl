@@ -114,11 +114,11 @@
 							<div class="grid_8" style="margin-bottom:20px; margin-top:-15px">
 								<h2><b>Share Your Knowledge</h2></b>
 								<div class="grid_5 alpha">
-									<p>Show off your knowledge by curating, rating, and sharing your thoughts on the best educational material from around the web. 
-									<ul><li>A <b><a href="http://beta.whatispolymath.com/lessons/71/dive-into-python-3/">lesson</a></b> is a link to a piece of good content on the web.
+									<p>Show off your knowledge by curating the best educational material from around the web and sharing your thoughts.
+									<ul><li>A <b><a href="http://beta.whatispolymath.com/lessons/71/dive-into-python-3/" target="_blank">lesson</a></b> is a link to a piece of good content on the web.
 									<li>A <b>course</b> is a set of lessons about the same topic. It's like a syllabus that a new student can use to guide their learning.</li>
 									</p><br>
-									<p><b><a href="/courses/add">Share your knowledge</a>, make the world a better place.</b>
+									<p><b><a href="/courses/add" target="_blank">Share your knowledge</a>, and join the community.</b>
 									</p>
 								</div>
 								<div class="grid_3 omega">
@@ -212,7 +212,7 @@
 
 {% block footer %}
 		<div id="footer" style="margin-top:80px;">
-				<div class="container_4" style="float:right;"><span style="color:#006231"><b>&hearts;</b></span> Crafted with love in <span style="color:#006231;">SF</span> + <span style="color:#80B000;">NYC</span></div>
+				<div class="container_4" style="float:right;"><span style="color:#006231"><b>&hearts;</b></span> Crafted with care in <span style="color:#006231;">SF</span> + <span style="color:#80B000;">NYC</span></div>
 			<div class="container_4"><span style="float:left">&#169; Polymath, 2012</span></div>
 		</div>
 {% endblock %}
