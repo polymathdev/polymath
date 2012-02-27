@@ -460,36 +460,22 @@ def browse(request, cat_slug=None, tag_slug=None):
     course_list = Course.objects.all()
     standalone_lessons = Lesson.objects.filter(course=None)
 
-
-    # used later for calculating tag counts
-    tagged_items = TaggedItem.objects.all()
+    # count the # of tagged items for each tag (i.e. top tags) and don't filter (i.e. do this for ALL tagged items - lessons & courses of all categories)
+    tags_by_num_times = Tag.objects.annotate(num_times=Count('taggit_taggeditem_items')).order_by('-num_times') 
 
     if cat_slug:
         cat = get_object_or_404(CourseCategory, slug=cat_slug)  
         course_list = course_list.filter(category=cat)
         standalone_lessons = standalone_lessons.filter(category=cat)
-        
-        # there might be performance issues with the below...
-        lessons_in_cat = Lesson.objects.filter(category=cat)
-        courses_in_cat = Course.objects.filter(category=cat)
-        tagged_items = tagged_items.filter(Q(course__in=courses_in_cat) | Q(lesson__in=lessons_in_cat))
-        
-        filters['cat'] = cat
+        filters['cat'] = cat 
 
+        # count # of tagged items but apply category filter before annotation.  kind of confusing, but this filters the tagged items that are being counted based on lesson or course categories
+        tags_by_num_times = Tag.objects.filter(Q(taggit_taggeditem_items__lesson__category=cat) | Q(taggit_taggeditem_items__course__category=cat)).annotate(num_times=Count('taggit_taggeditem_items')).order_by('-num_times') 
+        
     if tag_slug:
         course_list = course_list.filter(tags__slug=tag_slug)
         standalone_lessons = standalone_lessons.filter(tags__slug=tag_slug)
         filters['tag'] = Tag.objects.get(slug=tag_slug)
-
-    # tag counts
-    # get the tag id's for all of the tagged items (i.e. all tagged items or filtered by category from above)
-    tag_ids = tagged_items.values_list('tag_id', flat=True)
-
-    # get the tags that correspond to those tag ids (this is a unique list of tags)
-    tag_list = Tag.objects.filter(id__in=tag_ids)
-
-    # annotate the list with counts of their tagged items and order by those counts
-    tags_by_num_times = tag_list.annotate(num_times=Count('taggit_taggeditem_items')).order_by('-num_times')
 
     # only show the tutorial message once
     if not request.session.get('has_seen_tutorial_msg', False):
