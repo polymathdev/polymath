@@ -2,7 +2,9 @@ head.ready(function(){
 
 
 $(document).ready(function(){
-
+	
+	$("#dim").css("height", $(document).height());
+	
 	$('#coda-slider-1').codaSlider({
 				dynamicTabs: false, 
 				dynamicArrows: false,
@@ -38,7 +40,12 @@ $(document).ready(function(){
 			});*/
 	
 		
+	
+	
+		
 });
+
+
 
 
 });

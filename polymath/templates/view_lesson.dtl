@@ -25,6 +25,7 @@
 
 {% block body %}
 
+
 <div class="container_12" style="margin-top:40px;">
 
 	<div class="grid_4" style="float:right; margin-right:20px">

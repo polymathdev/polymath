@@ -18,10 +18,14 @@
 {% load truncate_filters %}
 
 
-	<div class="container_12" style="margin-top:50px">
-	
 	{% if is_welcome %}
-		<div class="messages welcome"><h3><b>Welcome to Polymath!</b> Here's how to use the site to find great material and learn with the help of a community.</h3><a href="#" id="close">x</a></div>
+	<div id="dim">&nbsp;</div>
+	{% endif %}
+
+	<div class="container_12" style="margin-top:50px">
+
+	{% if is_welcome %}
+		<div class="messages welcome" style="z-index:200; position:relative;"><h3><b>Welcome to Polymath!</b> Here's how to use the site to find great material and learn with the help of a community.</h3><a href="#" id="close">x</a></div>
 	{% endif %}
 	
 	
@@ -38,72 +42,15 @@
 		
 	
 		<div class="grid_10 about">
-			<h1 id="browsetitle">How It Works</h1>
-			<hr>
-			<p> Polymath is a fun, simple way to learn and share your knowledge online. Here's how it works.</p>
-			
-			<div style="margin-top:20px;">
-			
-	<!--
-			
-			<div class="grid_1" style="margin-top:15px;">
-				<span id="numcircle"><span id="number">1</span></span>
-			</div>
-			
-			<div class="grid_8">
-				<h2><b>Find Great Content</h2></b>
-				<div class="grid_3 alpha">
-                    <p>Use Polymath to discover great material about programming and design, and get help from people who've done it before. <br><br>You can browse individual lessons, or work through entire courses (sets of lessons organized by an expert). <a href="{% url view_course course_id=7 course_slug='front-end-basics' %}" target="_blank"><b>Here's</b></a> an example of a course.
-					</p>
-				</div>
-				<div class="grid_5 omega">
-					<img src="{{ STATIC_URL }}css/images/FindCourse.png" id="findcourseimage" style="margin-top:0px;"></img>
-				</div>
-			</div>
-			
-			<div class="clear"></div>
-			<hr style="height:1px; border-bottom:1px dotted #aaa; background:none; margin-top:45px; margin-bottom:15px;">
-			
-			
-			<div class="grid_1" style="margin-top:15px;">
-				<span id="numcircle"><span id="number">2</span></span>
-			</div>
-			
-			<div class="grid_8" style="margin-bottom:20px;">
-				<h2><b>Learn & Track your Progress</h2></b>
-				<div class="grid_2 alpha">
-					<img src="{{ STATIC_URL }}css/images/TrackProgress.png" id="trackprogressimage"></img>
-				</div>
-				<div class="grid_6 omega">
-					<p>When you're learning something outside of school, it's <b>tough</b> to stay motivated and regularly make progress on your goals. Polymath makes it easy to track your progress, with updates, reminders, and a fun badge system (coming soon!) that rewards you on your work.
-					</p>
-				</div>
-			</div>
-			
-			<div class="clear"></div>
-			<hr style="height:1px; border-bottom:1px dotted #aaa; background:none; margin-top:25px; margin-bottom:15px;">
-			
-			<div class="grid_1" style="margin-top:15px;">
-				<span id="numcircle"><span id="number">3</span></span>
-			</div>
-			
-			<div class="grid_8" style="margin-bottom:20px;">
-				<h2><b>Share Your Knowledge</h2></b>
-				<div class="grid_5 alpha">
-					<p>Show off your knowledge and help students by curating and rating the best educational material from around the web. You can either:
-					<ul><li><b>Submit a lesson</b>: a <b><a href="http://beta.whatispolymath.com/lessons/71/dive-into-python-3/">lesson</a></b> is a link to a piece of good content on the web, or
-					<li><b>Create a course</b>: A course is a set of lessons about the same topic. It's like a syllabus that a new student can use to guide their learning.</li>
-					</p><br>
-					<p>Anyone can curate material on Polymath, whether you're an expert or someone who's just recently taught yourself a new topic. If the content is already on Polymath, share your comments and reviews and let people know what you thought of it! <b><a href="/courses/add">Share your knowledge</a>, make the world a better place.</b>
-					</p>
-				</div>
-				<div class="grid_3 omega">
-					<img src="{{ STATIC_URL }}css/images/createcourse.png" id="createcourseimage" style="margin-top:0px;"></img>
-				</div>
-			
-			</div>
-			<div class="clear"></div>
-			-->
+			{% if is_welcome %}
+				<div style="margin-top:-20px;">
+			{% else %}
+				<h1 id="browsetitle">How It Works</h1>
+				<hr>
+				<p> Polymath is a fun, simple way to learn and share your knowledge online. Here's how it works.</p>
+				<div style="margin-top:20px;">
+			{% endif %}
+
 			
 			<!-- start of slider content -->
 		
@@ -188,8 +135,8 @@
 			 </div> <!-- .coda-slider-wrapper -->
 				
 				
-				<p id="coda-nav-1" class="coda-nav previewimages">
-					<span class="tab1 current"><a href="#1" rel="welcome">Find</a></span>
+				<p id="coda-nav-1" class="coda-nav previewimages" style="z-index:120!important; position:relative;">
+					<span class="tab1 current"><a href="#1" rel="welcome">Discover</a></span>
 					<span class="tab2"><a href="#2" rel="hatstory">Track</a></span>
 					<span class="tab4"><a href="#3" rel="smelly">Share</a></span>
 				</p>			
@@ -197,7 +144,9 @@
 			
 			
 			
-			
+
+
+
 			
 			<!-- end of slider content -->
 			
@@ -210,9 +159,9 @@
 			{% else %}
 				{% if is_welcome %}
 					<h3 id="getstartedh3">
-						Sounds good? Let's get started!
-					</h3>
-					<a href="{% url browse_all %}" class="browsecourses"><span>Go To Tutorial <b>&#8594;</b> </span></a>
+						Are you new to coding & design? This tutorial will help you get started on Polymath.
+					</h3><br><br><br>
+					<a href="{% url browse_all %}" class="browsecourses"><span>&nbsp;&nbsp;Go To Tutorial <b>&#8594;</b> </span></a>
 				{% else %}
 					<h3 id="getstartedh3">
 						Sounds good? Let's get started!
@@ -231,6 +180,9 @@
 	</div>
 
 
+{% if is_welcome %}
+
+{% else %}
 	<script type="text/javascript">
 	  var uvOptions = {};
 	  (function() {
@@ -239,6 +191,8 @@
 	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
 	  })();
 	</script>
+{% endif %}
+	
 {% endblock %}
 
 
