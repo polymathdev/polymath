@@ -86,12 +86,12 @@
 		<div class="grid_4">
 
 			<div class="featuredblock">
-                <img src="{{ STATIC_URL }}css/images/favicon.png"></img>
+                <img src="{{ STATIC_URL }}css/images/Favicon.png"></img>
                 <a href="/tutorial"><span class="emptyspan"></span></a>
 				<h3 style="margin-left:5px">A Primer to Web Development</h3>
                 <h5 style="margin-left:5px">By <a href="{% url view_profile uname=featured_courses.left.creator.username %}">Polymath</a>, we like learning.</h5>
 				<div class="content">
-                    <img src="{{ STATIC_URL }}css/images/favicon.png"></img>
+                    <img src="{{ STATIC_URL }}css/images/Favicon.png"></img>
                     <span>So you’ve always wanted to learn to code or design new web products, but just didn’t know where to start. This primer will walk you through all the different pieces that go into making a web or mobile product...</span>
 				</div>
 			</div>
