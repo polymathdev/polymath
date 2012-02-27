@@ -100,7 +100,7 @@
 				
 				<p id="coursepagedescription">So you’ve always wanted to learn to code or design new web products, but just didn’t know where to start. This primer will walk you through all the different pieces that go into making a web or mobile product -- from how it looks and feels, to how it gets displayed in your browser, to how it actually works and runs. It may seem like a lot, but don’t worry -- the key is staying patient and persistent, and learning a little bit each day.
 <br><br>
-				You can use Polymath to find material to learn each of these topics, get your questions answered, and track your progress as you go along. We're in this together! Let's get started.</p>
+				<b>Use Polymath to find material to learn each of these topics, get your questions answered, and track your progress as you go along. We're in this together! Let's get started.</b></p>
 		
 			
 		
@@ -179,7 +179,7 @@
 
 					<div style="margin-top:15px; margin-left:15px;">
 						<p class="expanded tutorial">Markup languages are basically the languages that build the web you see.  A markup document is a special kind of text document that is used by Web browsers to present text and graphics. Almost every page you look at on the Internet is an HTML (HyperText Markup Language) document whose tags are interpreted by the browser that you are using (for example-- Chrome, Firefox, and Safari). <a class="label success" href="{% url browse_by_tag tag_slug='html' %}">HTML</a> defines the way that images, multimedia, and text are displayed in web browsers. It includes elements to connect your documents (hypertext and hyperlinks) and make your web documents interactive (such as with forms). Writing good, clean markup is important to lay the foundation for the rest of the code you’ll be writing, and it's <b>well worth it</b> to take some time to thoroughly learn the syntax of HTML.</p> 
-					<span id="tutorialtags">Tags you might find useful to learn markup:</span>
+					<span id="tutorialtags">You should search by these tags to learn markup:</span>
 					<a class="label success" href="{% url browse_by_tag tag_slug='html' %}">HTML</a>
 					<a class="label success" href="{% url browse_by_tag tag_slug='html5' %}">HTML5</a>
 					</div>
@@ -206,7 +206,7 @@
 						All of this is made possible with Javascript, the programming language that runs in your web browser.  Using <a class="label success" href="{% url browse_by_tag tag_slug='javascript' %}" target="_blank">javascript</a>, you can take any element on your page and do whatever you want to it - hide it, change its size or color, move it, etc… - even after the page is finished loading.  
 <br><br>
 						We think it's a good idea to learn the fundamentals of classic Javascript, but after that you can move on to popular tools such as jQuery.  <a class="label success" href="{% url browse_by_tag tag_slug='jquery' %}" target="_blank">jquery</a> is just a bunch of really smart, reusable Javascript code that someone else wrote, and you’re free to use it to make your life easier!  Another concept you'll likely want to read up on is <a class="label success" href="{% url browse_by_tag tag_slug='ajax' %}" target="_blank">ajax</a> - don't worry about what it stands for right now, but just know it's a term that generally applies to anytime you're using Javascript to communicate with a web server (i.e. send/receive data). AJAX is very handy if you want your front-end UI (User Interface) to interact with your back-end application without the user having to load an entirely new URL / web page.</p>
-							<span id="tutorialtags">Tags you might find useful to learn markup:</span>
+							<span id="tutorialtags">You should search by these tags to learn JavaScript:</span>
 							<a class="label success" href="{% url browse_by_tag tag_slug='javascript' %}" target="_blank">javascript</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='jquery' %}" target="_blank">jquery</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='ajax' %}" target="_blank">ajax</a>
@@ -231,7 +231,7 @@
 
 					<div class="grid_6" style="margin-top:15px; margin-left:15px;">
 						<p class="expanded tutorial">Now that you know a little about how to code and build basic websites, let's take a moment to think about <i>what</i> you're building for users. That's where User Experience (UX) design comes in-- it's the art of planning and creating a good experience for the person using your product based on how you think they'll use it. <br><br>There are a few typical things a UX designer can create in this process of trying to improve the usability of the product - "site maps" that plot out how a user can move through the site and what their options are at any point, "personas" that define who the target user is and what their interests and motivations are, "wireframes" that are crude representations of all the major elements of the final product and where they're supposed to go, and "mockups" which are more detailed wireframes that may include a bit more polish and represent what the actual product will look like- with appropriate colors and styles. While you might not need to be a master in each of these techniques, you should definitely take some time to learn about <a class="label success" href="{% url browse_by_tag tag_slug='ux' %}" target="_blank">UX</a> and <a class="label success" href="{% url browse_by_tag tag_slug='usability' %}" target="_blank">usability</a> principles to ensure that you're always thinking about your end user - it's the only way to make a product that people will understand, use, and love! </p>
-							<span id="tutorialtags">Tags you might find useful to learn interaction design:</span>
+							<span id="tutorialtags">You should search by these tags to learn interaction design:</span>
 							<a class="label success" href="{% url browse_by_tag tag_slug='ux' %}" target="_blank">UX</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='information-design' %}" target="_blank">Information Design</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='usability' %}" target="_blank">Usability</a>							
@@ -258,7 +258,7 @@
 
 					<div class="grid_6" style="margin-top:15px; margin-left:15px;">
 						<p class="expanded tutorial">OK. So now you've coded up your basic website, and figured out what you want your end product to look like based on how you think people will use it. Now comes the time to actually implement the designs with some nifty tools -- and the one you'll probably use most often is CSS (Cascading Style Sheets). <a class="label success" href="{% url browse_by_tag tag_slug='css' %}" target="_blank">CSS</a> basically takes the HTML code you write - the very basic document that describes to the browser what to output - and defines <i>styles</i> for the stuff that gets output. So by using CSS, you can go from having a very basic document with information, to a beautiful, interactive web page with buttons, animations, and custom colors and fonts. <br><br>You might also want to learn some other powerful tools here that can help you design beautiful elements - like <a class="label success" href="{% url browse_by_tag tag_slug='photoshop' %}" target="_blank">Photoshop</a> and <a class="label success" href="{% url browse_by_tag tag_slug='fireworks' %}" target="_blank">Fireworks</a>. </p>
-							<span id="tutorialtags">Tags you might find useful to learn UI design:</span>
+							<span id="tutorialtags">You should search by these tags to learn UI design:</span>
 							<a class="label success" href="{% url browse_by_tag tag_slug='css' %}" target="_blank">CSS</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='photoshop' %}" target="_blank">Photoshop</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='web-design' %}" target="_blank">Web design</a>							
@@ -289,7 +289,7 @@
 						<p class="expanded tutorial">You'll need to write code so that your website can automatically make decisions and perform tasks for you.  For example, if you're building your own message board and you want to count the number of posts someone has made so you can display it next to their username - you'd need to write some simple code on the back-end to take care of this.  
 <br><br>
 						If you're brand new to web development and are looking for the easiest way to just start and get your hands dirty with some back-end work, check out the <a class="label success" href="{% url browse_by_tag tag_slug='php' %}" target="_blank">php</a> scripting language (Facebook uses this).  <a class="label success" href="{% url browse_by_tag tag_slug='python' %}" target="_blank">python</a> and <a class="label success" href="{% url browse_by_tag tag_slug='ruby' %}" target="_blank">ruby</a> are also very popular choices of late for people learning programming, and they both have active online communities with a lot of great information.</p>
-							<span id="tutorialtags">Tags you might find useful to learn programming:</span>
+							<span id="tutorialtags">You should search by these tags to learn programming:</span>
 							<a class="label success" href="{% url browse_by_tag tag_slug='php' %}" target="_blank">php</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='python' %}" target="_blank">python</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='ruby' %}" target="_blank">ruby</a>
@@ -316,7 +316,7 @@
 						<p class="expanded tutorial">Continuing with the message board example from above, you're going to want to let people submit messages to your site - but what do you do with them after that?  How do you save these messages in an organized fashion so that when someone else comes to your site a few minutes later they can see everything that's been submitted?  
 <br><br>
 						For this you need a <a class="label success" href="{% url browse_by_tag tag_slug='database' %}" target="_blank">database</a>, which is a powerful system for storing and looking up information (e.g. messages on a message board).  There are lots of databases out there, but one of the most widely used one out there is called <a class="label success" href="{% url browse_by_tag tag_slug='mysql' %}" target="_blank">mysql</a>.  We think that would be a great place to start, but as you continue your learning you'll probably come across another popular one called <a class="label success" href="{% url browse_by_tag tag_slug='postgresql' %}" target="_blank">postgresql</a> or a more recent one that you use in a fundamentally different way called <a class="label success" href="{% url browse_by_tag tag_slug='mongodb' %}" target="_blank">mongodb</a>.  Don't worry about the differences between all of these right now - just know that there are a bunch of options to choose from and as you go along you'll be able to better understand why you might use one over the other.</p>
-							<span id="tutorialtags">Tags you might find useful to learn about databases:</span>
+							<span id="tutorialtags">You should search by these tags to learn about databases:</span>
 							<a class="label success" href="{% url browse_by_tag tag_slug='database' %}" target="_blank">database</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='mysql' %}" target="_blank">mysql</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='mongodb' %}" target="_blank">mongodb</a>
@@ -343,7 +343,7 @@
 						<p class="expanded tutorial">After you pick up the basics of <a class="label success" href="{% url browse_by_tag tag_slug='programming' %}" target="_blank">programming</a> and <a class="label success" href="{% url browse_by_tag tag_slug='databases' %}" target="_blank">databases</a>, if you're looking to build a full-blown interactive web application you'll definitely want to take advantage of a web framework.  A framework is just a set of tools (i.e. reusable code that someone else wrote) that lets you build web apps quickly and easily.  For example, you might want to build a secure registration / login system for your website, but making it from scratch could take a lot time and a lot of code.  Given that this is such a common task, the creators of many web frameworks have already written this code for you! <br><br>
 
 						<a class="label success" href="{% url browse_by_tag tag_slug='django' %}" target="_blank">django</a> is a popular web framework for the <a class="label success" href="{% url browse_by_tag tag_slug='python' %}" target="_blank">python</a> programming language (it's really just a bunch of easily reusable Python code that helps you avoid reinventing the wheel - we used it to build Polymath!).  Some examples of other frameworks are <a class="label success" href="{% url browse_by_tag tag_slug='ruby-on-rails' %}" target="_blank">ruby on rails</a> (Twitter uses this) for the <a class="label success" href="{% url browse_by_tag tag_slug='ruby' %}" target="_blank">ruby</a> programming language and <a class="label success" href="{% url browse_by_tag tag_slug='cakephp' %}" target="_blank">cakephp</a> for - you guessed it - the <a class="label success" href="{% url browse_by_tag tag_slug='php' %}" target="_blank">php</a> scripting language.</p>
-							<span id="tutorialtags">Tags you might find useful to learn web frameworks:</span>
+							<span id="tutorialtags">You should search by these tags to learn web frameworks:</span>
 							<a class="label success" href="{% url browse_by_tag tag_slug='django' %}" target="_blank">django</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='ruby-on-rails' %}" target="_blank">ruby on rails</a>
 							<a class="label success" href="{% url browse_by_tag tag_slug='cakephp' %}" target="_blank">cakephp</a>
@@ -368,7 +368,7 @@
 
 					<div class="grid_6" style="margin-top:15px; margin-left:15px;">
 						<p class="expanded tutorial">So now you've created your beautifully designed and highly functional web application, but how do you put it up on the Internet and share it with the world?  For that you'll need to <a class="label success" href="{% url browse_by_tag tag_slug='deploy' %}" target="_blank">deploy</a> your application to a <a class="label success" href="{% url browse_by_tag tag_slug='server' %}" target="_blank">web server</a>, a powerful computer that "hosts" your code and the web pages you've designed so that they load when people visit your website's address.  When you're just getting started, you can take advantage of lots of free/cheap <a class="label success" href="{% url browse_by_tag tag_slug='hosting' %}" target="_blank">shared hosting</a> services out there, and when you get involved with more complex software you can move on to things like <a class="label success" href="{% url browse_by_tag tag_slug='app-engine' %}" target="_blank">google app engine</a>, <a class="label success" href="{% url browse_by_tag tag_slug='aws' %}" target="_blank">amazon web services</a>, or <a class="label success" href="{% url browse_by_tag tag_slug='heroku' %}" target="_blank">heroku</a>.</p> 
-					<span id="tutorialtags">Tags you might find useful to learn about deployment:</span>
+					<span id="tutorialtags">You should search by these tags to learn about deployment:</span>
 					<a class="label success" href="{% url browse_by_tag tag_slug='deployment' %}" target="_blank">deployment</a>
 					<a class="label success" href="{% url browse_by_tag tag_slug='server' %}" target="_blank">server</a>
 					<a class="label success" href="{% url browse_by_tag tag_slug='app-engine' %}" target="_blank">google app engine</a>

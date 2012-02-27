@@ -20,6 +20,21 @@ $(document).ready(function(){
 	});
 	
 
+	
+	var lessonheight = $('.lessonsBlock').height();
+	
+	$('.lessonspine.loggedin').css("height",lessonheight-10);
+	
+	if (lessons > 2){
+		$('.lessonspine.loggedout').css("height",lessonheight);		
+	} else {
+		$('.lessonspine.loggedout').css("height", lessonheight-60);
+	}
+	
+
+	
+	$('.thatsit').css("margin-top", lessonheight-52);
+	$('.endcircle').css("margin-top", lessonheight-20);
 
 
 
