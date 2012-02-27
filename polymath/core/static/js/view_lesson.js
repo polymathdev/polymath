@@ -1,6 +1,8 @@
 head.ready(function(){
 
-
+	
+		mpq.track("Tutorial page loaded");
+	
 $(document).ready(function(){
 	
     $('.addcomment textarea').addClass('commentbox');

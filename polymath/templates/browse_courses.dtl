@@ -6,6 +6,15 @@
 {% block js_includes %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/browse_courses.js"></script>
    	<link href="{{ STATIC_URL }}css/skin.css" rel="stylesheet" type="text/css" /> 
+	<style type="text/css">
+	
+	@-webkit-keyframes shimmer{
+		from {	-webkit-box-shadow:0px 0px 5px #4c8f47;  }
+	    50% {	-webkit-box-shadow:0px 0px 2px #4c8f47;}
+	    to {	-webkit-box-shadow:0px 0px 5px #4c8f47; }
+	}
+
+	</style>
 {% endblock %}
 
 {% block body %}
@@ -16,7 +25,9 @@
 
 {% if show_tutorial_message %}
 	<div id="dimmed">&nbsp;</div>
-	<div class="messages" style="z-index:200; position:relative;"><h3><b>New to coding & design?</b> &nbsp; Check out <a class="noclass">this tutorial</a> that will give you an overview of how to use Polymath to learn.</h3><a href="#" id="close">x</a></div>
+	<div class="messages" style="z-index:200; position:relative;"><h3><b>New to coding & design?</b> &nbsp; Check out <a class="noclass" href="/tutorial">this tutorial</a> that will give you an overview of how to use Polymath to learn.</h3><a href="#" id="close">x</a></div>
+{% else %}
+	<div class="messages" style="z-index:200; position:relative;"><h3><b>Are we missing any material that you know is good?</b> &nbsp; You can fix that - submit a lesson or create a course!</h3><a href="#" id="close">x</a></div>
 {% endif %}
 
 <div class="container_12" style="margin-top:30px;">
@@ -121,6 +132,58 @@
 		<p class="nocourses" style="display:none;">Uh oh, there are no courses in this category yet!</p>
 <div id="coursescarousel"  class="jcarousel-skin-tango">
 <ul>
+
+	<li>
+		<div class="lessonCreatedBlock browse tutorial">
+
+			<div class="blockbg browse">
+				<a href="/tutorial" class="coursename">Getting Started...</a>
+			<hr>
+			<div class="shown">
+			<div class="grid_1" style="margin-left:0px; width:40px;">
+								<img src="{{ STATIC_URL }}css/images/favicon.png" style="width:40px; height:40px; margin-top:10px; margin-left:10px; border:2px solid #fff; box-shadow:0px 1px 1px rgba(0,0,0,0.2);"></img>
+			</div>
+			<div class="grid_1" style="margin-left:0px; width:140px; height:90px; overflow:hidden;">
+					<p class="coursedescription">So you’ve always wanted to learn to code or design, but just didn’t know where to start...</p>	
+			</div>
+			
+			<div class="clear"></div>
+			
+			</div> <!-- end shown div -->
+			
+			<div class="hidden">
+				<div class="grid_1" style="margin-left:0px; width:40px;">
+				<img src="{{ STATIC_URL }}css/images/favicon.png" style="height:40px; width:40px; border-radius:2px; float:left; margin-left:10px; margin-top:10px;"></img>
+				</div>
+				
+				<div class="grid_1" style="margin-left:0px; width:140px;">
+						<p class="coursecreator">By Polymath</p>
+				</div>
+				
+				<div class="clear"></div>
+				
+				<div class="grid_2 browsingcoursetags">
+				<a class="label success" href="{% url browse_by_tag tag_slug='tutorial' %}">Tutorial</a>
+				<a class="label success" href="{% url browse_by_tag tag_slug='beginner' %}">Beginner</a>
+				<a class="label success" href="{% url browse_by_tag tag_slug='intro' %}">Intro</a>				
+				</div>
+				<div class="clear"></div>
+			
+			</div> <!-- end hidden div -->
+			
+			</div> <!-- end blockbg -->
+			
+				<p class="coursefollowers lesson">
+				<img src="{{ STATIC_URL }}css/images/bookicon.png" class="followersicon lessoncount" style="margin-right:5px; height:20px; width:auto;" original-title="# of lessons"></img> 8</p>
+
+		</div>
+		
+	
+	
+	
+	</li>
+	
+	
 {% for course in course_list %}
 	<li>
 		<div class="lessonCreatedBlock browse">

@@ -174,7 +174,7 @@
 					<h3 id="getstartedh3">
 						Are you new to coding & design? This tutorial will help you get started on Polymath.
 					</h3><br><br><br>
-					<a href="{% url browse_all %}" class="browsecourses"><span>&nbsp;&nbsp;Go To Tutorial <b>&#8594;</b> </span></a>
+					<a href="/tutorial" class="browsecourses"><span>&nbsp;&nbsp;Go To Tutorial <b>&#8594;</b> </span></a>
 				{% else %}
 					<h3 id="getstartedh3">
 						Sounds good? Let's get started!

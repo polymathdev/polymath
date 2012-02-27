@@ -5,7 +5,18 @@
 {% block css_includes %}
     <link href="{{ STATIC_URL }}css/view_course.css" rel="stylesheet" type="text/css" /> 
    	<link href="{{ STATIC_URL }}css/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" /> 
-
+	<style type="text/css">
+		@-webkit-keyframes pulsate {
+		    0% {-webkit-transform: scale(1.0, 1.0); opacity: 0.0;}
+		    50% {opacity: 1.0;}
+		    100% {-webkit-transform: scale(1.5, 1.5); opacity: 0.0;}
+		}
+	
+	</style>
+	
+	<script type="text/javascript">
+		mpq.track("Course page loaded")
+	</script>
 {% endblock %}
 
 {% block js_includes %}

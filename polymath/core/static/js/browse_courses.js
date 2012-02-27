@@ -6,7 +6,7 @@ head.ready(function(){
 	             return eval("/" + search + "/i").test($(el).text());
 	         };
 	
-
+	mpq.track("Browse Page Loaded");
 
 $(document).ready(function(){
 	

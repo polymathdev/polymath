@@ -1,6 +1,7 @@
 head.ready(function(){
 
-
+	mpq.track("How it works loaded");
+	
 $(document).ready(function(){
 	
 	$("#dim").css("height", $(document).height());
