@@ -14,6 +14,9 @@
 
 {% load comments %}  
 
+	<div class="messages"><h3><b>New to Polymath?</b> &nbsp; Check out <a class="noclass">this tutorial course</a> that will give you an overview of how to use site.</h3><a href="#" id="close">x</a></div>
+
+
 <div class="container_12" style="margin-top:30px;">
 
 

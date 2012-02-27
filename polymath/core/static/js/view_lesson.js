@@ -151,7 +151,6 @@ $(document).ready(function(){
 		} else {
 			
 			if(isLoggedIn){
-				$(this).toggleClass("done"); // mark the checkbox as done
 				lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
 				console.log("%s", lesson_id);
 					$.post(
@@ -159,6 +158,8 @@ $(document).ready(function(){
 	           		{ lesson_id: lesson_id },
 	           		function(response) {
 	               		if( response['complete_successful'] ) {
+							checkbox.toggleClass("done"); // mark the checkbox as done
+							checkbox.attr('original-title', 'You\'ve done this!');
 	              		}
 	           		}
 	       		);
@@ -177,6 +178,52 @@ $(document).ready(function(){
 		} // endif*/
 			
 		}); // end done animation
+
+
+
+
+
+
+		$('.savethis').click(function(){ // when the done button is clicked...
+
+			var savebutton = $(this);
+
+			if ( $(this).hasClass('done')){ // don't do anything if it's already done
+
+
+			} else {
+
+				if (isLoggedIn){
+					lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
+		        		$.post(
+		            		from_server['save_lesson_url'],
+		            		{ lesson_id: lesson_id },
+		            		function(response) {
+		                		if( response['save_successful'] ) {
+									savebutton.toggleClass("done"); // change the class of the saved button to done
+									savebutton.find('span').text("Saved");
+									savebutton.attr('original-title', 'You\'ve saved this!');
+		               			}
+		            		}
+		        		);
+
+					} else {
+							$.colorbox({
+							width:"500px",
+							height:"350px",
+							inline: true,
+							href:"#logindivnewcourse",
+							opacity:'0.6',
+							top:"10%",
+							returnFocus:false,
+						});
+					}
+
+				} // endif
+
+			}); // end done animation
+
+
 
 
     /*

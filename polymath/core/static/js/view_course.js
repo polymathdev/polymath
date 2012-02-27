@@ -5,8 +5,6 @@ $(document).ready(function(){
 	
 	var lessonheight = $('.lessonsBlock').height();
 	
-	console.log("height is %s", lessonheight);
-	
 	$('.lessonspine.loggedin').css("height",lessonheight-10);
 	
 	if (lessons > 2){
@@ -185,7 +183,7 @@ $(document).ready(function(){
 	            		{ lesson_id: lesson_id },
 	            		function(response) {
 	                		if( response['complete_successful'] ) {
-								$(this).toggleClass("done"); // mark the checkbox as done
+								checkbox.toggleClass("done"); // mark the checkbox as done
 								$("#numbercompleted").text(+($("#numbercompleted").text()) + 1); // increment the number of completed lessons
 								checkbox.closest('.lessonBlock').toggleClass("completedBlock");
 								checkbox.closest('.lessonBlock').find('.numberdone').text(+(checkbox.closest('.lessonBlock').find('.numberdone').text()) + 1);
@@ -231,10 +229,7 @@ $(document).ready(function(){
 			} else {
 
 				if (isLoggedIn){
-
-					console.log('you logged in and are trying to save a course');
 					lesson_id = $(this).closest('.lessonBlock').find('.lesson_id').val();
-					console.log("value of lessonid is %s", lesson_id);
 		        		$.post(
 		            		from_server['save_lesson_url'],
 		            		{ lesson_id: lesson_id },

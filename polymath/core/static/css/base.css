@@ -87,6 +87,19 @@
 	margin-bottom:40px;
 }
 
+.messages a.noclass{
+	float:none;
+	margin-right:0px;
+	font-size:16px;
+	color:#607848;
+	opacity:0.8;
+}
+
+.messages a.noclass:hover{
+	opacity:1;
+}
+
+
 @media screen and (-webkit-min-device-pixel-ratio:0) 
 { 
 	.messages h3 { font-weight: 500; }

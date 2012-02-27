@@ -176,7 +176,7 @@
 
 	<div class="grid_8 omega" style="border-bottom:2px solid #d9d6ce; padding-bottom:9px; margin-bottom:0px;">
 		<ul class="profileheadings">
-			<li><a href="#" title="todo"><b>To do</b><span class="profpgnum">3</span></a></li>
+			<li><a href="#" title="todo"><b>To do</b><span class="profpgnum">{{ profile_owner.saved_lessons.all|length }}</span></a></li>
 			
 			<li><a href="#" title="inprogress" class="selected"><b>Taking</b>
 			</a></li>
@@ -203,38 +203,39 @@
 
 		<div class="grid_8 omega" style="width:610px;">
 				<div class="grid_8 alpha heading" style="width:590px">
-					<h2 class="profile_heading">{% if is_my_profile %}You've{% else %}{{ profile_owner.first_name }} has{% endif %} saved {{ profile_owner.saved_lessons|length }} lesson{{ profile_owner.saved_lessons|length|pluralize }}</h2>
+					<h2 class="profile_heading">{% if is_my_profile %}You've{% else %}{{ profile_owner.first_name }} has{% endif %} saved {{ profile_owner.saved_lessons.all|length }} lesson{{ profile_owner.saved_lessons.all|length|pluralize }}</h2>
 				</div>
 		</div> <!-- end heading block -->
 		
 
 
-    {% if profile_owner.saved_lessons|length > 0 %}
-	<div class="parentlessoncreatedblock">
+    {% if profile_owner.saved_lessons.all|length > 0 %}
+	<div>
 	
 
- 		{% for lesson in profile_owner.saved_lessons.all %} <!-- THIS IS NOT WORKING -->
+ 		{% for lesson in profile_owner.saved_lessons.all %}
 
 			
-			<div class="browseBlock profile">
+			<div class="browseBlock profile" style="margin-left:10px; width:595px;">
 
-					<div class="grid_5" style="margin-top:10px;">
-		                <a href="{% url view_lesson lesson_slug=lesson.slug lesson_id=lesson.id %}" class="coursename">{{ lesson.name }}</a><p class="categoryname"> Submitted by <b><a href="{% url view_profile uname=lesson.creator.username %}">{{ lesson.creator.first_name }} {{ lesson.creator.last_name }}</a></b> under <b><a href="{% url browse_by_cat cat_slug=lesson.category.slug %}">{{ lesson.category.name }}</p></a></b>
+					<div class="grid_7" style="margin-top:10px;">
+		                <a href="{% url view_lesson lesson_slug=lesson.slug lesson_id=lesson.id %}" class="coursename">{{ lesson.name }}</a>
+		<p class="categoryname" style="margin-left:10px;"> Submitted by <b><a id="subtitlelink" href="{% url view_profile uname=lesson.creator.username %}">{{ lesson.creator.first_name }} {{ lesson.creator.last_name }}</a></b> under <b><a href="{% url browse_by_cat cat_slug=lesson.category.slug %}">{{ lesson.category.name }}</p></a></b>
 
 
 					<div class="clear"></div>
-					<p class="coursedescription">{{ lesson.description|truncate_chars:160 }}</p>
+					<p class="coursedescription" style="margin-left:10px;">{{ lesson.description|truncate_chars:160 }}</p>
 
 					</div>
 
 					<div class="clear"></div>
 
-				<p class="browsecoursetags">
+				<p class="browsecoursetags" style="margin-left:20px;">
 					{% for tag in lesson.tags.all %}
 		            <a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>
 					{% endfor %}
 				</p>
-				<p class="coursefollowers lesson browse"> 
+				{% if lesson.tags.all %}<p class="coursefollowers lesson profile"> {% else %}<p class="coursefollowers lesson profilenotags">{% endif %}
 				{{ lesson.vote_score }} like{{ lesson.vote_score|pluralize }}
 				<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="{% if lesson.completers.count == 1 %}{{ lesson.completers.count }} person has {% else %}{{ lesson.completers.count }} people have {% endif %}done this"></img> {{ lesson.completers.count }} </p>
 
@@ -245,8 +246,14 @@
 		{% endfor %}
 	</div>
 	{% else %}
-	
 			
+			<div class="parentlessoncreatedblock">
+				<p style="margin-left:10px;">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} saved any lessons yet!<br>
+				{% if is_my_profile %}Browse Polymath and start learning.</p><a href="{% url browse_all %}" class="editcourse profilepage browse"><span>Browse Courses</span></a>
+				{% endif %}
+			</div>
+			
+			<!--
 			<div class="lessonCreatedBlock empty">
 				<div class="blockbg empty">
 					<div class="grid_1" style="width:160px;">
@@ -257,7 +264,7 @@
 					<a href="{% url browse_all %}" class="editcourse profilepage browse"><span>Browse Courses</span></a>{% endif %}
 					</div>
 				</div>
-			</div>
+			</div> -->
 			
 			
 	
@@ -332,6 +339,73 @@
 	
 	
 	
+	<div class="grid_8 omega" style="width:610px; margin-top:20px;">
+			<div class="grid_8 alpha heading" style="width:590px">
+				<h2 class="profile_heading">{% if is_my_profile %}You've{% else %}{{ profile_owner.first_name }} has{% endif %} done {{ profile_owner.completed_lessons.all|length }} individual lesson{{ profile_owner.completed_lessons.all|length|pluralize }}</h2>
+			</div>
+	</div> <!-- end heading block -->
+	
+
+
+{% if profile_owner.completed_lessons.all|length > 0 %}
+<div>
+
+
+	{% for lesson in profile_owner.completed_lessons.all %}
+
+		
+		<div class="browseBlock profile" style="margin-left:10px; width:595px;">
+
+				<div class="grid_7" style="margin-top:10px;">
+	                <a href="{% url view_lesson lesson_slug=lesson.slug lesson_id=lesson.id %}" class="coursename">{{ lesson.name }}</a>
+	<p class="categoryname" style="margin-left:10px;"> Submitted by <b><a id="subtitlelink" href="{% url view_profile uname=lesson.creator.username %}">{{ lesson.creator.first_name }} {{ lesson.creator.last_name }}</a></b> under <b><a href="{% url browse_by_cat cat_slug=lesson.category.slug %}">{{ lesson.category.name }}</p></a></b>
+
+
+				<div class="clear"></div>
+				<p class="coursedescription" style="margin-left:10px;">{{ lesson.description|truncate_chars:160 }}</p>
+
+				</div>
+
+				<div class="clear"></div>
+
+			<p class="browsecoursetags" style="margin-left:20px;">
+				{% for tag in lesson.tags.all %}
+	            <a class="label success" href="{% if filters.cat %}{% url browse_by_cat_and_tag cat_slug=filters.cat.slug tag_slug=tag.slug %}{% else %}{% url browse_by_tag tag_slug=tag.slug %}{% endif %}">{{ tag }}</a>
+				{% endfor %}
+			</p>
+				{% if lesson.tags.all %}<p class="coursefollowers lesson profile"> {% else %}<p class="coursefollowers lesson profilenotags">{% endif %}
+			{{ lesson.vote_score }} like{{ lesson.vote_score|pluralize }}
+			<img src="{{ STATIC_URL }}css/images/icon_follower.png" class="followersicon numfollowers" style="margin-right:5px; height:15px; width:auto;" original-title="{% if lesson.completers.count == 1 %}{{ lesson.completers.count }} person has {% else %}{{ lesson.completers.count }} people have {% endif %}done this"></img> {{ lesson.completers.count }} </p>
+
+		</div> <!-- end browse block -->
+
+
+
+	{% endfor %}
+</div>
+{% else %}
+		
+		<div class="parentlessoncreatedblock">
+			<p style="margin-left:10px;">{% if is_my_profile %}You haven't{% else %}{{ profile_owner.first_name }} hasn't{% endif %} completed any lessons yet!<br>
+			{% if is_my_profile %}Browse Polymath and start learning.</p><a href="{% url browse_all %}" class="editcourse profilepage browse"><span>Browse Courses</span></a>
+			{% endif %}
+		</div>
+
+		
+		
+
+{% endif %}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- end courses taking -->
 	</div> <!-- end taking tab -->
 	
@@ -348,7 +422,7 @@
 	
 		<div class="heading grid_8" style="margin-top:0px;">
 				<div class="grid_8 alpha">
-					<h2 class="profile_heading">{% if is_my_profile %}You like{% else %}{{ profile_owner.first_name }} likes {% endif %} these lessons</h2>
+					<h2 class="profile_heading">{% if is_my_profile %}You like{% else %}{{ profile_owner.first_name }} likes {% endif %} {{ upvoted_lessons|length }} lesson{{ upvoted_lessons|length|pluralize }}</h2>
 				</div>
 		</div>
 		

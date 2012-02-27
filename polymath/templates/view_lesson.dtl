@@ -130,13 +130,18 @@
 				<p class="expanded">{{ lesson.description }}<a href="{{ lesson.link }}"></a></p>
 				<div style="margin-top:10px;">
 
-							{% if not lesson.completed %}
-								<a class="savethis" original-title="Save for later" style="float:left;"><span>Save&nbsp;&nbsp;&nbsp;</span></a>
-								<a class="donethis" original-title="Mark this as done" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;</span></a>
-		            		{% else %}
-								<a class="savethis" original-title="Save for later" style="float:left;"><span>Save&nbsp;&nbsp;&nbsp;</span></a>
-								<a class="donethis done"  original-title="You've done this!" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;</span></a>
-		            		{% endif %}
+				{% if not lesson.saved %}
+					<a class="savethis" original-title="Save for later" style="float:left;"><span>Save&nbsp;&nbsp;&nbsp;</span></a>
+				{% else %}
+					<a class="savethis done" original-title="You've saved this!" style="float:left;"><span>Saved</span></a>
+				{% endif %}
+				
+				
+				{% if not lesson.completed %}
+					<a class="donethis" original-title="Mark this as done" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;</span></a>
+        		{% else %}
+					<a class="donethis done"  original-title="You've done this!" style="float:left;"><span>Done&nbsp;&nbsp;&nbsp;</span></a>
+        		{% endif %}
 							<img src="{{ STATIC_URL }}css/images/icon_follower_light.png" class="followersicon donecount" original-title="People who've done this"></img><span class="numberdone">{{ lesson.completers.count }}</p>
 				</div>
 			</div>
