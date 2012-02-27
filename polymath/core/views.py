@@ -475,7 +475,7 @@ def browse(request, cat_slug=None, tag_slug=None):
     if tag_slug:
         course_list = course_list.filter(tags__slug=tag_slug)
         standalone_lessons = standalone_lessons.filter(tags__slug=tag_slug)
-        filters['tag'] = Tag.objects.get(slug=tag_slug)
+        filters['tag'] = get_object_or_None(Tag, slug=tag_slug)
 
     # only show the tutorial message once
     if not request.session.get('has_seen_tutorial_msg', False):
