@@ -448,6 +448,7 @@ def vote_lesson(request):
 def browse(request, cat_slug=None, tag_slug=None):
     course_list = None
     standalone_lessons = None
+    show_tutorial_message = None
     filters = {}                            
     
     cats = CourseCategory.objects.all()
@@ -490,7 +491,13 @@ def browse(request, cat_slug=None, tag_slug=None):
     # annotate the list with counts of their tagged items and order by those counts
     tags_by_num_times = tag_list.annotate(num_times=Count('taggit_taggeditem_items')).order_by('-num_times')
 
+    # only show the tutorial message once
+    if not request.session.get('has_seen_tutorial_msg', False):
+        show_tutorial_message = True
+        request.session['has_seen_tutorial_msg'] = True
+
     return render(request, 'browse_courses.dtl', {
+        'show_tutorial_message' : show_tutorial_message,
         'tags_by_num_times' : tags_by_num_times,
         'tags_by_cat' : tags_by_cat,
         'course_list' : course_list,

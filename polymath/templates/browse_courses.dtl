@@ -13,9 +13,9 @@
 {% load truncate_filters %}
 
 {% load comments %}  
-
+{% if show_tutorial_message %}
 	<div class="messages"><h3><b>New to coding & design?</b> &nbsp; Check out <a class="noclass">this tutorial</a> that will give you an overview of how to use Polymath to learn.</h3><a href="#" id="close">x</a></div>
-
+{% endif %}
 
 <div class="container_12" style="margin-top:30px;">
 
