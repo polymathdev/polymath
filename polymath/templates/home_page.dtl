@@ -86,13 +86,13 @@
 		<div class="grid_4">
 
 			<div class="featuredblock">
-                <img src="{{ featured_courses.left.creator.get_profile.get_pic_url }}"></img>
-                <a href="{% url view_course course_id=featured_courses.left.id course_slug=featured_courses.left.slug %}"><span class="emptyspan"></span></a>
-				<h3>{{ featured_courses.left.name|truncate_chars:30 }}</h3>
-                <h5>By <a href="{% url view_profile uname=featured_courses.left.creator.username %}">{{ featured_courses.left.creator.first_name }} {{ featured_courses.left.creator.last_name }}</a>, {{ featured_courses.left.creator.get_profile.blurb }}</h5>
+                <img src="{{ STATIC_URL }}css/images/favicon.png"></img>
+                <a href="/tutorial"><span class="emptyspan"></span></a>
+				<h3 style="margin-left:5px">A Primer to Web Development</h3>
+                <h5 style="margin-left:5px">By <a href="{% url view_profile uname=featured_courses.left.creator.username %}">Polymath</a>, we like learning.</h5>
 				<div class="content">
-                    <img src="{% if featured_courses.left.photo %}{{ featured_courses.left.photo.url }}{% else %}{{ STATIC_URL }}css/images/courseDefault.png{% endif %}"></img>
-                    <span>{{ featured_courses.left.description|truncate_chars:175 }}</span>
+                    <img src="{{ STATIC_URL }}css/images/favicon.png"></img>
+                    <span>So you’ve always wanted to learn to code or design new web products, but just didn’t know where to start. This primer will walk you through all the different pieces that go into making a web or mobile product...</span>
 				</div>
 			</div>
 		</div>
