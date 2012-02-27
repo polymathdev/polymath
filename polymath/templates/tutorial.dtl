@@ -22,7 +22,7 @@
 
 {% block js_includes %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/view_course.js"></script>
-
+	<script type="text/javascript" src="{{ STATIC_URL }}js/tutorial.js"></script>
 	<script type="text/javascript">
 		
 		var isLoggedIn;
@@ -45,7 +45,7 @@
 
 {% if user.is_authenticated %}
 {% else %}
-	<div class="messages"><h3><b>Welcome to Polymath, a fun, easy way to learn programming & design!</b> &nbsp; Here's an intro to the basics.</h3><a href="#" id="close">x</a></div>
+	<div class="messages"><h3><b>Welcome to Polymath, a fun, easy way to learn programming & design!</b> &nbsp; Here's an intro to the basics of web products.</h3><a href="#" id="close">x</a></div>
 {% endif %}
 
 
@@ -76,7 +76,7 @@
 			</div>
 
 			<div class="grid_3 alpha omega">
-				<h2 id="coursetitle">A Primer to Programming and Design</h2>
+				<h2 id="coursetitle">A Primer to Web Programming and Design</h2>
 				<h4>
 				<a href="/profile/polymath" id="name">Polymath</a>   
 				<br>
@@ -98,14 +98,10 @@
 				
 				<hr id="titlehr">
 				
-				<p id="coursepagedescription">So you’ve always wanted to learn to code or design, but just didn’t know where to start. This primer will walk you through all the different pieces that go into making a web or mobile product -- from how it looks and feels, to how it gets displayed in your browser, to how it actually works and runs. It may seem like a lot, but don’t worry -- the key is staying patient and persistent, and learning a little bit each day.
+				<p id="coursepagedescription">So you’ve always wanted to learn to code or design new web products, but just didn’t know where to start. This primer will walk you through all the different pieces that go into making a web or mobile product -- from how it looks and feels, to how it gets displayed in your browser, to how it actually works and runs. It may seem like a lot, but don’t worry -- the key is staying patient and persistent, and learning a little bit each day.
 <br><br>
 				You can use Polymath to find material to learn each of these topics, get your questions answered, and track your progress as you go along. We're in this together! Let's get started.</p>
-			
-				<hr id="titlehr" style="margin-bottom:10px;">
-						<a class="label success" href="{% url browse_by_tag tag_slug='tutorial' %}" target="_blank">Tutorial</a>
-						<a class="label success" href="">Beginner</a>
-						<a class="label success" href="">Intro</a>
+		
 			
 		
 			</div> <!-- end div with course description and content -->

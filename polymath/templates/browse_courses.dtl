@@ -25,9 +25,9 @@
 
 {% if show_tutorial_message %}
 	<div id="dimmed">&nbsp;</div>
-	<div class="messages" style="z-index:200; position:relative;"><h3><b>New to coding & design?</b> &nbsp; Check out <a class="noclass" href="/tutorial">this tutorial</a> that will give you an overview of how to use Polymath to learn.</h3><a href="#" id="close">x</a></div>
+	<div class="messages" style="z-index:200; position:relative;"><h3><b>New to web development & design?</b> Check out <a class="noclass" href="/tutorial">this introduction</a> to the relevant topics you can learn on Polymath.</h3><a href="#" id="close">x</a></div>
 {% else %}
-	<div class="messages" style="z-index:200; position:relative;"><h3><b>Are we missing any material that you know is good?</b> &nbsp; You can fix that - submit a lesson or create a course!</h3><a href="#" id="close">x</a></div>
+	<div class="messages" style="z-index:200; position:relative;"><h3><b>Are we missing any material that you know is good?</b> &nbsp; You can fix that - submit a lesson or create a course!</h3><a href="#" id="close">x</a></div>	
 {% endif %}
 
 <div class="container_12" style="margin-top:30px;">
