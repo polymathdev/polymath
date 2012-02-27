@@ -8,9 +8,10 @@ $(document).ready(function(){
 	
 	$('#smelly').appear(function() {
 		$("#howitworkscall").delay(1800).fadeIn();
-		$(".messages").delay(1500).fadeOut();
+		$(".messages").delay(1200).fadeOut();
 		$("#nextbutton").fadeOut();
-		$("#coda-nav-1").delay(1500).fadeIn();
+		$("#coda-nav-1").delay(1200).fadeIn();
+		$("#dim").fadeOut();
 	});
 	
 	

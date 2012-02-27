@@ -172,9 +172,10 @@
 			{% else %}
 				{% if is_welcome %}
 					<h3 id="getstartedh3">
-						Are you new to coding & design? This tutorial will help you get started on Polymath.
+						Are you new to web coding & design? This tutorial will help you get started on Polymath.
 					</h3><br><br><br>
 					<a href="/tutorial" class="browsecourses"><span>&nbsp;&nbsp;Go To Tutorial <b>&#8594;</b> </span></a>
+					<br><br><p style="float:left; margin-left:600px; margin-top:-62px;">Or, <a href="{% url browse_all %}">browse Polymath</a> to find great content.</p>
 				{% else %}
 					<h3 id="getstartedh3">
 						Sounds good? Let's get started!
