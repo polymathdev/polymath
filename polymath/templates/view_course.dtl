@@ -75,7 +75,7 @@
 	<div class="grid_12 categories">
 	
 		<div class="grid_6 alpha">
-		<a href="/courses/browse">Learn</a> > <a href="{% url browse_by_cat cat_slug=requested_course.category.slug %}">{{requested_course.category}}</a> > <a href="{{ request.path }}">{{requested_course.name}}</a>
+		<a href="{% url browse_all %}">Learn</a> > <a href="{% url browse_by_cat cat_slug=requested_course.category.slug %}">{{requested_course.category}}</a> > <a href="{{ request.path }}">{{requested_course.name}}</a>
 		</div>
 		
 	</div>
