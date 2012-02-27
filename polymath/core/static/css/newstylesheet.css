@@ -6160,6 +6160,7 @@ textarea.error { border: 1px dotted red; }
 	.nav { font-weight: normal; opacity:1;}
 	#learnnav, #teachnav { font-weight: normal; color:(255,255,255,0.1);}
 	 .browsecourses, .editcourse, .createcourse, .takecourse { font-weight: normal; }
+	.messages { font-weight:normal;}
 	-webkit-font-smoothing: antialiased!important; 
 }
 
