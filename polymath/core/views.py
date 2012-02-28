@@ -234,7 +234,7 @@ def add_lesson(request):
             lesson_form.save_m2m()
 
             messages.success(request, 'Your lesson has been submitted! Share it with your friends on Twitter and Facebook.')
-            return redirect('browse_all')
+            return redirect('view_my_profile')
     
         # handling if lesson_form is not valid.  normally this is handled automatically by django passing errors to template, but in this case we have a special error we want to manually handle here
         else:
