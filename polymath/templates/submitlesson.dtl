@@ -39,7 +39,7 @@
 			
 				<div class="lessonlink">
                     {# <input type="text" placeholder="Lesson URL"></input> #}
-                    {{ lesson_form.link }}
+                    {{ lesson_form.link }} {{ lesson_form.link.errors }}
 				</div>
 				
 				<div class="lessondescription1">
