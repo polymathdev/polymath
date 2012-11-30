@@ -8,7 +8,7 @@ env = lambda e, d: environ[e] if environ.has_key(e) else d
 
 host = node()
 
-if host in ['harish-venkatesans-macbook.local', 'DSMBP.local']:
+if host in ['harish-venkatesans-macbook.local', 'Daniel-Shapiros-MacBook-Pro-2.local']:
     from settings_dev import *
 else:
     from settings_prod import *
